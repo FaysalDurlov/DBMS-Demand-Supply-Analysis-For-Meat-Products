@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper Summary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <div class="min-h-screen py-8 px-4 max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        About
+      </h1>
+      <div class="w-24 h-1 bg-gradient-to-r from-orange-400 via-blue-400 to-green-400 mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Sections -->
+    <div class="space-y-6">
+
+      <!-- WHAT Section -->
+      <div class="bg-orange-50 border border-orange-200 rounded-xl shadow-lg">
+        <button onclick="toggle('what')" class="w-full p-6 flex justify-between items-center hover:bg-orange-100 rounded-xl">
+          <div class="flex items-center space-x-4">
+            <div class="p-3 text-orange-600 bg-white rounded-lg shadow-sm">
+              ❓
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-800">What</h2>
+          </div>
+          <div id="chevron-what" class="text-orange-600 transition-transform">
+            ▼
+          </div>
+        </button>
+        <div id="content-what" class="px-6 pb-6">
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Analysis of price elasticity in pharmaceutical benefit management</p>
+
+            </li>
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Investigation of demand patterns in PBMA systems</p>
+
+              </li>
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Study of how meat price changes influence consumer purchasing behavior</p>
+              </li>
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Assessment of substitution effects with alternative proteins</p>
+
+
+              </li>
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Understanding elasticity in the context of income and preferences</p>
+
+
+
+            </li>
+            <li class="flex items-start space-x-3">
+              <div class="w-2 h-2 bg-orange-600 rounded-full mt-2"></div>
+              <p class="text-gray-700">Examination of consumer response to pricing changes</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HOW Section -->
+      <div class="bg-blue-50 border border-blue-200 rounded-xl shadow-lg">
+        <button onclick="toggle('how')" class="w-full p-6 flex justify-between items-center hover:bg-blue-100 rounded-xl">
+          <div class="flex items-center space-x-4">
+            <div class="p-3 text-blue-600 bg-white rounded-lg shadow-sm">⚙️</div>
+            <h2 class="text-2xl font-semibold text-gray-800">How</h2>
+          </div>
+          <div id="chevron-how" class="text-blue-600 transition-transform">▼</div>
+        </button>
+        <div id="content-how" class="px-6 pb-6">
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Collected longitudinal data</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Applied econometric modeling techniques</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Used regression analysis</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Implemented diff-in-diff method</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Conducted robustness checks</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Cross-sectional analysis</p></li>
+
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Collected meat pricing data from retail and wholesale markets</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Analyzed seasonal and regional price fluctuations</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Measured consumption response across income groups</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">dentified substitution toward non-meat proteins</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-blue-600 rounded-full mt-2"></div><p class="text-gray-700">Compiled statistical visualizations for decision-makers</p></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RESULT Section -->
+      <div class="bg-green-50 border border-green-200 rounded-xl shadow-lg">
+        <button onclick="toggle('result')" class="w-full p-6 flex justify-between items-center hover:bg-green-100 rounded-xl">
+          <div class="flex items-center space-x-4">
+            <div class="p-3 text-green-600 bg-white rounded-lg shadow-sm">🎯</div>
+            <h2 class="text-2xl font-semibold text-gray-800">Result</h2>
+          </div>
+          <div id="chevron-result" class="text-green-600 transition-transform">▼</div>
+        </button>
+        <div id="content-result" class="px-6 pb-6">
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Price elasticity ranges -0.3 to -0.8</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Generics show higher sensitivity</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Chronic meds show lower elasticity</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">PBMA reduces costs 12–18%</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Behavior differs by insurance type</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Targeted pricing improves efficiency</p></li>
+
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">High elasticity observed for beef and mutton among low-income groups
+
+</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Chicken demand remained stable even with moderate price hikes</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Consumers switched to plant-based proteins during price surges</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Urban areas showed more demand fluctuation than rural</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Substitution patterns influenced by cultural and dietary norms</p></li>
+            <li class="flex items-start space-x-3"><div class="w-2 h-2 bg-green-600 rounded-full mt-2"></div><p class="text-gray-700">Policy suggestions include price stabilization and protein subsidies</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-12 text-gray-500">
+      <p class="text-sm">Click on any section to expand or collapse the content</p>
+    </div>
+  </div>
+
+  <!-- JavaScript for Toggle -->
+  <script>
+    function toggle(id) {
+      const content = document.getElementById(`content-${id}`)
+      const chevron = document.getElementById(`chevron-${id}`)
+      content.classList.toggle("hidden")
+      chevron.classList.toggle("rotate-180")
+    }
+  </script>
+</body>
+</html>

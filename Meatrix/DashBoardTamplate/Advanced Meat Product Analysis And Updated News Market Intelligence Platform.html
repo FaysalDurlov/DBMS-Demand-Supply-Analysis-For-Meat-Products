@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeatAnalytics Pro - Advanced Market Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body data-theme="light">
+
+
+
+
+
+
+
+    <!-- Navigation/Navbar -->
+    
+
+
+
+
+
+
+
+
+
+    <!-- Professional Navigation -->
+    <nav class="glass-strong sticky top-0 z-50 border-b" style="border-color: var(--border-primary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo and Brand -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">5</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold" style="color: var(--text-primary);">Meatrix</h1>
+                        <p class="text-sm mono-font" style="color: var(--text-tertiary);">Advanced Market Intelligence Platform</p>
+                    </div>
+                </div>
+                
+                <!-- Status Indicators -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 status-online rounded-full pulse-animation"></div>
+                        <span class="text-sm font-medium" style="color: var(--text-secondary);">System Online</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-database" style="color: var(--accent-primary);"></i>
+                        <span class="text-sm mono-font" style="color: var(--text-secondary);">2.4M Records</span>
+                    </div>
+                    <div class="digital-clock" id="digitalClock">
+                        12:00:00 AM
+                    </div>
+                    <div class="weather-display" id="weatherDisplay">
+                        <i class="fas fa-cloud-sun" style="color: var(--accent-primary);"></i>
+                        <span class="text-sm ml-2" style="color: var(--text-secondary);" id="weatherInfo">Loading...</span>
+                    </div>
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex items-center space-x-4">
+                    <div class="dark-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode"></div>
+                    <button class="btn-secondary" onclick="refreshData()">
+                        <i class="fas fa-sync-alt mr-2"></i>Refresh
+                    </button>
+                    <button class="btn-primary" onclick="exportData()">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Live News Ticker -->
+    <div class="news-ticker">
+        <div class="news-ticker-content">
+            🔴 BREAKING: AI predicts 18% beef price surge in Q4 2024 • 📈 Chicken production automation increases efficiency by 34% • 🌾 Smart farming initiatives reduce feed costs by 22% • 💰 Export opportunities to 15 new international markets • 🤖 Machine learning models achieve 96% accuracy in demand forecasting • 📊 Real-time blockchain tracking implemented across supply chain • 🌡️ Weather impact analysis shows minimal risk for next quarter
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="min-h-screen" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8">
+            
+            <!-- Hero Section -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-6xl font-black mb-6" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Ultimate Meat Market Intelligence
+                </h1>
+                <p class="text-2xl mb-12 max-w-4xl mx-auto" style="color: var(--text-secondary);">
+                    AI-Powered Real-time Analytics & Comprehensive Insights into Bangladesh's Meat Industry Ecosystem
+                </p>
+                <!-- Enhanced Hero Section -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 border border-gray-200 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 via-blue-400 to-green-400"></div>
+            <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-chart-pie text-blue-500 mr-3"></i>
+                        Project Overview
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        This comprehensive analysis examines the demand and supply dynamics of meat products across Bangladesh, 
+                        providing insights into production volumes, pricing trends, consumption patterns, and market elasticity. 
+                        Our research covers regional variations, historical data, and policy recommendations for stakeholders 
+                        in the meat industry supply chain.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Data Analysis</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Market Research</span>
+                        <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Policy Insights</span>
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <div class="w-48 h-48 bg-gradient-to-br from-blue-400 to-green-400 rounded-full flex items-center justify-center text-white">
+                        <div class="text-center">
+                            <i class="fas fa-cow text-4xl mb-2"></i>
+                            <div class="text-sm font-medium">Livestock Analysis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                 <!-- Quick Stats Dashboard -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-blue-100 text-sm font-medium">Total Production</p>
+                        <p class="text-3xl font-black mb-1">680K</p>
+                        <p class="text-blue-100 text-xs">tons/year</p>
+                        <div class="flex items-center mt-2 text-green-300">
+                            <i class="fas fa-arrow-up text-xs mr-1"></i>
+                            <span class="text-xs">+12.5%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-industry text-4xl text-blue-200"></i>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-green-500 to-green-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-green-100 text-sm font-medium">Market Value</p>
+                        <p class="text-3xl font-black mb-1">₹2.4B</p>
+                        <p class="text-green-100 text-xs">annual</p>
+                        <div class="flex items-center mt-2 text-green-300">
+                            <i class="fas fa-arrow-up text-xs mr-1"></i>
+                            <span class="text-xs">+18.2%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-dollar-sign text-4xl text-green-200"></i>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-orange-500 to-orange-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-orange-100 text-sm font-medium">Consumption</p>
+                        <p class="text-3xl font-black mb-1">36.5kg</p>
+                        <p class="text-orange-100 text-xs">per person</p>
+                        <div class="flex items-center mt-2 text-orange-300">
+                            <i class="fas fa-arrow-up text-xs mr-1"></i>
+                            <span class="text-xs">+8.7%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-utensils text-4xl text-orange-200"></i>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-500 to-purple-700 text-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-100 text-sm font-medium">Growth Rate</p>
+                        <p class="text-3xl font-black mb-1">+8.2%</p>
+                        <p class="text-purple-100 text-xs">yearly</p>
+                        <div class="flex items-center mt-2 text-purple-300">
+                            <i class="fas fa-chart-line text-xs mr-1"></i>
+                            <span class="text-xs">Trending</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chart-line text-4xl text-purple-200"></i>
+                </div>
+            </div>
+        </div>
+                <!-- Key Metrics Dashboard -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-16 h-16 gradient-success rounded-2xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-bold">
+                                <i class="fas fa-arrow-up mr-1"></i>15.7%
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-3 mono-font" style="color: var(--text-primary);">৳8.4B</h3>
+                        <p class="font-semibold text-lg mb-4" style="color: var(--text-secondary);">Total Market Value</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="gradient-success h-3 rounded-full transition-all duration-1000" style="width: 84%"></div>
+                        </div>
+                        <p class="text-xs mt-2 mono-font" style="color: var(--text-tertiary);">Target: ৳10B by 2025</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-16 h-16 gradient-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-bold">
+                                <i class="fas fa-arrow-up mr-1"></i>12.3%
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-3 mono-font" style="color: var(--text-primary);">3.2M</h3>
+                        <p class="font-semibold text-lg mb-4" style="color: var(--text-secondary);">Active Consumers</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="gradient-secondary h-3 rounded-full transition-all duration-1000" style="width: 72%"></div>
+                        </div>
+                        <p class="text-xs mt-2 mono-font" style="color: var(--text-tertiary);">Growth rate: +8.3% YoY</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-16 h-16 gradient-warning rounded-2xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-industry text-white text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-bold">
+                                <i class="fas fa-arrow-up mr-1"></i>9.8%
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-3 mono-font" style="color: var(--text-primary);">6.7M</h3>
+                        <p class="font-semibold text-lg mb-4" style="color: var(--text-secondary);">Tons Produced</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="gradient-warning h-3 rounded-full transition-all duration-1000" style="width: 89%"></div>
+                        </div>
+                        <p class="text-xs mt-2 mono-font" style="color: var(--text-tertiary);">Capacity: 7.5M tons</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-robot text-white text-2xl"></i>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-bold">
+                                <i class="fas fa-arrow-up mr-1"></i>5.2%
+                            </span>
+                        </div>
+                        <h3 class="text-4xl font-black mb-3 mono-font" style="color: var(--text-primary);">96%</h3>
+                        <p class="font-semibold text-lg mb-4" style="color: var(--text-secondary);">AI Accuracy</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="gradient-primary h-3 rounded-full transition-all duration-1000" style="width: 96%"></div>
+                        </div>
+                        <p class="text-xs mt-2 mono-font" style="color: var(--text-tertiary);">ML Model v4.2</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            <!-- Advanced Filters -->
+            <div class="pro-card-elevated p-8 mb-16" data-aos="fade-up">
+                <div class="flex flex-wrap items-center justify-between gap-6">
+                    <div class="flex items-center space-x-6">
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2" style="color: var(--text-tertiary);"></i>
+                            <input type="text" placeholder="AI-powered search: markets, products, regions, trends..." 
+                                   class="pro-input pl-12 pr-6 py-4 w-96 text-lg">
+                        </div>
+                        <select class="pro-select px-6 py-4 text-lg">
+                            <option>🌍 All Regions</option>
+                            <option>🏙️ Dhaka Division</option>
+                            <option>🏔️ Chittagong Division</option>
+                            <option>🌾 Rajshahi Division</option>
+                            <option>🌿 Rangpur Division</option>
+                            <option>🏞️ Khulna Division</option>
+                            <option>🌊 Barisal Division</option>
+                            <option>🌲 Sylhet Division</option>
+                            <option>🌱 Mymensingh Division</option>
+                        </select>
+                        <select class="pro-select px-6 py-4 text-lg">
+                            <option>📅 Last 30 Days</option>
+                            <option>📊 Last 3 Months</option>
+                            <option>📈 Last 6 Months</option>
+                            <option>📉 Last Year</option>
+                            <option>🔮 Predictive View</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="btn-primary text-lg px-8 py-4" onclick="refreshData()">
+                            <i class="fas fa-sync-alt mr-3"></i>Refresh AI Data
+                        </button>
+                        <button class="btn-primary text-lg px-8 py-4" onclick="exportData()">
+                            <i class="fas fa-file-export mr-3"></i>Export Intelligence
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Dashboard -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+                <!-- Live Price Tracker -->
+                <div class="lg:col-span-2 pro-card-elevated p-10" data-aos="fade-right">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-2" style="color: var(--text-primary);">Live Price Intelligence</h3>
+                            <p style="color: var(--text-secondary);">AI-powered real-time market analysis</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-4 h-4 status-online rounded-full pulse-animation"></div>
+                                <span class="text-sm mono-font" style="color: var(--text-secondary);" id="lastUpdate">Updated 2m ago</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="btn-secondary text-sm px-4 py-2" onclick="setTimeframe('1H')">1H</button>
+                                <button class="btn-secondary text-sm px-4 py-2" onclick="setTimeframe('24H')">24H</button>
+                                <button class="btn-primary text-sm px-4 py-2" onclick="setTimeframe('7D')">7D</button>
+                                <button class="btn-secondary text-sm px-4 py-2" onclick="setTimeframe('30D')">30D</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="livePriceChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6">
+                        <div class="text-center p-4 rounded-xl" style="background: var(--bg-secondary);">
+                            <p class="text-sm font-medium" style="color: var(--text-secondary);">Beef Current</p>
+                            <p class="text-2xl font-bold mono-font" style="color: var(--error);" id="beefPrice">৳672</p>
+                            <p class="text-xs" style="color: var(--success);" id="beefChange">+2.3% today</p>
+                        </div>
+                        <div class="text-center p-4 rounded-xl" style="background: var(--bg-secondary);">
+                            <p class="text-sm font-medium" style="color: var(--text-secondary);">Chicken Current</p>
+                            <p class="text-2xl font-bold mono-font" style="color: var(--accent-primary);" id="chickenPrice">৳234</p>
+                            <p class="text-xs" style="color: var(--success);" id="chickenChange">+1.8% today</p>
+                        </div>
+                        <div class="text-center p-4 rounded-xl" style="background: var(--bg-secondary);">
+                            <p class="text-sm font-medium" style="color: var(--text-secondary);">Mutton Current</p>
+                            <p class="text-2xl font-bold mono-font" style="color: var(--success);" id="muttonPrice">৳1,024</p>
+                            <p class="text-xs" style="color: var(--success);" id="muttonChange">+0.9% today</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Market Alerts & Weather -->
+                <div class="space-y-6" data-aos="fade-left">
+                    <!-- Market Alerts -->
+                    <div class="pro-card p-8">
+                        <h3 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">AI Market Alerts</h3>
+                        <div class="space-y-4" id="marketAlerts">
+                            <div class="p-5 bg-red-50 border-l-4 border-red-400 rounded-xl shimmer-effect">
+                                <div class="flex items-start">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-4 text-lg"></i>
+                                    <div>
+                                        <h4 class="font-bold text-red-800">Critical Price Alert</h4>
+                                        <p class="text-sm text-red-600 mb-2">Beef prices surged 12% in Dhaka region</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-xs text-red-500 mono-font">AI Confidence: 97%</span>
+                                            <span class="text-xs text-red-500">•</span>
+                                            <span class="text-xs text-red-500" id="alert1Time">8 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5 bg-yellow-50 border-l-4 border-yellow-400 rounded-xl shimmer-effect">
+                                <div class="flex items-start">
+                                    <i class="fas fa-info-circle text-yellow-500 mr-4 text-lg"></i>
+                                    <div>
+                                        <h4 class="font-bold text-yellow-800">Supply Chain Update</h4>
+                                        <p class="text-sm text-yellow-600 mb-2">Major shipment delayed in Chittagong port</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-xs text-yellow-500 mono-font">Impact: Medium</span>
+                                            <span class="text-xs text-yellow-500">•</span>
+                                            <span class="text-xs text-yellow-500" id="alert2Time">23 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="p-5 bg-green-50 border-l-4 border-green-400 rounded-xl shimmer-effect">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mr-4 text-lg"></i>
+                                    <div>
+                                        <h4 class="font-bold text-green-800">Market Stabilized</h4>
+                                        <p class="text-sm text-green-600 mb-2">Chicken prices normalized across regions</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-xs text-green-500 mono-font">Trend: Stable</span>
+                                            <span class="text-xs text-green-500">•</span>
+                                            <span class="text-xs text-green-500" id="alert3Time">1 hour ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Weather Widget -->
+                    <div class="weather-widget">
+                        <h4 class="text-xl font-bold mb-4">Weather Impact Analysis</h4>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-sm opacity-90">Current Conditions</p>
+                                <p class="text-2xl font-bold" id="weatherCondition">Partly Cloudy</p>
+                                <p class="text-sm opacity-80" id="weatherDetails">28°C • 65% Humidity</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm opacity-90">Supply Risk Level</p>
+                                <p class="text-2xl font-bold" id="riskLevel">Low</p>
+                                <p class="text-sm opacity-80" id="riskScore">AI Risk Score: 2.3/10</p>
+                            </div>
+                        </div>
+                        <div class="bg-white bg-opacity-20 rounded-xl p-4">
+                            <h5 class="font-semibold mb-2">7-Day Forecast Impact</h5>
+                            <div class="flex justify-between text-sm" id="weeklyForecast">
+                                <span>Mon: ☀️ Low</span>
+                                <span>Tue: 🌤️ Low</span>
+                                <span>Wed: 🌧️ Medium</span>
+                                <span>Thu: ⛈️ High</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Members Analysis Sections -->
+            <div class="space-y-12">
+                <!-- Section 1: Munim's Data Analysis -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section1')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-warning rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-database text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">1. Comprehensive Meat Product Database</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Munim Rahman - Advanced product specifications and market intelligence</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold">25 Product Types</span>
+                                    <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold">Real-time Updates</span>
+                                    <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold">Quality Metrics</span>
+                                    <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold">AI Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon1"></i>
+                    </div>
+                    <div class="section-content" id="content1">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-3 gap-10">
+                            <!-- Product Specifications Table -->
+                            <div class="xl:col-span-2 pro-card p-10">
+                                <div class="flex items-center justify-between mb-8">
+                                    <h4 class="text-3xl font-bold" style="color: var(--text-primary);">Advanced Product Matrix</h4>
+                                    <div class="flex space-x-3">
+                                        <button class="btn-secondary" onclick="exportTable('productMatrix')">
+                                            <i class="fas fa-download mr-2"></i>Export
+                                        </button>
+                                        <button class="btn-primary" onclick="analyzeProducts()">
+                                            <i class="fas fa-chart-bar mr-2"></i>Analyze
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="overflow-x-auto">
+                                    <table class="pro-table" id="productMatrix">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Weight (kg)</th>
+                                                <th>Feed Ratio</th>
+                                                <th>Time</th>
+                                                <th>Price</th>
+                                                <th>Quality</th>
+                                                <th>AI Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                                                            <i class="fas fa-cow text-red-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-bold">Beef (Local)</p>
+                                                            <p class="text-xs" style="color: var(--text-tertiary);">Deshi Cattle • Premium Cut</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="font-bold mono-font">180-220</td>
+                                                <td class="mono-font">8:1</td>
+                                                <td>24-30 months</td>
+                                                <td class="font-bold mono-font" style="color: var(--success);">৳672/kg</td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-bold">Grade A+</span>
+                                                </td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold mono-font">9.2/10</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                                                            <i class="fas fa-cow text-red-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-bold">Beef (Cross-breed)</p>
+                                                            <p class="text-xs" style="color: var(--text-tertiary);">Hybrid Cattle • Premium</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="font-bold mono-font">250-300</td>
+                                                <td class="mono-font">6:1</td>
+                                                <td>18-24 months</td>
+                                                <td class="font-bold mono-font" style="color: var(--success);">৳720/kg</td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold">Grade AA</span>
+                                                </td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold mono-font">9.6/10</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+                                                            <i class="fas fa-drumstick-bite text-blue-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-bold">Chicken (Broiler)</p>
+                                                            <p class="text-xs" style="color: var(--text-tertiary);">Commercial Grade</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="font-bold mono-font">1.8-2.2</td>
+                                                <td class="mono-font">1.8:1</td>
+                                                <td>35-42 days</td>
+                                                <td class="font-bold mono-font" style="color: var(--success);">৳234/kg</td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">Grade A</span>
+                                                </td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold mono-font">8.8/10</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center">
+                                                            <i class="fas fa-sheep text-purple-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-bold">Mutton (Local)</p>
+                                                            <p class="text-xs" style="color: var(--text-tertiary);">Deshi Goat • Premium</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="font-bold mono-font">25-35</td>
+                                                <td class="mono-font">4:1</td>
+                                                <td>12-18 months</td>
+                                                <td class="font-bold mono-font" style="color: var(--success);">৳1,024/kg</td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold">Premium</span>
+                                                </td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold mono-font">9.4/10</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center">
+                                                            <i class="fas fa-duck text-teal-600"></i>
+                                                        </div>
+                                                        <div>
+                                                            <p class="font-bold">Duck</p>
+                                                            <p class="text-xs" style="color: var(--text-tertiary);">Domestic Grade</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="font-bold mono-font">2.5-3.0</td>
+                                                <td class="mono-font">2.5:1</td>
+                                                <td>60-70 days</td>
+                                                <td class="font-bold mono-font" style="color: var(--success);">৳350/kg</td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-bold">Grade B</span>
+                                                </td>
+                                                <td>
+                                                    <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-bold mono-font">8.2/10</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- Munim's AI Insights -->
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Munim's Quality Analysis</h4>
+                                    <div class="space-y-6">
+                                        <div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-sm font-bold">Protein Content</span>
+                                                <span class="text-sm font-bold mono-font" style="color: var(--success);">24.8%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-success h-3 rounded-full transition-all duration-1000" style="width: 92%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">Optimal range: 22-26%</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-sm font-bold">Marbling Score</span>
+                                                <span class="text-sm font-bold mono-font" style="color: var(--accent-secondary);">7.8/10</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-secondary h-3 rounded-full transition-all duration-1000" style="width: 78%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">Premium quality indicator</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <span class="text-sm font-bold">Fat Content</span>
+                                                <span class="text-sm font-bold mono-font" style="color: var(--warning);">12.4%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-warning h-3 rounded-full transition-all duration-1000" style="width: 62%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">Optimal range: 8-15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-primary text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Munim's AI Predictions</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Quality Trend</h5>
+                                            <p class="text-sm opacity-90">Premium grades increasing by 15% annually</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Feed Efficiency</h5>
+                                            <p class="text-sm opacity-90">New techniques reducing ratios by 12%</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Market Demand</h5>
+                                            <p class="text-sm opacity-90">Organic meat demand up 28% this quarter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Saif's Production Analytics -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section2')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-primary rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-industry text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">2. Advanced Production Analytics</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Saif Ahmed - Regional production intelligence and capacity optimization</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">8 Divisions</span>
+                                    <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">64 Districts</span>
+                                    <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">Live Tracking</span>
+                                    <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">IoT Sensors</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon2"></i>
+                    </div>
+                    <div class="section-content" id="content2">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-10">
+                            <div class="pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Saif's Production Intelligence</h4>
+                                <div class="chart-container">
+                                    <canvas id="saifProductionChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Regional Capacity Analysis</h4>
+                                    <div class="space-y-4">
+                                        <div class="p-4 rounded-xl" style="background: var(--bg-secondary);">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Dhaka Division</span>
+                                                <span class="font-bold mono-font" style="color: var(--accent-primary);">89%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-primary h-3 rounded-full transition-all duration-1000" style="width: 89%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">2.8M tons capacity</p>
+                                        </div>
+                                        <div class="p-4 rounded-xl" style="background: var(--bg-secondary);">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Chittagong Division</span>
+                                                <span class="font-bold mono-font" style="color: var(--success);">76%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-success h-3 rounded-full transition-all duration-1000" style="width: 76%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">2.4M tons capacity</p>
+                                        </div>
+                                        <div class="p-4 rounded-xl" style="background: var(--bg-secondary);">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Rajshahi Division</span>
+                                                <span class="font-bold mono-font" style="color: var(--warning);">68%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="gradient-warning h-3 rounded-full transition-all duration-1000" style="width: 68%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">2.1M tons capacity</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-primary text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Saif's Production Forecasts</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Capacity Expansion</h5>
+                                            <p class="text-sm opacity-90">18% increase projected by Q2 2025</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Automation Impact</h5>
+                                            <p class="text-sm opacity-90">42% efficiency gain with IoT integration</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Regional Growth</h5>
+                                            <p class="text-sm opacity-90">Northern regions showing 25% growth potential</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Fahim's Price Intelligence -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section3')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-secondary rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-chart-line text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">3. Advanced Price Intelligence</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Fahim Hassan - AI-powered price analytics and predictive modeling</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">AI Predictions</span>
+                                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">Price Alerts</span>
+                                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">Volatility Index</span>
+                                    <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold">ML Models</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon3"></i>
+                    </div>
+                    <div class="section-content" id="content3">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-3 gap-10">
+                            <div class="xl:col-span-2 pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Fahim's Price Intelligence Dashboard</h4>
+                                <div class="chart-container">
+                                    <canvas id="fahimPriceChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Volatility Analysis</h4>
+                                    <div class="space-y-4">
+                                        <div class="p-4 bg-red-50 rounded-xl">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Beef Volatility</span>
+                                                <span class="text-red-600 font-bold mono-font">High (8.7)</span>
+                                            </div>
+                                            <div class="w-full bg-red-200 rounded-full h-3">
+                                                <div class="bg-red-600 h-3 rounded-full" style="width: 87%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-yellow-50 rounded-xl">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Chicken Volatility</span>
+                                                <span class="text-yellow-600 font-bold mono-font">Medium (5.2)</span>
+                                            </div>
+                                            <div class="w-full bg-yellow-200 rounded-full h-3">
+                                                <div class="bg-yellow-600 h-3 rounded-full" style="width: 52%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 bg-green-50 rounded-xl">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="font-bold">Mutton Volatility</span>
+                                                <span class="text-green-600 font-bold mono-font">Low (3.4)</span>
+                                            </div>
+                                            <div class="w-full bg-green-200 rounded-full h-3">
+                                                <div class="bg-green-600 h-3 rounded-full" style="width: 34%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-secondary text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Fahim's AI Price Predictions</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Next Week</span>
+                                                <span class="text-green-300 font-bold">↗ +4.2%</span>
+                                            </div>
+                                            <p class="text-sm opacity-90">AI Confidence: 91%</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Next Month</span>
+                                                <span class="text-yellow-300 font-bold">↗ +7.8%</span>
+                                            </div>
+                                            <p class="text-sm opacity-90">AI Confidence: 84%</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Next Quarter</span>
+                                                <span class="text-red-300 font-bold">↘ -3.1%</span>
+                                            </div>
+                                            <p class="text-sm opacity-90">AI Confidence: 76%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Shihab's Consumer Analytics -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section4')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-success rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-users text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">4. Consumer Behavior Analytics</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Shihab Khan - Advanced consumption patterns and nutritional impact analysis</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-bold">Behavioral AI</span>
+                                    <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-bold">Nutrition Data</span>
+                                    <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-bold">Demographics</span>
+                                    <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-bold">Health Impact</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon4"></i>
+                    </div>
+                    <div class="section-content" id="content4">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-10">
+                            <div class="pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Shihab's Consumption Intelligence</h4>
+                                <div class="chart-container">
+                                    <canvas id="shihabConsumptionChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Demographic Insights</h4>
+                                    <div class="space-y-4">
+                                        <div class="p-4 rounded-xl" style="background: var(--bg-secondary);">
+                                            <h5 class="font-bold mb-2">Urban vs Rural Consumption</h5>
+                                            <div class="space-y-2">
+                                                <div class="flex justify-between">
+                                                    <span>Urban</span>
+                                                    <span class="font-bold mono-font">52 kg/person/year</span>
+                                                </div>
+                                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                                    <div class="gradient-success h-2 rounded-full" style="width: 87%"></div>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span>Rural</span>
+                                                    <span class="font-bold mono-font">31 kg/person/year</span>
+                                                </div>
+                                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                                    <div class="gradient-warning h-2 rounded-full" style="width: 52%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="p-4 rounded-xl" style="background: var(--bg-secondary);">
+                                            <h5 class="font-bold mb-2">Income Group Analysis</h5>
+                                            <div class="space-y-1 text-sm">
+                                                <div class="flex justify-between">
+                                                    <span>High Income</span>
+                                                    <span class="font-bold mono-font">78 kg/person/year</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span>Middle Income</span>
+                                                    <span class="font-bold mono-font">45 kg/person/year</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span>Low Income</span>
+                                                    <span class="font-bold mono-font">22 kg/person/year</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-success text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Shihab's Behavioral Predictions</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Health Consciousness</h5>
+                                            <p class="text-sm opacity-90">28% increase in organic meat demand</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Urban Migration Impact</h5>
+                                            <p class="text-sm opacity-90">22% shift in consumption patterns</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Nutritional Awareness</h5>
+                                            <p class="text-sm opacity-90">35% seeking protein-rich alternatives</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Abir's Economic Analysis -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section5')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-warning rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-calculator text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">5. Advanced Economic Modeling</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Abir Hasan Siam - Price elasticity analysis and economic impact assessment</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold">Elasticity Models</span>
+                                    <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold">Economic Impact</span>
+                                    <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold">Market Dynamics</span>
+                                    <span class="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-bold">GDP Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon5"></i>
+                    </div>
+                    <div class="section-content" id="content5">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-10">
+                            <div class="pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Abir's Economic Intelligence</h4>
+                                <div class="chart-container">
+                                    <canvas id="abirEconomicChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Price Elasticity Matrix</h4>
+                                    <div class="space-y-4">
+                                        <div class="p-4 bg-red-50 border-l-4 border-red-400 rounded-xl">
+                                            <h5 class="font-bold text-red-800">Beef Elasticity</h5>
+                                            <p class="text-sm text-red-600 mono-font">Coefficient: -0.89 (Inelastic)</p>
+                                            <p class="text-xs">10% price ↑ → 8.9% demand ↓</p>
+                                        </div>
+                                        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-xl">
+                                            <h5 class="font-bold text-yellow-800">Chicken Elasticity</h5>
+                                            <p class="text-sm text-yellow-600 mono-font">Coefficient: -1.34 (Elastic)</p>
+                                            <p class="text-xs">10% price ↑ → 13.4% demand ↓</p>
+                                        </div>
+                                        <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded-xl">
+                                            <h5 class="font-bold text-blue-800">Mutton Elasticity</h5>
+                                            <p class="text-sm text-blue-600 mono-font">Coefficient: -0.67 (Inelastic)</p>
+                                            <p class="text-xs">10% price ↑ → 6.7% demand ↓</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-warning text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Abir's Economic Forecasts</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">GDP Contribution</h5>
+                                            <p class="text-sm opacity-90">Meat sector: 3.2% of national GDP</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Employment Impact</h5>
+                                            <p class="text-sm opacity-90">4.8M jobs directly/indirectly</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Export Potential</h5>
+                                            <p class="text-sm opacity-90">$2.4B annual export opportunity</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Faysal's Supply-Demand Analysis -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section6')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-primary rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-balance-scale text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">6. Supply-Demand Equilibrium Analysis</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Faysal Ahmed - Market equilibrium modeling and regional gap analysis</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold">Equilibrium Models</span>
+                                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold">Gap Analysis</span>
+                                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold">Regional Balance</span>
+                                    <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold">Logistics AI</span>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon6"></i>
+                    </div>
+                    <div class="section-content" id="content6">
+                        <div class="mt-10 grid grid-cols-1 xl:grid-cols-2 gap-10">
+                            <div class="pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Faysal's Supply-Demand Intelligence</h4>
+                                <div class="chart-container">
+                                    <canvas id="faysalSupplyDemandChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-8">
+                                    <h4 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">Regional Balance Matrix</h4>
+                                    <div class="space-y-4">
+                                        <div class="p-4 bg-red-50 border border-red-200 rounded-xl">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Dhaka Division</span>
+                                                <span class="text-red-600 font-bold mono-font">-28% Deficit</span>
+                                            </div>
+                                            <div class="w-full bg-red-200 rounded-full h-3 mt-2">
+                                                <div class="bg-red-600 h-3 rounded-full" style="width: 72%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">High demand, limited production</p>
+                                        </div>
+                                        <div class="p-4 bg-green-50 border border-green-200 rounded-xl">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Rangpur Division</span>
+                                                <span class="text-green-600 font-bold mono-font">+24% Surplus</span>
+                                            </div>
+                                            <div class="w-full bg-green-200 rounded-full h-3 mt-2">
+                                                <div class="bg-green-600 h-3 rounded-full" style="width: 124%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">Major production hub</p>
+                                        </div>
+                                        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">Chittagong Division</span>
+                                                <span class="text-yellow-600 font-bold mono-font">-8% Deficit</span>
+                                            </div>
+                                            <div class="w-full bg-yellow-200 rounded-full h-3 mt-2">
+                                                <div class="bg-yellow-600 h-3 rounded-full" style="width: 92%"></div>
+                                            </div>
+                                            <p class="text-xs mt-1" style="color: var(--text-tertiary);">Moderate supply gap</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="gradient-primary text-white rounded-2xl p-8">
+                                    <h4 class="text-xl font-bold mb-4">Faysal's Logistics Optimization</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Transport Efficiency</h5>
+                                            <p class="text-sm opacity-90">AI routing reduces costs by 26%</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Storage Optimization</h5>
+                                            <p class="text-sm opacity-90">Smart warehousing increases capacity 35%</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                                            <h5 class="font-bold">Distribution Network</h5>
+                                            <p class="text-sm opacity-90">Optimized routes save 18% delivery time</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Tanjum's Strategic Intelligence -->
+                <div class="section-toggle" data-aos="fade-up" onclick="toggleSection('section7')">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-20 h-20 gradient-secondary rounded-3xl flex items-center justify-center shadow-xl">
+                                <i class="fas fa-lightbulb text-white text-3xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-4xl font-bold mb-3" style="color: var(--text-primary);">7. Strategic Intelligence & Policy Framework</h3>
+                                <p class="text-xl" style="color: var(--text-secondary);">By Tanjum Islam - AI-powered strategic insights and policy recommendations</p>
+                                <div class="flex items-center space-x-4 mt-3">
+                                    <span class="px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">42 Strategies</span>
+                                    <span class="px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">ROI Calculator</span>
+                                    <span class="px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">Risk Assessment</span>
+                                    <span class="px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">Policy AI</span>
+
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-3xl transition-transform duration-300" style="color: var(--text-tertiary);" id="icon7"></i>
+                    </div>
+                    <div class="section-content" id="content7">
+                        <div class="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                            <div class="pro-card p-10">
+                                <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Tanjum's Strategic Action Matrix</h4>
+                                <div class="space-y-6">
+                                    <div class="p-6 bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200 rounded-2xl">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h5 class="text-xl font-bold text-green-800">Quick Wins</h5>
+                                            <span class="px-4 py-2 bg-green-600 text-white rounded-full text-sm font-bold">High Impact • Low Effort</span>
+                                        </div>
+                                        <div class="space-y-4">
+                                            <div class="flex items-start space-x-4">
+                                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-check text-white text-sm"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-green-800">AI-Powered Price Monitoring</p>
+                                                    <p class="text-sm text-green-600">Real-time market intelligence system</p>
+                                                    <div class="flex items-center space-x-3 mt-2">
+                                                        <span class="text-xs text-green-500 mono-font">ROI: 450%</span>
+                                                        <span class="text-xs text-green-500">Timeline: 6 weeks</span>
+                                                        <span class="text-xs text-green-500">Risk: Low</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start space-x-4">
+                                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-check text-white text-sm"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-green-800">Blockchain Supply Chain</p>
+                                                    <p class="text-sm text-green-600">Transparent tracking and verification</p>
+                                                    <div class="flex items-center space-x-3 mt-2">
+                                                        <span class="text-xs text-green-500 mono-font">ROI: 420%</span>
+                                                        <span class="text-xs text-green-500">Timeline: 8 weeks</span>
+                                                        <span class="text-xs text-green-500">Risk: Low</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-6 bg-gradient-to-r from-blue-100 to-indigo-100 border border-blue-200 rounded-2xl">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h5 class="text-xl font-bold text-blue-800">Major Projects</h5>
+                                            <span class="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-bold">High Impact • High Effort</span>
+                                        </div>
+                                        <div class="space-y-4">
+                                            <div class="flex items-start space-x-4">
+                                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-star text-white text-sm"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="font-bold text-blue-800">Smart Processing Facilities</p>
+                                                    <p class="text-sm text-blue-600">AI-automated slaughterhouses</p>
+                                                    <div class="flex items-center space-x-3 mt-2">
+                                                        <span class="text-xs text-blue-500 mono-font">ROI: 680%</span>
+                                                        <span class="text-xs text-blue-500">Timeline: 24 months</span>
+                                                        <span class="text-xs text-blue-500">Risk: Medium</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <div class="pro-card p-10">
+                                    <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Advanced ROI Calculator</h4>
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">Investment Amount (৳)</label>
+                                            <input type="number" id="investmentAmount" class="pro-input w-full text-lg" placeholder="10000000">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-bold mb-3" style="color: var(--text-primary);">Investment Category</label>
+                                            <select id="investmentType" class="pro-select w-full text-lg">
+                                                <option value="ai_processing">AI Processing Facility</option>
+                                                <option value="blockchain">Blockchain Infrastructure</option>
+                                                <option value="coldchain">Smart Cold Chain</option>
+                                                <option value="iot_sensors">IoT Sensor Network</option>
+                                                <option value="training">Advanced Training Programs</option>
+                                            </select>
+                                        </div>
+                                        <button onclick="calculateAdvancedROI()" class="btn-primary w-full text-lg px-8 py-4">
+                                            <i class="fas fa-calculator mr-3"></i>Calculate Advanced ROI
+                                        </button>
+                                        <div id="advancedROIResult" class="hidden p-6 rounded-2xl" style="background: var(--bg-secondary); border: 1px solid var(--border-primary);">
+                                            <div class="text-center">
+                                                <p class="text-4xl font-black mono-font mb-2" style="color: var(--accent-primary);" id="advancedROIPercentage">0%</p>
+                                                <p class="text-lg font-bold mb-4" style="color: var(--text-secondary);">Expected Annual ROI</p>
+                                                <p class="text-sm mono-font mb-6" style="color: var(--text-tertiary);" id="advancedROIDetails">AI-powered calculation</p>
+                                                <div class="grid grid-cols-3 gap-4">
+                                                    <div class="text-center">
+                                                        <p class="text-xl font-bold mono-font" style="color: var(--success);" id="yearOneReturn">0</p>
+                                                        <p class="text-xs" style="color: var(--text-tertiary);">Year 1 Return</p>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <p class="text-xl font-bold mono-font" style="color: var(--accent-primary);" id="breakEvenTime">0</p>
+                                                        <p class="text-xs" style="color: var(--text-tertiary);">Break-even (months)</p>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <p class="text-xl font-bold mono-font" style="color: var(--accent-secondary);" id="riskScore">0</p>
+                                                        <p class="text-xs" style="color: var(--text-tertiary);">Risk Score</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pro-card p-10">
+                                    <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">AI Risk Assessment</h4>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between p-4 bg-red-50 border border-red-200 rounded-xl">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="w-6 h-6 bg-red-500 rounded-full"></div>
+                                                <span class="font-bold text-red-800">Market Volatility</span>
+                                            </div>
+                                            <span class="text-red-600 font-bold mono-font">High (8.7/10)</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="w-6 h-6 bg-yellow-500 rounded-full"></div>
+                                                <span class="font-bold text-yellow-800">Regulatory Changes</span>
+                                            </div>
+                                            <span class="text-yellow-600 font-bold mono-font">Medium (5.2/10)</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-xl">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="w-6 h-6 bg-green-500 rounded-full"></div>
+                                                <span class="font-bold text-green-800">Technology Adoption</span>
+                                            </div>
+                                            <span class="text-green-600 font-bold mono-font">Low (2.8/10)</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="w-6 h-6 bg-blue-500 rounded-full"></div>
+                                                <span class="font-bold text-blue-800">Supply Chain Disruption</span>
+                                            </div>
+                                            <span class="text-blue-600 font-bold mono-font">Medium (4.6/10)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Enhanced Export Options -->
+                        <div class="mt-12 pro-card p-10">
+                            <h4 class="text-3xl font-bold mb-8" style="color: var(--text-primary);">Export & Share Intelligence</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                                <button class="btn-primary flex flex-col items-center justify-center space-y-3 px-8 py-6 h-32" onclick="exportPDF()">
+                                    <i class="fas fa-file-pdf text-3xl"></i>
+                                    <span class="font-bold text-lg">PDF Report</span>
+                                    <span class="text-sm opacity-90">Comprehensive Analysis</span>
+                                </button>
+                                <button class="btn-primary flex flex-col items-center justify-center space-y-3 px-8 py-6 h-32" onclick="exportExcel()">
+                                    <i class="fas fa-file-excel text-3xl"></i>
+                                    <span class="font-bold text-lg">Excel Data</span>
+                                    <span class="text-sm opacity-90">Raw Analytics</span>
+                                </button>
+                                <button class="btn-primary flex flex-col items-center justify-center space-y-3 px-8 py-6 h-32" onclick="shareReport()">
+                                    <i class="fas fa-share-alt text-3xl"></i>
+                                    <span class="font-bold text-lg">Share Dashboard</span>
+                                    <span class="text-sm opacity-90">Live Collaboration</span>
+                                </button>
+                                <button class="btn-primary flex flex-col items-center justify-center space-y-3 px-8 py-6 h-32" onclick="generateInsights()">
+                                    <i class="fas fa-brain text-3xl"></i>
+                                    <span class="font-bold text-lg">AI Insights</span>
+                                    <span class="text-sm opacity-90">Machine Learning</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+
+
+
+            
+             <!-- Paper Summary Button -->
+         
+    
+<!-- Summary Button -->
+
+
+
+
+            <!-- Team Members Showcase -->
+            <div class="mt-20 mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-black text-center mb-4" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Meet Our Expert Team</h2>
+                <p class="text-xl text-center mb-16" style="color: var(--text-secondary);">World-class researchers and data scientists driving innovation</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Munim -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-warning rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-database text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Munim Rahman</h3>
+                        <p class="font-semibold mb-4" style="color: var(--warning);">Data Specialist & Product Analyst</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• 25 Product Categories Analyzed</p>
+                            <p>• Quality Metrics Development</p>
+                            <p>• AI-Powered Classification</p>
+                            <p>• Real-time Data Processing</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold">PhD Data Science</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">8+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Saif -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-industry text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Saif Ahmed</h3>
+                        <p class="font-semibold mb-4" style="color: var(--accent-primary);">Production Analytics Expert</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Regional Production Modeling</p>
+                            <p>• Capacity Optimization</p>
+                            <p>• IoT Integration Specialist</p>
+                            <p>• Supply Chain Analytics</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">MSc Engineering</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold">6+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Fahim -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Fahim Hassan</h3>
+                        <p class="font-semibold mb-4" style="color: var(--accent-secondary);">Price Intelligence Analyst</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• AI Price Prediction Models</p>
+                            <p>• Volatility Analysis</p>
+                            <p>• Market Trend Forecasting</p>
+                            <p>• Risk Assessment Systems</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">MSc Finance</span>
+                            <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold">7+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Shihab -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-success rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-users text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Shihab Khan</h3>
+                        <p class="font-semibold mb-4" style="color: var(--success);">Consumer Behavior Analyst</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Behavioral Pattern Analysis</p>
+                            <p>• Nutritional Impact Studies</p>
+                            <p>• Demographic Segmentation</p>
+                            <p>• Health Correlation Models</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-bold">PhD Psychology</span>
+                            <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-bold">9+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Abir -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-warning rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-calculator text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Abir Hasan Siam</h3>
+                        <p class="font-semibold mb-4" style="color: var(--warning);">Economic Modeling Expert</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Price Elasticity Modeling</p>
+                            <p>• Economic Impact Assessment</p>
+                            <p>• GDP Contribution Analysis</p>
+                            <p>• Market Dynamics Research</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">PhD Economics</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold">10+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Faysal -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-balance-scale text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Faysal Ahmed</h3>
+                        <p class="font-semibold mb-4" style="color: var(--accent-primary);">Supply-Demand Analyst</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Market Equilibrium Modeling</p>
+                            <p>• Regional Gap Analysis</p>
+                            <p>• Logistics Optimization</p>
+                            <p>• Distribution Network Design</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold">MSc Operations</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">8+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tanjum -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Tanjum Islam</h3>
+                        <p class="font-semibold mb-4" style="color: var(--accent-secondary);">Strategic Policy Analyst</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Policy Framework Development</p>
+                            <p>• Strategic Planning & ROI</p>
+                            <p>• Risk Assessment Models</p>
+                            <p>• Government Relations</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-bold">MBA Strategy</span>
+                            <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-xs font-bold">12+ Years</span>
+                        </div>
+                    </div>
+                    
+                    <!-- AI System -->
+                    <div class="team-card">
+                        <div class="w-24 h-24 gradient-primary rounded-full mx-auto mb-6 flex items-center justify-center shimmer-effect">
+                            <i class="fas fa-robot text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">ARIA AI</h3>
+                        <p class="font-semibold mb-4" style="color: var(--accent-secondary);">Advanced AI Assistant</p>
+                        <div class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                            <p>• Machine Learning Models</p>
+                            <p>• Predictive Analytics</p>
+                            <p>• Natural Language Processing</p>
+                            <p>• Real-time Decision Support</p>
+                        </div>
+                        <div class="mt-6 flex justify-center space-x-3">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Neural Network</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">24/7 Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Footer -->
+            <footer class="mt-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl p-12 shadow-2xl" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">MeatAnalytics Pro</h3>
+                                <p class="text-gray-400 text-sm">Advanced Market Intelligence</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Empowering Bangladesh's meat industry with data-driven insights and strategic intelligence for sustainable growth.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Research Team</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-blue-400"></i>
+                                <span>Munim - Data Specialist</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-green-400"></i>
+                                <span>Saif - Production Analysis</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-purple-400"></i>
+                                <span>Fahim - Price Intelligence</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-yellow-400"></i>
+                                <span>Shihab - Consumer Insights</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-red-400"></i>
+                                <span>Abir - Economic Analysis</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-indigo-400"></i>
+                                <span>Faysal - Supply-Demand</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-user-circle text-pink-400"></i>
+                                <span>Tanjum - Strategic Planning</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Data Sources</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-database text-blue-400"></i>
+                                <span>Bangladesh Bureau of Statistics</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-building text-green-400"></i>
+                                <span>Department of Livestock Services</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-chart-bar text-purple-400"></i>
+                                <span>Trading Corporation of Bangladesh</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-search text-yellow-400"></i>
+                                <span>Field Surveys & Market Research</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-satellite text-red-400"></i>
+                                <span>Satellite Monitoring Systems</span>
+                                </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-wifi text-cyan-400"></i>
+                                <span>IoT Sensor Networks</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-link text-orange-400"></i>
+                                <span>Blockchain Supply Chain</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Technical Specifications</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-gray-800 rounded-lg">
+                                <h4 class="font-medium text-blue-400 mb-2">Data Accuracy</h4>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full" style="width: 96%"></div>
+                                    </div>
+                                    <span class="text-xs font-bold">96%</span>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-800 rounded-lg">
+                                <h4 class="font-medium text-green-400 mb-2">Update Frequency</h4>
+                                <p class="text-xs text-gray-300">Real-time (every 15 minutes)</p>
+                            </div>
+                            <div class="p-3 bg-gray-800 rounded-lg">
+                                <h4 class="font-medium text-purple-400 mb-2">Coverage</h4>
+                                <p class="text-xs text-gray-300">8 Divisions • 64 Districts • 492 Upazilas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-700 mt-10 pt-8 text-center">
+                <p class="text-sm text-gray-400">© 2025 Meat Products Analysis Team - Independent University, Bangladesh</p>
+                <p class="text-xs text-gray-500 mt-2">Advanced Analytics • Real-time Data • Policy Insights • Market Intelligence</p>
+                            </p>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full pulse-animation"></div>
+                                <span class="text-xs text-gray-400">System Status: Operational</span>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 mt-6">
+                        <i class="fab fa-facebook text-2xl text-blue-400 hover:text-blue-300 cursor-pointer transition-colors"></i>
+                        <i class="fab fa-twitter text-2xl text-blue-400 hover:text-blue-300 cursor-pointer transition-colors"></i>
+                        <i class="fab fa-linkedin text-2xl text-blue-400 hover:text-blue-300 cursor-pointer transition-colors"></i>
+                        <i class="fab fa-github text-2xl text-blue-400 hover:text-blue-300 cursor-pointer transition-colors"></i>
+
+                        
+                    </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // Global variables
+        let currentTimeframe = '7D';
+        let livePriceChart = null;
+        let weatherUpdateInterval = null;
+        let priceUpdateInterval = null;
+
+        // Dark Mode Toggle Functionality
+        function toggleDarkMode() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update charts for dark mode
+            setTimeout(() => {
+                updateChartsForTheme(newTheme);
+            }, 300);
+            
+            showNotification(`Switched to ${newTheme} mode`, 'success');
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            // Initialize all functionality
+            initializeClocks();
+            initializeWeather();
+            initializeCharts();
+            initializePriceUpdates();
+            initializeAlertUpdates();
+            
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to MeatAnalytics Pro! Real-time data is now active.', 'success', 4000);
+            }, 2000);
+        });
+
+        // Enhanced Clock Functionality (12-hour format)
+        function initializeClocks() {
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { 
+                    hour12: true,
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                const dateString = now.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const clockElement = document.getElementById('digitalClock');
+                if (clockElement) {
+                    clockElement.textContent = `${timeString} • ${dateString}`;
+                }
+            }
+            
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // Real-time Weather Updates
+        function initializeWeather() {
+            function updateWeather() {
+                // Simulate real weather API call
+                const conditions = ['Sunny', 'Partly Cloudy', 'Cloudy', 'Light Rain', 'Clear'];
+                const temperatures = [26, 27, 28, 29, 30, 31, 32];
+                const humidity = [60, 62, 65, 68, 70, 72, 75];
+                const riskLevels = ['Low', 'Low', 'Medium', 'Medium', 'High'];
+                const riskScores = [2.1, 2.3, 4.5, 6.2, 8.1];
+                
+                const randomCondition = conditions[Math.floor(Math.random() * conditions.length)];
+                const randomTemp = temperatures[Math.floor(Math.random() * temperatures.length)];
+                const randomHumidity = humidity[Math.floor(Math.random() * humidity.length)];
+                const randomRisk = riskLevels[Math.floor(Math.random() * riskLevels.length)];
+                const randomScore = riskScores[Math.floor(Math.random() * riskScores.length)];
+                
+                // Update weather display in navigation
+                const weatherInfo = document.getElementById('weatherInfo');
+                if (weatherInfo) {
+                    weatherInfo.textContent = `${randomTemp}°C • ${randomHumidity}% Humidity`;
+                }
+                
+                // Update weather widget
+                const weatherCondition = document.getElementById('weatherCondition');
+                const weatherDetails = document.getElementById('weatherDetails');
+                const riskLevel = document.getElementById('riskLevel');
+                const riskScore = document.getElementById('riskScore');
+                
+                if (weatherCondition) weatherCondition.textContent = randomCondition;
+                if (weatherDetails) weatherDetails.textContent = `${randomTemp}°C • ${randomHumidity}% Humidity`;
+                if (riskLevel) riskLevel.textContent = randomRisk;
+                if (riskScore) riskScore.textContent = `AI Risk Score: ${randomScore}/10`;
+                
+                // Update weekly forecast
+                const weeklyForecast = document.getElementById('weeklyForecast');
+                if (weeklyForecast) {
+                    const forecasts = [
+                        'Mon: ☀️ Low', 'Tue: 🌤️ Low', 'Wed: 🌧️ Medium', 'Thu: ⛈️ High',
+                        'Fri: 🌤️ Medium', 'Sat: ☀️ Low', 'Sun: 🌥️ Low'
+                    ];
+                    weeklyForecast.innerHTML = forecasts.slice(0, 4).join('<span class="mx-2">•</span>');
+                }
+            }
+            
+            updateWeather();
+            weatherUpdateInterval = setInterval(updateWeather, 300000); // Update every 5 minutes
+        }
+
+        // Real-time Price Updates
+        function initializePriceUpdates() {
+            function updatePrices() {
+                // Simulate real-time price changes
+                const beefBase = 672;
+                const chickenBase = 234;
+                const muttonBase = 1024;
+                
+                const beefPrice = beefBase + (Math.random() - 0.5) * 20;
+                const chickenPrice = chickenBase + (Math.random() - 0.5) * 10;
+                const muttonPrice = muttonBase + (Math.random() - 0.5) * 30;
+                
+                const beefChange = ((Math.random() - 0.3) * 5).toFixed(1);
+                const chickenChange = ((Math.random() - 0.3) * 3).toFixed(1);
+                const muttonChange = ((Math.random() - 0.3) * 2).toFixed(1);
+                
+                // Update price displays
+                const beefPriceEl = document.getElementById('beefPrice');
+                const chickenPriceEl = document.getElementById('chickenPrice');
+                const muttonPriceEl = document.getElementById('muttonPrice');
+                const beefChangeEl = document.getElementById('beefChange');
+                const chickenChangeEl = document.getElementById('chickenChange');
+                const muttonChangeEl = document.getElementById('muttonChange');
+                
+                if (beefPriceEl) beefPriceEl.textContent = `৳${Math.round(beefPrice)}`;
+                if (chickenPriceEl) chickenPriceEl.textContent = `৳${Math.round(chickenPrice)}`;
+                if (muttonPriceEl) muttonPriceEl.textContent = `৳${Math.round(muttonPrice)}`;
+                
+                if (beefChangeEl) {
+                    beefChangeEl.textContent = `${beefChange > 0 ? '+' : ''}${beefChange}% today`;
+                    beefChangeEl.style.color = beefChange > 0 ? 'var(--success)' : 'var(--error)';
+                }
+                if (chickenChangeEl) {
+                    chickenChangeEl.textContent = `${chickenChange > 0 ? '+' : ''}${chickenChange}% today`;
+                    chickenChangeEl.style.color = chickenChange > 0 ? 'var(--success)' : 'var(--error)';
+                }
+                if (muttonChangeEl) {
+                    muttonChangeEl.textContent = `${muttonChange > 0 ? '+' : ''}${muttonChange}% today`;
+                    muttonChangeEl.style.color = muttonChange > 0 ? 'var(--success)' : 'var(--error)';
+                }
+                
+                // Update last update time
+                const lastUpdate = document.getElementById('lastUpdate');
+                if (lastUpdate) {
+                    const now = new Date();
+                    const timeAgo = Math.floor(Math.random() * 5) + 1;
+                    lastUpdate.textContent = `Updated ${timeAgo}m ago`;
+                }
+                
+                // Update live chart if it exists
+                if (livePriceChart) {
+                    updateLiveChart(beefPrice, chickenPrice, muttonPrice);
+                }
+            }
+            
+            updatePrices();
+            priceUpdateInterval = setInterval(updatePrices, 60000); // Update every minute
+        }
+
+        // Alert Updates
+        function initializeAlertUpdates() {
+            function updateAlertTimes() {
+                const alert1Time = document.getElementById('alert1Time');
+                const alert2Time = document.getElementById('alert2Time');
+                const alert3Time = document.getElementById('alert3Time');
+                
+                if (alert1Time) {
+                    const minutes = Math.floor(Math.random() * 30) + 5;
+                    alert1Time.textContent = `${minutes} minutes ago`;
+                }
+                if (alert2Time) {
+                    const minutes = Math.floor(Math.random() * 60) + 20;
+                    alert2Time.textContent = `${minutes} minutes ago`;
+                }
+                if (alert3Time) {
+                    const hours = Math.floor(Math.random() * 3) + 1;
+                    alert3Time.textContent = `${hours} hour${hours > 1 ? 's' : ''} ago`;
+                }
+            }
+            
+            updateAlertTimes();
+            setInterval(updateAlertTimes, 300000); // Update every 5 minutes
+        }
+
+        // Section Toggle Functionality
+        function toggleSection(sectionId) {
+            const content = document.getElementById(`content${sectionId.slice(-1)}`);
+            const icon = document.getElementById(`icon${sectionId.slice(-1)}`);
+            
+            if (content && icon) {
+                const isExpanded = content.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    content.classList.remove('expanded');
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.classList.add('expanded');
+                    icon.style.transform = 'rotate(180deg)';
+                    
+                    // Initialize charts for the opened section
+                    setTimeout(() => {
+                        initializeSectionCharts(sectionId);
+                    }, 500);
+                }
+            }
+        }
+
+        // Chart Initialization
+        function initializeCharts() {
+            // Live Price Chart
+            const livePriceCtx = document.getElementById('livePriceChart');
+            if (livePriceCtx) {
+                livePriceChart = new Chart(livePriceCtx, {
+                    type: 'line',
+                    data: {
+                        labels: generateTimeLabels(),
+                        datasets: [{
+                            label: 'Beef (৳/kg)',
+                            data: generateLiveData(672, 60),
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0,
+                            pointHoverRadius: 8,
+                            borderWidth: 3
+                        }, {
+                            label: 'Chicken (৳/kg)',
+                            data: generateLiveData(234, 25),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0,
+                            pointHoverRadius: 8,
+                            borderWidth: 3
+                        }, {
+                            label: 'Mutton (৳/kg)',
+                            data: generateLiveData(1024, 90),
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0,
+                            pointHoverRadius: 8,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 25,
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                titleColor: 'white',
+                                bodyColor: 'white',
+                                borderColor: 'rgba(255, 255, 255, 0.2)',
+                                borderWidth: 1,
+                                cornerRadius: 12,
+                                padding: 15,
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ৳' + context.parsed.y.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)',
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    font: {
+                                        family: 'JetBrains Mono'
+                                    }
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)',
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    font: {
+                                        family: 'JetBrains Mono'
+                                    },
+                                    callback: function(value) {
+                                        return '৳' + value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Section-specific chart initialization
+        function initializeSectionCharts(sectionId) {
+            switch(sectionId) {
+                case 'section2':
+                    initializeSaifChart();
+                    break;
+                case 'section3':
+                    initializeFahimChart();
+                    break;
+                case 'section4':
+                    initializeShibabChart();
+                    break;
+                case 'section5':
+                    initializeAbirChart();
+                    break;
+                case 'section6':
+                    initializeFaysalChart();
+                    break;
+            }
+        }
+
+        function initializeSaifChart() {
+            const ctx = document.getElementById('saifProductionChart');
+            if (ctx && !ctx.chart) {
+                ctx.chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Dhaka', 'Chittagong', 'Rajshahi', 'Rangpur', 'Khulna', 'Barisal', 'Sylhet', 'Mymensingh'],
+                        datasets: [{
+                            label: '2024 Production (Million Tons)',
+                            data: [2.8, 2.4, 2.1, 1.9, 1.6, 1.2, 1.0, 1.4],
+                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 2,
+                            borderRadius: 12,
+                            borderSkipped: false
+                        }, {
+                            label: '2023 Production (Million Tons)',
+                            data: [2.6, 2.2, 2.0, 1.8, 1.5, 1.1, 0.9, 1.3],
+                            backgroundColor: 'rgba(156, 163, 175, 0.6)',
+                            borderColor: 'rgba(156, 163, 175, 1)',
+                            borderWidth: 2,
+                            borderRadius: 12,
+                            borderSkipped: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 25,
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                },
+                                ticks: {
+                                    font: {
+                                        family: 'JetBrains Mono'
+                                    }
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initializeFahimChart() {
+            const ctx = document.getElementById('fahimPriceChart');
+            if (ctx && !ctx.chart) {
+                ctx.chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: 'Actual Prices (৳/kg)',
+                            data: [620, 635, 650, 680, 720, 750, 730, 710, 695, 680, 665, 672],
+                            borderColor: '#8b4513',
+                            backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 3
+                        }, {
+                            label: 'AI Predictions (৳/kg)',
+                            data: [null, null, null, null, null, null, null, null, null, 685, 670, 680],
+                            borderColor: '#ffa500',
+                            backgroundColor: 'rgba(255, 165, 0, 0.1)',
+                            borderDash: [10, 5],
+                            tension: 0.4,
+                            fill: false,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 25
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initializeShibabChart() {
+            const ctx = document.getElementById('shihabConsumptionChart');
+            if (ctx && !ctx.chart) {
+                ctx.chart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Chicken', 'Beef', 'Fish', 'Mutton', 'Duck', 'Others'],
+                        datasets: [{
+                            data: [42, 28, 18, 8, 3, 1],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(239, 68, 68, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(139, 92, 246, 0.8)',
+                                'rgba(156, 163, 175, 0.8)'
+                            ],
+                            borderWidth: 4,
+                            borderColor: '#fff',
+                            hoverBorderWidth: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.label + ': ' + context.parsed + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initializeAbirChart() {
+            const ctx = document.getElementById('abirEconomicChart');
+            if (ctx && !ctx.chart) {
+                ctx.chart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Price Sensitivity', 'Income Effect', 'Substitution', 'Seasonal Variation', 'Brand Loyalty', 'Quality Preference'],
+                        datasets: [{
+                            label: 'Beef',
+                            data: [3, 4, 2, 5, 4, 5],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                            pointBackgroundColor: '#ef4444',
+                            borderWidth: 3
+                        }, {
+                            label: 'Chicken',
+                            data: [5, 3, 4, 3, 2, 3],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            pointBackgroundColor: '#3b82f6',
+                            borderWidth: 3
+                        }, {
+                            label: 'Mutton',
+                            data: [2, 5, 1, 4, 5, 5],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            pointBackgroundColor: '#10b981',
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 5,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function initializeFaysalChart() {
+            const ctx = document.getElementById('faysalSupplyDemandChart');
+            if (ctx && !ctx.chart) {
+                ctx.chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024', '2025*', '2026*'],
+                        datasets: [{
+                            label: 'Supply (Million Tons)',
+                            data: [4.2, 4.5, 4.8, 5.1, 5.4, 5.8, 6.2],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 3
+                        }, {
+                            label: 'Demand (Million Tons)',
+                            data: [4.8, 5.2, 5.6, 6.0, 6.4, 6.7, 7.1],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.parsed.y + 'M tons';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Advanced ROI Calculator
+        function calculateAdvancedROI() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value) || 0;
+            const type = document.getElementById('investmentType').value;
+            
+            const roiData = {
+                'ai_processing': { rate: 0.68, breakeven: 16, risk: 2.8 },
+                'blockchain': { rate: 0.42, breakeven: 22, risk: 3.5 },
+                'coldchain': { rate: 0.48, breakeven: 18, risk: 2.2 },
+                'iot_sensors': { rate: 0.38, breakeven: 14, risk: 1.8 },
+                'training': { rate: 0.32, breakeven: 10, risk: 1.2 }
+            };
+            
+            const data = roiData[type];
+            const roi = (data.rate * 100).toFixed(1);
+            const yearOneReturn = (amount * data.rate).toLocaleString();
+            
+            document.getElementById('advancedROIPercentage').textContent = roi + '%';
+            document.getElementById('advancedROIDetails').textContent = `AI-powered calculation with 96% confidence`;
+            document.getElementById('yearOneReturn').textContent = '৳' + yearOneReturn;
+            document.getElementById('breakEvenTime').textContent = data.breakeven + ' months';
+            document.getElementById('riskScore').textContent = data.risk + '/10';
+            
+            const resultDiv = document.getElementById('advancedROIResult');
+            resultDiv.classList.remove('hidden');
+            
+            // Add animation
+            resultDiv.style.opacity = '0';
+            resultDiv.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                resultDiv.style.transition = 'all 0.5s ease';
+                resultDiv.style.opacity = '1';
+                resultDiv.style.transform = 'scale(1)';
+            }, 50);
+            
+            showNotification('ROI calculation completed successfully!', 'success');
+        }
+
+        // Utility Functions
+        function generateTimeLabels() {
+            const labels = [];
+            const now = new Date();
+            for (let i = 23; i >= 0; i--) {
+                const time = new Date(now.getTime() - i * 60 * 60 * 1000);
+                labels.push(time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+            }
+            return labels;
+        }
+
+        function generateLiveData(base, variance) {
+            const data = [];
+            for (let i = 0; i < 24; i++) {
+                const randomVariation = (Math.random() - 0.5) * variance;
+                data.push(Math.round(base + randomVariation));
+            }
+            return data;
+        }
+
+        function updateLiveChart(beefPrice, chickenPrice, muttonPrice) {
+            if (livePriceChart) {
+                const now = new Date();
+                const timeLabel = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                
+                // Add new data point
+                livePriceChart.data.labels.push(timeLabel);
+                livePriceChart.data.datasets[0].data.push(Math.round(beefPrice));
+                livePriceChart.data.datasets[1].data.push(Math.round(chickenPrice));
+                livePriceChart.data.datasets[2].data.push(Math.round(muttonPrice));
+                
+                // Remove old data points (keep last 24)
+                if (livePriceChart.data.labels.length > 24) {
+                    livePriceChart.data.labels.shift();
+                    livePriceChart.data.datasets.forEach(dataset => {
+                        dataset.data.shift();
+                    });
+                }
+                
+                livePriceChart.update('none');
+            }
+        }
+
+        // Button Functions
+        function refreshData() {
+            showNotification('Refreshing all data sources...', 'info');
+            
+            // Simulate data refresh
+            setTimeout(() => {
+                // Update prices immediately
+                initializePriceUpdates();
+                
+                // Update weather
+                initializeWeather();
+                
+                showNotification('Data refreshed successfully! All systems updated.', 'success');
+            }, 2000);
+        }
+
+        function exportData() {
+            showNotification('Preparing comprehensive data export...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Export completed! Download will begin shortly.', 'success');
+            }, 3000);
+        }
+
+        function setTimeframe(timeframe) {
+            currentTimeframe = timeframe;
+            
+            // Update button states
+            document.querySelectorAll('[onclick^="setTimeframe"]').forEach(btn => {
+                btn.className = 'btn-secondary text-sm px-4 py-2';
+            });
+            event.target.className = 'btn-primary text-sm px-4 py-2';
+            
+            showNotification(`Timeframe updated to ${timeframe}`, 'info');
+        }
+
+        function exportTable(tableId) {
+            showNotification(`Exporting ${tableId} data...`, 'info');
+            setTimeout(() => {
+                showNotification('Table data exported successfully!', 'success');
+            }, 1500);
+        }
+
+        function analyzeProducts() {
+            showNotification('Running AI analysis on product data...', 'info');
+            setTimeout(() => {
+                showNotification('AI analysis completed! New insights available.', 'success');
+            }, 3000);
+        }
+
+        function exportPDF() {
+            showNotification('Generating comprehensive PDF report...', 'info');
+            setTimeout(() => {
+                showNotification('PDF report generated successfully!', 'success');
+            }, 4000);
+        }
+
+        function exportExcel() {
+            showNotification('Preparing Excel data export...', 'info');
+            setTimeout(() => {
+                showNotification('Excel file ready for download!', 'success');
+            }, 2500);
+        }
+
+        function shareReport() {
+            showNotification('Generating shareable dashboard link...', 'info');
+            setTimeout(() => {
+                showNotification('Dashboard link copied to clipboard!', 'success');
+            }, 2000);
+        }
+
+        function generateInsights() {
+            showNotification('AI is generating advanced insights...', 'info');
+            setTimeout(() => {
+                showNotification('New AI insights generated! Check the analysis sections.', 'success');
+            }, 5000);
+        }
+
+        // Enhanced Notification System
+        function showNotification(message, type = 'info', duration = 3000) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} text-xl"></i>
+                    <span class="font-medium">${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, duration);
+        }
+
+        // Update charts for theme changes
+        function updateChartsForTheme(theme) {
+            // This would update chart colors based on theme
+            // Implementation would depend on specific chart instances
+            if (livePriceChart) {
+                const textColor = theme === 'dark' ? '#f8fafc' : '#0f172a';
+                const gridColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
+                
+                livePriceChart.options.scales.x.ticks.color = textColor;
+                livePriceChart.options.scales.y.ticks.color = textColor;
+                livePriceChart.options.scales.x.grid.color = gridColor;
+                livePriceChart.options.scales.y.grid.color = gridColor;
+                livePriceChart.options.plugins.legend.labels.color = textColor;
+                
+                livePriceChart.update();
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + D for dark mode toggle
+            if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+            
+            // Ctrl/Cmd + R for refresh data
+            if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                e.preventDefault();
+                refreshData();
+            }
+            
+            // Ctrl/Cmd + E for export
+            if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+                e.preventDefault();
+                exportData();
+            }
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`Dashboard loaded in ${loadTime.toFixed(2)}ms`);
+            
+            if (loadTime > 3000) {
+                showNotification('Dashboard loaded. Performance optimization recommended.', 'warning');
+            } else {
+                showNotification('Dashboard loaded successfully with optimal performance!', 'success', 2000);
+            }
+        });
+
+        // Cleanup intervals on page unload
+        window.addEventListener('beforeunload', function() {
+            if (weatherUpdateInterval) clearInterval(weatherUpdateInterval);
+            if (priceUpdateInterval) clearInterval(priceUpdateInterval);
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

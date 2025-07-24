@@ -383,6 +383,7 @@ body {
   border: none;
   font-size: 1rem;
   white-space: nowrap;
+  min-width: -webkit-fill-available;
   min-width: fit-content;
 }
 
@@ -476,6 +477,7 @@ body {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;

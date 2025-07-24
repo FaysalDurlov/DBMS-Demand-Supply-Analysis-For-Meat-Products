@@ -868,28 +868,6 @@ body {
   margin: 0 auto;
 }
 
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 16px 0;
-}
-
-.feature-list li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.feature-list li:last-child {
-  border-bottom: none;
-}
-
-.feature-list li strong {
-  color: var(--primary-color);
-}
-
 /* SVG Icon Styles */
 svg {
   flex-shrink: 0;

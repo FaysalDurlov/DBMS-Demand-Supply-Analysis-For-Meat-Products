@@ -26,7 +26,6 @@ class DataManager {
   addSale(sale) {
     sale.id = this.generateId("S")
     sale.dateRecorded = new Date().toISOString()
-
     // Remove animal from active list
     const animalIndex = this.animals.findIndex((a) => a.animalId === sale.saleAnimalId)
     if (animalIndex !== -1) {
@@ -35,7 +34,6 @@ class DataManager {
       sale.animalType = animal.animalType
       this.animals.splice(animalIndex, 1)
     }
-
     this.sales.push(sale)
     this.addActivity(`Recorded sale: ${sale.saleAnimalId} to ${sale.buyerName} for $${sale.salePrice}`)
     this.saveData()
@@ -61,7 +59,6 @@ class DataManager {
       date: new Date().toLocaleDateString(),
     }
     this.activities.unshift(activity)
-
     // Keep only last 50 activities
     if (this.activities.length > 50) {
       this.activities = this.activities.slice(0, 50)
@@ -80,7 +77,6 @@ class DataManager {
     const dailyFeed = Number.parseFloat(animal.dailyFeedQuantity)
     const daysOwned = 30 // Assume 30 days for calculation
     const totalFeed = dailyFeed * daysOwned
-
     return weightGain > 0 ? (totalFeed / weightGain).toFixed(2) : 0
   }
 
@@ -112,7 +108,7 @@ class Dashboard {
   constructor() {
     this.isExpanded = false
     this.hoverTimeout = null
-    this.currentTab = "records"
+    this.currentTab = "sales"
     this.sortDirection = {}
     this.dataManager = new DataManager()
     this.init()
@@ -124,14 +120,12 @@ class Dashboard {
     this.header = document.getElementById("header")
     this.headerTitle = document.getElementById("headerTitle")
     this.content = document.getElementById("content")
-
     this.setupEventListeners()
     this.initializeCharts()
     this.updateDashboard()
     this.populateAnimalSelects()
-
     // Initialize with dashboard section
-    this.showSection("Dashboard")
+    this.showSection("dashboard")
   }
 
   setupEventListeners() {
@@ -154,7 +148,7 @@ class Dashboard {
       })
     })
 
-    // Tab navigation
+    // Tab navigation for Sales & Purchases section
     const tabBtns = document.querySelectorAll(".tab-btn")
     tabBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -225,7 +219,6 @@ class Dashboard {
       lastVaccination: formData.get("lastVaccination"),
       vaccinationType: formData.get("vaccinationType"),
     }
-
     this.dataManager.addAnimal(animal)
     this.updateAnimalTable()
     this.updateDashboard()
@@ -243,7 +236,6 @@ class Dashboard {
       buyerContact: formData.get("buyerContact"),
       saleDate: formData.get("saleDate"),
     }
-
     this.dataManager.addSale(sale)
     this.updateSalesTable()
     this.updateAnimalTable()
@@ -264,7 +256,6 @@ class Dashboard {
       sellerContact: formData.get("sellerContact"),
       purchaseDateInput: formData.get("purchaseDateInput"),
     }
-
     this.dataManager.addPurchase(purchase)
     this.updatePurchaseTable()
     this.updateDashboard()
@@ -275,19 +266,16 @@ class Dashboard {
 
   updateDashboard() {
     const stats = this.dataManager.getStats()
-
     document.getElementById("totalAnimals").textContent = stats.totalAnimals
     document.getElementById("totalSalesValue").textContent = `$${stats.totalSalesValue}`
     document.getElementById("totalFeedCost").textContent = `$${stats.totalFeedCost}`
     document.getElementById("avgFCR").textContent = stats.avgFCR
-
     this.updateRecentActivities()
   }
 
   updateRecentActivities() {
     const activitiesContainer = document.getElementById("recentActivities")
     const activities = this.dataManager.activities.slice(0, 5)
-
     if (activities.length === 0) {
       activitiesContainer.innerHTML = '<div class="activity-item empty-state"><p>No recent activities</p></div>'
       return
@@ -310,7 +298,6 @@ class Dashboard {
   updateAnimalTable() {
     const tbody = document.getElementById("animalRecordsBody")
     const animals = this.dataManager.animals
-
     if (animals.length === 0) {
       tbody.innerHTML =
         '<tr class="empty-state"><td colspan="10">No animals added yet. Click "Add Animal" to get started.</td></tr>'
@@ -361,7 +348,6 @@ class Dashboard {
   updateSalesTable() {
     const tbody = document.getElementById("salesTableBody")
     const sales = this.dataManager.sales
-
     if (sales.length === 0) {
       tbody.innerHTML =
         '<tr class="empty-state"><td colspan="8">No sales recorded yet. Click "Record Sale" to add your first sale.</td></tr>'
@@ -404,7 +390,6 @@ class Dashboard {
   updatePurchaseTable() {
     const tbody = document.getElementById("purchaseTableBody")
     const purchases = this.dataManager.purchases
-
     if (purchases.length === 0) {
       tbody.innerHTML =
         '<tr class="empty-state"><td colspan="9">No purchases recorded yet. Click "Record Purchase" to add your first purchase.</td></tr>'
@@ -507,7 +492,6 @@ class Dashboard {
   filterTable(tableId, searchTerm, filterType) {
     const table = document.getElementById(tableId)
     if (!table) return
-
     const tbody = table.querySelector("tbody")
     const rows = tbody.querySelectorAll("tr:not(.empty-state)")
 
@@ -534,7 +518,6 @@ class Dashboard {
     const tbody = table.querySelector("tbody")
     const rows = Array.from(tbody.querySelectorAll("tr:not(.empty-state)"))
     const isAscending = this.sortDirection[column] !== "asc"
-
     this.sortDirection[column] = isAscending ? "asc" : "desc"
 
     const columnIndex = Array.from(table.querySelectorAll("th")).findIndex((th) => th.dataset.sort === column)
@@ -562,7 +545,6 @@ class Dashboard {
     table.querySelectorAll("th").forEach((th) => {
       th.classList.remove("sort-asc", "sort-desc")
     })
-
     const header = table.querySelector(`th[data-sort="${column}"]`)
     header.classList.add(isAscending ? "sort-asc" : "sort-desc")
   }
@@ -582,9 +564,11 @@ class Dashboard {
 
     this.currentTab = tabName
 
-    // Initialize tab-specific functionality
-    if (tabName === "market") {
-      this.updateCharts()
+    // Update tables when switching tabs
+    if (tabName === "sales") {
+      this.updateSalesTable()
+    } else if (tabName === "purchases") {
+      this.updatePurchaseTable()
     }
   }
 
@@ -593,10 +577,8 @@ class Dashboard {
     const chartContainers = document.querySelectorAll(".chart-container")
     chartContainers.forEach((container) => {
       if (!container.querySelector("canvas")) return
-
       const canvas = container.querySelector("canvas")
       const ctx = canvas.getContext("2d")
-
       // Simple line chart simulation
       this.drawSimpleChart(ctx, canvas.width, canvas.height)
     })
@@ -604,7 +586,6 @@ class Dashboard {
 
   drawSimpleChart(ctx, width, height) {
     ctx.clearRect(0, 0, width, height)
-
     // Draw axes
     ctx.strokeStyle = "#e5e7eb"
     ctx.lineWidth = 1
@@ -619,7 +600,6 @@ class Dashboard {
     ctx.strokeStyle = "#2563eb"
     ctx.lineWidth = 2
     ctx.beginPath()
-
     const points = [
       { x: 60, y: height - 60 },
       { x: 120, y: height - 80 },
@@ -628,7 +608,6 @@ class Dashboard {
       { x: 300, y: height - 85 },
       { x: 360, y: height - 95 },
     ]
-
     points.forEach((point, index) => {
       if (index === 0) {
         ctx.moveTo(point.x, point.y)
@@ -636,7 +615,6 @@ class Dashboard {
         ctx.lineTo(point.x, point.y)
       }
     })
-
     ctx.stroke()
 
     // Draw data points
@@ -684,16 +662,25 @@ class Dashboard {
     // Add active class to clicked item
     item.classList.add("active")
 
-    const navText = item.querySelector(".nav-text").textContent
-    console.log("Navigating to:", navText)
+    const sectionName = item.dataset.section
+    console.log("Navigating to:", sectionName)
 
     // Update header title based on selection
     if (this.headerTitle) {
-      this.headerTitle.textContent = `Meatrix - ${navText}`
+      const titles = {
+        dashboard: "Farmer Dashboard",
+        animals: "Animal Records",
+        "sales-purchases": "Sales & Purchases",
+        "market-prices": "Market Analysis",
+        traders: "Trader Selections",
+        notifications: "Notifications",
+        settings: "Settings",
+      }
+      this.headerTitle.textContent = titles[sectionName] || "Meatrix Dashboard"
     }
 
     // Show appropriate section
-    this.showSection(navText)
+    this.showSection(sectionName)
   }
 
   showSection(sectionName) {
@@ -705,21 +692,23 @@ class Dashboard {
 
     // Show selected section
     let sectionId = "dashboard-section" // default
-
-    switch (sectionName.toLowerCase()) {
+    switch (sectionName) {
       case "dashboard":
         sectionId = "dashboard-section"
         this.updateDashboard()
         break
       case "animals":
         sectionId = "animals-section"
-        this.initializeAnimalsSection()
+        this.updateAnimalTable()
         break
-      case "sales & purchases":
-        sectionId = "sales-section"
+      case "sales-purchases":
+        sectionId = "sales-purchases-section"
+        this.updateSalesTable()
+        this.updatePurchaseTable()
         break
-      case "market prices":
-        sectionId = "market-section"
+      case "market-prices":
+        sectionId = "market-prices-section"
+        this.updateCharts()
         break
       case "traders":
         sectionId = "traders-section"
@@ -737,18 +726,8 @@ class Dashboard {
       targetSection.style.display = "block"
       targetSection.classList.add("active")
     }
-  }
 
-  initializeAnimalsSection() {
-    this.updateAnimalTable()
-    this.updateSalesTable()
-    this.updatePurchaseTable()
     this.populateAnimalSelects()
-
-    // Initialize charts if market tab
-    if (this.currentTab === "market") {
-      this.updateCharts()
-    }
   }
 
   expandSidebar() {

@@ -65,15 +65,6 @@
                     </div>
                     <span class="nav-text">Traders</span>
                 </a>
-                <a href="#" class="nav-item" data-section="notifications">
-                    <div class="nav-icon-container">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                        </svg>
-                    </div>
-                    <span class="nav-text">Notifications</span>
-                </a>
                 <a href="#" class="nav-item" data-section="settings">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -588,23 +579,7 @@
                         </div>
                     </div>
 
-                    <!-- Other sections remain the same -->
-                    <div class="section-content" id="notifications-section" style="display: none;">
-                        <div class="section-header">
-                            <div class="section-title">
-                                <h2>Notifications</h2>
-                                <p>Stay updated with important alerts and reminders</p>
-                            </div>
-                        </div>
-                        <div class="placeholder-content">
-                            <div class="card">
-                                <div class="card-content">
-                                    <p>Notifications section coming soon...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- Settings Section -->
                     <div class="section-content" id="settings-section" style="display: none;">
                         <div class="section-header">
                             <div class="section-title">
@@ -697,6 +672,83 @@
                     <div class="modal-actions">
                         <button type="button" class="btn-secondary" onclick="closeModal('addAnimalModal')">Cancel</button>
                         <button type="submit" class="btn-primary">Add Animal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Animal Modal -->
+    <div class="modal-overlay" id="editAnimalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Animal Details</h3>
+                <button class="modal-close" onclick="closeModal('editAnimalModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editAnimalForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editAnimalId">Animal ID</label>
+                            <input type="text" id="editAnimalId" name="editAnimalId" readonly style="background-color: #f3f4f6; cursor: not-allowed;">
+                        </div>
+                        <div class="form-group">
+                            <label for="editAnimalName">Animal Name *</label>
+                            <input type="text" id="editAnimalName" name="editAnimalName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAnimalType">Animal Type *</label>
+                            <select id="editAnimalType" name="editAnimalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="goat">Goat</option>
+                                <option value="sheep">Sheep</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editBreed">Breed *</label>
+                            <input type="text" id="editBreed" name="editBreed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editGender">Gender *</label>
+                            <select id="editGender" name="editGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCurrentWeight">Current Weight (kg) *</label>
+                            <input type="number" id="editCurrentWeight" name="editCurrentWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editFeedType">Feed Type *</label>
+                            <input type="text" id="editFeedType" name="editFeedType" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDailyFeedQuantity">Daily Feed Quantity (kg) *</label>
+                            <input type="number" id="editDailyFeedQuantity" name="editDailyFeedQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editFeedCostPerUnit">Feed Cost per Unit ($) *</label>
+                            <input type="number" id="editFeedCostPerUnit" name="editFeedCostPerUnit" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchaseDate">Purchase Date *</label>
+                            <input type="date" id="editPurchaseDate" name="editPurchaseDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editLastVaccination">Last Vaccination Date</label>
+                            <input type="date" id="editLastVaccination" name="editLastVaccination">
+                        </div>
+                        <div class="form-group">
+                            <label for="editVaccinationType">Vaccination Type</label>
+                            <input type="text" id="editVaccinationType" name="editVaccinationType">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editAnimalModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Animal</button>
                     </div>
                 </form>
             </div>

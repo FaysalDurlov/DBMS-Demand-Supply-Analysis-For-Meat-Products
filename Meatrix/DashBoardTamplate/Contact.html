@@ -1,135 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Team Members Table</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team Table</title>
   <style>
+    /* Background animation */
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e0eafc, #cfdef3);
-      padding: 50px;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: white;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .container {
+      max-width: 90%;
+      margin: 80px auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      overflow-x: auto;
+      padding: 20px;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 30px;
-      color: #333;
+      margin-bottom: 20px;
+      font-size: 32px;
+      color: #f1f1f1;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      border-radius: 10px;
-      overflow: hidden;
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      text-align: center;
+      color: white;
     }
 
     th, td {
-      padding: 14px 20px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     th {
-      background-color: #4f8ef7;
-      color: white;
-      font-size: 16px;
-      text-transform: uppercase;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 18px;
     }
 
     tr:hover {
-      background-color: #f2f8ff;
-      transition: background-color 0.3s;
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
-    a.github-link {
-      background-color: #24292e;
+    /* Back & GitHub button (same style) */
+    .back-button,
+    .github-button {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 2px solid white;
+      background-color: transparent;
+      border-radius: 8px;
       color: white;
-      padding: 6px 12px;
-      border-radius: 5px;
+      font-weight: bold;
       text-decoration: none;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
+      transition: 0.4s ease;
     }
 
-    a.github-link:hover {
-      background-color: #0366d6;
+    .back-button:hover,
+    .github-button:hover {
+      background-color: white;
+      color: #333;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>Team Member Information</h2>
+  <a href="Analytics.html" class="back-button">← Back</a>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-        <th>Primary Number</th>
-        <th>Secondary Number</th>
-        <th>GitHub</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Faysal Jamil Rifat Durlov</td>
-        <td>2321142</td>
-        <td>1612341352</td>
-        <td>1786336403</td>
-        <td><a class="github-link" href="https://github.com/FaysalDurlov">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Shehab Bin Islam</td>
-        <td>2320590</td>
-        <td>1990596141</td>
-        <td>1601986138</td>
-        <td><a class="github-link" href="https://github.com/shihab-sani">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Muhtasim Haque Munim</td>
-        <td>2321118</td>
-        <td>1712980725</td>
-        <td>1612980725</td>
-        <td><a class="github-link" href="https://github.com/munim456">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Mozammel Rahman Fahim</td>
-        <td>2321341</td>
-        <td>1888166539</td>
-        <td>1580944557</td>
-        <td><a class="github-link" href="https://github.com/RahmanFahim">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Abir Hasan Siam</td>
-        <td>2331218</td>
-        <td>1768220031</td>
-        <td>1612340404</td>
-        <td><a class="github-link" href="https://github.com/abir2afridi">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Tanjum Ara Tabassum</td>
-        <td>2110178</td>
-        <td>1759373573</td>
-        <td>—</td>
-        <td><a class="github-link" href="https://github.com/tanjum2430">GitHub</a></td>
-      </tr>
-      <tr>
-        <td>Saif Ahasan Shikdar</td>
-        <td>2110432</td>
-        <td>1971354633</td>
-        <td>—</td>
-        <td><a class="github-link" href="https://github.com/Saifahasan39">GitHub</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container">
+    <h2>Team Members</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Primary Number</th>
+          <th>Number 2</th>
+          <th>GitHub Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Faysal Jamil Rifat Durlov</td>
+          <td>2321142</td>
+          <td>1612341352</td>
+          <td>1786336403</td>
+          <td><a href="https://github.com/FaysalDurlov" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Shehab Bin Islam</td>
+          <td>2320590</td>
+          <td>1990596141</td>
+          <td>1601986138</td>
+          <td><a href="https://github.com/shihab-sani" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Muhtasim Haque Munim</td>
+          <td>2321118</td>
+          <td>1712980725</td>
+          <td>1612980725</td>
+          <td><a href="https://github.com/munim456" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Mozammel Rahman Fahim</td>
+          <td>2321341</td>
+          <td>1888166539</td>
+          <td>1580944557</td>
+          <td><a href="https://github.com/RahmanFahim" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Abir Hasan Siam</td>
+          <td>2331218</td>
+          <td>1768220031</td>
+          <td>1612340404</td>
+          <td><a href="https://github.com/abir2afridi" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Tanjum Ara Tabassum</td>
+          <td>2110178</td>
+          <td>1759373573</td>
+          <td>-</td>
+          <td><a href="https://github.com/tanjum2430" class="github-button">GitHub</a></td>
+        </tr>
+        <tr>
+          <td>Saif Ahasan Shikdar</td>
+          <td>2110432</td>
+          <td>1971354633</td>
+          <td>-</td>
+          <td><a href="https://github.com/Saifahasan39" class="github-button">GitHub</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </body>
 </html>

@@ -9,8 +9,6 @@ let currentStep = "login"
 let isLoading = false
 let currentUser = null
 
-
-
 // DOM Elements
 const elements = {
   // Steps
@@ -477,3 +475,14 @@ document.addEventListener("keydown", (e) => {
 console.log("Meatrix Authentication System Loaded")
 console.log("Available User Types:", USER_TYPES)
 console.log("Current Users:", users)
+
+
+// Genarate User Type selector HTMl
+UpdateUserTypeComboBox();
+function UpdateUserTypeComboBox(){
+  let ComboBoxHtml = `<option value="">Select your role</option>`;
+  USER_TYPES.forEach((eachUserType)=>{
+    ComboBoxHtml+= `<option value="${eachUserType.value}">${eachUserType.label}</option>`
+  })
+  elements.userType.innerHTML = ComboBoxHtml;
+}

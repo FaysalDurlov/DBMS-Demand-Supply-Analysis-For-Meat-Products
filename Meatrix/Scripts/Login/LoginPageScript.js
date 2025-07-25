@@ -1,27 +1,15 @@
+import { USER_TYPES } from "../../dammy data/UserType.js";
+import { users } from "../../dammy data/UserInfo.js";
+
+
+
+
 // Application State
 let currentStep = "login"
 let isLoading = false
 let currentUser = null
 
-// User types array - easily modifiable
-const USER_TYPES = [
-  { value: "farmer", label: "Farmer" },
-  { value: "veterinarian", label: "Veterinarian" },
-  { value: "supplier", label: "Supplier" },
-  { value: "manager", label: "Farm Manager" },
-  { value: "inspector", label: "Inspector" },
-]
 
-// Users database - stores all registered users
-let users = [
-  {
-    id: "john123",
-    email: "john@example.com",
-    password: "password123",
-    userType: "farmer",
-    createdAt: new Date().toISOString(),
-  },
-]
 
 // DOM Elements
 const elements = {
@@ -282,6 +270,8 @@ async function handleLogin(e) {
   hideLoading()
   showSuccess("Login successful!")
 
+  // to load page of user add the funtion here
+  
   setTimeout(() => {
     localStorage.setItem("currentUser", JSON.stringify(user))
     // In a real app, redirect to dashboard

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meatrix Customer Dashboard</title>
+    <link rel="stylesheet" href="../Styles/Customer/CustomerDashboardDesign.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">Meatrix</span>
+                </div>
+            </div>
+            <!-- Navigation Items -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="products">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                            <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Products</span>
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">My Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-section="nutrition">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Nutrition</span>
+                </a>
+                <a href="#" class="nav-item" data-section="vendors">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Vendors</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            <!-- Logout Button -->
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header -->
+            <header class="header" id="header">
+                <div class="header-left">
+                    <h1 class="header-title" id="headerTitle">Customer Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <span class="username">John Customer</span>
+                    <div class="avatar">JC</div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content" id="content">
+                <div class="content-container">
+                    <!-- Dashboard Section -->
+                    <div class="section-content active" id="dashboard-section">
+                        <!-- Dashboard Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="8" cy="21" r="1"/>
+                                        <circle cx="19" cy="21" r="1"/>
+                                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalOrders">0</h2>
+                                    <p>All time orders</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Spent</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalSpent">$0</h2>
+                                    <p>All time spending</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Pending Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="pendingOrders">0</h2>
+                                    <p>Awaiting delivery</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Favorite Vendor</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="favoriteVendor">-</h2>
+                                    <p>Most ordered from</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Orders</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="activity-list" id="recentOrders">
+                                        <div class="activity-item empty-state">
+                                            <p>No recent orders</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quick-actions">
+                                        <button class="quick-action-btn" onclick="dashboard.showSection('products')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                                                <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                                            </svg>
+                                            Browse Products
+                                        </button>
+                                        <button class="quick-action-btn" onclick="dashboard.showSection('orders')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="8" cy="21" r="1"/>
+                                                <circle cx="19" cy="21" r="1"/>
+                                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                            </svg>
+                                            Track Orders
+                                        </button>
+                                        <button class="quick-action-btn" onclick="dashboard.showSection('nutrition')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                            </svg>
+                                            Nutrition Info
+                                        </button>
+                                        <button class="quick-action-btn" onclick="dashboard.showSection('vendors')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="12" cy="7" r="4"/>
+                                            </svg>
+                                            Find Vendors
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Section -->
+                    <div class="section-content" id="products-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Available Products</h2>
+                                <p>Browse and order fresh meat products from local vendors</p>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search products..." class="search-input" id="productSearch">
+                                <select class="filter-select" id="meatTypeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="beef">Beef</option>
+                                    <option value="chicken">Chicken</option>
+                                    <option value="pork">Pork</option>
+                                    <option value="lamb">Lamb</option>
+                                    <option value="goat">Goat</option>
+                                </select>
+                                <select class="filter-select" id="priceRangeFilter">
+                                    <option value="all">All Prices</option>
+                                    <option value="0-10">$0 - $10</option>
+                                    <option value="10-20">$10 - $20</option>
+                                    <option value="20-30">$20 - $30</option>
+                                    <option value="30+">$30+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Products will be dynamically loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div class="section-content" id="orders-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>My Orders</h2>
+                                <p>Track your orders and delivery status</p>
+                            </div>
+                        </div>
+
+                        <!-- Order Tracking -->
+                        <div class="card" style="margin-bottom: 24px;">
+                            <div class="card-header">
+                                <h3>Track Order</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="track-order-form">
+                                    <input type="text" placeholder="Enter Order ID" class="search-input" id="trackOrderId" style="margin-right: 12px;">
+                                    <button class="btn-primary" onclick="trackOrder()">Track Order</button>
+                                </div>
+                                <div id="trackingResult" style="margin-top: 16px;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="ordersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="orderId">Order ID</th>
+                                                <th class="sortable" data-sort="vendor">Vendor</th>
+                                                <th class="sortable" data-sort="products">Products</th>
+                                                <th class="sortable" data-sort="total">Total</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th class="sortable" data-sort="orderDate">Order Date</th>
+                                                <th class="sortable" data-sort="deliveryDate">Delivery Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ordersTableBody">
+                                            <tr class="empty-state">
+                                                <td colspan="8">No orders yet. Start shopping to see your orders here.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nutrition Section -->
+                    <div class="section-content" id="nutrition-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Nutrition Calculator</h2>
+                                <p>Calculate nutritional information for your meat consumption</p>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Calculate Nutrition</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="nutrition-form">
+                                        <div class="form-group">
+                                            <label for="nutritionMeatType">Meat Type</label>
+                                            <select id="nutritionMeatType" class="filter-select">
+                                                <option value="">Select Meat Type</option>
+                                                <option value="beef">Beef</option>
+                                                <option value="chicken">Chicken</option>
+                                                <option value="pork">Pork</option>
+                                                <option value="lamb">Lamb</option>
+                                                <option value="goat">Goat</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nutritionWeight">Weight (grams)</label>
+                                            <input type="number" id="nutritionWeight" class="search-input" placeholder="Enter weight in grams">
+                                        </div>
+                                        <button class="btn-primary" onclick="calculateNutrition()">Calculate</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Nutritional Information</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div id="nutritionResults">
+                                        <p>Select meat type and weight to see nutritional information</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nutrition Reference Table -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Nutrition Reference (per 100g)</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Meat Type</th>
+                                                <th>Calories</th>
+                                                <th>Protein (g)</th>
+                                                <th>Fat (g)</th>
+                                                <th>Iron (mg)</th>
+                                                <th>Zinc (mg)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Beef (lean)</td>
+                                                <td>250</td>
+                                                <td>26</td>
+                                                <td>15</td>
+                                                <td>2.6</td>
+                                                <td>4.8</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chicken (breast)</td>
+                                                <td>165</td>
+                                                <td>31</td>
+                                                <td>3.6</td>
+                                                <td>0.7</td>
+                                                <td>1.0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pork (lean)</td>
+                                                <td>242</td>
+                                                <td>27</td>
+                                                <td>14</td>
+                                                <td>0.9</td>
+                                                <td>2.9</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lamb</td>
+                                                <td>294</td>
+                                                <td>25</td>
+                                                <td>21</td>
+                                                <td>1.9</td>
+                                                <td>4.5</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Goat</td>
+                                                <td>143</td>
+                                                <td>27</td>
+                                                <td>3.0</td>
+                                                <td>3.8</td>
+                                                <td>4.3</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vendors Section -->
+                    <div class="section-content" id="vendors-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Vendors</h2>
+                                <p>Discover local meat vendors and their specialties</p>
+                            </div>
+                        </div>
+
+                        <div class="vendors-grid" id="vendorsGrid">
+                            <!-- Vendors will be dynamically loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="section-content" id="settings-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Settings</h2>
+                                <p>Manage your account preferences and delivery settings</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <p>Settings section - Configure delivery preferences, payment methods, and notifications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal-overlay" id="productDetailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Product Details</h3>
+                <button class="modal-close" onclick="closeModal('productDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="productDetailsContent">
+                    <!-- Product details will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Place Order</h3>
+                <button class="modal-close" onclick="closeModal('orderModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="orderProductName">Product</label>
+                            <input type="text" id="orderProductName" name="orderProductName" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderVendor">Vendor</label>
+                            <input type="text" id="orderVendor" name="orderVendor" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderQuantity">Quantity (kg) *</label>
+                            <input type="number" id="orderQuantity" name="orderQuantity" step="0.1" min="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderPrice">Price per kg</label>
+                            <input type="text" id="orderPrice" name="orderPrice" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderTotal">Total Price</label>
+                            <input type="text" id="orderTotal" name="orderTotal" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryAddress">Delivery Address *</label>
+                            <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required style="padding: 8px 12px; border: 1px solid var(--card-border); border-radius: 4px; font-size: 14px; resize: vertical;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('orderModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/Customer/CustomerDashBoardScript.js"></script>
+</body>
+</html>

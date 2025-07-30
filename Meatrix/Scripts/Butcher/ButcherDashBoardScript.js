@@ -8,6 +8,7 @@ class ButcherDataManager {
   constructor() {
     this.animals = JSON.parse(localStorage.getItem("butcher_animals") || "[]")
     this.slaughterRecords = JSON.parse(localStorage.getItem("butcher_slaughter_records") || "[]")
+    this.warehouseInventory = JSON.parse(localStorage.getItem("butcher_warehouse_inventory") || "[]")
     this.distributions = JSON.parse(localStorage.getItem("butcher_distributions") || "[]")
     this.agentOrders = JSON.parse(localStorage.getItem("butcher_agent_orders") || "[]")
     this.activities = JSON.parse(localStorage.getItem("butcher_activities") || "[]")
@@ -16,6 +17,7 @@ class ButcherDataManager {
   saveData() {
     localStorage.setItem("butcher_animals", JSON.stringify(this.animals))
     localStorage.setItem("butcher_slaughter_records", JSON.stringify(this.slaughterRecords))
+    localStorage.setItem("butcher_warehouse_inventory", JSON.stringify(this.warehouseInventory))
     localStorage.setItem("butcher_distributions", JSON.stringify(this.distributions))
     localStorage.setItem("butcher_agent_orders", JSON.stringify(this.agentOrders))
     localStorage.setItem("butcher_activities", JSON.stringify(this.activities))
@@ -76,25 +78,93 @@ class ButcherDataManager {
     return record
   }
 
+  addWarehouseBatch(warehouseBatch) {
+    warehouseBatch.id = this.generateId("WH")
+    warehouseBatch.receivedDate = warehouseBatch.receivedDate || new Date().toISOString().split("T")[0]
+    warehouseBatch.status = "received"
+
+    // Get slaughter record details
+    const slaughterRecord = this.slaughterRecords.find((record) => record.id === warehouseBatch.slaughterRecordId)
+    if (slaughterRecord) {
+      warehouseBatch.batchId = slaughterRecord.batchId
+      warehouseBatch.slaughterDate = slaughterRecord.slaughterDate
+      warehouseBatch.totalMeat = slaughterRecord.totalMeatYield
+      warehouseBatch.availableMeat = slaughterRecord.totalMeatYield
+      warehouseBatch.reservedMeat = 0
+      warehouseBatch.animalIds = slaughterRecord.animalIds
+
+      // Update slaughter record status
+      slaughterRecord.warehouseStatus = "received"
+    }
+
+    this.warehouseInventory.push(warehouseBatch)
+    this.addActivity(`Batch ${warehouseBatch.batchId} received in warehouse at ${warehouseBatch.storageLocation}`)
+    this.saveData()
+    return warehouseBatch
+  }
+
+  updateWarehouseStock(warehouseBatchId, meatAmount, operation = "reserve") {
+    const batch = this.warehouseInventory.find((b) => b.id === warehouseBatchId)
+    if (!batch) return null
+
+    if (operation === "reserve") {
+      if (batch.availableMeat >= meatAmount) {
+        batch.availableMeat -= meatAmount
+        batch.reservedMeat += meatAmount
+        batch.status = batch.availableMeat > 0 ? "available" : "reserved"
+      }
+    } else if (operation === "ship") {
+      batch.reservedMeat -= meatAmount
+      if (batch.availableMeat === 0 && batch.reservedMeat === 0) {
+        batch.status = "shipped"
+      }
+    }
+
+    this.saveData()
+    return batch
+  }
+
+  getAvailableWarehouseBatches() {
+    return this.warehouseInventory.filter((batch) => batch.status === "received" || batch.status === "available")
+  }
+
+  getWarehouseStats() {
+    const totalBatches = this.warehouseInventory.length
+    const availableStock = this.warehouseInventory.reduce((sum, batch) => sum + batch.availableMeat, 0)
+    const reservedStock = this.warehouseInventory.reduce((sum, batch) => sum + batch.reservedMeat, 0)
+
+    return {
+      totalBatches,
+      availableStock: availableStock.toFixed(1),
+      reservedStock: reservedStock.toFixed(1),
+    }
+  }
+
   addDistribution(distribution) {
     distribution.id = this.generateId("DIST")
     distribution.distributionDate = new Date().toISOString().split("T")[0]
 
-    // Get batch details for animal information
-    const batch = this.slaughterRecords.find((record) => record.id === distribution.batchId)
-    if (batch) {
-      const batchAnimals = this.animals.filter((animal) => batch.animalIds.includes(animal.id))
+    // Get warehouse batch details instead of slaughter batch
+    const warehouseBatch = this.warehouseInventory.find((batch) => batch.id === distribution.batchId)
+    if (warehouseBatch) {
+      // Update warehouse stock
+      this.updateWarehouseStock(warehouseBatch.id, Number.parseFloat(distribution.meatAmount), "ship")
+
+      // Get animal details from the batch
+      const batchAnimals = this.animals.filter((animal) => warehouseBatch.animalIds.includes(animal.id))
       const representativeAnimal = batchAnimals[0]
 
       distribution.animalBreed = representativeAnimal?.breed || ""
       distribution.animalType = representativeAnimal?.type || ""
       distribution.vaccine = representativeAnimal?.vaccine || ""
       distribution.gender = representativeAnimal?.gender || ""
-      distribution.averageWeight = batch.averageWeight
+      distribution.averageWeight = warehouseBatch.totalMeat / warehouseBatch.animalIds.length
+      distribution.warehouseBatchId = warehouseBatch.id
+      distribution.originalBatchId = warehouseBatch.batchId
     }
 
     this.distributions.push(distribution)
-    this.addActivity(`Meat distributed: ${distribution.meatAmount}kg to ${distribution.agentName}`)
+    this.addActivity(`Meat shipped: ${distribution.meatAmount}kg to ${distribution.agentName} from warehouse`)
     this.saveData()
     return distribution
   }
@@ -277,6 +347,24 @@ class ButcherDashboard {
       })
     }
 
+    // Receive Batch Form
+    const receiveBatchForm = document.getElementById("receiveBatchForm")
+    if (receiveBatchForm) {
+      receiveBatchForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        this.handleReceiveBatch(new FormData(receiveBatchForm))
+      })
+    }
+
+    // Ship to Agent Form
+    const shipToAgentForm = document.getElementById("shipToAgentForm")
+    if (shipToAgentForm) {
+      shipToAgentForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        this.handleShipToAgent(new FormData(shipToAgentForm))
+      })
+    }
+
     // Add Distribution Form
     const addDistributionForm = document.getElementById("addDistributionForm")
     if (addDistributionForm) {
@@ -294,6 +382,43 @@ class ButcherDashboard {
         this.handleAddOrder(new FormData(addOrderForm))
       })
     }
+  }
+
+  handleReceiveBatch(formData) {
+    const warehouseBatch = {
+      slaughterRecordId: formData.get("warehouseBatchId"),
+      storageLocation: formData.get("storageLocation"),
+      storageTemperature: formData.get("storageTemperature"),
+      receivedDate: formData.get("receivedDate"),
+      notes: formData.get("warehouseNotes"),
+    }
+
+    this.dataManager.addWarehouseBatch(warehouseBatch)
+    this.updateWarehouseTable()
+    this.updateDashboard()
+    this.populateSelects()
+    closeModal("receiveBatchModal")
+    document.getElementById("receiveBatchForm").reset()
+  }
+
+  handleShipToAgent(formData) {
+    const distribution = {
+      batchId: formData.get("shipBatchId"),
+      agentId: formData.get("shipAgentId"),
+      agentName: formData.get("shipAgentName"),
+      agentLocation: formData.get("shipAgentLocation"),
+      meatAmount: formData.get("shipMeatAmount"),
+      price: formData.get("shipPrice"),
+      shipDate: formData.get("shipDate"),
+      trackingNumber: formData.get("trackingNumber"),
+    }
+
+    this.dataManager.addDistribution(distribution)
+    this.updateDistributionTable()
+    this.updateWarehouseTable()
+    this.updateDashboard()
+    closeModal("shipToAgentModal")
+    document.getElementById("shipToAgentForm").reset()
   }
 
   handleAddAnimal(formData) {
@@ -607,47 +732,99 @@ class ButcherDashboard {
       .join("")
   }
 
+  updateWarehouseTable() {
+    const tbody = document.getElementById("warehouseInventoryBody")
+    const inventory = this.dataManager.warehouseInventory
+
+    if (inventory.length === 0) {
+      tbody.innerHTML =
+        '<tr class="empty-state"><td colspan="10">No batches in warehouse yet. Batches will appear here after slaughter.</td></tr>'
+      return
+    }
+
+    tbody.innerHTML = inventory
+      .map(
+        (batch) => `
+        <tr>
+            <td>${batch.batchId}</td>
+            <td>${batch.slaughterDate}</td>
+            <td>${batch.receivedDate}</td>
+            <td>${batch.totalMeat}</td>
+            <td>${batch.availableMeat}</td>
+            <td>${batch.reservedMeat}</td>
+            <td>${batch.storageLocation}</td>
+            <td>${batch.storageTemperature}°C</td>
+            <td><span class="badge badge-${batch.status}">${batch.status}</span></td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-icon" title="Ship to Agent" onclick="showShipToAgentModal('${batch.id}')" ${batch.availableMeat <= 0 ? "disabled" : ""}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                            <circle cx="17" cy="18" r="2"/>
+                            <circle cx="7" cy="18" r="2"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" title="View Details" onclick="viewWarehouseBatchDetails('${batch.id}')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `,
+      )
+      .join("")
+  }
+
   populateSelects() {
-    // Populate batch select for distribution
-    const batchSelect = document.getElementById("distributionBatchId")
-    if (batchSelect) {
-      batchSelect.innerHTML =
+    // Populate warehouse batch select for receiving
+    const warehouseBatchSelect = document.getElementById("warehouseBatchId")
+    if (warehouseBatchSelect) {
+      const unreceivedBatches = this.dataManager.slaughterRecords.filter(
+        (record) => !record.warehouseStatus || record.warehouseStatus !== "received",
+      )
+      warehouseBatchSelect.innerHTML =
         '<option value="">Select Batch</option>' +
-        this.dataManager.slaughterRecords
+        unreceivedBatches
           .map(
             (record) =>
-              `<option value="${record.id}">Batch ${record.batchId} - ${record.totalMeatYield}kg available</option>`,
+              `<option value="${record.id}">Batch ${record.batchId} - ${record.totalMeatYield}kg (${record.slaughterDate})</option>`,
+          )
+          .join("")
+    }
+
+    // Populate ship batch select
+    const shipBatchSelect = document.getElementById("shipBatchId")
+    if (shipBatchSelect) {
+      const availableBatches = this.dataManager.getAvailableWarehouseBatches()
+      shipBatchSelect.innerHTML =
+        '<option value="">Select Batch</option>' +
+        availableBatches
+          .map(
+            (batch) =>
+              `<option value="${batch.id}">Batch ${batch.batchId} - ${batch.availableMeat}kg available</option>`,
+          )
+          .join("")
+    }
+
+    // Populate batch select for distribution (now from warehouse)
+    const batchSelect = document.getElementById("distributionBatchId")
+    if (batchSelect) {
+      const availableBatches = this.dataManager.getAvailableWarehouseBatches()
+      batchSelect.innerHTML =
+        '<option value="">Select Batch</option>' +
+        availableBatches
+          .map(
+            (batch) =>
+              `<option value="${batch.id}">Batch ${batch.batchId} - ${batch.availableMeat}kg available</option>`,
           )
           .join("")
     }
 
     // Populate animal selection for slaughter
     this.updateAnimalSelection()
-  }
-
-  updateAnimalSelection() {
-    const animalSelection = document.getElementById("animalSelection")
-    if (!animalSelection) return
-
-    const availableAnimals = this.dataManager.animals.filter((animal) => animal.status === "received")
-
-    if (availableAnimals.length === 0) {
-      animalSelection.innerHTML = '<p class="text-gray-500">No animals available for slaughter</p>'
-      return
-    }
-
-    animalSelection.innerHTML = availableAnimals
-      .map(
-        (animal) => `
-      <div class="animal-checkbox">
-        <input type="checkbox" id="animal_${animal.id}" name="selectedAnimals" value="${animal.id}">
-        <label for="animal_${animal.id}">
-          ${animal.animalId} - ${animal.breed} (${animal.weight}kg) - ${animal.farmerName}
-        </label>
-      </div>
-    `,
-      )
-      .join("")
   }
 
   setupSearchAndFilters() {
@@ -777,6 +954,7 @@ class ButcherDashboard {
         dashboard: "Butcher Dashboard",
         animals: "Animal Intake Records",
         slaughter: "Slaughter Records",
+        warehouse: "Warehouse Management",
         distribution: "Meat Distribution",
         orders: "Agent Orders",
         analytics: "Analytics & Reports",
@@ -811,6 +989,11 @@ class ButcherDashboard {
         sectionId = "slaughter-section"
         this.updateSlaughterTable()
         break
+      case "warehouse":
+        sectionId = "warehouse-section"
+        this.updateWarehouseTable()
+        this.updateWarehouseStats()
+        break
       case "distribution":
         sectionId = "distribution-section"
         this.updateDistributionTable()
@@ -836,6 +1019,18 @@ class ButcherDashboard {
 
     this.populateSelects()
     currentSection = sectionName
+  }
+
+  updateWarehouseStats() {
+    const stats = this.dataManager.getWarehouseStats()
+
+    const totalBatchesEl = document.getElementById("totalWarehouseBatches")
+    const availableStockEl = document.getElementById("availableStock")
+    const reservedStockEl = document.getElementById("reservedStock")
+
+    if (totalBatchesEl) totalBatchesEl.textContent = stats.totalBatches
+    if (availableStockEl) availableStockEl.textContent = `${stats.availableStock} kg`
+    if (reservedStockEl) reservedStockEl.textContent = `${stats.reservedStock} kg`
   }
 
   expandSidebar() {
@@ -939,6 +1134,41 @@ function viewOrderDetails(orderId) {
 
 function editOrder(orderId) {
   console.log("Edit order:", orderId)
+}
+
+// Global functions for warehouse management
+function showReceiveBatchModal() {
+  const unreceivedBatches = dashboard.dataManager.slaughterRecords.filter(
+    (record) => !record.warehouseStatus || record.warehouseStatus !== "received",
+  )
+  if (unreceivedBatches.length === 0) {
+    alert("No slaughter batches available to receive. Please complete slaughter records first.")
+    return
+  }
+  document.getElementById("receiveBatchModal").classList.add("active")
+}
+
+function showShipToAgentModal(batchId = null) {
+  const availableBatches = dashboard.dataManager.getAvailableWarehouseBatches()
+  if (availableBatches.length === 0) {
+    alert("No warehouse batches available for shipping.")
+    return
+  }
+
+  if (batchId) {
+    document.getElementById("shipBatchId").value = batchId
+  }
+
+  document.getElementById("shipToAgentModal").classList.add("active")
+}
+
+function viewWarehouseBatchDetails(batchId) {
+  const batch = dashboard.dataManager.warehouseInventory.find((b) => b.id === batchId)
+  if (batch) {
+    alert(
+      `Warehouse Batch Details:\n\nBatch ID: ${batch.batchId}\nSlaughter Date: ${batch.slaughterDate}\nReceived Date: ${batch.receivedDate}\nStorage Location: ${batch.storageLocation}\nTemperature: ${batch.storageTemperature}°C\nTotal Meat: ${batch.totalMeat}kg\nAvailable: ${batch.availableMeat}kg\nReserved: ${batch.reservedMeat}kg\nStatus: ${batch.status}\nNotes: ${batch.notes || "None"}`,
+    )
+  }
 }
 
 // Global dashboard instance

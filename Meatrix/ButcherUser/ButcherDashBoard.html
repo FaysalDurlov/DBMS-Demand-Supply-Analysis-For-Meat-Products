@@ -47,6 +47,16 @@
                     </div>
                     <span class="nav-text">Slaughter Records</span>
                 </a>
+                <a href="#" class="nav-item" data-section="warehouse">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Warehouse</span>
+                </a>
                 <a href="#" class="nav-item" data-section="distribution">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -336,6 +346,108 @@
                                         <tbody id="slaughterRecordsBody">
                                             <tr class="empty-state">
                                                 <td colspan="8">No slaughter records yet. Click "Record Slaughter" to add your first record.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse Section -->
+                    <div class="section-content" id="warehouse-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Warehouse Management</h2>
+                                <p>Track meat batches stored in warehouse before distribution</p>
+                            </div>
+                            <button class="btn-primary" onclick="showReceiveBatchModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Receive Batch
+                            </button>
+                        </div>
+
+                        <!-- Warehouse Stats -->
+                        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 24px;">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Batches</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 21h18"/>
+                                        <path d="M5 21V7l8-4v18"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalWarehouseBatches">0</h2>
+                                    <p>Batches in warehouse</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Available Stock</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="availableStock">0 kg</h2>
+                                    <p>Ready for distribution</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Reserved Stock</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 12l2 2 4-4"/>
+                                        <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="reservedStock">0 kg</h2>
+                                    <p>Allocated to orders</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Batch ID or Location..." class="search-input" id="warehouseSearch">
+                                <select class="filter-select" id="warehouseStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="received">Received</option>
+                                    <option value="available">Available</option>
+                                    <option value="reserved">Reserved</option>
+                                    <option value="shipped">Shipped</option>
+                                </select>
+                                <input type="date" class="filter-select" id="warehouseDateFilter">
+                            </div>
+                        </div>
+
+                        <!-- Warehouse Inventory Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="warehouseInventoryTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="batchId">Batch ID</th>
+                                                <th class="sortable" data-sort="slaughterDate">Slaughter Date</th>
+                                                <th class="sortable" data-sort="receivedDate">Received Date</th>
+                                                <th class="sortable" data-sort="totalMeat">Total Meat (kg)</th>
+                                                <th class="sortable" data-sort="availableMeat">Available (kg)</th>
+                                                <th class="sortable" data-sort="reservedMeat">Reserved (kg)</th>
+                                                <th class="sortable" data-sort="location">Storage Location</th>
+                                                <th class="sortable" data-sort="temperature">Temperature (°C)</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="warehouseInventoryBody">
+                                            <tr class="empty-state">
+                                                <td colspan="10">No batches in warehouse yet. Batches will appear here after slaughter.</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -667,7 +779,7 @@
                 <form id="addDistributionForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="distributionBatchId">Select Batch *</label>
+                            <label for="distributionBatchId">Select Warehouse Batch *</label>
                             <select id="distributionBatchId" name="distributionBatchId" required>
                                 <option value="">Select Batch</option>
                             </select>
@@ -750,6 +862,110 @@
                     <div class="modal-actions">
                         <button type="button" class="btn-secondary" onclick="closeModal('addOrderModal')">Cancel</button>
                         <button type="submit" class="btn-primary">Create Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receive Batch Modal -->
+    <div class="modal-overlay" id="receiveBatchModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Receive Batch to Warehouse</h3>
+                <button class="modal-close" onclick="closeModal('receiveBatchModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="receiveBatchForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="warehouseBatchId">Select Slaughter Batch *</label>
+                            <select id="warehouseBatchId" name="warehouseBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageLocation">Storage Location *</label>
+                            <select id="storageLocation" name="storageLocation" required>
+                                <option value="">Select Location</option>
+                                <option value="A1">Cold Storage A1</option>
+                                <option value="A2">Cold Storage A2</option>
+                                <option value="B1">Freezer B1</option>
+                                <option value="B2">Freezer B2</option>
+                                <option value="C1">Dry Storage C1</option>
+                                <option value="C2">Dry Storage C2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageTemperature">Storage Temperature (°C) *</label>
+                            <input type="number" id="storageTemperature" name="storageTemperature" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivedDate">Received Date *</label>
+                            <input type="date" id="receivedDate" name="receivedDate" required>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label for="warehouseNotes">Storage Notes</label>
+                            <textarea id="warehouseNotes" name="warehouseNotes" rows="3" placeholder="Additional notes about storage conditions, quality checks, etc."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('receiveBatchModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Receive Batch</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ship to Agent Modal -->
+    <div class="modal-overlay" id="shipToAgentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Ship Batch to Agent</h3>
+                <button class="modal-close" onclick="closeModal('shipToAgentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="shipToAgentForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="shipBatchId">Warehouse Batch *</label>
+                            <select id="shipBatchId" name="shipBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentId">Agent ID *</label>
+                            <input type="text" id="shipAgentId" name="shipAgentId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentName">Agent Name *</label>
+                            <input type="text" id="shipAgentName" name="shipAgentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentLocation">Agent Location *</label>
+                            <input type="text" id="shipAgentLocation" name="shipAgentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipMeatAmount">Meat Amount (kg) *</label>
+                            <input type="number" id="shipMeatAmount" name="shipMeatAmount" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipPrice">Price ($) *</label>
+                            <input type="number" id="shipPrice" name="shipPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipDate">Ship Date *</label>
+                            <input type="date" id="shipDate" name="shipDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="trackingNumber">Tracking Number</label>
+                            <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Optional tracking number">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('shipToAgentModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Ship to Agent</button>
                     </div>
                 </form>
             </div>

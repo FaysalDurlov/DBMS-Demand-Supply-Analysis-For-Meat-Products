@@ -1,3 +1,5 @@
+import { LogOut } from "../CommonFeatureScript.js";
+
 // Application State
 let currentStep = "login"
 let isLoading = false
@@ -268,8 +270,7 @@ class Dashboard {
     const logoutBtn = document.querySelector(".logout-btn")
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        console.log("Logout clicked")
-        // Add logout functionality here
+        LogOut();
       })
     }
   }
@@ -1372,3 +1373,48 @@ document.addEventListener("keydown", (e) => {
 console.log("Meatrix Authentication System Loaded")
 console.log("Available User Types:", USER_TYPES)
 console.log("Current Users:", users)
+
+// Add Event Listener
+function ActivateButtonsOnPage(){
+  document.querySelectorAll(".js-show-add-animal-modal").forEach((EachAddAnimalButton)=>{
+    EachAddAnimalButton.addEventListener('click',()=>{
+      showAddAnimalModal();
+    });
+  });
+  document.querySelectorAll(".js-show-add-sale-modal").forEach((EachAddSaleButton)=>{
+    EachAddSaleButton.addEventListener('click',()=>{
+      showAddSaleModal();
+    });
+  });
+  document.querySelectorAll(".js-show-add-purchase-modal").forEach((EachAddPurchaseButton)=>{
+    EachAddPurchaseButton.addEventListener('click',()=>{
+      showAddPurchaseModal();
+    });
+  });
+
+  //Closing Button Add Event Listener
+  document.querySelectorAll(".js-close-modal-addAnimalModal").forEach((closeButton)=>{
+    closeButton.addEventListener('click',()=>{
+      closeModal('addAnimalModal');
+    });
+  });
+  document.querySelectorAll(".js-close-modal-editAnimalModal").forEach((closeButton)=>{
+    closeButton.addEventListener('click',()=>{
+      closeModal('editAnimalModal');
+    });
+  });
+  document.querySelectorAll(".js-close-modal-addSaleModal").forEach((closeButton)=>{
+    closeButton.addEventListener('click',()=>{
+      closeModal('addSaleModal');
+    });
+  });
+  document.querySelectorAll(".js-close-modal-addPurchaseModal").forEach((closeButton)=>{
+    closeButton.addEventListener('click',()=>{
+      closeModal('addPurchaseModal');
+    });
+  });
+  document.querySelector(".js-CheckMarket-button-dashboardOnClick-market-prices").addEventListener('click',()=>{
+    dashboard.showSection('market-prices');
+  });
+};
+ActivateButtonsOnPage();

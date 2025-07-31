@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ButcherPro Dashboard</title>
+    <link rel="stylesheet" href="../Styles/Butcher/ButcherDashBoardDesign.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">B</div>
+                    <span class="logo-text">ButcherPro</span>
+                </div>
+            </div>
+            <!-- Navigation Items -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="animals">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                            <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Animal Intake</span>
+                </a>
+                <a href="#" class="nav-item" data-section="slaughter">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                            <path d="M3 12v7c0 .552.448 1 1 1h16c.552 0 1-.448 1-1v-7"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Slaughter Records</span>
+                </a>
+                <a href="#" class="nav-item" data-section="warehouse">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Warehouse</span>
+                </a>
+                <a href="#" class="nav-item" data-section="distribution">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                            <path d="M15 18H9"/>
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                            <circle cx="17" cy="18" r="2"/>
+                            <circle cx="7" cy="18" r="2"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Meat Distribution</span>
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Agent Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-section="analytics">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                            <polyline points="16,7 22,7 22,13"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Analytics</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            <!-- Logout Button -->
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header -->
+            <header class="header" id="header">
+                <div class="header-left">
+                    <h1 class="header-title" id="headerTitle">Butcher Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <span class="username">John Butcher</span>
+                    <div class="avatar">JB</div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content" id="content">
+                <div class="content-container">
+                    <!-- Dashboard Section -->
+                    <div class="section-content active" id="dashboard-section">
+                        <!-- Dashboard Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Animals Received</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                                        <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalAnimalsReceived">0</h2>
+                                    <p>Total livestock intake</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Animals Slaughtered</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 12l2 2 4-4"/>
+                                        <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalSlaughtered">0</h2>
+                                    <p>Processed animals</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Meat Distributed</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                                        <circle cx="17" cy="18" r="2"/>
+                                        <circle cx="7" cy="18" r="2"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalMeatDistributed">0 kg</h2>
+                                    <p>Total meat supplied</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Pending Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="pendingOrders">0</h2>
+                                    <p>Agent orders waiting</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Activities</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="activity-list" id="recentActivities">
+                                        <div class="activity-item empty-state">
+                                            <p>No recent activities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quick-actions">
+                                        <button class="quick-action-btn" onclick="showAddAnimalModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 5v14M5 12h14"/>
+                                            </svg>
+                                            Record Animal Intake
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddSlaughterModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M9 12l2 2 4-4"/>
+                                                <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                                            </svg>
+                                            Record Slaughter
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddDistributionModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                                                <circle cx="17" cy="18" r="2"/>
+                                            </svg>
+                                            Record Distribution
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddOrderModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="12" cy="7" r="4"/>
+                                            </svg>
+                                            New Agent Order
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animal Intake Section -->
+                    <div class="section-content" id="animals-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Animal Intake Records</h2>
+                                <p>Manage animals received from farms for slaughter</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddAnimalModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Add Animal
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Animal ID, Farmer, or Breed..." class="search-input" id="animalSearch">
+                                <select class="filter-select" id="animalTypeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="cattle">Cattle</option>
+                                    <option value="goat">Goats</option>
+                                    <option value="sheep">Sheep</option>
+                                    <option value="buffalo">Buffalo</option>
+                                </select>
+                                <select class="filter-select" id="animalStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="received">Received</option>
+                                    <option value="slaughtered">Slaughtered</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Animal Records Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="animalRecordsTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="animalId">Animal ID</th>
+                                                <th class="sortable" data-sort="farmerName">Farmer</th>
+                                                <th class="sortable" data-sort="breed">Breed</th>
+                                                <th class="sortable" data-sort="type">Type</th>
+                                                <th class="sortable" data-sort="weight">Weight (kg)</th>
+                                                <th class="sortable" data-sort="vaccine">Vaccine</th>
+                                                <th class="sortable" data-sort="receivedDate">Received Date</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="animalRecordsBody">
+                                            <tr class="empty-state">
+                                                <td colspan="9">No animals recorded yet. Click "Add Animal" to get started.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slaughter Records Section -->
+                    <div class="section-content" id="slaughter-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Slaughter Records</h2>
+                                <p>Track slaughter details and meat yield by batch ID</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddSlaughterModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Record Slaughter
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Batch ID..." class="search-input" id="slaughterSearch">
+                                <input type="date" class="filter-select" id="slaughterDateFilter">
+                            </div>
+                        </div>
+
+                        <!-- Slaughter Records Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="slaughterRecordsTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="batchId">Batch ID</th>
+                                                <th class="sortable" data-sort="slaughterDate">Date</th>
+                                                <th class="sortable" data-sort="totalAnimals">Animals</th>
+                                                <th class="sortable" data-sort="totalMeatYield">Meat Yield (kg)</th>
+                                                <th class="sortable" data-sort="slaughterRate">Slaughter Rate (%)</th>
+                                                <th class="sortable" data-sort="averageWeight">Avg Weight (kg)</th>
+                                                <th class="sortable" data-sort="fcr">FCR</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="slaughterRecordsBody">
+                                            <tr class="empty-state">
+                                                <td colspan="8">No slaughter records yet. Click "Record Slaughter" to add your first record.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse Section -->
+                    <div class="section-content" id="warehouse-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Warehouse Management</h2>
+                                <p>Track meat batches stored in warehouse before distribution</p>
+                            </div>
+                            <button class="btn-primary" onclick="showReceiveBatchModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Receive Batch
+                            </button>
+                        </div>
+
+                        <!-- Warehouse Stats -->
+                        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 24px;">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Batches</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 21h18"/>
+                                        <path d="M5 21V7l8-4v18"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalWarehouseBatches">0</h2>
+                                    <p>Batches in warehouse</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Available Stock</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="availableStock">0 kg</h2>
+                                    <p>Ready for distribution</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Reserved Stock</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 12l2 2 4-4"/>
+                                        <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="reservedStock">0 kg</h2>
+                                    <p>Allocated to orders</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Batch ID or Location..." class="search-input" id="warehouseSearch">
+                                <select class="filter-select" id="warehouseStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="received">Received</option>
+                                    <option value="available">Available</option>
+                                    <option value="reserved">Reserved</option>
+                                    <option value="shipped">Shipped</option>
+                                </select>
+                                <input type="date" class="filter-select" id="warehouseDateFilter">
+                            </div>
+                        </div>
+
+                        <!-- Warehouse Inventory Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="warehouseInventoryTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="batchId">Batch ID</th>
+                                                <th class="sortable" data-sort="slaughterDate">Slaughter Date</th>
+                                                <th class="sortable" data-sort="receivedDate">Received Date</th>
+                                                <th class="sortable" data-sort="totalMeat">Total Meat (kg)</th>
+                                                <th class="sortable" data-sort="availableMeat">Available (kg)</th>
+                                                <th class="sortable" data-sort="reservedMeat">Reserved (kg)</th>
+                                                <th class="sortable" data-sort="location">Storage Location</th>
+                                                <th class="sortable" data-sort="temperature">Temperature (°C)</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="warehouseInventoryBody">
+                                            <tr class="empty-state">
+                                                <td colspan="10">No batches in warehouse yet. Batches will appear here after slaughter.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meat Distribution Section -->
+                    <div class="section-content" id="distribution-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Meat Distribution</h2>
+                                <p>Track meat supply to agents and distributors</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddDistributionModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Record Distribution
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Agent or Batch..." class="search-input" id="distributionSearch">
+                                <select class="filter-select" id="agentFilter">
+                                    <option value="all">All Agents</option>
+                                </select>
+                                <input type="date" class="filter-select" id="distributionDateFilter">
+                            </div>
+                        </div>
+
+                        <!-- Distribution Records Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="distributionRecordsTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="agentName">Agent Name</th>
+                                                <th class="sortable" data-sort="agentLocation">Location</th>
+                                                <th class="sortable" data-sort="batchId">Batch ID</th>
+                                                <th class="sortable" data-sort="meatAmount">Meat Amount (kg)</th>
+                                                <th class="sortable" data-sort="animalDetails">Animal Details</th>
+                                                <th class="sortable" data-sort="distributionDate">Date</th>
+                                                <th class="sortable" data-sort="price">Price ($)</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="distributionRecordsBody">
+                                            <tr class="empty-state">
+                                                <td colspan="8">No distribution records yet. Click "Record Distribution" to add your first record.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agent Orders Section -->
+                    <div class="section-content" id="orders-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Agent Orders</h2>
+                                <p>Manage meat orders from distributors and wholesalers</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddOrderModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                New Order
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Agent or Meat Type..." class="search-input" id="orderSearch">
+                                <select class="filter-select" id="orderStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                                <select class="filter-select" id="meatTypeFilter">
+                                    <option value="all">All Meat Types</option>
+                                    <option value="beef">Beef</option>
+                                    <option value="goat">Goat Meat</option>
+                                    <option value="mutton">Mutton</option>
+                                    <option value="buffalo">Buffalo Meat</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Orders Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="ordersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="agentName">Agent Name</th>
+                                                <th class="sortable" data-sort="agentLocation">Location</th>
+                                                <th class="sortable" data-sort="meatType">Meat Type</th>
+                                                <th class="sortable" data-sort="quantity">Quantity (kg)</th>
+                                                <th class="sortable" data-sort="orderDate">Order Date</th>
+                                                <th class="sortable" data-sort="requiredDate">Required Date</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th class="sortable" data-sort="price">Price ($)</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ordersBody">
+                                            <tr class="empty-state">
+                                                <td colspan="9">No orders yet. Click "New Order" to add your first order.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Section -->
+                    <div class="section-content" id="analytics-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Analytics & Reports</h2>
+                                <p>Performance metrics and business insights</p>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Cards -->
+                        <div class="analytics-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Slaughter Efficiency</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="analytics-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Average Slaughter Rate</span>
+                                            <span class="stat-value" id="avgSlaughterRate">0%</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Meat Yield</span>
+                                            <span class="stat-value" id="totalMeatYield">0 kg</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Average FCR</span>
+                                            <span class="stat-value" id="avgFCR">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Distribution Summary</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="analytics-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Agents</span>
+                                            <span class="stat-value" id="totalAgents">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Revenue</span>
+                                            <span class="stat-value" id="totalRevenue">$0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Avg Price per kg</span>
+                                            <span class="stat-value" id="avgPricePerKg">$0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="section-content" id="settings-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Settings</h2>
+                                <p>Configure your preferences and account settings</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Settings section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Animal Modal -->
+    <div class="modal-overlay" id="addAnimalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Animal Intake</h3>
+                <button class="modal-close" onclick="closeModal('addAnimalModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addAnimalForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="farmerId">Farmer ID *</label>
+                            <input type="text" id="farmerId" name="farmerId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="farmerName">Farmer Name *</label>
+                            <input type="text" id="farmerName" name="farmerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalId">Animal ID *</label>
+                            <input type="text" id="animalId" name="animalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="breed">Breed *</label>
+                            <input type="text" id="breed" name="breed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalType">Animal Type *</label>
+                            <select id="animalType" name="animalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="goat">Goat</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="buffalo">Buffalo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg) *</label>
+                            <input type="number" id="weight" name="weight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccine">Vaccine Details *</label>
+                            <input type="text" id="vaccine" name="vaccine" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivedDate">Received Date *</label>
+                            <input type="date" id="receivedDate" name="receivedDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addAnimalModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Animal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Slaughter Record Modal -->
+    <div class="modal-overlay" id="addSlaughterModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Slaughter Details</h3>
+                <button class="modal-close" onclick="closeModal('addSlaughterModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSlaughterForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="batchId">Batch ID *</label>
+                            <input type="text" id="batchId" name="batchId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="slaughterDate">Slaughter Date *</label>
+                            <input type="date" id="slaughterDate" name="slaughterDate" required>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label>Select Animals for Slaughter *</label>
+                            <div class="animal-selection" id="animalSelection">
+                                <p class="text-gray-500">No animals available for slaughter</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="totalMeatYield">Total Meat Yield (kg) *</label>
+                            <input type="number" id="totalMeatYield" name="totalMeatYield" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedConversionRatio">Feed Conversion Ratio *</label>
+                            <input type="number" id="feedConversionRatio" name="feedConversionRatio" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rearingPeriod">Rearing Period (days) *</label>
+                            <input type="number" id="rearingPeriod" name="rearingPeriod" required>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Additional notes about the slaughter process"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addSlaughterModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Record Slaughter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Distribution Modal -->
+    <div class="modal-overlay" id="addDistributionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Meat Distribution</h3>
+                <button class="modal-close" onclick="closeModal('addDistributionModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addDistributionForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="distributionBatchId">Select Warehouse Batch *</label>
+                            <select id="distributionBatchId" name="distributionBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentId">Agent ID *</label>
+                            <input type="text" id="agentId" name="agentId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentName">Agent Name *</label>
+                            <input type="text" id="agentName" name="agentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentLocation">Agent Location *</label>
+                            <input type="text" id="agentLocation" name="agentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="meatAmount">Meat Amount (kg) *</label>
+                            <input type="number" id="meatAmount" name="meatAmount" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="distributionPrice">Price ($) *</label>
+                            <input type="number" id="distributionPrice" name="distributionPrice" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addDistributionModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Record Distribution</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Order Modal -->
+    <div class="modal-overlay" id="addOrderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>New Agent Order</h3>
+                <button class="modal-close" onclick="closeModal('addOrderModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addOrderForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="orderAgentId">Agent ID *</label>
+                            <input type="text" id="orderAgentId" name="orderAgentId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderAgentName">Agent Name *</label>
+                            <input type="text" id="orderAgentName" name="orderAgentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderAgentLocation">Agent Location *</label>
+                            <input type="text" id="orderAgentLocation" name="orderAgentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="meatType">Meat Type *</label>
+                            <select id="meatType" name="meatType" required>
+                                <option value="">Select Meat Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="goat">Goat Meat</option>
+                                <option value="mutton">Mutton</option>
+                                <option value="buffalo">Buffalo Meat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity (kg) *</label>
+                            <input type="number" id="quantity" name="quantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="requiredDate">Required Date *</label>
+                            <input type="date" id="requiredDate" name="requiredDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderPrice">Expected Price ($) *</label>
+                            <input type="number" id="orderPrice" name="orderPrice" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addOrderModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Create Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receive Batch Modal -->
+    <div class="modal-overlay" id="receiveBatchModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Receive Batch to Warehouse</h3>
+                <button class="modal-close" onclick="closeModal('receiveBatchModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="receiveBatchForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="warehouseBatchId">Select Slaughter Batch *</label>
+                            <select id="warehouseBatchId" name="warehouseBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageLocation">Storage Location *</label>
+                            <select id="storageLocation" name="storageLocation" required>
+                                <option value="">Select Location</option>
+                                <option value="A1">Cold Storage A1</option>
+                                <option value="A2">Cold Storage A2</option>
+                                <option value="B1">Freezer B1</option>
+                                <option value="B2">Freezer B2</option>
+                                <option value="C1">Dry Storage C1</option>
+                                <option value="C2">Dry Storage C2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageTemperature">Storage Temperature (°C) *</label>
+                            <input type="number" id="storageTemperature" name="storageTemperature" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="receivedDate">Received Date *</label>
+                            <input type="date" id="receivedDate" name="receivedDate" required>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label for="warehouseNotes">Storage Notes</label>
+                            <textarea id="warehouseNotes" name="warehouseNotes" rows="3" placeholder="Additional notes about storage conditions, quality checks, etc."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('receiveBatchModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Receive Batch</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ship to Agent Modal -->
+    <div class="modal-overlay" id="shipToAgentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Ship Batch to Agent</h3>
+                <button class="modal-close" onclick="closeModal('shipToAgentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="shipToAgentForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="shipBatchId">Warehouse Batch *</label>
+                            <select id="shipBatchId" name="shipBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentId">Agent ID *</label>
+                            <input type="text" id="shipAgentId" name="shipAgentId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentName">Agent Name *</label>
+                            <input type="text" id="shipAgentName" name="shipAgentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipAgentLocation">Agent Location *</label>
+                            <input type="text" id="shipAgentLocation" name="shipAgentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipMeatAmount">Meat Amount (kg) *</label>
+                            <input type="number" id="shipMeatAmount" name="shipMeatAmount" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipPrice">Price ($) *</label>
+                            <input type="number" id="shipPrice" name="shipPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shipDate">Ship Date *</label>
+                            <input type="date" id="shipDate" name="shipDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="trackingNumber">Tracking Number</label>
+                            <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Optional tracking number">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('shipToAgentModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Ship to Agent</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/Butcher/ButcherDashBoardScript.js"></script>
+</body>
+</html>

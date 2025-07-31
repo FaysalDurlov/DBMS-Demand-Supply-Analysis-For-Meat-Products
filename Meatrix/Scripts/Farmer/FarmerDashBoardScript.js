@@ -1,4 +1,3 @@
-import { LogOut } from "../CommonFeatureScript.js";
 
 // Application State
 let currentStep = "login"
@@ -270,7 +269,7 @@ class Dashboard {
     const logoutBtn = document.querySelector(".logout-btn")
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        LogOut();
+        console.log("loggedOut");
       })
     }
   }

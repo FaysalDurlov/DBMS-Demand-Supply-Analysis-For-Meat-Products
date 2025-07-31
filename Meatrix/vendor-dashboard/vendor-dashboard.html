@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meatrix Vendor Dashboard</title>
+    <link rel="stylesheet" href="vendor-dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">Meatrix Vendor</span>
+                </div>
+            </div>
+            <!-- Navigation Items -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="raw-orders">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Raw Meat Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-section="finished-products">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Finished Products</span>
+                </a>
+                <a href="#" class="nav-item" data-section="product-catalog">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Product Catalog</span>
+                </a>
+                <a href="#" class="nav-item" data-section="customer-orders">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Customer Orders</span>
+                </a>
+                <a href="#" class="nav-item" data-section="inventory">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Inventory</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            <!-- Logout Button -->
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header -->
+            <header class="header" id="header">
+                <div class="header-left">
+                    <h1 class="header-title" id="headerTitle">Vendor Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <span class="username">Vendor User</span>
+                    <div class="avatar">VU</div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content" id="content">
+                <div class="content-container">
+                    <!-- Dashboard Section -->
+                    <div class="section-content active" id="dashboard-section">
+                        <!-- Dashboard Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Pending Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="pendingOrders">0</h2>
+                                    <p>Raw meat orders</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Products Ready</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9,11 12,14 22,4"/>
+                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="productsReady">0</h2>
+                                    <p>Finished products</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Customer Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="customerOrders">0</h2>
+                                    <p>Active orders</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Revenue</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalRevenue">$0</h2>
+                                    <p>This month</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities and Quick Actions -->
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Activities</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="activity-list" id="recentActivities">
+                                        <div class="activity-item empty-state">
+                                            <p>No recent activities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quick-actions">
+                                        <button class="quick-action-btn" onclick="showOrderRawMeatModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 5v14M5 12h14"/>
+                                            </svg>
+                                            Order Raw Meat
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddProductModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                            </svg>
+                                            Add Product
+                                        </button>
+                                        <button class="quick-action-btn" onclick="vendorDashboard.showSection('customer-orders')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                                            </svg>
+                                            View Orders
+                                        </button>
+                                        <button class="quick-action-btn" onclick="vendorDashboard.showSection('inventory')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
+                                            </svg>
+                                            Check Inventory
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raw Meat Orders Section -->
+                    <div class="section-content" id="raw-orders-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Raw Meat Orders</h2>
+                                <p>Order raw meat batches from agents and track deliveries</p>
+                            </div>
+                            <button class="btn-primary" onclick="showOrderRawMeatModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                New Order
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Order ID or Agent..." class="search-input" id="rawOrderSearch">
+                                <select class="filter-select" id="orderStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                                <select class="filter-select" id="meatTypeFilter">
+                                    <option value="all">All Meat Types</option>
+                                    <option value="beef">Beef</option>
+                                    <option value="goat">Goat</option>
+                                    <option value="mutton">Mutton</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Raw Orders Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="rawOrdersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="orderId">Order ID</th>
+                                                <th class="sortable" data-sort="agent">Agent Name</th>
+                                                <th class="sortable" data-sort="meatType">Meat Type</th>
+                                                <th class="sortable" data-sort="animalType">Animal Type</th>
+                                                <th class="sortable" data-sort="quantity">Quantity (kg)</th>
+                                                <th class="sortable" data-sort="price">Price ($)</th>
+                                                <th class="sortable" data-sort="orderDate">Order Date</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rawOrdersBody">
+                                            <tr class="empty-state">
+                                                <td colspan="9">No raw meat orders yet. Click "New Order" to place your first order.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finished Products Section -->
+                    <div class="section-content" id="finished-products-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Finished Products</h2>
+                                <p>Manage your processed meat products and inventory</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddProductModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Add Product
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Product ID or Name..." class="search-input" id="productSearch">
+                                <select class="filter-select" id="productTypeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="packet">Packet Meat</option>
+                                    <option value="cooked">Cooked Meat</option>
+                                </select>
+                                <select class="filter-select" id="expiryFilter">
+                                    <option value="all">All Products</option>
+                                    <option value="expiring">Expiring Soon</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Products Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="productsTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="productId">Product ID</th>
+                                                <th class="sortable" data-sort="name">Product Name</th>
+                                                <th class="sortable" data-sort="type">Type</th>
+                                                <th class="sortable" data-sort="batchId">Source Batch</th>
+                                                <th class="sortable" data-sort="quantity">Quantity</th>
+                                                <th class="sortable" data-sort="createdDate">Created Date</th>
+                                                <th class="sortable" data-sort="expiryDate">Expiry Date</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productsBody">
+                                            <tr class="empty-state">
+                                                <td colspan="9">No finished products yet. Click "Add Product" to add your first product.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Orders Section -->
+                    <div class="section-content" id="customer-orders-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Customer Orders</h2>
+                                <p>Track customer orders and manage deliveries</p>
+                            </div>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search by Order ID or Customer..." class="search-input" id="customerOrderSearch">
+                                <select class="filter-select" id="customerOrderStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="ready">Ready</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                                <input type="date" class="filter-select" id="orderDateFilter">
+                            </div>
+                        </div>
+
+                        <!-- Customer Orders Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="customerOrdersTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="orderId">Order ID</th>
+                                                <th class="sortable" data-sort="customer">Customer Name</th>
+                                                <th class="sortable" data-sort="product">Product</th>
+                                                <th class="sortable" data-sort="quantity">Quantity</th>
+                                                <th class="sortable" data-sort="totalPrice">Total Price</th>
+                                                <th class="sortable" data-sort="orderDate">Order Date</th>
+                                                <th class="sortable" data-sort="deliveryDate">Delivery Date</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customerOrdersBody">
+                                            <tr class="empty-state">
+                                                <td colspan="9">No customer orders yet.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Catalog Section -->
+                    <div class="section-content" id="product-catalog-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Product Catalog</h2>
+                                <p>Browse and manage your product catalog with e-commerce style display</p>
+                            </div>
+                            <button class="btn-primary" onclick="showAddProductModal()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Add New Product
+                            </button>
+                        </div>
+
+                        <!-- Search and Filter Controls -->
+                        <div class="controls-section">
+                            <div class="search-controls">
+                                <input type="text" placeholder="Search products..." class="search-input" id="catalogSearch">
+                                <select class="filter-select" id="catalogTypeFilter">
+                                    <option value="all">All Types</option>
+                                    <option value="packet">Packet Meat</option>
+                                    <option value="cooked">Cooked Meat</option>
+                                </select>
+                                <select class="filter-select" id="catalogStatusFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="available">Available</option>
+                                    <option value="out-of-stock">Out of Stock</option>
+                                    <option value="ordered">Ordered</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Product Catalog Grid -->
+                        <div class="product-catalog-grid" id="productCatalogGrid">
+                            <!-- Products will be dynamically loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Inventory Section -->
+                    <div class="section-content" id="inventory-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Inventory Management</h2>
+                                <p>Monitor stock levels and batch details</p>
+                            </div>
+                        </div>
+
+                        <!-- Inventory Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Raw Meat Stock</h3>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="rawMeatStock">0 kg</h2>
+                                    <p>Available for processing</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Finished Products</h3>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="finishedProductsStock">0</h2>
+                                    <p>Ready for sale</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Expiring Soon</h3>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="expiringSoon">0</h2>
+                                    <p>Within 7 days</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Low Stock Items</h3>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="lowStockItems">0</h2>
+                                    <p>Need restocking</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inventory Table -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Current Inventory</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="inventoryTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Item Type</th>
+                                                <th>Product/Batch ID</th>
+                                                <th>Quantity</th>
+                                                <th>Unit</th>
+                                                <th>Status</th>
+                                                <th>Expiry Date</th>
+                                                <th>Location</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="inventoryBody">
+                                            <tr class="empty-state">
+                                                <td colspan="7">No inventory items to display.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="section-content" id="settings-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Settings</h2>
+                                <p>Configure your vendor preferences and account settings</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Settings section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Order Raw Meat Modal -->
+    <div class="modal-overlay" id="orderRawMeatModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Order Raw Meat Batch</h3>
+                <button class="modal-close" onclick="closeModal('orderRawMeatModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderRawMeatForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="agentName">Agent Name *</label>
+                            <select id="agentName" name="agentName" required>
+                                <option value="">Select Agent</option>
+                                <option value="Premium Meat Suppliers">Premium Meat Suppliers</option>
+                                <option value="Fresh Farm Agents">Fresh Farm Agents</option>
+                                <option value="Quality Livestock Co.">Quality Livestock Co.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="meatType">Meat Type *</label>
+                            <select id="meatType" name="meatType" required>
+                                <option value="">Select Meat Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="goat">Goat</option>
+                                <option value="mutton">Mutton</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalType">Animal Type *</label>
+                            <input type="text" id="animalType" name="animalType" placeholder="e.g., Holstein, Boer, Merino" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity (kg) *</label>
+                            <input type="number" id="quantity" name="quantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pricePerKg">Price per kg ($) *</label>
+                            <input type="number" id="pricePerKg" name="pricePerKg" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedDelivery">Expected Delivery Date *</label>
+                            <input type="date" id="expectedDelivery" name="expectedDelivery" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialRequirements">Special Requirements</label>
+                            <textarea id="specialRequirements" name="specialRequirements" rows="3" placeholder="Any special processing or quality requirements..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('orderRawMeatModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Finished Product</h3>
+                <button class="modal-close" onclick="closeModal('addProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productSKU">Product SKU/Unique ID *</label>
+                            <input type="text" id="productSKU" name="productSKU" placeholder="e.g., BF-001, GT-002" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">Product Image</label>
+                            <input type="file" id="productImage" name="productImage" accept="image/*">
+                            <small style="color: var(--text-secondary); font-size: 12px;">Upload product image (optional)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="displayPrice">Display Price ($) *</label>
+                            <input type="number" id="displayPrice" name="displayPrice" step="0.01" placeholder="Price shown to customers" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="">Select Category</option>
+                                <option value="fresh-meat">Fresh Meat</option>
+                                <option value="processed-meat">Processed Meat</option>
+                                <option value="cooked-ready">Cooked & Ready</option>
+                                <option value="specialty">Specialty Items</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productType">Product Type *</label>
+                            <select id="productType" name="productType" required>
+                                <option value="">Select Type</option>
+                                <option value="packet">Packet Meat</option>
+                                <option value="cooked">Cooked Meat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sourceBatchId">Source Batch ID *</label>
+                            <select id="sourceBatchId" name="sourceBatchId" required>
+                                <option value="">Select Batch</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productQuantity">Quantity *</label>
+                            <input type="number" id="productQuantity" name="productQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unit *</label>
+                            <select id="unit" name="unit" required>
+                                <option value="">Select Unit</option>
+                                <option value="kg">Kilograms</option>
+                                <option value="pieces">Pieces</option>
+                                <option value="packets">Packets</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pricePerUnit">Price per Unit ($) *</label>
+                            <input type="number" id="pricePerUnit" name="pricePerUnit" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="createdDate">Created Date *</label>
+                            <input type="date" id="createdDate" name="createdDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date *</label>
+                            <input type="date" id="expiryDate" name="expiryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageLocation">Storage Location</label>
+                            <input type="text" id="storageLocation" name="storageLocation" placeholder="e.g., Freezer A, Section 2">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="3" placeholder="Product description and processing details..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Order Status Modal -->
+    <div class="modal-overlay" id="updateOrderStatusModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Update Order Status</h3>
+                <button class="modal-close" onclick="closeModal('updateOrderStatusModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateOrderStatusForm">
+                    <div class="form-group">
+                        <label for="orderIdStatus">Order ID</label>
+                        <input type="text" id="orderIdStatus" name="orderIdStatus" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="newStatus">New Status *</label>
+                        <select id="newStatus" name="newStatus" required>
+                            <option value="">Select Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="processing">Processing</option>
+                            <option value="ready">Ready</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusNotes">Notes</label>
+                        <textarea id="statusNotes" name="statusNotes" rows="3" placeholder="Add any notes about the status update..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('updateOrderStatusModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor-dashboard.js"></script>
+</body>
+</html>

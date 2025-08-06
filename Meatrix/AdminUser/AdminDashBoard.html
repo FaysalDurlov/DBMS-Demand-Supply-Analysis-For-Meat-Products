@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meatrix Admin Panel</title>
+    <link rel="stylesheet" href="../Styles/Admin/AdminDashBoardDesign.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">Meatrix Admin</span>
+                </div>
+            </div>
+            <!-- Navigation Items -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="customers">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Customers</span>
+                </a>
+                <a href="#" class="nav-item" data-section="farmers">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                            <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Farmers</span>
+                </a>
+                <a href="#" class="nav-item" data-section="vendors">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Vendors</span>
+                </a>
+                <a href="#" class="nav-item" data-section="butchers">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/>
+                            <path d="M3 12v7c0 .552.448 1 1 1h16c.552 0 1-.448 1-1v-7"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Butchers</span>
+                </a>
+                <a href="#" class="nav-item" data-section="agents">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                            <path d="M15 18H9"/>
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                            <circle cx="17" cy="18" r="2"/>
+                            <circle cx="7" cy="18" r="2"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Agents</span>
+                </a>
+                <a href="#" class="nav-item" data-section="analytics">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                            <polyline points="16,7 22,7 22,13"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Analytics & Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+            <!-- Logout Button -->
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header -->
+            <header class="header" id="header">
+                <div class="header-left">
+                    <h1 class="header-title" id="headerTitle">Admin Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <span class="username">Admin User</span>
+                    <div class="avatar">AU</div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content" id="content">
+                <div class="content-container">
+                    <!-- Dashboard Section -->
+                    <div class="section-content active" id="dashboard-section">
+                        <!-- System Overview Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Users</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalUsers">0</h2>
+                                    <p>Active system users</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Revenue</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalRevenue">$0</h2>
+                                    <p>This month</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Active Orders</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="8" cy="21" r="1"/>
+                                        <circle cx="19" cy="21" r="1"/>
+                                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="activeOrders">0</h2>
+                                    <p>Pending processing</p>
+                                </div>
+                            </div>
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>System Health</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                                        <polyline points="16,7 22,7 22,13"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="systemHealth">100%</h2>
+                                    <p>Uptime this month</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Activities</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="activity-list" id="recentActivities">
+                                        <div class="activity-item empty-state">
+                                            <p>No recent activities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>System Overview</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="analytics-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Animals Processed:</span>
+                                            <span class="stat-value" id="totalAnimalsProcessed">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Meat Production:</span>
+                                            <span class="stat-value" id="totalMeatProduction">0 kg</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Active Products:</span>
+                                            <span class="stat-value" id="activeProducts">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customers Section -->
+                    <div class="section-content" id="customers-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Customer Management</h2>
+                                <p>Manage customer products, orders, and nutrition tracking</p>
+                            </div>
+                        </div>
+
+                        <!-- Customer Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="customer-products">Products</button>
+                                <button class="tab-btn" data-tab="customer-nutrition">Nutrition Calculator</button>
+                                <button class="tab-btn" data-tab="customer-orders">Order Tracking</button>
+                            </div>
+
+                            <!-- Customer Products Tab -->
+                            <div class="tab-content active" id="customer-products-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Available Products</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="customerProductsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product Name</th>
+                                                        <th>Category</th>
+                                                        <th>Price per kg</th>
+                                                        <th>Available Stock</th>
+                                                        <th>Vendor</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="customerProductsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="6">No products available</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Customer Nutrition Tab -->
+                            <div class="tab-content" id="customer-nutrition-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Nutrition Calculator</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="nutrition-calculator">
+                                            <div class="form-grid">
+                                                <div class="form-group">
+                                                    <label for="meatType">Meat Type</label>
+                                                    <select id="meatType">
+                                                        <option value="">Select Meat Type</option>
+                                                        <option value="beef">Beef</option>
+                                                        <option value="chicken">Chicken</option>
+                                                        <option value="lamb">Lamb</option>
+                                                        <option value="pork">Pork</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="quantity">Quantity (grams)</label>
+                                                    <input type="number" id="quantity" placeholder="Enter quantity">
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn-primary" onclick="calculateNutrition()">Calculate</button>
+                                                </div>
+                                            </div>
+                                            <div class="nutrition-results" id="nutritionResults" style="display: none;">
+                                                <h5>Nutrition Information</h5>
+                                                <div class="nutrition-grid">
+                                                    <div class="nutrition-item">
+                                                        <span class="nutrition-label">Calories:</span>
+                                                        <span class="nutrition-value" id="calories">0</span>
+                                                    </div>
+                                                    <div class="nutrition-item">
+                                                        <span class="nutrition-label">Protein:</span>
+                                                        <span class="nutrition-value" id="protein">0g</span>
+                                                    </div>
+                                                    <div class="nutrition-item">
+                                                        <span class="nutrition-label">Fat:</span>
+                                                        <span class="nutrition-value" id="fat">0g</span>
+                                                    </div>
+                                                    <div class="nutrition-item">
+                                                        <span class="nutrition-label">Carbs:</span>
+                                                        <span class="nutrition-value" id="carbs">0g</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Customer Orders Tab -->
+                            <div class="tab-content" id="customer-orders-tab">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="customerOrdersTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Customer</th>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Order Date</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="customerOrdersTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No orders found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Farmers Section -->
+                    <div class="section-content" id="farmers-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Farmer Management</h2>
+                                <p>Manage animal records, sales, purchases, and market data</p>
+                            </div>
+                        </div>
+
+                        <!-- Farmer Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="animal-records">Animal Records</button>
+                                <button class="tab-btn" data-tab="sales-records">Sales Records</button>
+                                <button class="tab-btn" data-tab="purchase-records">Purchase Records</button>
+                                <button class="tab-btn" data-tab="farm-marketplace">Farm Marketplace</button>
+                                <button class="tab-btn" data-tab="market-prices">Market Prices</button>
+                            </div>
+
+                            <!-- Animal Records Tab -->
+                            <div class="tab-content active" id="animal-records-tab">
+                                <div class="tab-header">
+                                    <h3>Animal Records</h3>
+                                    <button class="btn-primary" onclick="showAddAnimalModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Animal
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="animalRecordsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Animal ID</th>
+                                                        <th>Type</th>
+                                                        <th>Breed</th>
+                                                        <th>Age (months)</th>
+                                                        <th>Weight (kg)</th>
+                                                        <th>Health Status</th>
+                                                        <th>Date Added</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="animalRecordsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No animal records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sales Records Tab -->
+                            <div class="tab-content" id="sales-records-tab">
+                                <div class="tab-header">
+                                    <h3>Sales Records</h3>
+                                    <button class="btn-primary" onclick="showAddSaleModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Sale Record
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="salesRecordsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sale ID</th>
+                                                        <th>Animal ID</th>
+                                                        <th>Buyer</th>
+                                                        <th>Sale Price</th>
+                                                        <th>Sale Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="salesRecordsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="6">No sales records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Purchase Records Tab -->
+                            <div class="tab-content" id="purchase-records-tab">
+                                <div class="tab-header">
+                                    <h3>Purchase Records</h3>
+                                    <button class="btn-primary" onclick="showAddPurchaseModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Purchase Record
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="purchaseRecordsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Purchase ID</th>
+                                                        <th>Animal ID</th>
+                                                        <th>Seller</th>
+                                                        <th>Purchase Price</th>
+                                                        <th>Purchase Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="purchaseRecordsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="6">No purchase records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Farm Marketplace Tab -->
+                            <div class="tab-content" id="farm-marketplace-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Available Animals from Other Farmers</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="farmMarketplaceTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Animal ID</th>
+                                                        <th>Seller</th>
+                                                        <th>Type</th>
+                                                        <th>Breed</th>
+                                                        <th>Age (months)</th>
+                                                        <th>Weight (kg)</th>
+                                                        <th>Price</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="farmMarketplaceTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No animals available for purchase</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Market Prices Tab -->
+                            <div class="tab-content" id="market-prices-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Market Price Trends</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="chart-container">
+                                            <canvas id="marketTrendChart" width="400" height="200"></canvas>
+                                        </div>
+                                        <div class="table-container">
+                                            <table class="data-table" id="marketPricesTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Animal Type</th>
+                                                        <th>Current Price (per kg)</th>
+                                                        <th>Previous Price</th>
+                                                        <th>Change (%)</th>
+                                                        <th>Last Updated</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="marketPricesTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="5">No market data available</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vendors Section -->
+                    <div class="section-content" id="vendors-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Vendor Management</h2>
+                                <p>Manage products and customer orders</p>
+                            </div>
+                        </div>
+
+                        <!-- Vendor Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="vendor-products">Products</button>
+                                <button class="tab-btn" data-tab="vendor-orders">Customer Orders</button>
+                            </div>
+
+                            <!-- Vendor Products Tab -->
+                            <div class="tab-content active" id="vendor-products-tab">
+                                <div class="tab-header">
+                                    <h3>Products</h3>
+                                    <button class="btn-primary" onclick="showAddProductModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Product
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="vendorProductsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product ID</th>
+                                                        <th>Product Name</th>
+                                                        <th>Category</th>
+                                                        <th>Price per kg</th>
+                                                        <th>Stock Quantity</th>
+                                                        <th>Date Added</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="vendorProductsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="7">No products found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vendor Orders Tab -->
+                            <div class="tab-content" id="vendor-orders-tab">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="vendorOrdersTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Customer</th>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Order Date</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="vendorOrdersTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No orders found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Butchers Section -->
+                    <div class="section-content" id="butchers-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Butcher Management</h2>
+                                <p>Manage slaughter records, animal intake, and distribution</p>
+                            </div>
+                        </div>
+
+                        <!-- Butcher Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="slaughter-records">Slaughter Records</button>
+                                <button class="tab-btn" data-tab="animal-intake">Animal Intake</button>
+                                <button class="tab-btn" data-tab="warehouse-storage">Warehouse Storage</button>
+                                <button class="tab-btn" data-tab="agent-orders">Agent Orders</button>
+                                <button class="tab-btn" data-tab="distribution">Distribution</button>
+                            </div>
+
+                            <!-- Slaughter Records Tab -->
+                            <div class="tab-content active" id="slaughter-records-tab">
+                                <div class="tab-header">
+                                    <h3>Slaughter Records</h3>
+                                    <button class="btn-primary" onclick="showAddSlaughterModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Slaughter Record
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="slaughterRecordsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Batch ID</th>
+                                                        <th>Animal ID</th>
+                                                        <th>Animal Type</th>
+                                                        <th>Weight (kg)</th>
+                                                        <th>Meat Yield (kg)</th>
+                                                        <th>Slaughter Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="slaughterRecordsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="7">No slaughter records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Animal Intake Tab -->
+                            <div class="tab-content" id="animal-intake-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Available Animals from Farms</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="animalIntakeTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Animal ID</th>
+                                                        <th>Farmer</th>
+                                                        <th>Type</th>
+                                                        <th>Breed</th>
+                                                        <th>Weight (kg)</th>
+                                                        <th>Price</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="animalIntakeTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="7">No animals available for purchase</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Warehouse Storage Tab -->
+                            <div class="tab-content" id="warehouse-storage-tab">
+                                <div class="tab-header">
+                                    <h3>Warehouse Storage</h3>
+                                    <button class="btn-primary" onclick="showAddStorageModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add to Storage
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="warehouseStorageTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Storage ID</th>
+                                                        <th>Batch ID</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Location</th>
+                                                        <th>Temperature (°C)</th>
+                                                        <th>Storage Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="warehouseStorageTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No storage records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Orders Tab -->
+                            <div class="tab-content" id="agent-orders-tab">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="agentOrdersTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Agent</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Price per kg</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Order Date</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="agentOrdersTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="9">No agent orders found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Distribution Tab -->
+                            <div class="tab-content" id="distribution-tab">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="distributionTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Distribution ID</th>
+                                                        <th>Order ID</th>
+                                                        <th>Agent</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Distribution Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="distributionTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No distribution records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agents Section -->
+                    <div class="section-content" id="agents-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Agent Management</h2>
+                                <p>Manage meat purchases, warehouse, and product sales</p>
+                            </div>
+                        </div>
+
+                        <!-- Agent Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="meat-purchases">Meat Purchases</button>
+                                <button class="tab-btn" data-tab="agent-warehouse">Warehouse</button>
+                                <button class="tab-btn" data-tab="agent-products">Products</button>
+                            </div>
+
+                            <!-- Meat Purchases Tab -->
+                            <div class="tab-content active" id="meat-purchases-tab">
+                                <div class="tab-header">
+                                    <h3>Meat Purchases</h3>
+                                    <button class="btn-primary" onclick="showMeatPurchaseModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Order Meat Batch
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="meatPurchasesTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Purchase ID</th>
+                                                        <th>Butcher</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Price per kg</th>
+                                                        <th>Total Cost</th>
+                                                        <th>Order Date</th>
+                                                        <th>Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="meatPurchasesTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="9">No purchase records found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Warehouse Tab -->
+                            <div class="tab-content" id="agent-warehouse-tab">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="agentWarehouseTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Batch ID</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Purchase Price</th>
+                                                        <th>Storage Location</th>
+                                                        <th>Storage Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="agentWarehouseTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="7">No warehouse inventory found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agent Products Tab -->
+                            <div class="tab-content" id="agent-products-tab">
+                                <div class="tab-header">
+                                    <h3>Products</h3>
+                                    <button class="btn-primary" onclick="showAgentProductModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Product
+                                    </button>
+                                </div>
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="agentProductsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Product ID</th>
+                                                        <th>Product Name</th>
+                                                        <th>Meat Type</th>
+                                                        <th>Quantity (kg)</th>
+                                                        <th>Sale Price per kg</th>
+                                                        <th>Date Added</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="agentProductsTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="7">No products found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Section -->
+                    <div class="section-content" id="analytics-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Analytics & Reports</h2>
+                                <p>Comprehensive system analytics and business intelligence</p>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Dashboard -->
+                        <div class="analytics-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Supply Chain Metrics</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="analytics-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Animals Processed</span>
+                                            <span class="stat-value" id="totalAnimalsProcessed">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Meat Production (kg)</span>
+                                            <span class="stat-value" id="totalMeatProduction">0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Active Orders</span>
+                                            <span class="stat-value" id="analyticsActiveOrders">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Financial Overview</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="analytics-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Revenue</span>
+                                            <span class="stat-value" id="analyticsRevenue">$0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total Purchases</span>
+                                            <span class="stat-value" id="analyticsPurchases">$0</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Net Profit</span>
+                                            <span class="stat-value" id="analyticsProfit">$0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div class="section-content" id="settings-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>System Settings</h2>
+                                <p>Configure system preferences and manage administrative settings</p>
+                            </div>
+                        </div>
+
+                        <!-- Settings Content -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>System Configuration</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="systemName">System Name</label>
+                                        <input type="text" id="systemName" value="Meatrix Admin Panel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="timezone">Timezone</label>
+                                        <select id="timezone">
+                                            <option value="UTC">UTC</option>
+                                            <option value="EST">Eastern Time</option>
+                                            <option value="PST">Pacific Time</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currency">Default Currency</label>
+                                        <select id="currency">
+                                            <option value="USD">USD ($)</option>
+                                            <option value="EUR">EUR (€)</option>
+                                            <option value="GBP">GBP (£)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="language">Default Language</label>
+                                        <select id="language">
+                                            <option value="en">English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-actions">
+                                    <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Animal Modal -->
+    <div class="modal-overlay" id="addAnimalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Animal</h3>
+                <button class="modal-close" onclick="closeModal('addAnimalModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addAnimalForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="animalType">Animal Type *</label>
+                            <select id="animalType" name="animalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="goat">Goat</option>
+                                <option value="poultry">Poultry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalBreed">Breed *</label>
+                            <input type="text" id="animalBreed" name="animalBreed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalAge">Age (months) *</label>
+                            <input type="number" id="animalAge" name="animalAge" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalWeight">Weight (kg) *</label>
+                            <input type="number" id="animalWeight" name="animalWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="healthStatus">Health Status</label>
+                            <select id="healthStatus" name="healthStatus">
+                                <option value="healthy">Healthy</option>
+                                <option value="sick">Sick</option>
+                                <option value="recovering">Recovering</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccinationStatus">Vaccination Status</label>
+                            <select id="vaccinationStatus" name="vaccinationStatus">
+                                <option value="up_to_date">Up to Date</option>
+                                <option value="pending">Pending</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addAnimalModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Animal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Animal Modal -->
+    <div class="modal-overlay" id="editAnimalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Animal</h3>
+                <button class="modal-close" onclick="closeModal('editAnimalModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editAnimalForm">
+                    <input type="hidden" id="editAnimalId" name="editAnimalId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editAnimalType">Animal Type *</label>
+                            <select id="editAnimalType" name="editAnimalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="goat">Goat</option>
+                                <option value="poultry">Poultry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAnimalBreed">Breed *</label>
+                            <input type="text" id="editAnimalBreed" name="editAnimalBreed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAnimalAge">Age (months) *</label>
+                            <input type="number" id="editAnimalAge" name="editAnimalAge" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAnimalWeight">Weight (kg) *</label>
+                            <input type="number" id="editAnimalWeight" name="editAnimalWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editHealthStatus">Health Status</label>
+                            <select id="editHealthStatus" name="editHealthStatus">
+                                <option value="healthy">Healthy</option>
+                                <option value="sick">Sick</option>
+                                <option value="recovering">Recovering</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editVaccinationStatus">Vaccination Status</label>
+                            <select id="editVaccinationStatus" name="editVaccinationStatus">
+                                <option value="up_to_date">Up to Date</option>
+                                <option value="pending">Pending</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editAnimalModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Animal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Sale Modal -->
+    <div class="modal-overlay" id="addSaleModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Sale Record</h3>
+                <button class="modal-close" onclick="closeModal('addSaleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSaleForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="saleAnimalId">Animal ID *</label>
+                            <input type="text" id="saleAnimalId" name="saleAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="saleBuyer">Buyer *</label>
+                            <input type="text" id="saleBuyer" name="saleBuyer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salePrice">Sale Price ($) *</label>
+                            <input type="number" id="salePrice" name="salePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="saleDate">Sale Date *</label>
+                            <input type="date" id="saleDate" name="saleDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addSaleModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Sale</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Sale Modal -->
+    <div class="modal-overlay" id="editSaleModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Sale Record</h3>
+                <button class="modal-close" onclick="closeModal('editSaleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editSaleForm">
+                    <input type="hidden" id="editSaleId" name="editSaleId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editSaleAnimalId">Animal ID *</label>
+                            <input type="text" id="editSaleAnimalId" name="editSaleAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSaleBuyer">Buyer *</label>
+                            <input type="text" id="editSaleBuyer" name="editSaleBuyer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSalePrice">Sale Price ($) *</label>
+                            <input type="number" id="editSalePrice" name="editSalePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSaleDate">Sale Date *</label>
+                            <input type="date" id="editSaleDate" name="editSaleDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editSaleModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Sale</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Purchase Modal -->
+    <div class="modal-overlay" id="addPurchaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Purchase Record</h3>
+                <button class="modal-close" onclick="closeModal('addPurchaseModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addPurchaseForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="purchaseAnimalId">Animal ID *</label>
+                            <input type="text" id="purchaseAnimalId" name="purchaseAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseSeller">Seller *</label>
+                            <input type="text" id="purchaseSeller" name="purchaseSeller" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchasePrice">Purchase Price ($) *</label>
+                            <input type="number" id="purchasePrice" name="purchasePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseDate">Purchase Date *</label>
+                            <input type="date" id="purchaseDate" name="purchaseDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addPurchaseModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Purchase Modal -->
+    <div class="modal-overlay" id="editPurchaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Purchase Record</h3>
+                <button class="modal-close" onclick="closeModal('editPurchaseModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editPurchaseForm">
+                    <input type="hidden" id="editPurchaseId" name="editPurchaseId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editPurchaseAnimalId">Animal ID *</label>
+                            <input type="text" id="editPurchaseAnimalId" name="editPurchaseAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchaseSeller">Seller *</label>
+                            <input type="text" id="editPurchaseSeller" name="editPurchaseSeller" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchasePrice">Purchase Price ($) *</label>
+                            <input type="number" id="editPurchasePrice" name="editPurchasePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchaseDate">Purchase Date *</label>
+                            <input type="date" id="editPurchaseDate" name="editPurchaseDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editPurchaseModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="modal-close" onclick="closeModal('addProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" name="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Category *</label>
+                            <select id="productCategory" name="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Price per kg *</label>
+                            <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity (kg) *</label>
+                            <input type="number" id="productStock" name="productStock" step="0.1" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal-overlay" id="editProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="modal-close" onclick="closeModal('editProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <input type="hidden" id="editProductId" name="editProductId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editProductName">Product Name *</label>
+                            <input type="text" id="editProductName" name="editProductName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductCategory">Category *</label>
+                            <select id="editProductCategory" name="editProductCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductPrice">Price per kg *</label>
+                            <input type="number" id="editProductPrice" name="editProductPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductStock">Stock Quantity (kg) *</label>
+                            <input type="number" id="editProductStock" name="editProductStock" step="0.1" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Product Modal -->
+    <div class="modal-overlay" id="orderProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Order Product</h3>
+                <button class="modal-close" onclick="closeModal('orderProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="orderProductForm">
+                    <input type="hidden" id="orderProductId" name="orderProductId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name *</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email *</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderQuantity">Quantity (kg) *</label>
+                            <input type="number" id="orderQuantity" name="orderQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryAddress">Delivery Address *</label>
+                            <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('orderProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Slaughter Modal -->
+    <div class="modal-overlay" id="addSlaughterModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Slaughter Record</h3>
+                <button class="modal-close" onclick="closeModal('addSlaughterModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSlaughterForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="slaughterAnimalId">Animal ID *</label>
+                            <input type="text" id="slaughterAnimalId" name="slaughterAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="slaughterAnimalType">Animal Type *</label>
+                            <select id="slaughterAnimalType" name="slaughterAnimalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="goat">Goat</option>
+                                <option value="poultry">Poultry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="slaughterWeight">Weight (kg) *</label>
+                            <input type="number" id="slaughterWeight" name="slaughterWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="meatYield">Meat Yield (kg) *</label>
+                            <input type="number" id="meatYield" name="meatYield" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="slaughterDate">Slaughter Date *</label>
+                            <input type="date" id="slaughterDate" name="slaughterDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addSlaughterModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Slaughter Modal -->
+    <div class="modal-overlay" id="editSlaughterModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Slaughter Record</h3>
+                <button class="modal-close" onclick="closeModal('editSlaughterModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editSlaughterForm">
+                    <input type="hidden" id="editSlaughterId" name="editSlaughterId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editSlaughterAnimalId">Animal ID *</label>
+                            <input type="text" id="editSlaughterAnimalId" name="editSlaughterAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSlaughterAnimalType">Animal Type *</label>
+                            <select id="editSlaughterAnimalType" name="editSlaughterAnimalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="goat">Goat</option>
+                                <option value="poultry">Poultry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSlaughterWeight">Weight (kg) *</label>
+                            <input type="number" id="editSlaughterWeight" name="editSlaughterWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editMeatYield">Meat Yield (kg) *</label>
+                            <input type="number" id="editMeatYield" name="editMeatYield" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editSlaughterDate">Slaughter Date *</label>
+                            <input type="date" id="editSlaughterDate" name="editSlaughterDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editSlaughterModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Storage Modal -->
+    <div class="modal-overlay" id="addStorageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add to Storage</h3>
+                <button class="modal-close" onclick="closeModal('addStorageModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addStorageForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="storageBatchId">Batch ID *</label>
+                            <input type="text" id="storageBatchId" name="storageBatchId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageMeatType">Meat Type *</label>
+                            <select id="storageMeatType" name="storageMeatType" required>
+                                <option value="">Select Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageQuantity">Quantity (kg) *</label>
+                            <input type="number" id="storageQuantity" name="storageQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageLocation">Location *</label>
+                            <input type="text" id="storageLocation" name="storageLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageTemperature">Temperature (°C) *</label>
+                            <input type="number" id="storageTemperature" name="storageTemperature" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="storageDate">Storage Date *</label>
+                            <input type="date" id="storageDate" name="storageDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addStorageModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add to Storage</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Storage Modal -->
+    <div class="modal-overlay" id="editStorageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Storage Record</h3>
+                <button class="modal-close" onclick="closeModal('editStorageModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editStorageForm">
+                    <input type="hidden" id="editStorageId" name="editStorageId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editStorageBatchId">Batch ID *</label>
+                            <input type="text" id="editStorageBatchId" name="editStorageBatchId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStorageMeatType">Meat Type *</label>
+                            <select id="editStorageMeatType" name="editStorageMeatType" required>
+                                <option value="">Select Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStorageQuantity">Quantity (kg) *</label>
+                            <input type="number" id="editStorageQuantity" name="editStorageQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStorageLocation">Location *</label>
+                            <input type="text" id="editStorageLocation" name="editStorageLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStorageTemperature">Temperature (°C) *</label>
+                            <input type="number" id="editStorageTemperature" name="editStorageTemperature" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStorageDate">Storage Date *</label>
+                            <input type="date" id="editStorageDate" name="editStorageDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editStorageModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Storage</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meat Purchase Modal -->
+    <div class="modal-overlay" id="meatPurchaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Order Meat Batch</h3>
+                <button class="modal-close" onclick="closeModal('meatPurchaseModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="meatPurchaseForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="butcherName">Butcher *</label>
+                            <select id="butcherName" name="butcherName" required>
+                                <option value="">Select Butcher</option>
+                                <option value="butcher1">Master Butcher Co.</option>
+                                <option value="butcher2">Premium Processing</option>
+                                <option value="butcher3">Quality Meats Ltd.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="meatType">Meat Type *</label>
+                            <select id="meatType" name="meatType" required>
+                                <option value="">Select Meat Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseQuantity">Quantity (kg) *</label>
+                            <input type="number" id="purchaseQuantity" name="purchaseQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchasePricePerKg">Price per kg *</label>
+                            <input type="number" id="purchasePricePerKg" name="purchasePricePerKg" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('meatPurchaseModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Meat Purchase Modal -->
+    <div class="modal-overlay" id="editMeatPurchaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Meat Purchase</h3>
+                <button class="modal-close" onclick="closeModal('editMeatPurchaseModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editMeatPurchaseForm">
+                    <input type="hidden" id="editMeatPurchaseId" name="editMeatPurchaseId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editButcherName">Butcher *</label>
+                            <select id="editButcherName" name="editButcherName" required>
+                                <option value="">Select Butcher</option>
+                                <option value="butcher1">Master Butcher Co.</option>
+                                <option value="butcher2">Premium Processing</option>
+                                <option value="butcher3">Quality Meats Ltd.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editMeatType">Meat Type *</label>
+                            <select id="editMeatType" name="editMeatType" required>
+                                <option value="">Select Meat Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchaseQuantity">Quantity (kg) *</label>
+                            <input type="number" id="editPurchaseQuantity" name="editPurchaseQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPurchasePricePerKg">Price per kg *</label>
+                            <input type="number" id="editPurchasePricePerKg" name="editPurchasePricePerKg" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editMeatPurchaseModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent Product Modal -->
+    <div class="modal-overlay" id="agentProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Product</h3>
+                <button class="modal-close" onclick="closeModal('agentProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="agentProductForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="agentProductName">Product Name *</label>
+                            <input type="text" id="agentProductName" name="agentProductName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentMeatType">Meat Type *</label>
+                            <select id="agentMeatType" name="agentMeatType" required>
+                                <option value="">Select Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentProductQuantity">Quantity (kg) *</label>
+                            <input type="number" id="agentProductQuantity" name="agentProductQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agentSalePrice">Sale Price per kg *</label>
+                            <input type="number" id="agentSalePrice" name="agentSalePrice" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('agentProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Agent Product Modal -->
+    <div class="modal-overlay" id="editAgentProductModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="modal-close" onclick="closeModal('editAgentProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editAgentProductForm">
+                    <input type="hidden" id="editAgentProductId" name="editAgentProductId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editAgentProductName">Product Name *</label>
+                            <input type="text" id="editAgentProductName" name="editAgentProductName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgentMeatType">Meat Type *</label>
+                            <select id="editAgentMeatType" name="editAgentMeatType" required>
+                                <option value="">Select Type</option>
+                                <option value="beef">Beef</option>
+                                <option value="chicken">Chicken</option>
+                                <option value="lamb">Lamb</option>
+                                <option value="pork">Pork</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgentProductQuantity">Quantity (kg) *</label>
+                            <input type="number" id="editAgentProductQuantity" name="editAgentProductQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgentSalePrice">Sale Price per kg *</label>
+                            <input type="number" id="editAgentSalePrice" name="editAgentSalePrice" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editAgentProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Styles/Admin/AdminDashBoardDesign.css"></script>
+</body>
+</html>

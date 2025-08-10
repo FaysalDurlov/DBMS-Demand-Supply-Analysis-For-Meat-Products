@@ -1,549 +1,2401 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meatrix Analytics</title>
+    <title>Meatrix - Meat Market Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-down': 'slideDown 0.6s ease-out',
+                        'slide-left': 'slideLeft 0.6s ease-out',
+                        'slide-right': 'slideRight 0.6s ease-out',
+                        'bounce-in': 'bounceIn 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                        'rotate-in': 'rotateIn 0.6s ease-out',
+                        'gradient-shift': 'gradientShift 3s ease-in-out infinite',
+                        'wave': 'wave 4s ease-in-out infinite',
+                        'particle': 'particle 8s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideLeft: {
+                            '0%': { transform: 'translateX(30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideRight: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(239, 68, 68, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(239, 68, 68, 0.8)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        rotateIn: {
+                            '0%': { transform: 'rotate(-180deg) scale(0)', opacity: '0' },
+                            '100%': { transform: 'rotate(0deg) scale(1)', opacity: '1' },
+                        },
+                        gradientShift: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'translateX(0) translateY(0) rotate(0deg)' },
+                            '25%': { transform: 'translateX(5px) translateY(-5px) rotate(1deg)' },
+                            '50%': { transform: 'translateX(-5px) translateY(5px) rotate(-1deg)' },
+                            '75%': { transform: 'translateX(5px) translateY(5px) rotate(1deg)' },
+                        },
+                        particle: {
+                            '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' },
+                            '100%': { transform: 'translateY(-100px) rotate(360deg)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    <link rel="stylesheet" href="style1.css">
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ef4444;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .shimmer-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Modal Backdrop: covers background, allows interaction with modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+    pointer-events: auto; /* allow pointer events for backdrop */
+}
+
+/* Modal Container: sits above backdrop, fully interactive */
+.modal-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* disables pointer events for container itself */
+}
+
+.modal-content {
+    pointer-events: auto; /* enables pointer events for modal itself */
+    z-index: 51;
+}
+
+/* Hide modal when not active */
+.modal.hidden {
+    display: none;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+        /* CSS-based Product Logos */
+        .product-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .product-logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .product-logo:hover::before {
+            animation: shimmer 1s ease-in-out;
+            opacity: 1;
+        }
+
+        /* Beef Logo */
+        .logo-beef {
+            background: linear-gradient(135deg, #dc2626, #ef4444, #f87171);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .logo-beef::after {
+            content: '🥩';
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Chicken Logo */
+        .logo-chicken {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24, #fde047);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .logo-chicken::after {
+            content: '🐔';
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Mutton Logo */
+        .logo-mutton {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #c084fc);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .logo-mutton::after {
+            content: '🐑';
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Duck Logo */
+        .logo-duck {
+            background: linear-gradient(135deg, #0ea5e9, #06b6d4, #67e8f9);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .logo-duck::after {
+            content: '🦆';
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .glow-effect {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .stat-card:hover::before {
+            animation: shimmer 1.5s ease-in-out;
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Enhanced Table Styles */
+        .table-container {
+            position: relative;
+            overflow-x: auto;
+            max-width: 100vw;
+            padding-bottom: 1rem;
+        }
+
+        .product-table {
+            min-width: 1100px;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+
+        .product-table th, .product-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Fixed column widths */
+        .col-serial { width: 48px; }
+        .col-product { width: 240px; }
+        .col-category { width: 120px; }
+        .col-weight { width: 90px; }
+        .col-price { width: 90px; }
+        .col-quality { width: 110px; }
+        .col-region { width: 120px; }
+        .col-date { width: 110px; }
+        .col-actions { width: 140px; }
+
+        /* Product info flex fix */
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 0;
+        }
+        .product-logo {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            background: #f3f4f6;
+        }
+        .product-info > div:last-child {
+            min-width: 0;
+            flex: 1;
+        }
+        .product-name {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+            display: block;
+        }
+
+        /* Animated Gradient Background for Hero Section */
+.hero-gradient-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Default (light mode) gradient */
+    background: linear-gradient(120deg, #f87171 0%, #fbbf24 50%, #60a5fa 100%);
+    animation: heroGradientShift 12s ease-in-out infinite;
+    transition: background 0.5s;
+}
+
+@keyframes heroGradientShift {
+    0% {
+        background: linear-gradient(120deg, #f87171 0%, #fbbf24 50%, #60a5fa 100%);
+    }
+    25% {
+        background: linear-gradient(120deg, #fbbf24 0%, #60a5fa 50%, #a7f3d0 100%);
+    }
+    50% {
+        background: linear-gradient(120deg, #60a5fa 0%, #a7f3d0 50%, #f87171 100%);
+    }
+    75% {
+        background: linear-gradient(120deg, #a7f3d0 0%, #f87171 50%, #fbbf24 100%);
+    }
+    100% {
+        background: linear-gradient(120deg, #f87171 0%, #fbbf24 50%, #60a5fa 100%);
+    }
+}
+
+/* Dark mode gradient animation */
+.dark .hero-gradient-bg {
+    background: linear-gradient(120deg, #1e293b 0%, #991b1b 50%, #6366f1 100%);
+    animation: heroGradientShiftDark 12s ease-in-out infinite;
+}
+
+@keyframes heroGradientShiftDark {
+    0% {
+        background: linear-gradient(120deg, #1e293b 0%, #991b1b 50%, #6366f1 100%);
+    }
+    25% {
+        background: linear-gradient(120deg, #991b1b 0%, #6366f1 50%, #0ea5e9 100%);
+    }
+    50% {
+        background: linear-gradient(120deg, #6366f1 0%, #0ea5e9 50%, #1e293b 100%);
+    }
+    75% {
+        background: linear-gradient(120deg, #0ea5e9 0%, #1e293b 50%, #991b1b 100%);
+    }
+    100% {
+        background: linear-gradient(120deg, #1e293b 0%, #991b1b 50%, #6366f1 100%);
+    }
+}
+
+/* 1. Slow down footer background animation for smoothness */
+.footer-gradient-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: linear-gradient(120deg, #991b1b 0%, #1e293b 50%, #6366f1 100%);
+    animation: footerGradientShift 32s ease-in-out infinite; /* Increased duration from 12s to 32s */
+    transition: background 0.5s;
+}
+@keyframes footerGradientShift {
+    0% {
+        background: linear-gradient(120deg, #991b1b 0%, #1e293b 50%, #6366f1 100%);
+    }
+    25% {
+        background: linear-gradient(120deg, #1e293b 0%, #6366f1 50%, #0ea5e9 100%);
+    }
+    50% {
+        background: linear-gradient(120deg, #6366f1 0%, #0ea5e9 50%, #991b1b 100%);
+    }
+    75% {
+        background: linear-gradient(120deg, #0ea5e9 0%, #991b1b 50%, #1e293b 100%);
+    }
+    100% {
+        background: linear-gradient(120deg, #991b1b 0%, #1e293b 50%, #6366f1 100%);
+    }
+}
+
+/* 2. Fix dark mode input, textarea, and table cell text color for readability */
+input,
+textarea,
+select {
+    /* Default light mode styles */
+    color: #1e293b; /* Tailwind slate-800 */
+    background-color: #f8fafc; /* Tailwind gray-50 */
+    transition: color 0.2s, background 0.2s;
+}
+.dark input,
+.dark textarea,
+.dark select {
+    color: #f3f4f6 !important; /* Tailwind gray-100 */
+    background-color: #1e293b !important; /* Tailwind dark-800 */
+    border-color: #334155 !important; /* Tailwind dark-700 */
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #ef4444; /* Tailwind red-500 */
+    box-shadow: 0 0 0 2px #ef4444;
+}
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 2px #ef4444;
+}
+
+/* Table cell text color fix */
+.product-table td,
+.product-table th {
+    color: #1e293b; /* Tailwind slate-800 */
+    background-color: #fff;
+    transition: color 0.2s, background 0.2s;
+}
+.dark .product-table td,
+.dark .product-table th {
+    color: #f3f4f6 !important; /* Tailwind gray-100 */
+    background-color: #1e293b !important; /* Tailwind dark-800 */
+}
+
+/* If you use Tailwind classes in HTML, add these for inputs: 
+   class="bg-gray-100 dark:bg-dark-800 text-gray-900 dark:text-gray-100"
+   for table cells: 
+   class="text-gray-900 dark:text-gray-100 bg-white dark:bg-dark-800"
+*/
+
+/* ...existing code... */
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <div class="logo-icon">MA</div>
-                <div class="logo-text">
-                    <h1>Meatrix</h1>
-                    <p>Market Intelligence Platform</p>
+
+<body class="font-inter bg-gray-50 dark:bg-dark-900 transition-all duration-300">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-white dark:bg-dark-900 z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-6"></div>
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-3 animate-pulse">Loading Meatrix</h2>
+            <p class="text-gray-600 dark:text-gray-400 text-lg">Preparing your dashboard...</p>
+            <div class="mt-6 w-64 bg-gray-200 dark:bg-dark-700 rounded-full h-2 mx-auto">
+                <div class="bg-red-600 h-2 rounded-full animate-pulse" style="width: 70%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeAddProductModal()"></div>
+        <div class="modal-dialog">
+            <div class="modal-content glass-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-8 border-b border-gray-200/20 dark:border-dark-700/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-3xl font-black text-gray-900 dark:text-white flex items-center">
+                            <i class="fas fa-plus-circle text-red-600 mr-4 text-2xl"></i>
+                            Add New Product
+                        </h3>
+                        <button onclick="closeAddProductModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200 hover:scale-110 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="addProductForm" class="p-8 space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Product Name *</label>
+                            <input type="text" name="productName" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Category *</label>
+                            <select name="productCategory" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Category</option>
+                                <option value="Beef">Beef</option>
+                                <option value="Chicken">Chicken</option>
+                                <option value="Mutton">Mutton</option>
+                                <option value="Duck">Duck</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Weight *</label>
+                            <input type="text" name="productWeight" required placeholder="e.g., 1kg, 2.5kg" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (₹) *</label>
+                            <input type="number" name="productPrice" required placeholder="580" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Quality Grade *</label>
+                            <select name="productQuality" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Quality</option>
+                                <option value="A+">A+ (Premium)</option>
+                                <option value="A">A (High)</option>
+                                <option value="B+">B+ (Good)</option>
+                                <option value="B">B (Standard)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Region *</label>
+                            <select name="productRegion" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Region</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Barisal">Barisal</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Description</label>
+                        <textarea name="productDescription" rows="4" placeholder="Enter product description..." class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white resize-none"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-6 pt-6 border-t border-gray-200/20 dark:border-dark-700/20">
+                        <button type="button" onclick="closeAddProductModal()" class="px-8 py-4 border-2 border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-2xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-all duration-200 font-bold">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-primary px-10 py-4 text-white rounded-2xl font-bold text-lg">
+                            <i class="fas fa-plus mr-3"></i>
+                            Add Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editProductModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeEditProductModal()"></div>
+        <div class="modal-dialog">
+            <div class="modal-content glass-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-8 border-b border-gray-200/20 dark:border-dark-700/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-3xl font-black text-gray-900 dark:text-white flex items-center">
+                            <i class="fas fa-edit text-blue-600 mr-4 text-2xl"></i>
+                            Edit Product
+                        </h3>
+                        <button onclick="closeEditProductModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200 hover:scale-110 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            
+                <form id="editProductForm" class="p-8 space-y-8">
+                    <input type="hidden" id="editProductId" name="productId">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Product Name *</label>
+                            <input type="text" id="editProductName" name="productName" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                    
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Category *</label>
+                            <select id="editProductCategory" name="productCategory" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Category</option>
+                                <option value="Beef">Beef</option>
+                                <option value="Chicken">Chicken</option>
+                                <option value="Mutton">Mutton</option>
+                                <option value="Duck">Duck</option>
+                            </select>
+                        </div>
+                    
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Weight *</label>
+                            <input type="text" id="editProductWeight" name="productWeight" required placeholder="e.g., 1kg, 2.5kg" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                    
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (₹) *</label>
+                            <input type="number" id="editProductPrice" name="productPrice" required placeholder="580" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                        </div>
+                    
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Quality Grade *</label>
+                            <select id="editProductQuality" name="productQuality" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Quality</option>
+                                <option value="A+">A+ (Premium)</option>
+                                <option value="A">A (High)</option>
+                                <option value="B+">B+ (Good)</option>
+                                <option value="B">B (Standard)</option>
+                            </select>
+                        </div>
+                    
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Region *</label>
+                            <select id="editProductRegion" name="productRegion" required class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">Select Region</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Barisal">Barisal</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Description</label>
+                        <textarea id="editProductDescription" name="productDescription" rows="4" placeholder="Enter product description..." class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white resize-none"></textarea>
+                    </div>
+                
+                    <div class="flex justify-end space-x-6 pt-6 border-t border-gray-200/20 dark:border-dark-700/20">
+                        <button type="button" onclick="closeEditProductModal()" class="px-8 py-4 border-2 border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-2xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-all duration-200 font-bold">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-primary px-10 py-4 text-white rounded-2xl font-bold text-lg">
+                            <i class="fas fa-save mr-3"></i>
+                            Update Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Product Modal -->
+    <div id="viewProductModal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeViewProductModal()"></div>
+        <div class="modal-dialog">
+            <div class="modal-content glass-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-8 border-b border-gray-200/20 dark:border-dark-700/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-3xl font-black text-gray-900 dark:text-white flex items-center">
+                            <i class="fas fa-eye text-green-600 mr-4 text-2xl"></i>
+                            Product Details
+                        </h3>
+                        <button onclick="closeViewProductModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200 hover:scale-110 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-700">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            
+                <div id="viewProductContent" class="p-8">
+                    <!-- Content will be populated by JavaScript -->
                 </div>
             </div>
+        </div>
+    </div>
 
-            <ul class="nav-links">
-                <li><a href="DashBoard.html">Home</a></li>
-                <li><a href="Advanced Meat Product Analysis And Updated News Market Intelligence Platform.html">Product Analysis & News</a></li>
-                <li><a href="Contact.html">Contact</a></li>
-                <li><a href="About.html">About</a></li>
-            </ul>
+    <!-- Navigation Bar -->
+    <nav class="bg-white/90 dark:bg-dark-800/90 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-200 dark:border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 animate-slide-right">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-2.5 rounded-xl shadow-lg glow-effect">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">Meatrix</span>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 -mt-1">Market Intelligence</p>
+                    </div>
+                </div>
 
-            <div class="nav-search">
-                <input type="text" id="navSearch" placeholder="Search analytics...">
-                <span class="search-icon">🔍</span>
-            </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 font-medium transition-all duration-200 relative group px-3 py-2 rounded-lg">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="Advanced Meat Product Analysis And Updated News Market Intelligence Platform.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 font-medium transition-all duration-200 relative group px-3 py-2 rounded-lg">
+                        Analytics
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="About.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 font-medium transition-all duration-200 relative group px-3 py-2 rounded-lg">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                    <a href="Contact.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 font-medium transition-all duration-200 relative group px-3 py-2 rounded-lg">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-200 group-hover:w-full"></span>
+                    </a>
+                </div>
 
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <div class="mobile-menu" id="mobileMenu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-                <div style="padding: 0 20px 20px;">
-                    <input type="text" placeholder="Search analytics..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px;">
+                <!-- Search and Controls -->
+                <div class="hidden md:flex items-center space-x-4 animate-slide-left">
+                    <div class="relative group">
+                        <input type="text" placeholder="Search markets..." 
+                               class="bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white px-4 py-2 rounded-xl pl-10 focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white dark:focus:bg-dark-600 transition-all duration-200 w-64">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                    </div>
                     
+                    <button id="darkModeToggle" class="p-2.5 rounded-xl bg-gray-100 dark:bg-dark-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:inline text-lg"></i>
+                    </button>
+
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white text-sm"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Admin</span>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobileMenuToggle" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-dark-800 border-t dark:border-dark-700">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-red-600 font-medium">Home</a>
+                <a href="#" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-red-600 font-medium">Analytics</a>
+                <a href="#" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-red-600 font-medium">Reports</a>
+                <a href="#" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-red-600 font-medium">Contact</a>
+                <div class="pt-3 border-t border-gray-200 dark:border-dark-700">
+                    <input type="text" placeholder="Search..." class="w-full bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white px-3 py-2 rounded-lg">
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1>Meat Market Intelligence</h1>
-            <p>AI-Powered Real-time Analytics & Comprehensive Insights into Bangladesh's Meat Industry</p>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-24 overflow-hidden relative">
+        <!-- Animated Gradient Background -->
+        <div class="hero-gradient-bg absolute inset-0 z-0"></div>
+        <!-- Optional: Overlay for better text contrast -->
+        <div class="absolute inset-0 bg-black/20 dark:bg-black/40 z-10 pointer-events-none"></div>
+        <!-- Floating Elements -->
+        <div class="absolute top-10 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl floating-element z-20"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl floating-element z-20" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl floating-element z-20" style="animation-delay: -1.5s;"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-30">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                    Meat Market <span class="text-yellow-300 animate-pulse">Intelligence</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 max-w-4xl mx-auto text-red-100 leading-relaxed">
+                    AI-Powered Real-time Analytics & Comprehensive Insights into Bangladesh's Meat Industry
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+    <a href="DashBoard.html" target="_blank"
+       class="btn-primary px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 shadow-2xl flex items-center justify-center">
+        <i class="fas fa-chart-bar mr-3"></i>
+        View Dashboard
+    </a>
+    <button class="border-2 border-white text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-red-600 transition-all duration-300 hover:scale-105 shadow-2xl">
+        <i class="fas fa-play mr-3"></i>
+        Watch Demo
+    </button>
+</div>
 
-        <!-- Stats Cards -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="icon">🏭</div>
-                <h3>680K</h3>
-                <p>Total Production (tons/year)</p>
-            </div>
-            <div class="stat-card">
-                <div class="icon">💰</div>
-                <h3>₹2.4B</h3>
-                <p>Market Value (annual)</p>
-            </div>
-            <div class="stat-card">
-                <div class="icon">🍖</div>
-                <h3>36.5kg</h3>
-                <p>Consumption (per person)</p>
-            </div>
-            <div class="stat-card">
-                <div class="icon">📈</div>
-                <h3>+8.2%</h3>
-                <p>Growth Rate (yearly)</p>
-            </div>
-        </div>
-
-        <!-- Table Section -->
-        <div class="table-section">
-            <div class="table-header">
-                <h2>Product Database</h2>
-                <p>Comprehensive meat product analytics and management</p>
-                
-                <div class="table-controls">
-                    <div class="search-container">
-                        <input type="text" id="tableSearch" placeholder="Search products, categories, regions..." onkeyup="searchTable()">
-                        <span class="search-icon">🔍</span>
-                    </div>
-                    
-                    <select id="categoryFilter" class="filter-select" onchange="filterTable()">
-                        <option value="all">All Categories</option>
-                        <option value="beef">Beef</option>
-                        <option value="chicken">Chicken</option>
-                        <option value="mutton">Mutton</option>
-                        <option value="duck">Duck</option>
-                    </select>
-                    
-                    <button class="btn btn-primary" onclick="openAddModal()">
-                        ➕ Add Product
-                    </button>
-                    
-                    <button class="btn btn-secondary">
-                        📥 Export
-                    </button>
-                </div>
-            </div>
-
-            <div class="table-container">
-                <div id="resultsCount" style="margin-bottom: 15px; color: #718096; font-size: 14px;"></div>
-                
-                <table class="data-table" id="productTable">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Category</th>
-                            <th>Weight</th>
-                            <th>Price</th>
-                            <th>Quality</th>
-                            <th>Region</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        
-
-                        <!-- Paper Summary Button -->
-         <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.button {
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-</style>
-</head>
-<body>
-
-    
-<!-- Summary Button -->
-<button class="button"><span><a href="Advanced Meat Product Analysis And Updated News Market Intelligence Platform.html"><h1>View Product Analysis And Updates</h1></a></span></button>
-
-                        
-
-                        
-                        <!-- Data will be populated by JavaScript -->
-                    </tbody>
-                </table>
-
-                <div id="noResults" class="no-results" style="display: none;">
-                    <div class="icon">🔍</div>
-                    <h3>No products found</h3>
-                    <p>Try adjusting your search or filter criteria</p>
-                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-    <!-- Add Product Modal -->
-    <div id="addModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add New Product</h3>
-                <button class="close-btn" onclick="closeAddModal()">&times;</button>
+    <!-- Statistics Cards -->
+    <section class="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-50/50 to-blue-50/50 dark:from-red-900/10 dark:to-blue-900/10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-6">Market Overview</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-xl max-w-2xl mx-auto">Real-time insights into Bangladesh's meat industry with comprehensive data analytics</p>
             </div>
             
-            <form id="addProductForm" onsubmit="addProduct(event)">
-                <div class="form-group">
-                    <label for="productName">Product Name</label>
-                    <input type="text" id="productName" required>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
+                <div class="stat-card bg-gradient-to-br from-blue-500 to-blue-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-blue-100 text-sm font-semibold mb-2">Total Production</p>
+                            <p class="text-4xl font-black mb-1">680K</p>
+                            <p class="text-sm text-blue-100 mb-3">tons/year</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-green-300 text-sm mr-2"></i>
+                                <span class="text-green-300 text-sm font-semibold">+12.5%</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-industry text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="productCategory">Category</label>
-                    <select id="productCategory" required>
-                        <option value="">Select category</option>
-                        <option value="beef">Beef</option>
-                        <option value="chicken">Chicken</option>
-                        <option value="mutton">Mutton</option>
-                        <option value="duck">Duck</option>
-                    </select>
+
+                <div class="stat-card bg-gradient-to-br from-green-500 to-green-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48" style="animation-delay: 0.1s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-green-100 text-sm font-semibold mb-2">Market Value</p>
+                            <p class="text-4xl font-black mb-1">₹2.4B</p>
+                            <p class="text-sm text-green-100 mb-3">total value</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-yellow-300 text-sm mr-2"></i>
+                                <span class="text-yellow-300 text-sm font-semibold">+8.3%</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-dollar-sign text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="productWeight">Weight</label>
-                    <input type="text" id="productWeight" placeholder="e.g., 180-220 kg" required>
+
+                <div class="stat-card bg-gradient-to-br from-purple-500 to-purple-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48" style="animation-delay: 0.2s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-purple-100 text-sm font-semibold mb-2">Per Capita</p>
+                            <p class="text-4xl font-black mb-1">36.5kg</p>
+                            <p class="text-sm text-purple-100 mb-3">consumption</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-green-300 text-sm mr-2"></i>
+                                <span class="text-green-300 text-sm font-semibold">+5.2%</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-utensils text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="productPrice">Price (৳/kg)</label>
-                    <input type="number" id="productPrice" step="0.01" required>
+
+                <div class="stat-card bg-gradient-to-br from-orange-500 to-orange-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48" style="animation-delay: 0.3s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-orange-100 text-sm font-semibold mb-2">Growth Rate</p>
+                            <p class="text-4xl font-black mb-1">+8.2%</p>
+                            <p class="text-sm text-orange-100 mb-3">yearly</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-trending-up text-green-300 text-sm mr-2"></i>
+                                <span class="text-green-300 text-sm font-semibold">Trending</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-chart-line text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="productQuality">Quality</label>
-                    <select id="productQuality" required>
-                        <option value="">Select quality</option>
-                        <option value="grade-aa">Grade AA</option>
-                        <option value="grade-a">Grade A+</option>
-                        <option value="grade-a">Grade A</option>
-                        <option value="grade-b">Grade B</option>
-                        <option value="premium">Premium</option>
-                    </select>
+
+                <div class="stat-card bg-gradient-to-br from-teal-500 to-teal-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48" style="animation-delay: 0.4s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-teal-100 text-sm font-semibold mb-2">Farmers</p>
+                            <p class="text-4xl font-black mb-1">40K</p>
+                            <p class="text-sm text-teal-100 mb-3">involved</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-green-300 text-sm mr-2"></i>
+                                <span class="text-green-300 text-sm font-semibold">+15.7%</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-users text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="productRegion">Region</label>
-                    <select id="productRegion" required>
-                        <option value="">Select region</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                        <option value="Rangpur">Rangpur</option>
-                        <option value="Khulna">Khulna</option>
-                        <option value="Barisal">Barisal</option>
-                        <option value="Sylhet">Sylhet</option>
-                        <option value="Mymensingh">Mymensingh</option>
-                    </select>
+
+                <div class="stat-card bg-gradient-to-br from-indigo-500 to-indigo-600 p-8 rounded-3xl text-white card-hover animate-bounce-in shadow-2xl w-72 h-48" style="animation-delay: 0.5s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-indigo-100 text-sm font-semibold mb-2">Products</p>
+                            <p class="text-4xl font-black mb-1">1.2K</p>
+                            <p class="text-sm text-indigo-100 mb-3">tracked</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-green-300 text-sm mr-2"></i>
+                                <span class="text-green-300 text-sm font-semibold">+22.1%</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 p-4 rounded-2xl">
+                            <i class="fas fa-box text-3xl"></i>
+                        </div>
+                    </div>
                 </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
-                    Add Product
-                </button>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Data Visualizations -->
+    <section class="py-20 bg-gray-50 dark:bg-dark-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-purple-50/30 dark:from-blue-900/10 dark:to-purple-900/10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-6">Market Analytics</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-xl max-w-2xl mx-auto">Comprehensive data visualization and insights powered by advanced analytics</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+                <!-- Price Trends Chart -->
+                <div class="bg-white dark:bg-dark-900 p-8 rounded-3xl shadow-2xl card-hover border border-gray-200 dark:border-dark-700 animate-slide-up">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Price Trends</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Monthly price analysis across regions</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="p-3 bg-gray-100 dark:bg-dark-700 rounded-xl hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                                <i class="fas fa-download text-gray-600 dark:text-gray-400"></i>
+                            </button>
+                            <button class="p-3 bg-gray-100 dark:bg-dark-700 rounded-xl hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                                <i class="fas fa-expand text-gray-600 dark:text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Regional Production Chart -->
+                <div class="bg-white dark:bg-dark-900 p-8 rounded-3xl shadow-2xl card-hover border border-gray-200 dark:border-dark-700 animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Regional Production</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Production distribution by region</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="p-3 bg-gray-100 dark:bg-dark-700 rounded-xl hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                                <i class="fas fa-download text-gray-600 dark:text-gray-400"></i>
+                            </button>
+                            <button class="p-3 bg-gray-100 dark:bg-dark-700 rounded-xl hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                                <i class="fas fa-expand text-gray-600 dark:text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="productionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Market Share Chart -->
+                <div class="bg-white dark:bg-dark-900 p-8 rounded-3xl shadow-2xl card-hover border border-gray-200 dark:border-dark-700 animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Market Share</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Distribution by meat type</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="p-3 bg-gray-100 dark:bg-dark-700 rounded-xl hover:bg-gray-200 dark:hover:bg-dark-600 transition-all duration-200 hover:scale-105">
+                                <i class="fas fa-download text-gray-600 dark:text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="marketShareChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Regional Price Heatmap -->
+                <div class="bg-white dark:bg-dark-900 p-8 rounded-3xl shadow-2xl card-hover border border-gray-200 dark:border-dark-700 animate-slide-up" style="animation-delay: 0.6s">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Regional Price Map</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Price differences across regions</p>
+                        </div>
+                        <select class="bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white px-4 py-2 rounded-xl text-sm border-0 focus:ring-2 focus:ring-red-500 transition-all duration-200">
+                            <option>Beef</option>
+                            <option>Chicken</option>
+                            <option>Mutton</option>
+                            <option>Duck</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-6 rounded-2xl border border-red-200 dark:border-red-800 hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-red-800 dark:text-red-200">Dhaka</h4>
+                                <span class="text-xs bg-red-500 text-white px-3 py-1 rounded-full font-semibold">High</span>
+                            </div>
+                            <p class="text-3xl font-black text-red-600 dark:text-red-300 mb-2">₹580/kg</p>
+                            <p class="text-sm text-red-500 dark:text-red-400 flex items-center">
+                                <i class="fas fa-arrow-up mr-2"></i>+2.5%
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-6 rounded-2xl border border-yellow-200 dark:border-yellow-800 hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-yellow-800 dark:text-yellow-200">Chittagong</h4>
+                                <span class="text-xs bg-yellow-500 text-white px-3 py-1 rounded-full font-semibold">Med</span>
+                            </div>
+                            <p class="text-3xl font-black text-yellow-600 dark:text-yellow-300 mb-2">₹520/kg</p>
+                            <p class="text-sm text-yellow-500 dark:text-yellow-400 flex items-center">
+                                <i class="fas fa-arrow-down mr-2"></i>-1.2%
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-6 rounded-2xl border border-green-200 dark:border-green-800 hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-green-800 dark:text-green-200">Sylhet</h4>
+                                <span class="text-xs bg-green-500 text-white px-3 py-1 rounded-full font-semibold">Low</span>
+                            </div>
+                            <p class="text-3xl font-black text-green-600 dark:text-green-300 mb-2">₹480/kg</p>
+                            <p class="text-sm text-green-500 dark:text-green-400 flex items-center">
+                                <i class="fas fa-arrow-down mr-2"></i>-3.5%
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-800 hover:scale-105 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-blue-800 dark:text-blue-200">Rangpur</h4>
+                                <span class="text-xs bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">Med</span>
+                            </div>
+                            <p class="text-3xl font-black text-blue-600 dark:text-blue-300 mb-2">₹550/kg</p>
+                            <p class="text-sm text-blue-500 dark:text-blue-400 flex items-center">
+                                <i class="fas fa-arrow-up mr-2"></i>+7.0%
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Insights Section -->
+    <section class="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-50/30 to-pink-50/30 dark:from-purple-900/10 dark:to-pink-900/10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 dark:text-white mb-6">AI Market Insights</h2>
+                <p class="text-gray-600 dark:text-gray-400 text-xl max-w-2xl mx-auto">Real-time intelligence powered by advanced machine learning algorithms</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-8 rounded-3xl border-l-4 border-blue-500 card-hover shadow-xl animate-slide-up">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-blue-500 p-4 rounded-2xl animate-pulse">
+                            <i class="fas fa-robot text-white text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-blue-800 dark:text-blue-200 text-lg">Price Alert</h4>
+                                <span class="text-xs bg-blue-500 text-white px-3 py-1 rounded-full font-semibold animate-pulse">Live</span>
+                            </div>
+                            <p class="text-blue-700 dark:text-blue-300 mb-4 leading-relaxed">Broiler chicken price in Sylhet dropped by 3.5% this week due to increased supply from local farms.</p>
+                            <div class="flex items-center text-sm text-blue-600 dark:text-blue-400">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>2 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-8 rounded-3xl border-l-4 border-green-500 card-hover shadow-xl animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-500 p-4 rounded-2xl animate-pulse">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-green-800 dark:text-green-200 text-lg">Market Trend</h4>
+                                <span class="text-xs bg-green-500 text-white px-3 py-1 rounded-full font-semibold animate-pulse">Trending</span>
+                            </div>
+                            <p class="text-green-700 dark:text-green-300 mb-4 leading-relaxed">Beef prices in Dhaka remain stable while Mutton rose 7% in Rangpur region due to seasonal demand.</p>
+                            <div class="flex items-center text-sm text-green-600 dark:text-green-400">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>4 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 p-8 rounded-3xl border-l-4 border-orange-500 card-hover shadow-xl animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-orange-500 p-4 rounded-2xl animate-pulse">
+                            <i class="fas fa-exclamation-triangle text-white text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-bold text-orange-800 dark:text-orange-200 text-lg">Supply Warning</h4>
+                                <span class="text-xs bg-orange-500 text-white px-3 py-1 rounded-full font-semibold animate-pulse">Alert</span>
+                            </div>
+                            <p class="text-orange-700 dark:text-orange-300 mb-4 leading-relaxed">Duck meat supply expected to decrease by 12% next month in coastal regions due to weather conditions.</p>
+                            <div class="flex items-center text-sm text-orange-600 dark:text-orange-400">
+                                <i class="fas fa-clock mr-2"></i>
+                                <span>6 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Database Table -->
+    <section class="py-20 bg-gray-50 dark:bg-dark-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-blue-50/50 dark:from-gray-900/50 dark:to-blue-900/10"></div>
+        <!-- Particle Effects -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl shadow-2xl overflow-hidden border border-gray-200/20 dark:border-dark-700/20 animate-slide-up table-container">
+                <div class="p-8 border-b border-gray-200/20 dark:border-dark-700/20 table-header">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
+                        <div>
+                            <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-2">Product Database</h2>
+                            <p class="text-gray-600 dark:text-gray-400 text-lg">Comprehensive meat product tracking and management system</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                            <div class="relative">
+                                <input type="text" id="searchInput" placeholder="Search products, regions..." 
+                                       class="form-input w-72 px-5 py-3 rounded-xl pl-12 focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+                            </div>
+                            <select id="categoryFilter" class="form-input px-5 py-3 rounded-xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
+                                <option value="">All Categories</option>
+                                <option value="Beef">Beef</option>
+                                <option value="Chicken">Chicken</option>
+                                <option value="Mutton">Mutton</option>
+                                <option value="Duck">Duck</option>
+                            </select>
+                            <button id="addProductBtn" class="btn-primary px-8 py-3 text-white rounded-xl font-bold hover:scale-105 shadow-xl transition-all duration-200">
+                                <i class="fas fa-plus mr-2"></i>Add Product
+                            </button>
+                            <button class="btn-modern px-8 py-3 rounded-xl font-bold hover:scale-105 shadow-xl transition-all duration-200">
+                                <i class="fas fa-download mr-2"></i>Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="product-table w-full">
+                        <thead class="table-header border-b border-gray-200/20 dark:border-dark-700/20">
+                            <tr>
+                                <th class="col-serial">S.No</th>
+                                <th class="col-product">Product</th>
+                                <th class="col-category">Category</th>
+                                <th class="col-weight">Weight</th>
+                                <th class="col-price">Price</th>
+                                <th class="col-quality">Quality</th>
+                                <th class="col-region">Region</th>
+                                <th class="col-date">Date</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody" class="bg-white/50 dark:bg-dark-900/50 backdrop-blur-sm divide-y divide-gray-200/20 dark:divide-dark-700/20">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="px-8 py-6 table-header border-t border-gray-200/20 dark:border-dark-700/20">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                        <div class="text-sm text-gray-700 dark:text-gray-300">
+                            Showing <span id="showingCount" class="font-bold">1-10</span> of <span id="totalCount" class="font-bold">50</span> results
+                        </div>
+
+                        <div>
+                            
+                   
+                    
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-5 py-2 bg-white/80 dark:bg-dark-700/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white dark:hover:bg-dark-600 transition-all duration-200 border border-gray-300/20 dark:border-dark-600/20 font-medium">
+                                <i class="fas fa-chevron-left mr-2"></i>Previous
+                            </button>
+                            <button class="px-4 py-2 bg-red-600 text-white rounded-xl font-bold shadow-lg">1</button>
+                            <button class="px-4 py-2 bg-white/80 dark:bg-dark-700/80 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-xl hover:bg-white dark:hover:bg-dark-600 transition-all duration-200 border border-gray-300/20 dark:border-dark-600/20">
+                                                              
+                        
+                    
+                
+                
+                
+                
+            
+            
 
     <script>
-        
-        // Sample data
+        // Global variables
         let products = [
-            {
-                id: 1,
-                name: "Beef (Local)",
-                category: "beef",
-                weight: "180-220 kg",
-                price: 672,
-                quality: "grade-a",
-                region: "Dhaka",
-                date: "2024-01-15"
+            { 
+                id: 1, 
+                product: 'Premium Beef Cut', 
+                category: 'Beef', 
+                weight: '1kg', 
+                price: 580, 
+                quality: 'A+', 
+ 
+                region: 'Dhaka', 
+                date: '2024-01-15', 
+                status: 'In Stock'
             },
-            {
-                id: 2,
-                name: "Chicken (Broiler)",
-                category: "chicken",
-                weight: "1.8-2.2 kg",
-                price: 234,
-                quality: "grade-a",
-                region: "Chittagong",
-                date: "2024-01-16"
+            { 
+                id: 2, 
+                product: 'Fresh Broiler Chicken', 
+                category: 'Chicken', 
+                weight: '1.5kg', 
+                price: 320, 
+                quality: 'A', 
+                region: 'Sylhet', 
+                date: '2024-01-14', 
+                status: 'In Stock'
             },
-            {
-                id: 3,
-                name: "Mutton (Local)",
-                category: "mutton",
-                weight: "25-35 kg",
-                price: 1024,
-                quality: "premium",
-                region: "Rajshahi",
-                date: "2024-01-17"
+            { 
+ 
+                id: 3, 
+                product: 'Local Mutton', 
+                category: 'Mutton', 
+                weight: '2kg', 
+                price: 750, 
+                quality: 'A+', 
+                region: 'Rangpur', 
+                date: '2024-01-13', 
+                status: 'Low Stock'
             },
-            {
-                id: 4,
-                name: "Duck",
-                category: "duck",
-                weight: "2.5-3.0 kg",
-                price: 350,
-                quality: "grade-b",
-                region: "Sylhet",
-                date: "2024-01-18"
+            { 
+                id: 4, 
+                product: 'Duck Meat Fresh', 
+                category: 'Duck', 
+                weight: '1kg', 
+                price: 450, 
+                quality: 'B+', 
+                region: 'Chittagong', 
+                date: '2024-01-12', 
+                status: 'In Stock'
             },
-            {
-                id: 5,
-                name: "Beef (Cross-breed)",
-                category: "beef",
-                weight: "250-300 kg",
-                price: 720,
-                quality: "grade-aa",
-                region: "Rangpur",
-                date: "2024-01-19"
-            }
+            { 
+                id: 5, 
+                product: 'Grass-Fed Beef', 
+                category: 'Beef', 
+                weight: '1kg', 
+                price: 520, 
+                quality: 'B', 
+                region: 'Chittagong', 
+                date: '2024-01-11', 
+                status: 'In Stock'
+            },
+            { 
+                id: 6, 
+                product: 'Organic Chicken', 
+                category: 'Chicken', 
+                weight: '1.2kg', 
+                price: 380, 
+                quality: 'A+', 
+                region: 'Dhaka', 
+                date: '2024-01-10', 
+                status: 'In Stock'
+            },
+            { 
+                id: 7, 
+                product: 'Premium Mutton', 
+                category: 'Mutton', 
+                weight: '1.5kg', 
+                price: 820, 
+                quality: 'A+', 
+                region: 'Sylhet', 
+                date: '2024-01-09', 
+                status: 'Out of Stock'
+            },
+            { 
+                id: 8, 
+                product: 'Farm Duck', 
+                category: 'Duck', 
+                weight: '1.3kg', 
+                price: 480, 
+                quality: 'A', 
+                region: 'Rangpur', 
+                date: '2024-01-08', 
+                status: 'In Stock'
+            },
         ];
 
-        let filteredProducts = [...products];
+        let priceChart, productionChart, marketShareChart;
 
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Hide loading screen with animation
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 2000);
+
+            // Initialize all components
+            initializeDarkMode();
+            initializeMobileMenu();
+            initializeCharts();
+            initializeProductTable();
+            initializeSearch();
+            initializeScrollIndicator();
+            initializeAddProductModal();
+            initializeAnimations();
         }
 
-        // Get category icon
-        function getCategoryIcon(category) {
-            const icons = {
-                beef: '🐄',
-                chicken: '🐔',
-                mutton: '🐑',
-                duck: '🦆'
-            };
-            return icons[category] || '🍖';
-        }
+        // Dark Mode Toggle
+        function initializeDarkMode() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
 
-        // Get quality display text
-        function getQualityText(quality) {
-            const qualityMap = {
-                'grade-aa': 'Grade AA',
-                'grade-a': 'Grade A+',
-                'grade-b': 'Grade B',
-                'premium': 'Premium'
-            };
-            return qualityMap[quality] || quality;
-        }
-
-        // Render table
-        function renderTable() {
-            const tableBody = document.getElementById('tableBody');
-            const noResults = document.getElementById('noResults');
-            const resultsCount = document.getElementById('resultsCount');
-
-            if (filteredProducts.length === 0) {
-                tableBody.innerHTML = '';
-                noResults.style.display = 'block';
-                resultsCount.textContent = 'No products found';
-                return;
+            // Load saved preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                html.classList.add('dark');
             }
 
-            noResults.style.display = 'none';
-            resultsCount.textContent = `Showing ${filteredProducts.length} of ${products.length} products`;
-
-            tableBody.innerHTML = filteredProducts.map(product => `
-                <tr>
-                    <td>
-                        <div class="product-info">
-                            <div class="product-icon ${product.category}">
-                                ${getCategoryIcon(product.category)}
-                            </div>
-                            <div>
-                                <div style="font-weight: 600;">${product.name}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge badge-${product.category}">
-                            ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
-                        </span>
-                    </td>
-                    <td style="font-family: 'Courier New', monospace;">${product.weight}</td>
-                    <td class="price">৳${product.price}</td>
-                    <td>
-                        <span class="quality-badge ${product.quality}">
-                            ${getQualityText(product.quality)}
-                        </span>
-                    </td>
-                    <td>${product.region}</td>
-                    <td style="font-family: 'Courier New', monospace;">${product.date}</td>
-                    <td>
-                        <div class="actions">
-                            <button class="btn btn-secondary btn-small" onclick="editProduct(${product.id})">
-                                ✏️ Edit
-                            </button>
-                            <button class="btn btn-danger btn-small" onclick="deleteProduct(${product.id})">
-                                🗑️ Delete
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        // Search functionality
-        function searchTable() {
-            const searchTerm = document.getElementById('tableSearch').value.toLowerCase();
-            const categoryFilter = document.getElementById('categoryFilter').value;
-
-            filteredProducts = products.filter(product => {
-                const matchesSearch = 
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    product.category.toLowerCase().includes(searchTerm) ||
-                    product.region.toLowerCase().includes(searchTerm) ||
-                    product.quality.toLowerCase().includes(searchTerm);
-
-                const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
-
-                return matchesSearch && matchesCategory;
+            darkModeToggle.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('darkMode', html.classList.contains('dark'));
                 
+                // Update charts with new theme
+                setTimeout(() => {
+                    updateChartsTheme();
+                }, 100);
             });
-
-            renderTable();
         }
 
-        // Filter functionality
-        function filterTable() {
-            searchTable(); // Reuse search logic
+        // Mobile Menu Toggle
+        function initializeMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
         }
 
-        // Modal functions
-        function openAddModal() {
-            document.getElementById('addModal').classList.add('active');
+        // Scroll Progress Indicator
+        function initializeScrollIndicator() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.offsetHeight - window.innerHeight;
+                const scrollPercent = scrollTop / docHeight;
+                
+                scrollIndicator.style.transform = `scaleX(${scrollPercent})`;
+            });
         }
 
-        function closeAddModal() {
-            document.getElementById('addModal').classList.remove('active');
+        // Add Product Modal Functions
+        function initializeAddProductModal() {
+            const addProductBtn = document.getElementById('addProductBtn');
+            const addProductForm = document.getElementById('addProductForm');
+            const editProductForm = document.getElementById('editProductForm');
+
+            addProductBtn.addEventListener('click', openAddProductModal);
+            addProductForm.addEventListener('submit', handleAddProduct);
+            editProductForm.addEventListener('submit', handleEditProduct);
+        }
+
+        function openAddProductModal() {
+            const modal = document.getElementById('addProductModal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeAddProductModal() {
+            const modal = document.getElementById('addProductModal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
             document.getElementById('addProductForm').reset();
         }
 
-        // Add product
-        function addProduct(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('productName').value;
-            const category = document.getElementById('productCategory').value;
-            const weight = document.getElementById('productWeight').value;
-            const price = parseFloat(document.getElementById('productPrice').value);
-            const quality = document.getElementById('productQuality').value;
-            const region = document.getElementById('productRegion').value;
-            const date = new Date().toISOString().split('T')[0];
-
+        function handleAddProduct(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
             const newProduct = {
-                id: Date.now(),
-                name,
-                category,
-                weight,
-                price,
-                quality,
-                region,
-                date
+                id: products.length + 1,
+                product: formData.get('productName'),
+                category: formData.get('productCategory'),
+                weight: formData.get('productWeight'),
+                price: parseInt(formData.get('productPrice')),
+                quality: formData.get('productQuality'),
+                region: formData.get('productRegion'),
+                date: new Date().toISOString().split('T')[0],
+                status: 'In Stock'
             };
 
-            products.push(newProduct);
-            filteredProducts = [...products];
-            renderTable();
-            closeAddModal();
-
+            // Add to products array
+            products.unshift(newProduct);
+            
+            // Refresh table
+            populateTable(products);
+            
+            // Close modal
+            closeAddProductModal();
+            
             // Show success message
-            alert('Product added successfully!');
+            showNotification('Product added successfully!', 'success');
         }
-        
 
-        // Delete product
-        function deleteProduct(id) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                products = products.filter(product => product.id !== id);
-                filteredProducts = filteredProducts.filter(product => product.id !== id);
-                renderTable();
-                alert('Product deleted successfully!');
+        // Edit Product Modal Functions
+        function openEditProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Populate form with existing data
+            document.getElementById('editProductId').value = product.id;
+            document.getElementById('editProductName').value = product.product;
+            document.getElementById('editProductCategory').value = product.category;
+            document.getElementById('editProductWeight').value = product.weight;
+            document.getElementById('editProductPrice').value = product.price;
+            document.getElementById('editProductQuality').value = product.quality;
+            document.getElementById('editProductRegion').value = product.region;
+            document.getElementById('editProductDescription').value = product.description || '';
+
+            const modal = document.getElementById('editProductModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditProductModal() {
+            const modal = document.getElementById('editProductModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Reset form
+            document.getElementById('editProductForm').reset();
+        }
+
+        function handleEditProduct(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const productId = parseInt(formData.get('productId'));
+            const productIndex = products.findIndex(p => p.id === productId);
+            
+            if (productIndex === -1) return;
+
+            // Update product data
+            products[productIndex] = {
+                ...products[productIndex],
+                product: formData.get('productName'),
+                category: formData.get('productCategory'),
+                weight: formData.get('productWeight'),
+                price: parseInt(formData.get('productPrice')),
+                quality: formData.get('productQuality'),
+                region: formData.get('productRegion'),
+                description: formData.get('productDescription'),
+                date: new Date().toISOString().split('T')[0] // Update date to current
+            };
+            
+            // Refresh table
+            populateTable(products);
+            
+            // Close modal
+            closeEditProductModal();
+            
+            // Show success message
+            showNotification('Product updated successfully!', 'success');
+        }
+
+        // View Product Modal Functions
+        function openViewProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const logoClass = getProductLogoClass(product.category);
+            const statusIndicatorClass = getStatusIndicatorClass(product.status);
+            const qualityColor = getQualityColor(product.quality);
+            const categoryColor = getCategoryColor(product.category);
+            const content = `
+        <div class="space-y-8">
+            <!-- Product Header -->
+            <div class="flex items-center space-x-6 p-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-700 rounded-2xl">
+                <div class="relative">
+                    <div class="product-logo ${getProductLogoClass(product.category)} w-20 h-20"></div>
+                    <div class="status-indicator ${statusIndicatorClass}"></div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-2xl font-black text-gray-900 dark:text-white mb-2">${product.product}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg">Product ID: #${product.id.toString().padStart(4, '0')}</p>
+                    <div class="flex items-center space-x-4 mt-3">
+                        <span class="px-4 py-2 text-xs font-bold rounded-full bg-${getCategoryBgColor(product.category)} text-white shadow-sm">${product.category}</span>
+                        <span class="px-4 py-2 text-xs font-bold rounded-full ${qualityColor}">${product.quality}</span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-3xl font-black text-gray-900 dark:text-white">₹${product.price}</p>
+                    <p class="text-gray-500 dark:text-gray-400">per ${product.weight}</p>
+                </div>
+            </div>
+
+            <!-- Product Details Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-gray-200 dark:border-dark-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-weight-hanging text-blue-500 text-xl mr-3"></i>
+                        <h5 class="font-bold text-gray-900 dark:text-white">Weight</h5>
+                    </div>
+                    <p class="text-2xl font-black text-blue-600 dark:text-blue-400">${product.weight}</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-gray-200 dark:border-dark-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-green-500 text-xl mr-3"></i>
+                        <h5 class="font-bold text-gray-900 dark:text-white">Region</h5>
+                    </div>
+                    <p class="text-2xl font-black text-green-600 dark:text-green-400">${product.region}</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-gray-200 dark:border-dark-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-calendar text-purple-500 text-xl mr-3"></i>
+                        <h5 class="font-bold text-gray-900 dark:text-white">Date Added</h5>
+                    </div>
+                    <p class="text-2xl font-black text-purple-600 dark:text-purple-400">${formatDate(product.date)}</p>
+                </div>
+
+                <div class="bg-white dark:bg-dark-800 p-6 rounded-2xl border border-gray-200 dark:border-dark-700">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-check-circle text-orange-500 text-xl mr-3"></i>
+                        <h5 class="font-bold text-gray-900 dark:text-white">Status</h5>
+                    </div>
+                    <p class="text-2xl font-black text-orange-600 dark:text-orange-400">${product.status}</p>
+                </div>
+            </div>
+
+            <!-- Description -->
+            ${product.description ? `
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-800 dark:to-dark-700 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-file-alt text-gray-500 text-xl mr-3"></i>
+                        <h5 class="font-bold text-gray-900 dark:text-white">Description</h5>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">${product.description}</p>
+                </div>
+            ` : ''}
+
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200/20 dark:border-dark-700/20">
+                <button onclick="closeViewProductModal(); openEditProductModal(${product.id})" class="btn-primary px-8 py-3 text-white rounded-xl font-bold hover:scale-105 shadow-xl transition-all duration-200">
+                    <i class="fas fa-edit mr-2"></i>
+                    Edit Product
+                </button>
+                <button onclick="closeViewProductModal()" class="px-8 py-3 border-2 border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-all duration-200 font-bold">
+                    Close
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('viewProductContent').innerHTML = content;
+    
+    const modal = document.getElementById('viewProductModal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeViewProductModal() {
+    const modal = document.getElementById('viewProductModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+// Delete product function
+function deleteProduct(productId) {
+    // Show confirmation dialog
+    if (confirm('Are you sure you want to delete this product?')) {
+        // Find and remove the product from the array
+        const productIndex = products.findIndex(p => p.id === productId);
+        if (productIndex > -1) {
+            const deletedProduct = products.splice(productIndex, 1)[0];
+            
+            // Refresh the table
+            populateTable(products);
+            
+            // Show success notification
+            showNotification(`${deletedProduct.product} has been deleted successfully!`, 'success');
+        }
+    }
+}
+
+// Edit product function (placeholder for future implementation)
+function editProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        showNotification(`Edit functionality for ${product.product} will be implemented soon!`, 'info');
+    }
+}
+
+// View product function (placeholder for future implementation)
+function viewProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        showNotification(`Viewing details for ${product.product}`, 'info');
+    }
+}
+
+// Show delete confirmation modal
+function showDeleteConfirmation(productId) {
+    // Remove any existing confirmation modal
+    closeDeleteConfirmation();
+
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const confirmationHtml = `
+        <div id="deleteConfirmation" class="fixed inset-0 z-[100] flex items-center justify-center">
+            <div class="modal-backdrop absolute inset-0"></div>
+            <div class="modal-dialog">
+                <div class="modal-content glass-card rounded-3xl shadow-2xl max-w-md w-full animate-scale-in p-8 text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 dark:bg-red-900/30 mb-6">
+                        <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Delete Product</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-8">
+                        Are you sure you want to delete <strong>${product.product}</strong>? This action cannot be undone.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button onclick="closeDeleteConfirmation()" class="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-dark-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-700 transition-all duration-200 font-bold">
+                            Cancel
+                        </button>
+                        <button onclick="confirmDelete(${productId})" class="flex-1 px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all duration-200 font-bold hover:scale-105">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', confirmationHtml);
+    document.body.classList.add('modal-open');
+}
+
+// Remove the confirmation modal from DOM
+function closeDeleteConfirmation() {
+    const confirmation = document.getElementById('deleteConfirmation');
+    if (confirmation) {
+        confirmation.remove();
+        document.body.classList.remove('modal-open');
+    }
+}
+
+// Actually delete the product and update table
+function confirmDelete(productId) {
+    const productIndex = products.findIndex(p => p.id === productId);
+    if (productIndex > -1) {
+        const deletedProduct = products.splice(productIndex, 1)[0];
+        populateTable(products); // Update table
+        closeDeleteConfirmation();
+        showNotification(`${deletedProduct.product} has been deleted successfully!`, 'success');
+    } else {
+        closeDeleteConfirmation();
+        showNotification('Product not found!', 'error');
+    }
+}
+
+// Initialize Product Table
+function initializeProductTable() {
+    populateTable(products);
+}
+
+// Get CSS logo class based on category
+function getProductLogoClass(category) {
+    const logoClasses = {
+        'Beef': 'logo-beef',
+        'Chicken': 'logo-chicken',
+        'Mutton': 'logo-mutton',
+        'Duck': 'logo-duck'
+    };
+    return logoClasses[category] || 'logo-beef';
+}
+
+// Get status indicator class
+function getStatusIndicatorClass(status) {
+    const statusClasses = {
+        'In Stock': 'status-online',
+        'Low Stock': 'status-low',
+        'Out of Stock': 'status-offline'
+    };
+    return statusClasses[status] || 'status-online';
+}
+
+// Populate product table with enhanced styling
+function populateTable(data = products) {
+    const tbody = document.getElementById('productTableBody');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+
+    if (data.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="9" class="px-8 py-12 text-center">
+                    <div class="text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-box-open text-4xl mb-4"></i>
+                        <p class="text-lg font-semibold">No products found</p>
+                        <p class="text-sm">Try adjusting your search or filter criteria</p>
+                    </div>
+                </td>
+            </tr>
+        `;
+        updateTableStats(0);
+        return;
+    }
+
+    data.forEach((product, index) => {
+        const qualityColor = getQualityColor(product.quality);
+        const logoClass = getProductLogoClass(product.category);
+        const statusIndicatorClass = getStatusIndicatorClass(product.status);
+
+        const row = document.createElement('tr');
+        row.className = 'table-row transition-all duration-300 hover:bg-gray-50 dark:hover:bg-dark-800/50';
+
+        row.innerHTML = `
+            <td class="col-serial">
+                <div class="text-lg font-black text-gray-900 dark:text-white">${String(index + 1).padStart(2, '0')}</div>
+            </td>
+            <td class="col-product">
+                <div class="product-info">
+                    <div class="relative">
+                        <div class="product-logo ${logoClass}"></div>
+                        <div class="status-indicator ${statusIndicatorClass}"></div>
+                    </div>
+                    <div>
+                        <span class="product-name">${product.product}</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 block">ID: #${product.id.toString().padStart(4, '0')}</span>
+                    </div>
+                </div>
+            </td>
+            <td class="col-category">
+                <span class="px-3 py-1 text-xs font-bold rounded-full bg-${getCategoryBgColor(product.category)} text-white shadow-sm">${product.category}</span>
+            </td>
+            <td class="col-weight text-sm font-semibold text-gray-900 dark:text-gray-300">${product.weight}</td>
+            <td class="col-price text-lg font-black text-gray-900 dark:text-white">₹${product.price}</td>
+            <td class="col-quality">
+                <span class="px-3 py-1 text-xs font-bold rounded-full ${qualityColor}">${product.quality}</span>
+            </td>
+            <td class="col-region text-sm font-semibold text-gray-900 dark:text-gray-300">${product.region}</td>
+            <td class="col-date text-sm text-gray-500 dark:text-gray-400">${formatDate(product.date)}</td>
+            <td class="col-actions text-sm font-medium">
+                <div class="flex space-x-2">
+                    <button onclick="openEditProductModal(${product.id})" class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 p-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 hover:scale-110" title="Edit Product">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button onclick="openViewProductModal(${product.id})" class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 p-2 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-all duration-200 hover:scale-110" title="View Details">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button onclick="showDeleteConfirmation(${product.id})"
+                            class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200 hover:scale-110"
+                            title="Delete Product">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+
+    updateTableStats(data.length);
+}
+
+// Helper function to get category background color
+function getCategoryBgColor(category) {
+    const colors = {
+        'Beef': 'red-500',
+        'Chicken': 'yellow-500',
+        'Mutton': 'purple-500',
+        'Duck': 'blue-500'
+    };
+    return colors[category] || 'gray-500';
+}
+
+// Helper function to format date
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
+        // Helper functions for styling
+        function getQualityColor(quality) {
+            const colors = {
+                'A+': 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
+                'A': 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+                'B+': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300',
+                'B': 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300'
+            };
+            return colors[quality] || colors['B'];
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                'Beef': 'from-red-500 to-red-600',
+                'Chicken': 'from-yellow-500 to-yellow-600',
+                'Mutton': 'from-purple-500 to-purple-600',
+                'Duck': 'from-blue-500 to-blue-600'
+            };
+            return colors[category] || colors['Beef'];
+        }
+
+        function updateTableStats(count) {
+    const totalCountEl = document.getElementById('totalCount');
+    const showingCountEl = document.getElementById('showingCount');
+    
+    if (totalCountEl) totalCountEl.textContent = count;
+    if (showingCountEl) {
+        if (count === 0) {
+            showingCountEl.textContent = '0-0';
+        } else {
+            showingCountEl.textContent = `1-${Math.min(10, count)}`;
+        }
+    }
+}
+
+        // Initialize Search
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+
+            if (searchInput) {
+                searchInput.addEventListener('input', handleSearch);
+            }
+            
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', handleSearch);
             }
         }
 
-        // Edit product (placeholder)
-        function editProduct(id) {
-            alert('Edit functionality would be implemented here for product ID: ' + id);
+        function handleSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    
+    if (!searchInput || !categoryFilter) return;
+    
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const category = categoryFilter.value;
+    
+    let filteredProducts = products.filter(product => {
+        const matchesSearch = !searchTerm || 
+            product.product.toLowerCase().includes(searchTerm) ||
+            product.category.toLowerCase().includes(searchTerm) ||
+            product.region.toLowerCase().includes(searchTerm) ||
+            product.quality.toLowerCase().includes(searchTerm);
+            
+        const matchesCategory = !category || product.category === category;
+        
+        return matchesSearch && matchesCategory;
+    });
+    
+    populateTable(filteredProducts);
+}
+
+        // Initialize Charts
+        function initializeCharts() {
+            try {
+                initializePriceChart();
+                initializeProductionChart();
+                initializeMarketShareChart();
+            } catch (error) {
+                console.error('Error initializing charts:', error);
+            }
+        }
+
+        function initializePriceChart() {
+            const ctx = document.getElementById('priceChart');
+            if (!ctx) return;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            priceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    datasets: [{
+                        label: 'Beef (₹/kg)',
+                        data: [580, 590, 575, 585, 580, 595, 600, 590, 585, 592],
+                        borderColor: '#EF4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#EF4444',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Chicken (₹/kg)',
+                        data: [320, 315, 325, 330, 320, 318, 325, 322, 328, 324],
+                        borderColor: '#F59E0B',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#F59E0B',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Mutton (₹/kg)',
+                        data: [750, 760, 745, 755, 750, 765, 770, 768, 772, 775],
+                        borderColor: '#8B5CF6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#8B5CF6',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: isDark ? '#ffffff' : '#374151',
+                                usePointStyle: true,
+                                padding: 20,
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                            titleColor: isDark ? '#ffffff' : '#111827',
+                            bodyColor: isDark ? '#d1d5db' : '#374151',
+                            borderColor: isDark ? '#374151' : '#e5e7eb',
+                            borderWidth: 1,
+                            cornerRadius: 12,
+                            displayColors: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: isDark ? '#9CA3AF' : '#6B7280',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: isDark ? '#374151' : '#E5E7EB'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: isDark ? '#9CA3AF' : '#6B7280',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                callback: function(value) {
+                                    return '₹' + value;
+                                }
+                            },
+                            grid: {
+                                color: isDark ? '#374151' : '#E5E7EB'
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+        }
+
+        function initializeProductionChart() {
+            const ctx = document.getElementById('productionChart');
+            if (!ctx) return;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            productionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Dhaka', 'Chittagong', 'Sylhet', 'Rangpur', 'Khulna', 'Barisal', 'Mymensingh'],
+                    datasets: [{
+                        label: 'Production (tons)',
+                        data: [180, 150, 120, 100, 90, 75, 85],
+                        backgroundColor: [
+                            '#EF4444',
+                            '#F59E0B',
+                            '#10B981',
+                            '#3B82F6',
+                            '#8B5CF6',
+                            '#EC4899',
+                            '#06B6D4'
+                        ],
+                        borderRadius: 12,
+                        borderSkipped: false,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                            titleColor: isDark ? '#ffffff' : '#111827',
+                            bodyColor: isDark ? '#d1d5db' : '#374151',
+                            borderColor: isDark ? '#374151' : '#e5e7eb',
+                            borderWidth: 1,
+                            cornerRadius: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' tons';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: isDark ? '#9CA3AF' : '#6B7280',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: isDark ? '#9CA3AF' : '#6B7280',
+                                font: {
+                                    weight: 'bold'
+                                },
+                                callback: function(value) {
+                                    return value + ' tons';
+                                }
+                            },
+                            grid: {
+                                color: isDark ? '#374151' : '#E5E7EB'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function initializeMarketShareChart() {
+            const ctx = document.getElementById('marketShareChart');
+            if (!ctx) return;
+
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            marketShareChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Beef', 'Chicken', 'Mutton', 'Duck', 'Others'],
+                    datasets: [{
+                        data: [35, 40, 15, 7, 3],
+                        backgroundColor: [
+                            '#EF4444',
+                            '#F59E0B',
+                            '#8B5CF6',
+                            '#06B6D4',
+                            '#6B7280'
+                        ],
+                        borderWidth: 4,
+                        borderColor: isDark ? '#1f2937' : '#ffffff',
+                        cutout: '65%',
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: isDark ? '#ffffff' : '#374151',
+                                usePointStyle: true,
+                                padding: 25,
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                            titleColor: isDark ? '#ffffff' : '#111827',
+                            bodyColor: isDark ? '#d1d5db' : '#374151',
+                            borderColor: isDark ? '#374151' : '#e5e7eb',
+                            borderWidth: 1,
+                            cornerRadius: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartsTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const textColor = isDark ? '#ffffff' : '#374151';
+            const gridColor = isDark ? '#374151' : '#E5E7EB';
+            const tickColor = isDark ? '#9CA3AF' : '#6B7280';
+
+            // Update all charts
+            [priceChart, productionChart, marketShareChart].forEach(chart => {
+                if (chart) {
+                    // Update legend colors
+                    if (chart.options.plugins.legend) {
+                        chart.options.plugins.legend.labels.color = textColor;
+                    }
+                    
+                    // Update scale colors
+                    if (chart.options.scales) {
+                        Object.keys(chart.options.scales).forEach(scaleKey => {
+                            const scale = chart.options.scales[scaleKey];
+                            if (scale.ticks) scale.ticks.color = tickColor;
+                            if (scale.grid) scale.grid.color = gridColor;
+                        });
+                    }
+                    
+                    chart.update();
+                }
+            });
+        }
+
+        // Initialize Animations
+        function initializeAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('addModal');
-            if (event.target === modal) {
-                closeAddModal();
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('addProductModal');
+            if (e.target === modal) {
+                closeAddProductModal();
             }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAddProductModal();
+            }
+        });
+
+        // Show notification message
+        function showNotification(message, type = 'success') {
+            const notificationDiv = document.createElement('div');
+            notificationDiv.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-lg transition-all duration-300 animate-slide-left notification`;
+            
+            // Add background and text color based on type
+            switch (type) {
+                case 'success':
+                    notificationDiv.classList.add('bg-green-100', 'dark:bg-green-900/30', 'text-green-800', 'dark:text-green-300');
+                    break;
+                case 'info':
+                    notificationDiv.classList.add('bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-800', 'dark:text-blue-300');
+                    break;
+                case 'warning':
+                    notificationDiv.classList.add('bg-yellow-100', 'dark:bg-yellow-900/30', 'text-yellow-800', 'dark:text-yellow-300');
+                    break;
+                case 'error':
+                    notificationDiv.classList.add('bg-red-100', 'dark:bg-red-900/30', 'text-red-800', 'dark:text-red-300');
+                    break;
+                default:
+                    notificationDiv.classList.add('bg-gray-100', 'dark:bg-gray-900/30', 'text-gray-800', 'dark:text-gray-300');
+            }
+
+            notificationDiv.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-check-circle text-lg"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            document.body.appendChild(notificationDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                notificationDiv.style.opacity = '0';
+                setTimeout(() => {
+                    notificationDiv.remove();
+                }, 300);
+            }, 5000);
         }
-
-        // Navigation search functionality
-        document.getElementById('navSearch').addEventListener('keyup', function(event) {
-            if (event.key === 'Enter') {
-                const searchTerm = this.value;
-                alert('Navigation search for: ' + searchTerm);
-                // Implement navigation search logic here
-            }
-        });
-
-        // Initialize table on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            renderTable();
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.remove('active');
-            });
-        });
-
-        
     </script>
-    
 </body>
-
-
 </html>

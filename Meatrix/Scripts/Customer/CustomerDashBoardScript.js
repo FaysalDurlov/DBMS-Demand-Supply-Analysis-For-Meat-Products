@@ -1,78 +1,94 @@
 class CustomerDataManager {
   constructor() {
-    this.orders = JSON.parse(localStorage.getItem("customerOrders") || "[]")
+    this.orders = this.initializeOrders()
     this.products = this.initializeProducts()
     this.vendors = this.initializeVendors()
     this.nutritionData = this.initializeNutritionData()
+    this.loadData()
   }
 
   initializeProducts() {
     return [
       {
-        id: "beef001",
+        id: "PROD-BF-001",
         name: "Premium Beef Steak",
         type: "beef",
         vendor: "Green Valley Farm",
         price: 28.99,
         unit: "kg",
-        description: "Premium grass-fed beef steak, perfect for grilling",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description:
+          "Premium grass-fed beef steak, perfect for grilling. Aged for 21 days for maximum tenderness and flavor.",
+        stock: 15,
       },
       {
-        id: "chicken001",
+        id: "PROD-CH-001",
         name: "Free Range Chicken Breast",
         type: "chicken",
         vendor: "Sunny Side Poultry",
         price: 15.99,
         unit: "kg",
-        description: "Fresh free-range chicken breast, hormone-free",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description: "Fresh free-range chicken breast, hormone-free. Raised on natural pastures with no antibiotics.",
+        stock: 20,
       },
       {
-        id: "pork001",
+        id: "PROD-PK-001",
         name: "Organic Pork Chops",
         type: "pork",
         vendor: "Heritage Farms",
         price: 22.5,
         unit: "kg",
-        description: "Organic pork chops from heritage breed pigs",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description: "Organic pork chops from heritage breed pigs. Raised without hormones or antibiotics.",
+        stock: 8,
       },
       {
-        id: "lamb001",
+        id: "PROD-LB-001",
         name: "Fresh Lamb Leg",
         type: "lamb",
         vendor: "Mountain View Ranch",
         price: 32.99,
         unit: "kg",
-        description: "Fresh lamb leg, perfect for roasting",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description: "Fresh lamb leg, perfect for roasting. Grass-fed and locally sourced from mountain pastures.",
+        stock: 5,
       },
       {
-        id: "goat001",
+        id: "PROD-GT-001",
         name: "Goat Meat Curry Cut",
         type: "goat",
         vendor: "Desert Winds Farm",
         price: 26.75,
         unit: "kg",
-        description: "Fresh goat meat cut for curry, lean and flavorful",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description: "Fresh goat meat cut for curry, lean and flavorful. Raised on natural desert vegetation.",
+        stock: 12,
       },
       {
-        id: "beef002",
+        id: "PROD-BF-002",
         name: "Ground Beef",
         type: "beef",
         vendor: "Green Valley Farm",
         price: 18.99,
         unit: "kg",
-        description: "Fresh ground beef, 85% lean",
-        inStock: true,
-        image: "/placeholder.svg?height=200&width=300",
+        description: "Fresh ground beef, 85% lean. Perfect for burgers, meatballs, and everyday cooking.",
+        stock: 25,
+      },
+      {
+        id: "PROD-CH-002",
+        name: "Whole Chicken",
+        type: "chicken",
+        vendor: "Sunny Side Poultry",
+        price: 12.99,
+        unit: "kg",
+        description: "Fresh whole chicken, free-range and organic. Perfect for roasting or breaking down into parts.",
+        stock: 18,
+      },
+      {
+        id: "PROD-PK-002",
+        name: "Pork Shoulder",
+        type: "pork",
+        vendor: "Heritage Farms",
+        price: 19.99,
+        unit: "kg",
+        description: "Pork shoulder perfect for slow cooking, pulled pork, or braising. Well-marbled for flavor.",
+        stock: 10,
       },
     ]
   }
@@ -84,45 +100,151 @@ class CustomerDataManager {
         name: "Green Valley Farm",
         location: "Valley Springs, CA",
         specialties: ["Beef", "Lamb"],
-        rating: 4.8,
-        description: "Family-owned farm specializing in grass-fed beef and lamb",
+        description: "Family-owned farm specializing in grass-fed beef and lamb with sustainable farming practices",
         contact: "(555) 123-4567",
+        email: "info@greenvalleyfarm.com",
+        address: "1234 Valley Road, Valley Springs, CA 95252",
+        businessHours: "Mon-Fri: 8AM-6PM, Sat: 9AM-4PM",
+        active: true,
       },
       {
         id: "vendor002",
         name: "Sunny Side Poultry",
         location: "Riverside, CA",
         specialties: ["Chicken", "Turkey"],
-        rating: 4.6,
-        description: "Free-range poultry farm with organic certification",
+        description: "Free-range poultry farm with organic certification and humane animal treatment",
         contact: "(555) 234-5678",
+        email: "orders@sunnysidepoultry.com",
+        address: "5678 Farm Lane, Riverside, CA 92501",
+        businessHours: "Mon-Sat: 7AM-7PM, Sun: 10AM-3PM",
+        active: true,
       },
       {
         id: "vendor003",
         name: "Heritage Farms",
         location: "Oak Hill, CA",
         specialties: ["Pork", "Beef"],
-        rating: 4.7,
-        description: "Heritage breed livestock with sustainable farming practices",
+        description: "Heritage breed livestock with sustainable farming practices and traditional methods",
         contact: "(555) 345-6789",
+        email: "contact@heritagefarms.com",
+        address: "9012 Heritage Way, Oak Hill, CA 93456",
+        businessHours: "Tue-Sat: 9AM-5PM",
+        active: true,
       },
       {
         id: "vendor004",
         name: "Mountain View Ranch",
         location: "Pine Ridge, CA",
         specialties: ["Lamb", "Goat"],
-        rating: 4.9,
-        description: "High-altitude ranch producing premium lamb and goat meat",
+        description: "High-altitude ranch producing premium lamb and goat meat with natural grazing",
         contact: "(555) 456-7890",
+        email: "sales@mountainviewranch.com",
+        address: "3456 Mountain Road, Pine Ridge, CA 94567",
+        businessHours: "Mon-Fri: 8AM-5PM, Sat: 9AM-2PM",
+        active: true,
       },
       {
         id: "vendor005",
         name: "Desert Winds Farm",
         location: "Cactus Valley, CA",
         specialties: ["Goat", "Lamb"],
-        rating: 4.5,
-        description: "Specialized goat and lamb farm with traditional methods",
+        description: "Specialized goat and lamb farm with traditional methods and desert-adapted livestock",
         contact: "(555) 567-8901",
+        email: "info@desertwindsfarm.com",
+        address: "7890 Desert Road, Cactus Valley, CA 95678",
+        businessHours: "Wed-Sun: 10AM-6PM",
+        active: false,
+      },
+    ]
+  }
+
+  initializeOrders() {
+    return [
+      {
+        id: "ORD-2024-001",
+        productId: "PROD-BF-001",
+        productName: "Premium Beef Steak",
+        vendor: "Green Valley Farm",
+        quantity: 2.5,
+        pricePerUnit: 28.99,
+        total: 72.48,
+        orderDate: "2024-01-15",
+        status: "Delivered",
+        estimatedDelivery: "2024-01-18",
+        actualDelivery: "2024-01-17",
+        deliveryAddress: "123 Main St, Anytown, CA 90210",
+        trackingNumber: "TRK001234567",
+      },
+      {
+        id: "ORD-2024-002",
+        productId: "PROD-CH-001",
+        productName: "Free Range Chicken Breast",
+        vendor: "Sunny Side Poultry",
+        quantity: 3.0,
+        pricePerUnit: 15.99,
+        total: 47.97,
+        orderDate: "2024-01-12",
+        status: "In Transit",
+        estimatedDelivery: "2024-01-16",
+        deliveryAddress: "456 Oak Ave, Riverside, CA 92501",
+        trackingNumber: "TRK001234568",
+      },
+      {
+        id: "ORD-2024-003",
+        productId: "PROD-PK-001",
+        productName: "Organic Pork Chops",
+        vendor: "Heritage Farms",
+        quantity: 1.5,
+        pricePerUnit: 22.5,
+        total: 33.75,
+        orderDate: "2024-01-10",
+        status: "Processing",
+        estimatedDelivery: "2024-01-14",
+        deliveryAddress: "789 Pine St, Oak Hill, CA 93456",
+        trackingNumber: "TRK001234569",
+      },
+      {
+        id: "ORD-2024-004",
+        productId: "PROD-LB-001",
+        productName: "Fresh Lamb Leg",
+        vendor: "Mountain View Ranch",
+        quantity: 4.0,
+        pricePerUnit: 32.99,
+        total: 131.96,
+        orderDate: "2024-01-08",
+        status: "Delivered",
+        estimatedDelivery: "2024-01-12",
+        actualDelivery: "2024-01-11",
+        deliveryAddress: "321 Mountain View Dr, Pine Ridge, CA 94567",
+        trackingNumber: "TRK001234570",
+      },
+      {
+        id: "ORD-2024-005",
+        productId: "PROD-GT-001",
+        productName: "Goat Meat Curry Cut",
+        vendor: "Desert Winds Farm",
+        quantity: 2.0,
+        pricePerUnit: 26.75,
+        total: 53.5,
+        orderDate: "2024-01-05",
+        status: "Cancelled",
+        estimatedDelivery: "2024-01-09",
+        deliveryAddress: "654 Desert Road, Cactus Valley, CA 95678",
+        trackingNumber: "TRK001234571",
+      },
+      {
+        id: "ORD-2024-006",
+        productId: "PROD-BF-002",
+        productName: "Ground Beef",
+        vendor: "Green Valley Farm",
+        quantity: 5.0,
+        pricePerUnit: 18.99,
+        total: 94.95,
+        orderDate: "2024-01-20",
+        status: "Pending",
+        estimatedDelivery: "2024-01-24",
+        deliveryAddress: "987 Valley View Ln, Valley Springs, CA 95252",
+        trackingNumber: "TRK001234572",
       },
     ]
   }
@@ -137,6 +259,14 @@ class CustomerDataManager {
     }
   }
 
+  loadData() {
+    // Load data from localStorage or use initialized data
+    const savedOrders = localStorage.getItem("customerOrders")
+    if (savedOrders) {
+      this.orders = JSON.parse(savedOrders)
+    }
+  }
+
   saveData() {
     localStorage.setItem("customerOrders", JSON.stringify(this.orders))
   }
@@ -148,6 +278,7 @@ class CustomerDataManager {
       orderDate: new Date().toISOString().split("T")[0],
       status: "Pending",
       estimatedDelivery: this.calculateDeliveryDate(),
+      trackingNumber: this.generateTrackingNumber(),
     }
     this.orders.unshift(order)
     this.saveData()
@@ -155,7 +286,13 @@ class CustomerDataManager {
   }
 
   generateOrderId() {
-    return `ORD${Date.now()}${Math.random().toString(36).substr(2, 5)}`
+    const year = new Date().getFullYear()
+    const orderNumber = String(this.orders.length + 1).padStart(3, "0")
+    return `ORD-${year}-${orderNumber}`
+  }
+
+  generateTrackingNumber() {
+    return `TRK${Date.now().toString().slice(-9)}`
   }
 
   calculateDeliveryDate() {
@@ -171,7 +308,9 @@ class CustomerDataManager {
   getStats() {
     const totalOrders = this.orders.length
     const totalSpent = this.orders.reduce((sum, order) => sum + Number.parseFloat(order.total || 0), 0)
-    const pendingOrders = this.orders.filter((order) => order.status === "Pending").length
+    const pendingOrders = this.orders.filter(
+      (order) => order.status === "Pending" || order.status === "Processing" || order.status === "In Transit",
+    ).length
     const favoriteVendor = this.getFavoriteVendor()
 
     return {
@@ -210,10 +349,14 @@ class CustomerDataManager {
 
 class CustomerDashboard {
   constructor() {
+    this.dataManager = new CustomerDataManager()
     this.isExpanded = false
     this.hoverTimeout = null
-    this.dataManager = new CustomerDataManager()
-    this.init()
+    this.currentFilters = {
+      search: "",
+      type: "all",
+      price: "all",
+    }
   }
 
   init() {
@@ -222,9 +365,12 @@ class CustomerDashboard {
     this.header = document.getElementById("header")
     this.headerTitle = document.getElementById("headerTitle")
     this.content = document.getElementById("content")
+
     this.setupEventListeners()
     this.updateDashboard()
-    this.showSection("dashboard")
+    this.loadProducts()
+    this.loadVendors()
+    this.updateOrdersTable()
   }
 
   setupEventListeners() {
@@ -287,7 +433,8 @@ class CustomerDashboard {
     const productSearch = document.getElementById("productSearch")
     if (productSearch) {
       productSearch.addEventListener("input", (e) => {
-        this.filterProducts(e.target.value, "search")
+        this.currentFilters.search = e.target.value
+        this.filterProducts()
       })
     }
 
@@ -295,7 +442,8 @@ class CustomerDashboard {
     const meatTypeFilter = document.getElementById("meatTypeFilter")
     if (meatTypeFilter) {
       meatTypeFilter.addEventListener("change", (e) => {
-        this.filterProducts(e.target.value, "type")
+        this.currentFilters.type = e.target.value
+        this.filterProducts()
       })
     }
 
@@ -303,19 +451,20 @@ class CustomerDashboard {
     const priceRangeFilter = document.getElementById("priceRangeFilter")
     if (priceRangeFilter) {
       priceRangeFilter.addEventListener("change", (e) => {
-        this.filterProducts(e.target.value, "price")
+        this.currentFilters.price = e.target.value
+        this.filterProducts()
       })
     }
   }
 
   handlePlaceOrder(formData) {
     const orderData = {
-      productId: formData.get("orderProductId"),
+      productId: formData.get("orderProductId") || document.getElementById("orderForm").dataset.productId,
       productName: formData.get("orderProductName"),
       vendor: formData.get("orderVendor"),
-      quantity: Number.parseFloat(formData.get("orderQuantity")),
-      pricePerUnit: Number.parseFloat(formData.get("orderPrice")),
-      total: Number.parseFloat(formData.get("orderTotal")),
+      quantity: Number.parseFloat(formData.get("orderQuantity")) || 0,
+      pricePerUnit: Number.parseFloat(formData.get("orderPrice").replace("$", "")) || 0,
+      total: Number.parseFloat(formData.get("orderTotal").replace("$", "")) || 0,
       deliveryAddress: formData.get("deliveryAddress"),
     }
 
@@ -370,97 +519,69 @@ class CustomerDashboard {
       .join("")
   }
 
-  updateProductsGrid() {
-    const productsGrid = document.getElementById("productsGrid")
-    const products = this.dataManager.products
+  loadProducts() {
+    const productsTableBody = document.getElementById("productsTableBody")
+    if (!productsTableBody) return
 
-    productsGrid.innerHTML = products
+    const productsHTML = this.dataManager.products
       .map(
         (product) => `
-        <div class="product-card" data-type="${product.type}" data-price="${product.price}">
-          <div class="product-image">
-            <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: #f3f4f6; color: var(--text-secondary);">
-              ${product.name}
-            </div>
-          </div>
-          <div class="product-info">
-            <div class="product-name">${product.name}</div>
-            <div class="product-vendor">by ${product.vendor}</div>
-            <div class="product-price">$${product.price}/${product.unit}</div>
-            <div class="product-actions">
-              <button class="btn-outline" onclick="showProductDetails('${product.id}')">View Details</button>
-              <button class="btn-primary" onclick="showOrderModal('${product.id}')">Order Now</button>
-            </div>
-          </div>
-        </div>
-      `,
-      )
-      .join("")
-  }
-
-  updateVendorsGrid() {
-    const vendorsGrid = document.getElementById("vendorsGrid")
-    const vendors = this.dataManager.vendors
-
-    vendorsGrid.innerHTML = vendors
-      .map(
-        (vendor) => `
-        <div class="vendor-card">
-          <div class="vendor-header">
-            <div class="vendor-name">${vendor.name}</div>
-            <div class="vendor-location">${vendor.location}</div>
-          </div>
-          <div class="vendor-info">
-            <div class="vendor-specialties">
-              <h4>Specialties</h4>
-              <div class="specialties-list">
-                ${vendor.specialties.map((specialty) => `<span class="specialty-tag">${specialty}</span>`).join("")}
-              </div>
-            </div>
-            <div class="vendor-rating">
-              <div class="rating-stars">★★★★★</div>
-              <span class="rating-text">${vendor.rating}/5.0</span>
-            </div>
-            <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
-              ${vendor.description}
-            </p>
-            <button class="btn-primary" onclick="contactVendor('${vendor.id}')">Contact Vendor</button>
-          </div>
-        </div>
-      `,
-      )
-      .join("")
-  }
-
-  updateOrdersTable() {
-    const tbody = document.getElementById("ordersTableBody")
-    const orders = this.dataManager.orders
-
-    if (orders.length === 0) {
-      tbody.innerHTML =
-        '<tr class="empty-state"><td colspan="8">No orders yet. Start shopping to see your orders here.</td></tr>'
-      return
-    }
-
-    tbody.innerHTML = orders
-      .map(
-        (order) => `
-        <tr>
-          <td>${order.id}</td>
-          <td>${order.vendor}</td>
-          <td>${order.productName}</td>
-          <td>$${order.total}</td>
-          <td><span class="badge badge-${this.getStatusBadgeClass(order.status)}">${order.status}</span></td>
-          <td>${order.orderDate}</td>
-          <td>${order.estimatedDelivery}</td>
+        <tr class="products-table-row" data-type="${product.type}" data-price="${product.price}" data-name="${product.name.toLowerCase()}" data-vendor="${product.vendor.toLowerCase()}">
+          <td>
+            <strong>${product.name}</strong>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">ID: ${product.id}</div>
+          </td>
+          <td>${product.vendor}</td>
+          <td>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</td>
+          <td><strong>$${product.price}</strong></td>
+          <td>${product.unit}</td>
+          <td>
+            <span class="status-badge ${product.stock > 0 ? (product.stock < 10 ? "status-limited" : "status-available") : "status-out-of-stock"}">
+              ${product.stock > 0 ? (product.stock < 10 ? "Limited Stock" : "Available") : "Out of Stock"}
+            </span>
+          </td>
           <td>
             <div class="action-buttons">
-              <button class="btn-icon" title="Track Order" onclick="trackOrderById('${order.id}')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
+              <button class="btn-outline" onclick="showProductDetails('${product.id}')">View Details</button>
+              <button class="btn-primary" onclick="showOrderModal('${product.id}')" ${product.stock === 0 ? "disabled" : ""}>Order</button>
+            </div>
+          </td>
+        </tr>
+      `,
+      )
+      .join("")
+
+    productsTableBody.innerHTML =
+      productsHTML || '<tr class="empty-state"><td colspan="7">No products available</td></tr>'
+  }
+
+  loadVendors() {
+    const vendorsTableBody = document.getElementById("vendorsTableBody")
+    if (!vendorsTableBody) return
+
+    const vendorsHTML = this.dataManager.vendors
+      .map(
+        (vendor) => `
+        <tr>
+          <td><strong>${vendor.name}</strong></td>
+          <td>${vendor.location}</td>
+          <td>
+            <div class="specialty-tags">
+              ${vendor.specialties.map((specialty) => `<span class="specialty-tag">${specialty}</span>`).join("")}
+            </div>
+          </td>
+          <td>
+            <span class="status-badge ${vendor.active ? "status-active" : "status-inactive"}">
+              ${vendor.active ? "Active" : "Inactive"}
+            </span>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-secondary" onclick="showVendorContactModal('${vendor.id}')">
+                Contact
+              </button>
+              <button class="btn-primary" onclick="viewVendorProducts('${vendor.id}')">
+                View Products
               </button>
             </div>
           </td>
@@ -468,44 +589,41 @@ class CustomerDashboard {
       `,
       )
       .join("")
+
+    vendorsTableBody.innerHTML = vendorsHTML || '<tr class="empty-state"><td colspan="5">No vendors available</td></tr>'
   }
 
-  getStatusBadgeClass(status) {
-    switch (status.toLowerCase()) {
-      case "delivered":
-        return "success"
-      case "pending":
-        return "warning"
-      case "cancelled":
-        return "danger"
-      default:
-        return "info"
-    }
-  }
+  filterProducts() {
+    const productRows = document.querySelectorAll("#productsTableBody tr:not(.empty-state)")
 
-  filterProducts(searchTerm, filterType) {
-    const productCards = document.querySelectorAll(".product-card")
-
-    productCards.forEach((card) => {
+    productRows.forEach((row) => {
       let shouldShow = true
 
-      if (filterType === "search" && searchTerm) {
-        const productName = card.querySelector(".product-name").textContent.toLowerCase()
-        const vendorName = card.querySelector(".product-vendor").textContent.toLowerCase()
-        shouldShow = productName.includes(searchTerm.toLowerCase()) || vendorName.includes(searchTerm.toLowerCase())
-      } else if (filterType === "type" && searchTerm !== "all") {
-        shouldShow = card.dataset.type === searchTerm
-      } else if (filterType === "price" && searchTerm !== "all") {
-        const price = Number.parseFloat(card.dataset.price)
-        const [min, max] = searchTerm.split("-").map((p) => Number.parseFloat(p.replace("+", "")))
-        if (searchTerm.includes("+")) {
-          shouldShow = price >= min
+      // Search filter
+      if (this.currentFilters.search) {
+        const searchTerm = this.currentFilters.search.toLowerCase()
+        const productName = row.dataset.name || ""
+        const vendorName = row.dataset.vendor || ""
+        shouldShow = shouldShow && (productName.includes(searchTerm) || vendorName.includes(searchTerm))
+      }
+
+      // Type filter
+      if (this.currentFilters.type !== "all") {
+        shouldShow = shouldShow && row.dataset.type === this.currentFilters.type
+      }
+
+      // Price filter
+      if (this.currentFilters.price !== "all") {
+        const price = Number.parseFloat(row.dataset.price)
+        const [min, max] = this.currentFilters.price.split("-").map((p) => Number.parseFloat(p.replace("+", "")))
+        if (this.currentFilters.price.includes("+")) {
+          shouldShow = shouldShow && price >= min
         } else {
-          shouldShow = price >= min && price <= max
+          shouldShow = shouldShow && price >= min && price <= max
         }
       }
 
-      card.style.display = shouldShow ? "" : "none"
+      row.style.display = shouldShow ? "" : "none"
     })
   }
 
@@ -573,7 +691,7 @@ class CustomerDashboard {
         break
       case "products":
         sectionId = "products-section"
-        this.updateProductsGrid()
+        this.loadProducts()
         break
       case "orders":
         sectionId = "orders-section"
@@ -584,7 +702,7 @@ class CustomerDashboard {
         break
       case "vendors":
         sectionId = "vendors-section"
-        this.updateVendorsGrid()
+        this.loadVendors()
         break
       case "settings":
         sectionId = "settings-section"
@@ -613,6 +731,49 @@ class CustomerDashboard {
     this.header.classList.remove("expanded")
     this.headerTitle.classList.remove("hidden")
   }
+
+  updateOrdersTable() {
+    const ordersTableBody = document.getElementById("ordersTableBody")
+    if (!ordersTableBody) return
+
+    if (this.dataManager.orders.length === 0) {
+      ordersTableBody.innerHTML =
+        '<tr class="empty-state"><td colspan="8">No orders yet. Start shopping to see your orders here.</td></tr>'
+      return
+    }
+
+    const ordersHTML = this.dataManager.orders
+      .map(
+        (order) => `
+        <tr>
+          <td><strong>${order.id}</strong></td>
+          <td>${order.vendor}</td>
+          <td>${order.productName} (${order.quantity} kg)</td>
+          <td>$${order.total.toFixed(2)}</td>
+          <td>
+            <span class="status-badge status-${order.status.toLowerCase().replace(" ", "-")}">
+              ${order.status}
+            </span>
+          </td>
+          <td>${order.orderDate}</td>
+          <td>${order.estimatedDelivery}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-secondary" onclick="trackSpecificOrder('${order.id}')">
+                Track
+              </button>
+              <button class="btn-primary" onclick="viewOrderDetails('${order.id}')">
+                Details
+              </button>
+            </div>
+          </td>
+        </tr>
+      `,
+      )
+      .join("")
+
+    ordersTableBody.innerHTML = ordersHTML
+  }
 }
 
 // Global functions
@@ -624,17 +785,19 @@ function showProductDetails(productId) {
   const content = document.getElementById("productDetailsContent")
 
   content.innerHTML = `
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
-      <div>
-        <img src="${product.image}" alt="${product.name}" style="width: 100%; border-radius: 8px;" onerror="this.style.display='none';">
-      </div>
-      <div>
-        <h3 style="margin-bottom: 12px;">${product.name}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 8px;">by ${product.vendor}</p>
-        <p style="font-size: 24px; font-weight: 700; color: var(--primary-color); margin-bottom: 16px;">$${product.price}/${product.unit}</p>
-        <p style="margin-bottom: 16px;">${product.description}</p>
-        <div style="display: flex; gap: 12px;">
-          <button class="btn-primary" onclick="showOrderModal('${product.id}'); closeModal('productDetailsModal')">Order Now</button>
+    <div class="product-details-grid">
+      <div class="product-details-info">
+        <h3>${product.name}</h3>
+        <p class="product-details-vendor">by ${product.vendor}</p>
+        <p class="product-details-price">$${product.price}/${product.unit}</p>
+        <p class="product-details-description">${product.description}</p>
+        <div style="margin-bottom: 16px;">
+          <strong>Product ID:</strong> ${product.id}<br>
+          <strong>Type:</strong> ${product.type.charAt(0).toUpperCase() + product.type.slice(1)}<br>
+          <strong>Stock:</strong> ${product.stock > 0 ? `${product.stock} ${product.unit}s available` : "Out of stock"}
+        </div>
+        <div class="product-details-actions">
+          <button class="btn-primary" onclick="showOrderModal('${product.id}'); closeModal('productDetailsModal')" ${product.stock === 0 ? "disabled" : ""}>Order Now</button>
           <button class="btn-secondary" onclick="closeModal('productDetailsModal')">Close</button>
         </div>
       </div>
@@ -665,44 +828,101 @@ function closeModal(modalId) {
   document.getElementById(modalId).classList.remove("active")
 }
 
-function trackOrder() {
-  const orderId = document.getElementById("trackOrderId").value.trim()
-  if (!orderId) {
-    alert("Please enter an Order ID")
-    return
-  }
-
-  trackOrderById(orderId)
-}
-
-function trackOrderById(orderId) {
+function trackSpecificOrder(orderId) {
   const order = dashboard.dataManager.getOrderById(orderId)
-  const resultDiv = document.getElementById("trackingResult")
-
   if (!order) {
-    resultDiv.innerHTML = `
-      <div style="padding: 16px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #991b1b;">
-        Order ID "${orderId}" not found. Please check the Order ID and try again.
-      </div>
-    `
+    alert("Order not found!")
     return
   }
 
-  resultDiv.innerHTML = `
-    <div style="padding: 16px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;">
-      <h4 style="margin-bottom: 12px; color: var(--primary-color);">Order Details</h4>
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; font-size: 14px;">
-        <div><strong>Order ID:</strong> ${order.id}</div>
-        <div><strong>Status:</strong> <span class="badge badge-${dashboard.getStatusBadgeClass(order.status)}">${order.status}</span></div>
-        <div><strong>Product:</strong> ${order.productName}</div>
-        <div><strong>Vendor:</strong> ${order.vendor}</div>
-        <div><strong>Quantity:</strong> ${order.quantity}kg</div>
-        <div><strong>Total:</strong> $${order.total}</div>
-        <div><strong>Order Date:</strong> ${order.orderDate}</div>
-        <div><strong>Est. Delivery:</strong> ${order.estimatedDelivery}</div>
+  const orderDetailsContent = `
+    <div class="order-tracking-details">
+      <div class="tracking-header">
+        <h4>Order Tracking Information</h4>
+        <div class="order-status">
+          <span class="status-badge status-${order.status.toLowerCase().replace(" ", "-")}">${order.status}</span>
+        </div>
+      </div>
+      
+      <div class="tracking-info-grid">
+        <div class="info-section">
+          <h5>Order Information</h5>
+          <p><strong>Order ID:</strong> ${order.id}</p>
+          <p><strong>Tracking Number:</strong> ${order.trackingNumber}</p>
+          <p><strong>Product:</strong> ${order.productName}</p>
+          <p><strong>Vendor:</strong> ${order.vendor}</p>
+          <p><strong>Quantity:</strong> ${order.quantity} kg</p>
+          <p><strong>Total:</strong> $${order.total.toFixed(2)}</p>
+        </div>
+        
+        <div class="info-section">
+          <h5>Delivery Information</h5>
+          <p><strong>Order Date:</strong> ${order.orderDate}</p>
+          <p><strong>Estimated Delivery:</strong> ${order.estimatedDelivery}</p>
+          ${order.actualDelivery ? `<p><strong>Actual Delivery:</strong> ${order.actualDelivery}</p>` : ""}
+          <p><strong>Delivery Address:</strong> ${order.deliveryAddress}</p>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal('orderDetailsModal')">Close</button>
       </div>
     </div>
   `
+
+  document.getElementById("orderDetailsContent").innerHTML = orderDetailsContent
+  document.getElementById("orderDetailsModal").classList.add("active")
+}
+
+function viewOrderDetails(orderId) {
+  const order = dashboard.dataManager.getOrderById(orderId)
+  if (!order) {
+    alert("Order not found!")
+    return
+  }
+
+  const modal = document.getElementById("orderDetailsModal")
+  const content = document.getElementById("orderDetailsContent")
+
+  content.innerHTML = `
+    <div class="order-details-grid" style="display: grid; gap: 20px;">
+      <div class="order-info-section">
+        <h4>Order Information</h4>
+        <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+          <p><strong>Order ID:</strong> ${order.id}</p>
+          <p><strong>Tracking Number:</strong> ${order.trackingNumber}</p>
+          <p><strong>Order Date:</strong> ${order.orderDate}</p>
+          <p><strong>Status:</strong> <span class="status-badge status-${order.status.toLowerCase().replace(" ", "-")}">${order.status}</span></p>
+        </div>
+      </div>
+      
+      <div class="product-info-section">
+        <h4>Product Details</h4>
+        <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+          <p><strong>Product:</strong> ${order.productName}</p>
+          <p><strong>Vendor:</strong> ${order.vendor}</p>
+          <p><strong>Quantity:</strong> ${order.quantity} kg</p>
+          <p><strong>Price per kg:</strong> $${order.pricePerUnit.toFixed(2)}</p>
+          <p><strong>Total Amount:</strong> $${order.total.toFixed(2)}</p>
+        </div>
+      </div>
+      
+      <div class="delivery-info-section">
+        <h4>Delivery Information</h4>
+        <div style="background: #f9fafb; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+          <p><strong>Delivery Address:</strong> ${order.deliveryAddress}</p>
+          <p><strong>Estimated Delivery:</strong> ${order.estimatedDelivery}</p>
+          ${order.actualDelivery ? `<p><strong>Actual Delivery:</strong> ${order.actualDelivery}</p>` : ""}
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+      <button class="btn-secondary" onclick="closeModal('orderDetailsModal')">Close</button>
+      <button class="btn-primary" onclick="trackSpecificOrder('${order.id}')">Track Order</button>
+    </div>
+  `
+
+  modal.classList.add("active")
 }
 
 function calculateNutrition() {
@@ -752,11 +972,62 @@ function calculateNutrition() {
   `
 }
 
-function contactVendor(vendorId) {
+function viewVendorProducts(vendorId) {
   const vendor = dashboard.dataManager.vendors.find((v) => v.id === vendorId)
   if (vendor) {
-    alert(`Contact ${vendor.name} at ${vendor.contact}`)
+    // Switch to products section and filter by vendor
+    dashboard.showSection("products")
+    const productSearch = document.getElementById("productSearch")
+    if (productSearch) {
+      productSearch.value = vendor.name
+      dashboard.currentFilters.search = vendor.name
+      dashboard.filterProducts()
+    }
   }
+}
+
+function showVendorContactModal(vendorId) {
+  const vendor = dashboard.dataManager.vendors.find((v) => v.id === vendorId)
+  if (!vendor) return
+
+  document.getElementById("vendorContactName").textContent = vendor.name
+  document.getElementById("vendorContactLocation").textContent = vendor.location
+  document.getElementById("vendorContactSpecialties").textContent = vendor.specialties.join(", ")
+  document.getElementById("vendorContactStatus").textContent = vendor.active ? "Active" : "Inactive"
+  document.getElementById("vendorContactPhone").textContent = vendor.contact
+  document.getElementById("vendorContactEmail").textContent = vendor.email
+  document.getElementById("vendorContactAddress").textContent = vendor.address
+  document.getElementById("vendorContactHours").textContent = vendor.businessHours
+  document.getElementById("vendorContactDescription").textContent = vendor.description
+
+  document.getElementById("vendorContactModal").classList.add("active")
+}
+
+function trackOrder() {
+  const orderId = document.getElementById("trackOrderId").value.trim()
+  const resultDiv = document.getElementById("trackingResult")
+
+  if (!orderId) {
+    resultDiv.innerHTML = '<p style="color: #dc2626;">Please enter an Order ID</p>'
+    return
+  }
+
+  const order = dashboard.dataManager.getOrderById(orderId)
+  if (!order) {
+    resultDiv.innerHTML = '<p style="color: #dc2626;">Order not found. Please check the Order ID and try again.</p>'
+    return
+  }
+
+  resultDiv.innerHTML = `
+    <div style="background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 16px; margin-top: 12px;">
+      <h4 style="margin-bottom: 12px; color: #0369a1;">Order Found!</h4>
+      <p><strong>Order ID:</strong> ${order.id}</p>
+      <p><strong>Status:</strong> <span class="status-badge status-${order.status.toLowerCase().replace(" ", "-")}">${order.status}</span></p>
+      <p><strong>Product:</strong> ${order.productName}</p>
+      <p><strong>Estimated Delivery:</strong> ${order.estimatedDelivery}</p>
+      ${order.trackingNumber ? `<p><strong>Tracking Number:</strong> ${order.trackingNumber}</p>` : ""}
+    </div>
+  `
 }
 
 // Global dashboard instance
@@ -765,22 +1036,12 @@ let dashboard
 // Initialize dashboard when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   dashboard = new CustomerDashboard()
+  dashboard.init()
 })
 
 // Close modals when clicking outside
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("modal-overlay")) {
     e.target.classList.remove("active")
-  }
-})
-
-// Add form data to order form submission
-document.addEventListener("DOMContentLoaded", () => {
-  const orderForm = document.getElementById("orderForm")
-  if (orderForm) {
-    orderForm.addEventListener("submit", (e) => {
-      const formData = new FormData(orderForm)
-      formData.append("orderProductId", orderForm.dataset.productId)
-    })
   }
 })

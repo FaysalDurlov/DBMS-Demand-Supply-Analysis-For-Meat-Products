@@ -1,0 +1,72 @@
+const animalData = [
+  {
+    animalId: "A1001", 
+    animalName: "Daisy", 
+    animalType: "cattle", 
+    breed: "Holstein", 
+    gender: "female",
+    currentWeight: 480, 
+    feedType: "corn silage", 
+    dailyFeedQuantity: 12, 
+    feedCostPerUnit: .25,
+    purchaseDate: "2025-06-01", 
+    lastVaccination: "2025-07-01", 
+    vaccinationType: "FMD"
+  },
+  {
+    animalId: "A1002", 
+    animalName: "Billy", 
+    animalType: "goat", 
+    breed: "Boer", 
+    gender: "male",
+    currentWeight: 65, 
+    feedType: "grass", 
+    dailyFeedQuantity: 4, 
+    feedCostPerUnit: 0.18,
+    purchaseDate: "2025-06-10", 
+    lastVaccination: "2025-07-15", 
+    vaccinationType: "PPR"
+  },
+  {
+    animalId: "A1003", 
+    animalName: "Luna", 
+    animalType: "sheep", 
+    breed: "Merino", 
+    gender: "female",
+    currentWeight: 55, 
+    feedType: "alfalfa", 
+    dailyFeedQuantity: 3.5, 
+    feedCostPerUnit: 0.22,
+    purchaseDate: "2025-06-20", 
+    lastVaccination: "2025-07-10", 
+    vaccinationType: "Clostridial"
+  },
+  {
+    animalId: "A1004", 
+    animalName: "Max", 
+    animalType: "cattle", 
+    breed: "Angus", 
+    gender: "male",
+    currentWeight: 530, 
+    feedType: "grain", 
+    dailyFeedQuantity: 14, 
+    feedCostPerUnit: 0.30,
+    purchaseDate: "2025-05-15", 
+    lastVaccination: "2025-07-05", 
+    vaccinationType: "Brucellosis"
+  },
+  {
+    animalId: "A1005", 
+    animalName: "Milo", 
+    animalType: "goat", 
+    breed: "Kiko", 
+    gender: "male",
+    currentWeight: 60, 
+    feedType: "hay", 
+    dailyFeedQuantity: 3, 
+    feedCostPerUnit: 0.20,
+    purchaseDate: "2025-06-25", 
+    lastVaccination: "2025-07-12", 
+    vaccinationType: "Tetanus"
+  }
+];

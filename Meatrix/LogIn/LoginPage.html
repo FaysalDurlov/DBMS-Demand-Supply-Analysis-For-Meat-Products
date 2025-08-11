@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meatrix - Livestock Management System</title>
-    <link rel="stylesheet" href="../Styles/LogIn/LoginPageDesign.css">
+    <link rel="stylesheet" href="../Styles/Login/LoginPageDesign.css">
 </head>
 <body>
     <div class="main-container">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <!-- Right Side - Login Forms -->
+                <!-- Right Side - Forms -->
                 <div class="form-section">
                     <div class="form-card">
                         <!-- Login Step -->
@@ -126,34 +126,15 @@
                                     </button>
                                 </form>
 
-                                <!-- FIXED DIVIDER -->
-                                <div class="divider">
-                                    <span class="divider-text">or continue with</span>
-                                </div>
-
-                                <!-- FIXED GOOGLE BUTTON -->
-                                <button type="button" class="btn btn-outline google-btn" id="googleSignInBtn">
-                                    <div class="google-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24">
-                                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="btn-text">Continue with Google</span>
-                                </button>
-
                                 <div class="help-links">
-                                    <button type="button" class="help-link">Forgot password?</button>
-                                    <span>•</span>
-                                    <button type="button" class="help-link">Need help?</button>
+                                    <span>Don't have an account?</span>
+                                    <button type="button" class="help-link" id="switchToSignup">Sign up</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Profile Creation Step -->
-                        <div id="profileStep" class="step-container">
+                        <!-- Signup Step -->
+                        <div id="signupStep" class="step-container">
                             <div class="step-content profile-content">
                                 <div class="step-header">
                                     <svg class="sparkles-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -163,95 +144,108 @@
                                     <p>Let's set up your Meatrix account</p>
                                 </div>
 
-                                <div id="googleUserInfo" class="google-user-info hidden">
-                                    <img id="googleUserAvatar" src="/placeholder.svg" alt="Profile" class="user-avatar">
-                                    <div class="user-details">
-                                        <p id="googleUserName" class="user-name"></p>
-                                        <p id="googleUserEmail" class="user-email"></p>
-                                    </div>
-                                </div>
-
-                                <form id="profileForm" class="profile-form">
+                                <form id="signupForm" class="profile-form">
                                     <div class="form-group">
-                                        <label class="form-label">Your Generated ID</label>
-                                        <div class="id-input-container">
-                                            <input type="text" id="generatedId" class="form-input id-input" readonly>
-                                            <button type="button" class="btn-regenerate" id="regenerateBtn">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <polyline points="1 4 1 10 7 10"/>
-                                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <p class="form-hint">This ID will be used to log in to your account</p>
+                                        <label for="userEmail" class="form-label">Email Address</label>
+                                        <input type="email" id="userEmail" class="form-input" placeholder="Enter your email address" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="userType" class="form-label">User Type</label>
+                                        <select id="userType" class="form-input" required>
+                                            <!-- This will be Updated From JS using UpdateUserTypeComboBox() -->
+                                        </select>
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group">
-                                            <label class="form-label">Password</label>
+                                            <label for="userPassword" class="form-label">Password</label>
                                             <input type="password" id="userPassword" class="form-input" placeholder="Create password" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Confirm</label>
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
                                             <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm password" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Farm Name</label>
-                                            <input type="text" id="farmName" class="form-input" placeholder="Your farm name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Location</label>
-                                            <input type="text" id="location" class="form-input" placeholder="Your location">
                                         </div>
                                     </div>
                                 </form>
 
                                 <div class="form-actions">
-                                    <button type="button" class="btn btn-outline" id="backBtn">Back</button>
+                                    <button type="button" class="btn btn-outline" id="backBtn">
+                                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M19 12H5"/>
+                                            <polyline points="12 19 5 12 12 5"/>
+                                        </svg>
+                                        Back
+                                    </button>
                                     <button type="button" class="btn btn-primary" id="createAccountBtn">
                                         <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <line x1="5" y1="12" x2="19" y2="12"/>
                                             <polyline points="12 5 19 12 12 19"/>
                                         </svg>
-                                        <span class="btn-text">Create Account</span>
+                                        <span class="btn-text">Sign Up</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Success Step -->
-                        <div id="successStep" class="step-container">
-                            <div class="step-content success-content">
-                                <div class="success-icon">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                        <polyline points="22 4 12 14.01 9 11.01"/>
-                                    </svg>
-                                </div>
-                                <h2>Welcome to Meatrix!</h2>
-                                <p>Your account has been created successfully</p>
-
-                                <div id="userIdDisplay" class="user-id-display">
-                                    <div class="id-info">
-                                        <span class="id-label">Your Login ID:</span>
-                                        <span id="displayUserId" class="id-value"></span>
-                                    </div>
-                                    <p class="id-hint">Save this ID for future logins</p>
-                                </div>
-
-                                <button type="button" class="btn btn-primary" id="proceedBtn">
-                                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"/>
-                                        <polyline points="12 5 19 12 12 19"/>
-                                    </svg>
-                                    <span class="btn-text">Continue to Meatrix</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Popup Modal -->
+        <div id="successPopup" class="popup-overlay hidden">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="success-icon-small">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <h2>Account Created Successfully!</h2>
+                    <p>Welcome to Meatrix! Here are your login details:</p>
+                </div>
+
+                <div class="login-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Your Email:</div>
+                        <div class="detail-value" id="popupUserEmail">john@example.com</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Your User ID:</div>
+                        <div class="detail-value" id="popupUserId">john123</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Role:</div>
+                        <div class="detail-value" id="popupUserType">Farmer</div>
+                    </div>
+                </div>
+
+                <div class="popup-note">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+                    <span>You can login using either your <strong>User ID</strong> or <strong>Email Address</strong></span>
+                </div>
+
+                <div class="popup-actions">
+                    <button type="button" class="btn btn-outline" id="copyDetailsBtn">
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                        </svg>
+                        Copy Details
+                    </button>
+                    <button type="button" class="btn btn-primary" id="proceedToLoginBtn">
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                            <polyline points="10 17 15 12 10 7"/>
+                            <line x1="15" y1="12" x2="3" y2="12"/>
+                        </svg>
+                        Go to Login
+                    </button>
                 </div>
             </div>
         </div>
@@ -261,13 +255,13 @@
             <div class="loading-content">
                 <div class="loading-spinner"></div>
                 <div class="loading-text">
-                    <h3 id="loadingTitle">Authenticating...</h3>
-                    <p id="loadingSubtitle">Please wait while we verify your credentials</p>
+                    <h3 id="loadingTitle">Processing...</h3>
+                    <p id="loadingSubtitle">Please wait while we process your request</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../Scripts/Login/LoginPageScript.js"></script>
+    <script type="module" src="../Scripts/Login/LoginPageScript.js"></script>
 </body>
 </html>

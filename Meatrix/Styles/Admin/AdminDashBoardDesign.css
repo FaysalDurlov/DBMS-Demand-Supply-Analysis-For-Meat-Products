@@ -434,34 +434,6 @@ body {
   font-style: italic;
 }
 
-.quick-actions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.quick-action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px;
-  background: var(--sidebar-hover);
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.quick-action-btn:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
 /* Tabs Styles */
 .tabs-container {
   margin-top: 24px;
@@ -639,7 +611,6 @@ body {
 
 .data-table th.sortable {
   cursor: pointer;
-  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -848,7 +819,8 @@ body {
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   padding: 8px 12px;
   border: 1px solid var(--card-border);
   border-radius: 4px;
@@ -857,26 +829,71 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--primary-color);
 }
 
-/* Placeholder Content */
-.placeholder-content {
-  max-width: 800px;
-  margin: 0 auto;
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-/* SVG Icon Styles */
-svg {
-  flex-shrink: 0;
+/* Nutrition Calculator Styles */
+.nutrition-calculator {
+  margin-bottom: 20px;
 }
 
-.card-header svg {
-  width: 16px;
-  height: 16px;
-  opacity: 0.7;
+.nutrition-results {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nutrition-item:last-child {
+  border-bottom: none;
+}
+
+.nutrition-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.nutrition-value {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* Analytics Grid */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.analytics-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* Responsive Design */
@@ -937,16 +954,16 @@ svg {
     padding: 8px;
   }
 
-  .quick-actions {
-    grid-template-columns: 1fr;
-  }
-
   .modal {
     width: 95%;
     margin: 20px;
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -968,5 +985,51 @@ svg {
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* SVG Icon Styles */
+svg {
+  flex-shrink: 0;
+}
+
+.card-header svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

@@ -248,6 +248,10 @@
                                         <h4>Available Products</h4>
                                     </div>
                                     <div class="card-content">
+                                        <!-- Added search input for customer products table -->
+                                        <div class="search-container">
+                                            <input type="text" id="customerProductsSearch" class="search-input" placeholder="Search products by name, category, vendor..." onkeyup="searchTable('customerProductsTable', 'customerProductsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="customerProductsTable">
                                                 <thead>
@@ -328,6 +332,10 @@
                             <div class="tab-content" id="customer-orders-tab">
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for customer orders table -->
+                                        <div class="search-container">
+                                            <input type="text" id="customerOrdersSearch" class="search-input" placeholder="Search orders by ID, customer, product..." onkeyup="searchTable('customerOrdersTable', 'customerOrdersSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="customerOrdersTable">
                                                 <thead>
@@ -387,6 +395,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for animal records table -->
+                                        <div class="search-container">
+                                            <input type="text" id="animalRecordsSearch" class="search-input" placeholder="Search animals by ID, type, breed..." onkeyup="searchTable('animalRecordsTable', 'animalRecordsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="animalRecordsTable">
                                                 <thead>
@@ -425,6 +437,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for sales records table -->
+                                        <div class="search-container">
+                                            <input type="text" id="salesRecordsSearch" class="search-input" placeholder="Search sales by ID, animal ID, buyer..." onkeyup="searchTable('salesRecordsTable', 'salesRecordsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="salesRecordsTable">
                                                 <thead>
@@ -450,17 +466,12 @@
 
                             <!-- Purchase Records Tab -->
                             <div class="tab-content" id="purchase-records-tab">
-                                <div class="tab-header">
-                                    <h3>Purchase Records</h3>
-                                    <button class="btn-primary" onclick="showAddPurchaseModal()">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M12 5v14M5 12h14"/>
-                                        </svg>
-                                        Add Purchase Record
-                                    </button>
-                                </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for purchase records table -->
+                                        <div class="search-container">
+                                            <input type="text" id="purchaseRecordsSearch" class="search-input" placeholder="Search purchases by ID, animal ID, seller..." onkeyup="searchTable('purchaseRecordsTable', 'purchaseRecordsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="purchaseRecordsTable">
                                                 <thead>
@@ -491,6 +502,10 @@
                                         <h4>Available Animals from Other Farmers</h4>
                                     </div>
                                     <div class="card-content">
+                                        <!-- Added search input for farm marketplace table -->
+                                        <div class="search-container">
+                                            <input type="text" id="farmMarketplaceSearch" class="search-input" placeholder="Search animals by ID, seller, type, breed..." onkeyup="searchTable('farmMarketplaceTable', 'farmMarketplaceSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="farmMarketplaceTable">
                                                 <thead>
@@ -525,6 +540,10 @@
                                     <div class="card-content">
                                         <div class="chart-container">
                                             <canvas id="marketTrendChart" width="400" height="200"></canvas>
+                                        </div>
+                                        <!-- Added search input for market prices table -->
+                                        <div class="search-container">
+                                            <input type="text" id="marketPricesSearch" class="search-input" placeholder="Search market prices by animal type..." onkeyup="searchTable('marketPricesTable', 'marketPricesSearch')">
                                         </div>
                                         <div class="table-container">
                                             <table class="data-table" id="marketPricesTable">
@@ -579,6 +598,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for vendor products table -->
+                                        <div class="search-container">
+                                            <input type="text" id="vendorProductsSearch" class="search-input" placeholder="Search products by ID, name, category..." onkeyup="searchTable('vendorProductsTable', 'vendorProductsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="vendorProductsTable">
                                                 <thead>
@@ -607,6 +630,10 @@
                             <div class="tab-content" id="vendor-orders-tab">
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for vendor orders table -->
+                                        <div class="search-container">
+                                            <input type="text" id="vendorOrdersSearch" class="search-input" placeholder="Search orders by ID, customer, product..." onkeyup="searchTable('vendorOrdersTable', 'vendorOrdersSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="vendorOrdersTable">
                                                 <thead>
@@ -666,6 +693,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for slaughter records table -->
+                                        <div class="search-container">
+                                            <input type="text" id="slaughterRecordsSearch" class="search-input" placeholder="Search records by batch ID, animal ID, type..." onkeyup="searchTable('slaughterRecordsTable', 'slaughterRecordsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="slaughterRecordsTable">
                                                 <thead>
@@ -697,6 +728,10 @@
                                         <h4>Available Animals from Farms</h4>
                                     </div>
                                     <div class="card-content">
+                                        <!-- Added search input for animal intake table -->
+                                        <div class="search-container">
+                                            <input type="text" id="animalIntakeSearch" class="search-input" placeholder="Search animals by ID, farmer, type, breed..." onkeyup="searchTable('animalIntakeTable', 'animalIntakeSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="animalIntakeTable">
                                                 <thead>
@@ -734,6 +769,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for warehouse storage table -->
+                                        <div class="search-container">
+                                            <input type="text" id="warehouseStorageSearch" class="search-input" placeholder="Search storage by ID, batch ID, meat type..." onkeyup="searchTable('warehouseStorageTable', 'warehouseStorageSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="warehouseStorageTable">
                                                 <thead>
@@ -763,6 +802,10 @@
                             <div class="tab-content" id="agent-orders-tab">
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for agent orders table -->
+                                        <div class="search-container">
+                                            <input type="text" id="agentOrdersSearch" class="search-input" placeholder="Search orders by ID, agent, meat type..." onkeyup="searchTable('agentOrdersTable', 'agentOrdersSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="agentOrdersTable">
                                                 <thead>
@@ -793,6 +836,10 @@
                             <div class="tab-content" id="distribution-tab">
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for distribution table -->
+                                        <div class="search-container">
+                                            <input type="text" id="distributionSearch" class="search-input" placeholder="Search distribution by ID, order ID, agent..." onkeyup="searchTable('distributionTable', 'distributionSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="distributionTable">
                                                 <thead>
@@ -845,11 +892,15 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M12 5v14M5 12h14"/>
                                         </svg>
-                                        Order Meat Batch
+                                        Add Purchase
                                     </button>
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for meat purchases table -->
+                                        <div class="search-container">
+                                            <input type="text" id="meatPurchasesSearch" class="search-input" placeholder="Search purchases by ID, butcher, meat type..." onkeyup="searchTable('meatPurchasesTable', 'meatPurchasesSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="meatPurchasesTable">
                                                 <thead>
@@ -880,6 +931,10 @@
                             <div class="tab-content" id="agent-warehouse-tab">
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for agent warehouse table -->
+                                        <div class="search-container">
+                                            <input type="text" id="agentWarehouseSearch" class="search-input" placeholder="Search warehouse by batch ID, meat type, location..." onkeyup="searchTable('agentWarehouseTable', 'agentWarehouseSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="agentWarehouseTable">
                                                 <thead>
@@ -917,6 +972,10 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-content">
+                                        <!-- Added search input for agent products table -->
+                                        <div class="search-container">
+                                            <input type="text" id="agentProductsSearch" class="search-input" placeholder="Search products by ID, name, meat type..." onkeyup="searchTable('agentProductsTable', 'agentProductsSearch')">
+                                        </div>
                                         <div class="table-container">
                                             <table class="data-table" id="agentProductsTable">
                                                 <thead>

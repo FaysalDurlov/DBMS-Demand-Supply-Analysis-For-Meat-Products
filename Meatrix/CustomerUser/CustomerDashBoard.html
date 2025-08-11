@@ -247,9 +247,24 @@
                             </div>
                         </div>
 
-                        <!-- Products Grid -->
-                        <div class="products-grid" id="productsGrid">
-                            <!-- Products will be dynamically loaded here -->
+                        <!-- Products Table -->
+                        <div class="table-container">
+                            <table class="data-table" id="productsTable">
+                                <thead>
+                                    <tr>
+                                        <th class="sortable">Product Name</th>
+                                        <th class="sortable">Vendor</th>
+                                        <th class="sortable">Type</th>
+                                        <th class="sortable">Price</th>
+                                        <th>Unit</th>
+                                        <th>Stock Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody">
+                                    <!-- Products will be dynamically loaded here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -294,9 +309,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="ordersTableBody">
-                                            <tr class="empty-state">
-                                                <td colspan="8">No orders yet. Start shopping to see your orders here.</td>
-                                            </tr>
+                                            <!-- Orders will be dynamically loaded here -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -426,8 +439,22 @@
                             </div>
                         </div>
 
-                        <div class="vendors-grid" id="vendorsGrid">
-                            <!-- Vendors will be dynamically loaded here -->
+                        <!-- Vendors Table -->
+                        <div class="table-container">
+                            <table class="data-table" id="vendorsTable">
+                                <thead>
+                                    <tr>
+                                        <th class="sortable">Vendor Name</th>
+                                        <th>Location</th>
+                                        <th>Specialties</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vendorsTableBody">
+                                    <!-- Vendors will be dynamically loaded here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -457,9 +484,39 @@
                 <h3>Product Details</h3>
                 <button class="modal-close" onclick="closeModal('productDetailsModal')">&times;</button>
             </div>
+            <div class="modal-body" id="productDetailsContent">
+                <!-- Product details will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Contact Modal -->
+    <div class="modal-overlay" id="vendorContactModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="vendorContactTitle">Vendor Contact Details</h3>
+                <button class="modal-close" onclick="closeModal('vendorContactModal')">&times;</button>
+            </div>
             <div class="modal-body">
-                <div id="productDetailsContent">
-                    <!-- Product details will be loaded here -->
+                <div class="vendor-contact-info">
+                    <div class="contact-section">
+                        <h4>Business Information</h4>
+                        <p><strong>Name:</strong> <span id="vendorContactName"></span></p>
+                        <p><strong>Location:</strong> <span id="vendorContactLocation"></span></p>
+                        <p><strong>Specialties:</strong> <span id="vendorContactSpecialties"></span></p>
+                        <p><strong>Status:</strong> <span id="vendorContactStatus"></span></p>
+                    </div>
+                    <div class="contact-section">
+                        <h4>Contact Information</h4>
+                        <p><strong>Phone:</strong> <span id="vendorContactPhone"></span></p>
+                        <p><strong>Email:</strong> <span id="vendorContactEmail"></span></p>
+                        <p><strong>Address:</strong> <span id="vendorContactAddress"></span></p>
+                        <p><strong>Business Hours:</strong> <span id="vendorContactHours"></span></p>
+                        <p><strong>Description:</strong> <span id="vendorContactDescription"></span></p>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="closeModal('vendorContactModal')">Close</button>
                 </div>
             </div>
         </div>
@@ -505,6 +562,19 @@
                         <button type="submit" class="btn-primary">Place Order</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal-overlay" id="orderDetailsModal">
+        <div class="modal slide">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <button class="modal-close" onclick="closeModal('orderDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="orderDetailsContent">
+                <!-- Order details will be dynamically loaded here -->
             </div>
         </div>
     </div>

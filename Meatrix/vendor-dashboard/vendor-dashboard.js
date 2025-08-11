@@ -253,16 +253,6 @@ class VendorDashboard {
   }
 
   handleAddProduct(formData) {
-    const imageFile = formData.get("productImage")
-    let imageUrl = null
-
-    // Handle image upload (for demo, we'll use a placeholder)
-    if (imageFile && imageFile.size > 0) {
-      // In a real application, you would upload this to a server
-      // For demo purposes, we'll create a placeholder URL
-      imageUrl = URL.createObjectURL(imageFile)
-    }
-
     const product = {
       productName: formData.get("productName"),
       productSKU: formData.get("productSKU"),
@@ -277,7 +267,6 @@ class VendorDashboard {
       expiryDate: formData.get("expiryDate"),
       storageLocation: formData.get("storageLocation"),
       description: formData.get("description"),
-      imageUrl: imageUrl,
     }
 
     this.dataManager.addFinishedProduct(product)
@@ -355,38 +344,7 @@ class VendorDashboard {
       return
     }
 
-    tbody.innerHTML = orders
-      .map(
-        (order) => `
-      <tr>
-        <td>${order.orderId}</td>
-        <td>${order.agentName}</td>
-        <td>${order.meatType}</td>
-        <td>${order.animalType}</td>
-        <td>${order.quantity}</td>
-        <td>$${order.totalPrice}</td>
-        <td>${new Date(order.dateOrdered).toLocaleDateString()}</td>
-        <td><span class="badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
-        <td>
-          <div class="action-buttons">
-            <button class="btn-icon" title="View Details" onclick="viewOrderDetails('${order.orderId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
-            <button class="btn-icon" title="Update Status" onclick="showUpdateStatusModal('${order.orderId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </button>
-          </div>
-        </td>
-      </tr>
-    `,
-      )
-      .join("")
+    tbody.innerHTML = orders.map((order) => ``).join("")
   }
 
   updateProductsTable() {
@@ -412,34 +370,7 @@ class VendorDashboard {
           statusBadge = '<span class="badge badge-warning">Expiring Soon</span>'
         }
 
-        return `
-      <tr>
-        <td>${product.productId}</td>
-        <td>${product.productName}</td>
-        <td>${product.productType}</td>
-        <td>${product.sourceBatchId || "N/A"}</td>
-        <td>${product.productQuantity} ${product.unit}</td>
-        <td>${new Date(product.createdDate).toLocaleDateString()}</td>
-        <td>${new Date(product.expiryDate).toLocaleDateString()}</td>
-        <td>${statusBadge}</td>
-        <td>
-          <div class="action-buttons">
-            <button class="btn-icon" title="View Details" onclick="viewProductDetails('${product.productId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
-            <button class="btn-icon" title="Edit" onclick="editProduct('${product.productId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </button>
-          </div>
-        </td>
-      </tr>
-    `
+        return ``
       })
       .join("")
   }
@@ -452,38 +383,7 @@ class VendorDashboard {
       return
     }
 
-    tbody.innerHTML = orders
-      .map(
-        (order) => `
-      <tr>
-        <td>${order.orderId}</td>
-        <td>${order.customerName}</td>
-        <td>${order.productName}</td>
-        <td>${order.quantity}</td>
-        <td>$${order.totalPrice}</td>
-        <td>${new Date(order.dateOrdered).toLocaleDateString()}</td>
-        <td>${order.deliveryDate ? new Date(order.deliveryDate).toLocaleDateString() : "TBD"}</td>
-        <td><span class="badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
-        <td>
-          <div class="action-buttons">
-            <button class="btn-icon" title="View Details" onclick="viewCustomerOrderDetails('${order.orderId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </button>
-            <button class="btn-icon" title="Update Status" onclick="updateCustomerOrderStatus('${order.orderId}')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </button>
-          </div>
-        </td>
-      </tr>
-    `,
-      )
-      .join("")
+    tbody.innerHTML = orders.map((order) => ``).join("")
   }
 
   updateInventoryTable() {
@@ -500,17 +400,7 @@ class VendorDashboard {
 
     // Add raw meat inventory
     rawOrders.forEach((order) => {
-      inventoryHTML += `
-        <tr>
-          <td>Raw Meat</td>
-          <td>${order.orderId}</td>
-          <td>${order.quantity}</td>
-          <td>kg</td>
-          <td><span class="badge badge-info">In Stock</span></td>
-          <td>N/A</td>
-          <td>Cold Storage</td>
-        </tr>
-      `
+      inventoryHTML += ``
     })
 
     // Add finished products inventory
@@ -527,17 +417,7 @@ class VendorDashboard {
         statusBadge = '<span class="badge badge-warning">Expiring Soon</span>'
       }
 
-      inventoryHTML += `
-        <tr>
-          <td>Finished Product</td>
-          <td>${product.productId}</td>
-          <td>${product.productQuantity}</td>
-          <td>${product.unit}</td>
-          <td>${statusBadge}</td>
-          <td>${new Date(product.expiryDate).toLocaleDateString()}</td>
-          <td>${product.storageLocation || "Main Storage"}</td>
-        </tr>
-      `
+      inventoryHTML += ``
     })
 
     tbody.innerHTML = inventoryHTML
@@ -610,6 +490,13 @@ class VendorDashboard {
     if (catalogTypeFilter) {
       catalogTypeFilter.addEventListener("change", (e) => {
         this.filterProductCatalog(e.target.value, "type")
+      })
+    }
+
+    const catalogStatusFilter = document.getElementById("catalogStatusFilter")
+    if (catalogStatusFilter) {
+      catalogStatusFilter.addEventListener("change", (e) => {
+        this.filterProductCatalog(e.target.value, "status")
       })
     }
   }
@@ -804,126 +691,98 @@ class VendorDashboard {
   }
 
   filterProductCatalog(searchTerm, filterType) {
-    const productCards = document.querySelectorAll(".product-card")
+    const table = document.getElementById("productCatalogTable")
+    if (!table) return
+    const tbody = table.querySelector("tbody")
+    const rows = tbody.querySelectorAll("tr:not(.empty-state)")
 
-    productCards.forEach((card) => {
+    rows.forEach((row) => {
+      const cells = row.querySelectorAll("td")
       let shouldShow = true
 
       if (filterType === "search" && searchTerm) {
-        const productName = card.querySelector(".product-name").textContent.toLowerCase()
-        const productSKU = card.querySelector(".product-sku").textContent.toLowerCase()
-        shouldShow = productName.includes(searchTerm.toLowerCase()) || productSKU.includes(searchTerm.toLowerCase())
+        const searchText = Array.from(cells)
+          .slice(0, -1) // Exclude actions column
+          .map((cell) => cell.textContent.toLowerCase())
+          .join(" ")
+        shouldShow = searchText.includes(searchTerm.toLowerCase())
       } else if (filterType === "type" && searchTerm !== "all") {
-        const productType = card.querySelector(".product-detail-item span:last-child").textContent.toLowerCase()
-        shouldShow = productType.includes(searchTerm.toLowerCase())
+        const typeCell = cells[3] // Type column
+        const typeText = typeCell.textContent.toLowerCase()
+        shouldShow = typeText.includes(searchTerm.toLowerCase())
+      } else if (filterType === "status" && searchTerm !== "all") {
+        const statusCell = cells[7] // Status column
+        const statusText = statusCell.textContent.toLowerCase()
+        shouldShow = statusText.includes(searchTerm.toLowerCase())
       }
 
-      card.style.display = shouldShow ? "" : "none"
+      row.style.display = shouldShow ? "" : "none"
     })
   }
 
   updateProductCatalog() {
-    const catalogGrid = document.getElementById("productCatalogGrid")
+    const catalogBody = document.getElementById("productCatalogBody")
     const products = this.dataManager.finishedProducts
 
     if (products.length === 0) {
-      catalogGrid.innerHTML = `
-        <div class="catalog-empty-state">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-          <h3>No Products Yet</h3>
-          <p>Start by adding your first product to the catalog</p>
-          <button class="btn-primary" onclick="showAddProductModal()">Add Product</button>
-        </div>
+      catalogBody.innerHTML = `
+        <tr class="empty-state">
+          <td colspan="10">No products in catalog yet. Click "Add Product" to add your first product.</td>
+        </tr>
       `
       return
     }
 
-    catalogGrid.innerHTML = products
-      .map((product) => {
-        const expiryDate = new Date(product.expiryDate)
-        const today = new Date()
-        const isExpired = expiryDate < today
-        const isExpiringSoon = expiryDate <= new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
-
-        let statusBadge = `<span class="product-status-badge badge-success">Available</span>`
-        let expiryWarning = ""
-
-        if (isExpired) {
-          statusBadge = `<span class="product-status-badge badge-danger">Expired</span>`
-          expiryWarning = `<div class="product-expiry-danger">⚠️ Expired</div>`
-        } else if (isExpiringSoon) {
-          statusBadge = `<span class="product-status-badge badge-warning">Expiring Soon</span>`
-          expiryWarning = `<div class="product-expiry-warning">⏰ Expires Soon</div>`
-        }
-
-        const imageUrl = product.imageUrl || "/placeholder.svg?height=200&width=280"
-
-        return `
-        <div class="product-card">
-          <div class="product-image-container">
-            ${
-              product.imageUrl
-                ? `<img src="${product.imageUrl}" alt="${product.productName}" class="product-image">`
-                : `<div class="product-placeholder">🥩</div>`
-            }
-            ${statusBadge}
-          </div>
-          <div class="product-info">
-            <div class="product-header">
-              <h3 class="product-name">${product.productName}</h3>
-              <span class="product-sku">${product.productSKU || product.productId}</span>
-            </div>
-            
-            ${product.category ? `<span class="product-category-tag">${product.category}</span>` : ""}
-            
-            <div class="product-price">$${product.displayPrice || product.pricePerUnit}</div>
-            
-            <div class="product-details">
-              <div class="product-detail-item">
-                <span class="product-detail-label">Type:</span>
-                <span>${product.productType}</span>
-              </div>
-              <div class="product-detail-item">
-                <span class="product-detail-label">Quantity:</span>
-                <span>${product.productQuantity} ${product.unit}</span>
-              </div>
-              <div class="product-detail-item">
-                <span class="product-detail-label">Expiry:</span>
-                <span>${new Date(product.expiryDate).toLocaleDateString()}</span>
-              </div>
-              <div class="product-detail-item">
-                <span class="product-detail-label">Location:</span>
-                <span>${product.storageLocation || "Main Storage"}</span>
-              </div>
-            </div>
-            
-            ${expiryWarning}
-            
-            <div class="product-actions">
-              <button class="product-action-btn primary" onclick="viewProductDetails('${product.productId}')">
+    catalogBody.innerHTML = products
+      .map(
+        (product) => `
+        <tr>
+          <td><span class="product-id">${product.productId}</span></td>
+          <td><strong>${product.productName}</strong></td>
+          <td><span class="product-sku">${product.productSKU || "N/A"}</span></td>
+          <td>${product.productType}</td>
+          <td><span class="badge badge-info">${product.category || "General"}</span></td>
+          <td>${product.productQuantity} ${product.unit}</td>
+          <td><strong>$${product.displayPrice || product.pricePerUnit}</strong></td>
+          <td><span class="badge ${this.getStatusBadgeClass(product.status)}">${product.status}</span></td>
+          <td>${new Date(product.expiryDate).toLocaleDateString()}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-sm btn-primary" onclick="viewProductDetails('${product.productId}')" title="View Details">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                   <circle cx="12" cy="12" r="3"/>
                 </svg>
-                View
               </button>
-              <button class="product-action-btn secondary" onclick="editProduct('${product.productId}')">
+              <button class="btn-sm btn-secondary" onclick="editProduct('${product.productId}')" title="Edit">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                 </svg>
-                Edit
               </button>
             </div>
-          </div>
-        </div>
-      `
-      })
+          </td>
+        </tr>
+      `,
+      )
       .join("")
+  }
+
+  getStatusBadgeClass(status) {
+    switch (status.toLowerCase()) {
+      case "pending":
+        return "badge-warning"
+      case "processing":
+        return "badge-info"
+      case "ready":
+        return "badge-success"
+      case "delivered":
+        return "badge-success"
+      case "expired":
+        return "badge-danger"
+      default:
+        return "badge-secondary"
+    }
   }
 }
 
@@ -946,44 +805,192 @@ function closeModal(modalId) {
 }
 
 // Global functions for button actions
-function viewOrderDetails(orderId) {
-  const order = vendorDashboard.dataManager.rawOrders.find((o) => o.orderId === orderId)
-  if (order) {
-    alert(
-      `Order Details:\n\nOrder ID: ${order.orderId}\nAgent: ${order.agentName}\nMeat Type: ${order.meatType}\nQuantity: ${order.quantity}kg\nTotal Price: $${order.totalPrice}\nStatus: ${order.status}\nExpected Delivery: ${order.expectedDelivery}`,
-    )
-  }
-}
-
 function viewProductDetails(productId) {
   const product = vendorDashboard.dataManager.finishedProducts.find((p) => p.productId === productId)
-  if (product) {
-    alert(
-      `Product Details:\n\nProduct ID: ${product.productId}\nName: ${product.productName}\nType: ${product.productType}\nQuantity: ${product.productQuantity} ${product.unit}\nPrice: $${product.pricePerUnit} per ${product.unit}\nExpiry Date: ${new Date(product.expiryDate).toLocaleDateString()}`,
-    )
-  }
+  if (!product) return
+
+  const modalContent = document.getElementById("productDetailsContent")
+  modalContent.innerHTML = `
+    <div class="product-details-grid">
+      <div class="detail-section">
+        <h4>Basic Information</h4>
+        <div class="detail-row">
+          <span class="detail-label">Product ID:</span>
+          <span class="detail-value">${product.productId}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Product Name:</span>
+          <span class="detail-value">${product.productName}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">SKU:</span>
+          <span class="detail-value">${product.productSKU || "N/A"}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Type:</span>
+          <span class="detail-value">${product.productType}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Category:</span>
+          <span class="detail-value">${product.category || "General"}</span>
+        </div>
+      </div>
+      
+      <div class="detail-section">
+        <h4>Inventory & Pricing</h4>
+        <div class="detail-row">
+          <span class="detail-label">Quantity:</span>
+          <span class="detail-value">${product.productQuantity} ${product.unit}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Price per Unit:</span>
+          <span class="detail-value">$${product.pricePerUnit}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Display Price:</span>
+          <span class="detail-value">$${product.displayPrice || product.pricePerUnit}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status:</span>
+          <span class="badge ${vendorDashboard.getStatusBadgeClass(product.status)}">${product.status}</span>
+        </div>
+      </div>
+      
+      <div class="detail-section">
+        <h4>Dates & Storage</h4>
+        <div class="detail-row">
+          <span class="detail-label">Created Date:</span>
+          <span class="detail-value">${new Date(product.dateCreated).toLocaleDateString()}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Expiry Date:</span>
+          <span class="detail-value">${new Date(product.expiryDate).toLocaleDateString()}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Storage Location:</span>
+          <span class="detail-value">${product.storageLocation || "N/A"}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Source Batch:</span>
+          <span class="detail-value">${product.sourceBatchId || "N/A"}</span>
+        </div>
+      </div>
+      
+      ${
+        product.description
+          ? `
+      <div class="detail-section full-width">
+        <h4>Description</h4>
+        <p class="product-description">${product.description}</p>
+      </div>
+      `
+          : ""
+      }
+    </div>
+  `
+
+  document.getElementById("productDetailsModal").classList.add("active")
 }
 
-function viewCustomerOrderDetails(orderId) {
-  const order = vendorDashboard.dataManager.customerOrders.find((o) => o.orderId === orderId)
-  if (order) {
-    alert(
-      `Customer Order Details:\n\nOrder ID: ${order.orderId}\nCustomer: ${order.customerName}\nProduct: ${order.productName}\nQuantity: ${order.quantity}\nTotal Price: $${order.totalPrice}\nStatus: ${order.status}`,
-    )
-  }
+function viewOrderDetails(orderId) {
+  const order = vendorDashboard.dataManager.rawOrders.find((o) => o.orderId === orderId)
+  if (!order) return
+
+  const modalContent = document.getElementById("orderDetailsContent")
+  modalContent.innerHTML = `
+    <div class="order-details-grid">
+      <div class="detail-section">
+        <h4>Order Information</h4>
+        <div class="detail-row">
+          <span class="detail-label">Order ID:</span>
+          <span class="detail-value">${order.orderId}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Agent Name:</span>
+          <span class="detail-value">${order.agentName}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Order Date:</span>
+          <span class="detail-value">${new Date(order.dateOrdered).toLocaleDateString()}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Status:</span>
+          <span class="badge ${vendorDashboard.getStatusBadgeClass(order.status)}">${order.status}</span>
+        </div>
+      </div>
+      
+      <div class="detail-section">
+        <h4>Product Details</h4>
+        <div class="detail-row">
+          <span class="detail-label">Meat Type:</span>
+          <span class="detail-value">${order.meatType}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Animal Type:</span>
+          <span class="detail-value">${order.animalType}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Quantity:</span>
+          <span class="detail-value">${order.quantity} kg</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Price per kg:</span>
+          <span class="detail-value">$${order.pricePerKg}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Total Price:</span>
+          <span class="detail-value"><strong>$${order.totalPrice}</strong></span>
+        </div>
+      </div>
+      
+      ${
+        order.specialRequirements
+          ? `
+      <div class="detail-section full-width">
+        <h4>Special Requirements</h4>
+        <p class="order-notes">${order.specialRequirements}</p>
+      </div>
+      `
+          : ""
+      }
+      
+      ${
+        order.notes
+          ? `
+      <div class="detail-section full-width">
+        <h4>Notes</h4>
+        <p class="order-notes">${order.notes}</p>
+      </div>
+      `
+          : ""
+      }
+    </div>
+  `
+
+  document.getElementById("orderDetailsModal").classList.add("active")
 }
 
 function editProduct(productId) {
-  alert(`Edit product functionality for ${productId} - Coming soon!`)
-}
+  const product = vendorDashboard.dataManager.finishedProducts.find((p) => p.productId === productId)
+  if (!product) return
 
-function updateCustomerOrderStatus(orderId) {
-  const newStatus = prompt("Enter new status (pending, processing, ready, delivered):")
-  if (newStatus && ["pending", "processing", "ready", "delivered"].includes(newStatus.toLowerCase())) {
-    vendorDashboard.dataManager.updateCustomerOrderStatus(orderId, newStatus.toLowerCase())
-    vendorDashboard.updateCustomerOrdersTable()
-    vendorDashboard.updateDashboard()
-  }
+  // Populate the edit form with current product data
+  document.getElementById("editProductName").value = product.productName
+  document.getElementById("editProductSKU").value = product.productSKU || ""
+  document.getElementById("editProductType").value = product.productType
+  document.getElementById("editCategory").value = product.category || ""
+  document.getElementById("editProductQuantity").value = product.productQuantity
+  document.getElementById("editUnit").value = product.unit
+  document.getElementById("editPricePerUnit").value = product.pricePerUnit
+  document.getElementById("editDisplayPrice").value = product.displayPrice || product.pricePerUnit
+  document.getElementById("editExpiryDate").value = product.expiryDate
+  document.getElementById("editStatus").value = product.status
+  document.getElementById("editDescription").value = product.description || ""
+
+  // Store the product ID for form submission
+  document.getElementById("editProductForm").dataset.productId = productId
+
+  document.getElementById("editProductModal").classList.add("active")
 }
 
 // Global dashboard instance
@@ -999,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Add sample data for demonstration
 function addSampleData() {
-  // Add sample raw orders
+  // Add sample raw orders with more variety
   const sampleOrders = [
     {
       agentName: "Premium Meat Suppliers",
@@ -1019,18 +1026,47 @@ function addSampleData() {
       expectedDelivery: "2024-02-20",
       specialRequirements: "Organic certification needed",
     },
+    {
+      agentName: "Mountain Ranch Co.",
+      meatType: "lamb",
+      animalType: "Merino",
+      quantity: "30",
+      pricePerKg: "12.25",
+      expectedDelivery: "2024-02-18",
+      specialRequirements: "Halal certified",
+    },
+    {
+      agentName: "Coastal Poultry Farm",
+      meatType: "chicken",
+      animalType: "Broiler",
+      quantity: "100",
+      pricePerKg: "6.75",
+      expectedDelivery: "2024-02-22",
+      specialRequirements: "Free-range only",
+    },
+    {
+      agentName: "Valley Livestock",
+      meatType: "pork",
+      animalType: "Yorkshire",
+      quantity: "40",
+      pricePerKg: "9.80",
+      expectedDelivery: "2024-02-25",
+      specialRequirements: "No antibiotics",
+    },
   ]
 
   sampleOrders.forEach((order) => {
     vendorDashboard.dataManager.addRawOrder(order)
   })
 
-  // Update first order status to delivered
+  // Update order statuses to show variety
   if (vendorDashboard.dataManager.rawOrders.length > 0) {
     vendorDashboard.dataManager.updateOrderStatus(vendorDashboard.dataManager.rawOrders[0].orderId, "delivered")
+    vendorDashboard.dataManager.updateOrderStatus(vendorDashboard.dataManager.rawOrders[1].orderId, "processing")
+    vendorDashboard.dataManager.updateOrderStatus(vendorDashboard.dataManager.rawOrders[2].orderId, "shipped")
   }
 
-  // Add sample finished products
+  // Add comprehensive finished products
   const sampleProducts = [
     {
       productName: "Premium Beef Steaks",
@@ -1064,29 +1100,155 @@ function addSampleData() {
       description: "Ready-to-eat goat curry with spices",
       imageUrl: null,
     },
+    {
+      productName: "Lamb Chops Marinated",
+      productSKU: "LM-003",
+      productType: "packet",
+      sourceBatchId: vendorDashboard.dataManager.rawOrders[2]?.orderId || "RO003",
+      productQuantity: "12",
+      unit: "packets",
+      pricePerUnit: "22.75",
+      displayPrice: "26.50",
+      category: "marinated-meat",
+      createdDate: "2024-01-22",
+      expiryDate: "2024-02-22",
+      storageLocation: "Freezer B",
+      description: "Tender lamb chops with Mediterranean herbs",
+      imageUrl: null,
+    },
+    {
+      productName: "Chicken Wings Buffalo Style",
+      productSKU: "CW-004",
+      productType: "cooked",
+      sourceBatchId: vendorDashboard.dataManager.rawOrders[3]?.orderId || "RO004",
+      productQuantity: "25",
+      unit: "portions",
+      pricePerUnit: "12.99",
+      displayPrice: "15.99",
+      category: "cooked-ready",
+      createdDate: "2024-01-25",
+      expiryDate: "2024-02-02",
+      storageLocation: "Hot Display",
+      description: "Spicy buffalo chicken wings, ready to serve",
+      imageUrl: null,
+    },
+    {
+      productName: "Pork Sausages Artisan",
+      productSKU: "PS-005",
+      productType: "packet",
+      sourceBatchId: vendorDashboard.dataManager.rawOrders[4]?.orderId || "RO005",
+      productQuantity: "18",
+      unit: "packets",
+      pricePerUnit: "16.25",
+      displayPrice: "19.99",
+      category: "processed-meat",
+      createdDate: "2024-01-28",
+      expiryDate: "2024-02-28",
+      storageLocation: "Refrigerator A",
+      description: "Handcrafted pork sausages with herbs and spices",
+      imageUrl: null,
+    },
+    {
+      productName: "Mixed Grill Platter",
+      productSKU: "MG-006",
+      productType: "cooked",
+      sourceBatchId: "Multiple",
+      productQuantity: "10",
+      unit: "platters",
+      pricePerUnit: "35.00",
+      displayPrice: "42.99",
+      category: "cooked-ready",
+      createdDate: "2024-01-30",
+      expiryDate: "2024-02-02",
+      storageLocation: "Hot Display",
+      description: "Assorted grilled meats - beef, chicken, lamb",
+      imageUrl: null,
+    },
   ]
 
   sampleProducts.forEach((product) => {
     vendorDashboard.dataManager.addFinishedProduct(product)
   })
 
-  // Add sample customer orders
+  // Add comprehensive customer orders
   const sampleCustomerOrders = [
     {
       customerName: "John's Restaurant",
+      customerEmail: "john@johnsrestaurant.com",
+      customerPhone: "+1-555-0123",
       productName: "Premium Beef Steaks",
       quantity: "5 packets",
-      totalPrice: "125.00",
+      totalPrice: "144.95",
       deliveryDate: "2024-02-10",
+      deliveryAddress: "123 Main St, Downtown",
       status: "processing",
+      paymentMethod: "Credit Card",
+      orderNotes: "Please ensure proper packaging for transport",
     },
     {
       customerName: "Mary's Catering",
+      customerEmail: "mary@maryscatering.com",
+      customerPhone: "+1-555-0456",
       productName: "Cooked Goat Curry",
       quantity: "8 portions",
-      totalPrice: "148.00",
+      totalPrice: "175.92",
       deliveryDate: "2024-02-12",
+      deliveryAddress: "456 Oak Ave, Midtown",
       status: "ready",
+      paymentMethod: "Bank Transfer",
+      orderNotes: "Event catering for 50 people",
+    },
+    {
+      customerName: "Sunset Bistro",
+      customerEmail: "orders@sunsetbistro.com",
+      customerPhone: "+1-555-0789",
+      productName: "Lamb Chops Marinated",
+      quantity: "3 packets",
+      totalPrice: "79.50",
+      deliveryDate: "2024-02-14",
+      deliveryAddress: "789 Pine St, Uptown",
+      status: "confirmed",
+      paymentMethod: "Cash on Delivery",
+      orderNotes: "Valentine's Day special menu",
+    },
+    {
+      customerName: "Sports Bar & Grill",
+      customerEmail: "manager@sportsbar.com",
+      customerPhone: "+1-555-0321",
+      productName: "Chicken Wings Buffalo Style",
+      quantity: "12 portions",
+      totalPrice: "191.88",
+      deliveryDate: "2024-02-16",
+      deliveryAddress: "321 Stadium Blvd, Sports District",
+      status: "pending",
+      paymentMethod: "Credit Card",
+      orderNotes: "Game day special order",
+    },
+    {
+      customerName: "Family Diner",
+      customerEmail: "info@familydiner.com",
+      customerPhone: "+1-555-0654",
+      productName: "Pork Sausages Artisan",
+      quantity: "6 packets",
+      totalPrice: "119.94",
+      deliveryDate: "2024-02-18",
+      deliveryAddress: "654 Elm St, Suburban",
+      status: "delivered",
+      paymentMethod: "Bank Transfer",
+      orderNotes: "Weekly breakfast special supply",
+    },
+    {
+      customerName: "Grand Hotel Restaurant",
+      customerEmail: "chef@grandhotel.com",
+      customerPhone: "+1-555-0987",
+      productName: "Mixed Grill Platter",
+      quantity: "4 platters",
+      totalPrice: "171.96",
+      deliveryDate: "2024-02-20",
+      deliveryAddress: "987 Grand Ave, Hotel District",
+      status: "processing",
+      paymentMethod: "Corporate Account",
+      orderNotes: "VIP banquet event - premium presentation required",
     },
   ]
 
@@ -1094,8 +1256,27 @@ function addSampleData() {
     vendorDashboard.dataManager.addCustomerOrder(order)
   })
 
-  // Update dashboard with sample data
+  // Add sample activities for recent activity feed
+  const additionalActivities = [
+    "New customer registration: Sunset Bistro",
+    "Product price updated: Premium Beef Steaks",
+    "Inventory restocked: Freezer A capacity increased",
+    "Quality check completed: All products passed inspection",
+    "Delivery route optimized for downtown area",
+    "Customer feedback received: 5-star rating from John's Restaurant",
+    "New supplier contact added: Mountain Ranch Co.",
+    "Seasonal menu planning: Valentine's Day specials",
+    "Equipment maintenance: Freezer B serviced",
+    "Staff training completed: Food safety certification",
+  ]
+
+  additionalActivities.forEach((activity) => {
+    vendorDashboard.dataManager.addActivity(activity)
+  })
+
+  // Update dashboard displays
   vendorDashboard.updateDashboard()
+  console.log("Comprehensive sample data added successfully!")
 }
 
 // Console log for debugging

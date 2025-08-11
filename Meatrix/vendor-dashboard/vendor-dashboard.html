@@ -67,14 +67,6 @@
                     </div>
                     <span class="nav-text">Customer Orders</span>
                 </a>
-                <a href="#" class="nav-item" data-section="inventory">
-                    <div class="nav-icon-container">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
-                        </svg>
-                    </div>
-                    <span class="nav-text">Inventory</span>
-                </a>
                 <a href="#" class="nav-item" data-section="settings">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -406,37 +398,63 @@
                         <div class="section-header">
                             <div class="section-title">
                                 <h2>Product Catalog</h2>
-                                <p>Browse and manage your product catalog with e-commerce style display</p>
+                                <p>Browse and manage your product catalog</p>
                             </div>
-                            <button class="btn-primary" onclick="showAddProductModal()">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 5v14M5 12h14"/>
-                                </svg>
-                                Add New Product
-                            </button>
+                            <div class="section-actions">
+                                <button class="btn-primary" onclick="showAddProductModal()">Add Product</button>
+                            </div>
                         </div>
 
                         <!-- Search and Filter Controls -->
-                        <div class="controls-section">
-                            <div class="search-controls">
-                                <input type="text" placeholder="Search products..." class="search-input" id="catalogSearch">
-                                <select class="filter-select" id="catalogTypeFilter">
-                                    <option value="all">All Types</option>
-                                    <option value="packet">Packet Meat</option>
-                                    <option value="cooked">Cooked Meat</option>
-                                </select>
-                                <select class="filter-select" id="catalogStatusFilter">
-                                    <option value="all">All Status</option>
-                                    <option value="available">Available</option>
-                                    <option value="out-of-stock">Out of Stock</option>
-                                    <option value="ordered">Ordered</option>
-                                </select>
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="filters-row">
+                                    <input type="text" class="search-input" id="catalogSearch" placeholder="Search products...">
+                                    <select class="filter-select" id="catalogTypeFilter">
+                                        <option value="all">All Types</option>
+                                        <option value="beef">Beef</option>
+                                        <option value="chicken">Chicken</option>
+                                        <option value="pork">Pork</option>
+                                        <option value="lamb">Lamb</option>
+                                        <option value="processed">Processed</option>
+                                    </select>
+                                    <select class="filter-select" id="catalogStatusFilter">
+                                        <option value="all">All Status</option>
+                                        <option value="available">Available</option>
+                                        <option value="out-of-stock">Out of Stock</option>
+                                        <option value="ordered">Ordered</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Product Catalog Grid -->
-                        <div class="product-catalog-grid" id="productCatalogGrid">
-                            <!-- Products will be dynamically loaded here -->
+                        <!-- Product Catalog Table -->
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="productCatalogTable">
+                                        <thead>
+                                            <tr>
+                                                <th class="sortable" data-sort="productId">Product ID</th>
+                                                <th class="sortable" data-sort="name">Product Name</th>
+                                                <th class="sortable" data-sort="sku">SKU</th>
+                                                <th class="sortable" data-sort="type">Type</th>
+                                                <th class="sortable" data-sort="category">Category</th>
+                                                <th class="sortable" data-sort="quantity">Quantity</th>
+                                                <th class="sortable" data-sort="price">Price</th>
+                                                <th class="sortable" data-sort="status">Status</th>
+                                                <th class="sortable" data-sort="expiryDate">Expiry Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productCatalogBody">
+                                            <tr class="empty-state">
+                                                <td colspan="10">No products in catalog yet. Click "Add Product" to add your first product.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -618,11 +636,6 @@
                             <input type="text" id="productSKU" name="productSKU" placeholder="e.g., BF-001, GT-002" required>
                         </div>
                         <div class="form-group">
-                            <label for="productImage">Product Image</label>
-                            <input type="file" id="productImage" name="productImage" accept="image/*">
-                            <small style="color: var(--text-secondary); font-size: 12px;">Upload product image (optional)</small>
-                        </div>
-                        <div class="form-group">
                             <label for="displayPrice">Display Price ($) *</label>
                             <input type="number" id="displayPrice" name="displayPrice" step="0.01" placeholder="Price shown to customers" required>
                         </div>
@@ -723,6 +736,122 @@
                     <div class="modal-actions">
                         <button type="button" class="btn-secondary" onclick="closeModal('updateOrderStatusModal')">Cancel</button>
                         <button type="submit" class="btn-primary">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal-overlay" id="productDetailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Product Details</h3>
+                <button class="modal-close" onclick="closeModal('productDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="productDetailsContent">
+                    <!-- Product details will be populated here -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal('productDetailsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal-overlay" id="orderDetailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <button class="modal-close" onclick="closeModal('orderDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="orderDetailsContent">
+                    <!-- Order details will be populated here -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal('orderDetailsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal-overlay" id="editProductModal">
+        <div class="modal-slide">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="modal-close" onclick="closeModal('editProductModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProductForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editProductName">Product Name *</label>
+                            <input type="text" id="editProductName" name="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductSKU">Product SKU *</label>
+                            <input type="text" id="editProductSKU" name="productSKU" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductType">Product Type *</label>
+                            <select id="editProductType" name="productType" required>
+                                <option value="packet">Packet Meat</option>
+                                <option value="cooked">Cooked Meat</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCategory">Category</label>
+                            <select id="editCategory" name="category">
+                                <option value="fresh-meat">Fresh Meat</option>
+                                <option value="processed-meat">Processed Meat</option>
+                                <option value="cooked-ready">Cooked & Ready</option>
+                                <option value="specialty">Specialty Items</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductQuantity">Quantity *</label>
+                            <input type="number" id="editProductQuantity" name="productQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUnit">Unit *</label>
+                            <select id="editUnit" name="unit" required>
+                                <option value="kg">Kilograms</option>
+                                <option value="pieces">Pieces</option>
+                                <option value="packets">Packets</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPricePerUnit">Price per Unit ($) *</label>
+                            <input type="number" id="editPricePerUnit" name="pricePerUnit" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDisplayPrice">Display Price ($) *</label>
+                            <input type="number" id="editDisplayPrice" name="displayPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editExpiryDate">Expiry Date *</label>
+                            <input type="date" id="editExpiryDate" name="expiryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStatus">Status *</label>
+                            <select id="editStatus" name="status" required>
+                                <option value="available">Available</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                                <option value="ordered">Ordered</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="editDescription">Description</label>
+                            <textarea id="editDescription" name="description" rows="3" placeholder="Product description (optional)"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editProductModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Product</button>
                     </div>
                 </form>
             </div>

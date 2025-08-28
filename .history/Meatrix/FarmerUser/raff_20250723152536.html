@@ -1,0 +1,462 @@
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">MA</div>
+                <div class="logo-text">
+                    <h1>MeatAnalytics Pro</h1>
+                    <p>Market Intelligence Platform</p>
+                </div>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="Advanced Meat Product Analysis And Updated News Market Intelligence Platform.html">Product Analysis & News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+
+            <div class="nav-search">
+                <input type="text" id="navSearch" placeholder="Search analytics...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+                <div style="padding: 0 20px 20px;">
+                    <input type="text" placeholder="Search analytics..." style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px;">
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Meat Market Intelligence</h1>
+            <p>AI-Powered Real-time Analytics & Comprehensive Insights into Bangladesh's Meat Industry</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">🏭</div>
+                <h3>680K</h3>
+                <p>Total Production (tons/year)</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">💰</div>
+                <h3>₹2.4B</h3>
+                <p>Market Value (annual)</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🍖</div>
+                <h3>36.5kg</h3>
+                <p>Consumption (per person)</p>
+            </div>
+            <div class="stat-card">
+                <div class="icon">📈</div>
+                <h3>+8.2%</h3>
+                <p>Growth Rate (yearly)</p>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>Product Database</h2>
+                <p>Comprehensive meat product analytics and management</p>
+                
+                <div class="table-controls">
+                    <div class="search-container">
+                        <input type="text" id="tableSearch" placeholder="Search products, categories, regions..." onkeyup="searchTable()">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    
+                    <select id="categoryFilter" class="filter-select" onchange="filterTable()">
+                        <option value="all">All Categories</option>
+                        <option value="beef">Beef</option>
+                        <option value="chicken">Chicken</option>
+                        <option value="mutton">Mutton</option>
+                        <option value="duck">Duck</option>
+                    </select>
+                    
+                    <button class="btn btn-primary" onclick="openAddModal()">
+                        ➕ Add Product
+                    </button>
+                    
+                    <button class="btn btn-secondary">
+                        📥 Export
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div id="resultsCount" style="margin-bottom: 15px; color: #718096; font-size: 14px;"></div>
+                
+                <table class="data-table" id="productTable">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Weight</th>
+                            <th>Price</th>
+                            <th>Quality</th>
+                            <th>Region</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+
+                <div id="noResults" class="no-results" style="display: none;">
+                    <div class="icon">🔍</div>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your search or filter criteria</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="close-btn" onclick="closeAddModal()">&times;</button>
+            </div>
+            
+            <form id="addProductForm" onsubmit="addProduct(event)">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" required>
+                        <option value="">Select category</option>
+                        <option value="beef">Beef</option>
+                        <option value="chicken">Chicken</option>
+                        <option value="mutton">Mutton</option>
+                        <option value="duck">Duck</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productWeight">Weight</label>
+                    <input type="text" id="productWeight" placeholder="e.g., 180-220 kg" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productPrice">Price (৳/kg)</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productQuality">Quality</label>
+                    <select id="productQuality" required>
+                        <option value="">Select quality</option>
+                        <option value="grade-aa">Grade AA</option>
+                        <option value="grade-a">Grade A+</option>
+                        <option value="grade-a">Grade A</option>
+                        <option value="grade-b">Grade B</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productRegion">Region</label>
+                    <select id="productRegion" required>
+                        <option value="">Select region</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                    Add Product
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        let products = [
+            {
+                id: 1,
+                name: "Beef (Local)",
+                category: "beef",
+                weight: "180-220 kg",
+                price: 672,
+                quality: "grade-a",
+                region: "Dhaka",
+                date: "2024-01-15"
+            },
+            {
+                id: 2,
+                name: "Chicken (Broiler)",
+                category: "chicken",
+                weight: "1.8-2.2 kg",
+                price: 234,
+                quality: "grade-a",
+                region: "Chittagong",
+                date: "2024-01-16"
+            },
+            {
+                id: 3,
+                name: "Mutton (Local)",
+                category: "mutton",
+                weight: "25-35 kg",
+                price: 1024,
+                quality: "premium",
+                region: "Rajshahi",
+                date: "2024-01-17"
+            },
+            {
+                id: 4,
+                name: "Duck",
+                category: "duck",
+                weight: "2.5-3.0 kg",
+                price: 350,
+                quality: "grade-b",
+                region: "Sylhet",
+                date: "2024-01-18"
+            },
+            {
+                id: 5,
+                name: "Beef (Cross-breed)",
+                category: "beef",
+                weight: "250-300 kg",
+                price: 720,
+                quality: "grade-aa",
+                region: "Rangpur",
+                date: "2024-01-19"
+            }
+        ];
+
+        let filteredProducts = [...products];
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Get category icon
+        function getCategoryIcon(category) {
+            const icons = {
+                beef: '🐄',
+                chicken: '🐔',
+                mutton: '🐑',
+                duck: '🦆'
+            };
+            return icons[category] || '🍖';
+        }
+
+        // Get quality display text
+        function getQualityText(quality) {
+            const qualityMap = {
+                'grade-aa': 'Grade AA',
+                'grade-a': 'Grade A+',
+                'grade-b': 'Grade B',
+                'premium': 'Premium'
+            };
+            return qualityMap[quality] || quality;
+        }
+
+        // Render table
+        function renderTable() {
+            const tableBody = document.getElementById('tableBody');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+
+            if (filteredProducts.length === 0) {
+                tableBody.innerHTML = '';
+                noResults.style.display = 'block';
+                resultsCount.textContent = 'No products found';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            resultsCount.textContent = `Showing ${filteredProducts.length} of ${products.length} products`;
+
+            tableBody.innerHTML = filteredProducts.map(product => `
+                <tr>
+                    <td>
+                        <div class="product-info">
+                            <div class="product-icon ${product.category}">
+                                ${getCategoryIcon(product.category)}
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">${product.name}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge badge-${product.category}">
+                            ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                        </span>
+                    </td>
+                    <td style="font-family: 'Courier New', monospace;">${product.weight}</td>
+                    <td class="price">৳${product.price}</td>
+                    <td>
+                        <span class="quality-badge ${product.quality}">
+                            ${getQualityText(product.quality)}
+                        </span>
+                    </td>
+                    <td>${product.region}</td>
+                    <td style="font-family: 'Courier New', monospace;">${product.date}</td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-secondary btn-small" onclick="editProduct(${product.id})">
+                                ✏️ Edit
+                            </button>
+                            <button class="btn btn-danger btn-small" onclick="deleteProduct(${product.id})">
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Search functionality
+        function searchTable() {
+            const searchTerm = document.getElementById('tableSearch').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.category.toLowerCase().includes(searchTerm) ||
+                    product.region.toLowerCase().includes(searchTerm) ||
+                    product.quality.toLowerCase().includes(searchTerm);
+
+                const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            renderTable();
+        }
+
+        // Filter functionality
+        function filterTable() {
+            searchTable(); // Reuse search logic
+        }
+
+        // Modal functions
+        function openAddModal() {
+            document.getElementById('addModal').classList.add('active');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('active');
+            document.getElementById('addProductForm').reset();
+        }
+
+        // Add product
+        function addProduct(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('productName').value;
+            const category = document.getElementById('productCategory').value;
+            const weight = document.getElementById('productWeight').value;
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const quality = document.getElementById('productQuality').value;
+            const region = document.getElementById('productRegion').value;
+            const date = new Date().toISOString().split('T')[0];
+
+            const newProduct = {
+                id: Date.now(),
+                name,
+                category,
+                weight,
+                price,
+                quality,
+                region,
+                date
+            };
+
+            products.push(newProduct);
+            filteredProducts = [...products];
+            renderTable();
+            closeAddModal();
+
+            // Show success message
+            alert('Product added successfully!');
+        }
+        
+
+        // Delete product
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(product => product.id !== id);
+                filteredProducts = filteredProducts.filter(product => product.id !== id);
+                renderTable();
+                alert('Product deleted successfully!');
+            }
+        }
+
+        // Edit product (placeholder)
+        function editProduct(id) {
+            alert('Edit functionality would be implemented here for product ID: ' + id);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('addModal');
+            if (event.target === modal) {
+                closeAddModal();
+            }
+        }
+
+        // Navigation search functionality
+        document.getElementById('navSearch').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                const searchTerm = this.value;
+                alert('Navigation search for: ' + searchTerm);
+                // Implement navigation search logic here
+            }
+        });
+
+        // Initialize table on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable();
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        
+    </script>
+    

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meatrix Dashboard</title>
+    <link rel="stylesheet" href="../Styles/Farmer/FarmerDashBoardDesign.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">M</div>
+                    <span class="logo-text">Meatrix</span>
+                </div>
+            </div>
+
+            <!-- Navigation Items -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                            <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Animals</span>
+                
+
+
+</a>
+<a href="#" class="nav-item">
+    <div class="nav-icon-container">
+        <!-- Analysis Icon (Bar Chart) -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="10" width="3" height="11"></rect>
+            <rect x="10" y="3" width="3" height="18"></rect>
+            <rect x="17" y="6" width="3" height="15"></rect>
+        </svg>
+    </div>
+    <span class="nav-text">Analysis</span>
+</a>
+
+
+
+
+                    
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Sales & Purchases</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                            <polyline points="16,7 22,7 22,13"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Market Prices</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Traders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Notifications</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </nav>
+
+            <!-- Logout Button -->
+            <div class="sidebar-footer">
+                <button class="logout-btn">
+                    <div class="nav-icon-container">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Fixed Header -->
+            <header class="header" id="header">
+                <div class="header-left">
+                    <h1 class="header-title" id="headerTitle">Farmer</h1>
+                </div>
+                <div class="header-right">
+                    <span class="username">John Farmer</span>
+                    <div class="avatar">JF</div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content" id="content">
+                <div class="content-container">
+                    <!-- Dashboard Section -->
+                    <div class="section-content active" id="dashboard-section">
+                        <!-- Dashboard Stats -->
+                        <div class="stats-grid">
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Animals</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                                        <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalAnimals">0</h2>
+                                    <p>Active livestock</p>
+                                </div>
+                            </div>
+
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Total Sales</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalSalesValue">$0</h2>
+                                    <p>This month</p>
+                                </div>
+                            </div>
+
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Feed Cost</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3v18h18"/>
+                                        <path d="M18.7 8a4 4 0 0 0-7.4 0"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="totalFeedCost">$0</h2>
+                                    <p>Monthly expense</p>
+                                </div>
+                            </div>
+
+                            <div class="card stats-card">
+                                <div class="card-header">
+                                    <h3>Avg FCR</h3>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                                        <polyline points="16,7 22,7 22,13"/>
+                                    </svg>
+                                </div>
+                                <div class="card-content">
+                                    <h2 id="avgFCR">0</h2>
+                                    <p>Feed conversion ratio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="dashboard-grid">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Activities</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="activity-list" id="recentActivities">
+                                        <div class="activity-item empty-state">
+                                            <p>No recent activities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Quick Actions</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="quick-actions">
+                                        <button class="quick-action-btn" onclick="showAddAnimalModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 5v14M5 12h14"/>
+                                            </svg>
+                                            Add Animal
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddSaleModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                            </svg>
+                                            Record Sale
+                                        </button>
+                                        <button class="quick-action-btn" onclick="showAddPurchaseModal()">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="8" cy="21" r="1"/>
+                                                <circle cx="19" cy="21" r="1"/>
+                                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                            </svg>
+                                            Record Purchase
+                                        </button>
+                                        <button class="quick-action-btn" onclick="dashboard.showSection('Market Prices')">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
+                                                <polyline points="16,7 22,7 22,13"/>
+                                            </svg>
+                                            Check Market
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animals Section -->
+                    <div class="section-content" id="animals-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Animal Management</h2>
+                                <p>Comprehensive livestock management system</p>
+                            </div>
+                        </div>
+
+                        <!-- Animal Tabs -->
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" data-tab="records">Animal Records</button>
+                                <button class="tab-btn" data-tab="sales">Sales Records</button>
+                                <button class="tab-btn" data-tab="purchases">Purchase Records</button>
+                                <button class="tab-btn" data-tab="market">Market Analysis</button>
+                                <button class="tab-btn" data-tab="traders">Trader Selections</button>
+                            </div>
+
+                            <!-- Animal Records Tab -->
+                            <div class="tab-content active" id="records-tab">
+                                <div class="tab-header">
+                                    <h3>Animal Records & Feed Management</h3>
+                                    <button class="btn-primary" onclick="showAddAnimalModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Add Animal
+                                    </button>
+                                </div>
+
+                                <!-- Search and Filter Controls -->
+                                <div class="controls-section">
+                                    <div class="search-controls">
+                                        <input type="text" placeholder="Search by ID, Name, or Breed..." class="search-input" id="animalSearch">
+                                        <select class="filter-select" id="animalTypeFilter">
+                                            <option value="all">All Types</option>
+                                            <option value="cattle">Cattle</option>
+                                            <option value="goat">Goats</option>
+                                            <option value="sheep">Sheep</option>
+                                        </select>
+                                        <select class="filter-select" id="dateFilter">
+                                            <option value="all">All Dates</option>
+                                            <option value="week">This Week</option>
+                                            <option value="month">This Month</option>
+                                            <option value="year">This Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Animal Records Table -->
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="animalRecordsTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sortable" data-sort="id">Animal ID</th>
+                                                        <th class="sortable" data-sort="name">Name</th>
+                                                        <th class="sortable" data-sort="breed">Breed</th>
+                                                        <th class="sortable" data-sort="feedType">Feed Type</th>
+                                                        <th class="sortable" data-sort="dailyFeed">Daily Feed (kg)</th>
+                                                        <th class="sortable" data-sort="feedCost">Feed Cost/Unit</th>
+                                                        <th class="sortable" data-sort="weight">Current Weight (kg)</th>
+                                                        <th class="sortable" data-sort="fcr">FCR</th>
+                                                        <th class="sortable" data-sort="lastVaccination">Last Vaccination</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="animalRecordsBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="10">No animals added yet. Click "Add Animal" to get started.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sales Records Tab -->
+                            <div class="tab-content" id="sales-tab">
+                                <div class="tab-header">
+                                    <h3>Animal Sales Records</h3>
+                                    <button class="btn-primary" onclick="showAddSaleModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Record Sale
+                                    </button>
+                                </div>
+
+                                <div class="controls-section">
+                                    <div class="search-controls">
+                                        <input type="text" placeholder="Search sales..." class="search-input" id="salesSearch">
+                                        <select class="filter-select" id="salesBreedFilter">
+                                            <option value="all">All Breeds</option>
+                                        </select>
+                                        <input type="date" class="filter-select" id="salesDateFilter">
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="salesTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sortable" data-sort="saleId">Sale ID</th>
+                                                        <th class="sortable" data-sort="animalId">Animal ID</th>
+                                                        <th class="sortable" data-sort="breed">Breed</th>
+                                                        <th class="sortable" data-sort="weight">Weight (kg)</th>
+                                                        <th class="sortable" data-sort="price">Sale Price</th>
+                                                        <th class="sortable" data-sort="buyer">Buyer</th>
+                                                        <th class="sortable" data-sort="date">Sale Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="salesTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No sales recorded yet. Click "Record Sale" to add your first sale.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Purchase Records Tab -->
+                            <div class="tab-content" id="purchases-tab">
+                                <div class="tab-header">
+                                    <h3>Animal Purchase Records</h3>
+                                    <button class="btn-primary" onclick="showAddPurchaseModal()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 5v14M5 12h14"/>
+                                        </svg>
+                                        Record Purchase
+                                    </button>
+                                </div>
+
+                                <div class="controls-section">
+                                    <div class="search-controls">
+                                        <input type="text" placeholder="Search purchases..." class="search-input" id="purchaseSearch">
+                                        <select class="filter-select" id="purchaseBreedFilter">
+                                            <option value="all">All Breeds</option>
+                                        </select>
+                                        <select class="filter-select" id="genderFilter">
+                                            <option value="all">All Genders</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table" id="purchaseTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sortable" data-sort="purchaseId">Purchase ID</th>
+                                                        <th class="sortable" data-sort="animalId">Animal ID</th>
+                                                        <th class="sortable" data-sort="breed">Breed</th>
+                                                        <th class="sortable" data-sort="gender">Gender</th>
+                                                        <th class="sortable" data-sort="weight">Weight (kg)</th>
+                                                        <th class="sortable" data-sort="price">Purchase Price</th>
+                                                        <th class="sortable" data-sort="seller">Seller</th>
+                                                        <th class="sortable" data-sort="date">Purchase Date</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="purchaseTableBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="9">No purchases recorded yet. Click "Record Purchase" to add your first purchase.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Market Analysis Tab -->
+                            <div class="tab-content" id="market-tab">
+                                <div class="tab-header">
+                                    <h3>Market Analysis & Demand</h3>
+                                </div>
+
+                                <!-- Market Charts -->
+                                <div class="charts-grid">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Beef Market Trend</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="chart-container">
+                                                <canvas id="beefChart" width="400" height="200"></canvas>
+                                            </div>
+                                            <div class="market-stats">
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Current Price:</span>
+                                                    <span class="stat-value">$8.50/kg</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Trend:</span>
+                                                    <span class="stat-value trend-up">↗ +5.2%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Goat Meat Market Trend</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="chart-container">
+                                                <canvas id="goatChart" width="400" height="200"></canvas>
+                                            </div>
+                                            <div class="market-stats">
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Current Price:</span>
+                                                    <span class="stat-value">$15.75/kg</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Trend:</span>
+                                                    <span class="stat-value trend-up">↗ +8.1%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Mutton Market Trend</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="chart-container">
+                                                <canvas id="muttonChart" width="400" height="200"></canvas>
+                                            </div>
+                                            <div class="market-stats">
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Current Price:</span>
+                                                    <span class="stat-value">$12.30/kg</span>
+                                                </div>
+                                                <div class="stat-item">
+                                                    <span class="stat-label">Trend:</span>
+                                                    <span class="stat-value trend-down">↘ -2.3%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Market Details Table -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Detailed Market Information</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Animal Type</th>
+                                                        <th>Current Price ($/kg)</th>
+                                                        <th>Weekly Change</th>
+                                                        <th>Monthly Change</th>
+                                                        <th>Demand Level</th>
+                                                        <th>Best Selling Season</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Beef (Holstein)</td>
+                                                        <td>$8.50</td>
+                                                        <td class="trend-up">+5.2%</td>
+                                                        <td class="trend-up">+12.8%</td>
+                                                        <td><span class="badge badge-success">High</span></td>
+                                                        <td>Summer</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Beef (Angus)</td>
+                                                        <td>$9.20</td>
+                                                        <td class="trend-up">+3.1%</td>
+                                                        <td class="trend-up">+8.5%</td>
+                                                        <td><span class="badge badge-success">High</span></td>
+                                                        <td>Summer</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Goat Meat (Boer)</td>
+                                                        <td>$15.75</td>
+                                                        <td class="trend-up">+8.1%</td>
+                                                        <td class="trend-up">+15.2%</td>
+                                                        <td><span class="badge badge-warning">Medium</span></td>
+                                                        <td>Winter</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mutton (Merino)</td>
+                                                        <td>$12.30</td>
+                                                        <td class="trend-down">-2.3%</td>
+                                                        <td class="trend-up">+1.8%</td>
+                                                        <td><span class="badge badge-warning">Medium</span></td>
+                                                        <td>Spring</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Trader Selections Tab -->
+                            <div class="tab-content" id="traders-tab">
+                                <div class="tab-header">
+                                    <h3>Trader Animal Selections</h3>
+                                </div>
+
+                                <div class="controls-section">
+                                    <div class="search-controls">
+                                        <input type="text" placeholder="Search by trader or animal..." class="search-input" id="traderSearch">
+                                        <select class="filter-select" id="traderFilter">
+                                            <option value="all">All Traders</option>
+                                        </select>
+                                        <select class="filter-select" id="selectionStatus">
+                                            <option value="all">All Status</option>
+                                            <option value="selected">Selected</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="confirmed">Confirmed</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="table-container">
+                                            <table class="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="sortable" data-sort="trader">Trader Name</th>
+                                                        <th class="sortable" data-sort="animalId">Animal ID</th>
+                                                        <th class="sortable" data-sort="breed">Breed</th>
+                                                        <th class="sortable" data-sort="weight">Weight (kg)</th>
+                                                        <th class="sortable" data-sort="price">Offered Price</th>
+                                                        <th class="sortable" data-sort="date">Selection Date</th>
+                                                        <th class="sortable" data-sort="status">Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="traderSelectionsBody">
+                                                    <tr class="empty-state">
+                                                        <td colspan="8">No trader selections yet.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other sections remain the same but empty -->
+                    <div class="section-content" id="sales-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Sales & Purchases</h2>
+                                <p>Track your transactions and financial records</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Sales & Purchases section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-content" id="market-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Market Prices</h2>
+                                <p>Monitor current market rates and trends</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Market Prices section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-content" id="traders-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Traders</h2>
+                                <p>Manage your trading contacts and relationships</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Traders section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-content" id="notifications-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Notifications</h2>
+                                <p>Stay updated with important alerts and reminders</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Notifications section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-content" id="settings-section" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h2>Settings</h2>
+                                <p>Configure your preferences and account settings</p>
+                            </div>
+                        </div>
+                        <div class="placeholder-content">
+                            <div class="card">
+                                <div class="card-content">
+                                    <p>Settings section coming soon...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Add Animal Modal -->
+    <div class="modal-overlay" id="addAnimalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Animal</h3>
+                <button class="modal-close" onclick="closeModal('addAnimalModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addAnimalForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="animalId">Animal ID *</label>
+                            <input type="text" id="animalId" name="animalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalName">Animal Name *</label>
+                            <input type="text" id="animalName" name="animalName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="animalType">Animal Type *</label>
+                            <select id="animalType" name="animalType" required>
+                                <option value="">Select Type</option>
+                                <option value="cattle">Cattle</option>
+                                <option value="goat">Goat</option>
+                                <option value="sheep">Sheep</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="breed">Breed *</label>
+                            <input type="text" id="breed" name="breed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentWeight">Current Weight (kg) *</label>
+                            <input type="number" id="currentWeight" name="currentWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedType">Feed Type *</label>
+                            <input type="text" id="feedType" name="feedType" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dailyFeedQuantity">Daily Feed Quantity (kg) *</label>
+                            <input type="number" id="dailyFeedQuantity" name="dailyFeedQuantity" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedCostPerUnit">Feed Cost per Unit ($) *</label>
+                            <input type="number" id="feedCostPerUnit" name="feedCostPerUnit" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseDate">Purchase Date *</label>
+                            <input type="date" id="purchaseDate" name="purchaseDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastVaccination">Last Vaccination Date</label>
+                            <input type="date" id="lastVaccination" name="lastVaccination">
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccinationType">Vaccination Type</label>
+                            <input type="text" id="vaccinationType" name="vaccinationType">
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addAnimalModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Animal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Sale Modal -->
+    <div class="modal-overlay" id="addSaleModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Animal Sale</h3>
+                <button class="modal-close" onclick="closeModal('addSaleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSaleForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="saleAnimalId">Select Animal *</label>
+                            <select id="saleAnimalId" name="saleAnimalId" required>
+                                <option value="">Select Animal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="saleWeight">Sale Weight (kg) *</label>
+                            <input type="number" id="saleWeight" name="saleWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salePrice">Sale Price ($) *</label>
+                            <input type="number" id="salePrice" name="salePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="buyerName">Buyer Name *</label>
+                            <input type="text" id="buyerName" name="buyerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="buyerContact">Buyer Contact</label>
+                            <input type="text" id="buyerContact" name="buyerContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="saleDate">Sale Date *</label>
+                            <input type="date" id="saleDate" name="saleDate" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addSaleModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Record Sale</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Purchase Modal -->
+    <div class="modal-overlay" id="addPurchaseModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Record Animal Purchase</h3>
+                <button class="modal-close" onclick="closeModal('addPurchaseModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addPurchaseForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="purchaseAnimalId">Animal ID *</label>
+                            <input type="text" id="purchaseAnimalId" name="purchaseAnimalId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseBreed">Breed *</label>
+                            <input type="text" id="purchaseBreed" name="purchaseBreed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseGender">Gender *</label>
+                            <select id="purchaseGender" name="purchaseGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseWeight">Weight (kg) *</label>
+                            <input type="number" id="purchaseWeight" name="purchaseWeight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchasePrice">Purchase Price ($) *</label>
+                            <input type="number" id="purchasePrice" name="purchasePrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sellerName">Seller Name *</label>
+                            <input type="text" id="sellerName" name="sellerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sellerContact">Seller Contact</label>
+                            <input type="text" id="sellerContact" name="sellerContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseDateInput">Purchase Date *</label>
+                            <input type="date" id="purchaseDateInput" name="purchaseDateInput" required>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addPurchaseModal')">Cancel</button>
+                        <button type="submit" class="btn-primary">Record Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/Farmer/FarmerDashBoardScript.js"></script>
+</body>
+</html>

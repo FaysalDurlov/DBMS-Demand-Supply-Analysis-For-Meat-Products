@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meatrix Admin Panel - Demand & Supply Analysis</title>
     <link rel="stylesheet" href="../Styles/Admin/AdminDashBoardDesign.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="dashboard">
@@ -28,6 +29,7 @@
                     </div>
                     <span class="nav-text">Dashboard</span>
                 </a>
+                <!-- Updated navigation items to match user requirements -->
                 <a href="#" class="nav-item" data-section="meat-products">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -35,36 +37,36 @@
                             <path d="m2.32 6.16 10 5.5 10-5.5M12 22.76V12.16"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Meat Products</span>
+                    <span class="nav-text">Meat Product Data</span>
                 </a>
-                <a href="#" class="nav-item" data-section="production-volumes">
+                <a href="#" class="nav-item" data-section="production-records">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M3 3v18h18"/>
                             <path d="M18.7 8a4 4 0 0 0-7.4 0"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Production Volumes</span>
+                    <span class="nav-text">Production Records</span>
                 </a>
-                <a href="#" class="nav-item" data-section="price-analysis">
+                <a href="#" class="nav-item" data-section="price-trends">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
                             <polyline points="16,7 22,7 22,13"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Price Analysis</span>
+                    <span class="nav-text">Price Trends</span>
                 </a>
-                <a href="#" class="nav-item" data-section="consumption-analysis">
+                <a href="#" class="nav-item" data-section="consumption-patterns">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <path d="M12 6v6l4 2"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Consumption Analysis</span>
+                    <span class="nav-text">Consumption Patterns</span>
                 </a>
-                <a href="#" class="nav-item" data-section="demand-analysis">
+                <a href="#" class="nav-item" data-section="demand-elasticity">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
@@ -75,9 +77,9 @@
                             <path d="M11 12H9"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Demand Analysis</span>
+                    <span class="nav-text">Demand Elasticity</span>
                 </a>
-                <a href="#" class="nav-item" data-section="supply-demand-comparison">
+                <a href="#" class="nav-item" data-section="supply-demand">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M16 3h5v5"/>
@@ -88,23 +90,14 @@
                     </div>
                     <span class="nav-text">Supply vs Demand</span>
                 </a>
-                <a href="#" class="nav-item" data-section="insights">
+                <a href="#" class="nav-item" data-section="insights-reports">
                     <div class="nav-icon-container">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/>
                             <path d="M9 11V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
                         </svg>
                     </div>
-                    <span class="nav-text">Business Insights</span>
-                </a>
-                <a href="#" class="nav-item" data-section="settings">
-                    <div class="nav-icon-container">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                        </svg>
-                    </div>
-                    <span class="nav-text">Settings</span>
+                    <span class="nav-text">Insights & Reports</span>
                 </a>
             </nav>
             <!-- Logout Button -->
@@ -151,7 +144,7 @@
                                     </svg>
                                 </div>
                                 <div class="card-content">
-                                    <h2 id="totalProducts">247</h2>
+                                    <h2 id="totalProducts">10</h2>
                                     <p>Meat product types</p>
                                 </div>
                             </div>
@@ -195,184 +188,30 @@
                             </div>
                         </div>
 
-                        <!-- Added comprehensive charts and graphs section -->
-                        <!-- Charts and Analytics Section -->
+                        <!-- Added charts section for dashboard -->
                         <div class="charts-grid">
-                            <!-- Production Volume Line Chart -->
                             <div class="card chart-card">
                                 <div class="card-header">
-                                    <h3>Production Volume Trends</h3>
-                                    <div class="chart-controls">
-                                        <select id="productionTimeframe">
-                                            <option value="6months">Last 6 Months</option>
-                                            <option value="1year">Last Year</option>
-                                            <option value="2years">Last 2 Years</option>
-                                        </select>
-                                    </div>
+                                    <h3>Demand Elasticity Trends</h3>
                                 </div>
                                 <div class="card-content">
-                                    <canvas id="productionChart" width="400" height="200"></canvas>
+                                    <canvas id="demandElasticityChart"></canvas>
                                 </div>
                             </div>
-
-                            <!-- Price Analysis Line Chart -->
                             <div class="card chart-card">
                                 <div class="card-header">
-                                    <h3>Price Analysis Trends</h3>
-                                    <div class="chart-controls">
-                                        <select id="priceProductType">
-                                            <option value="all">All Products</option>
-                                            <option value="beef">Beef</option>
-                                            <option value="chicken">Chicken</option>
-                                            <option value="mutton">Mutton</option>
-                                            <option value="pork">Pork</option>
-                                        </select>
-                                    </div>
+                                    <h3>Supply vs Demand</h3>
                                 </div>
                                 <div class="card-content">
-                                    <canvas id="priceChart" width="400" height="200"></canvas>
+                                    <canvas id="supplyDemandChart"></canvas>
                                 </div>
                             </div>
-
-                            <!-- Meat Products Distribution Pie Chart -->
-                            <div class="card chart-card">
-                                <div class="card-header">
-                                    <h3>Product Distribution</h3>
-                                </div>
-                                <div class="card-content">
-                                    <canvas id="distributionChart" width="300" height="300"></canvas>
-                                </div>
-                            </div>
-
-                            <!-- Supply vs Demand Comparison -->
-                            <div class="card chart-card">
-                                <div class="card-header">
-                                    <h3>Supply vs Demand Analysis</h3>
-                                    <div class="chart-controls">
-                                        <select id="supplyDemandRegion">
-                                            <option value="all">All Regions</option>
-                                            <option value="north">North Region</option>
-                                            <option value="south">South Region</option>
-                                            <option value="east">East Region</option>
-                                            <option value="west">West Region</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <canvas id="supplyDemandChart" width="400" height="200"></canvas>
-                                </div>
-                            </div>
-
-                            <!-- Consumption Analysis Bar Chart -->
-                            <div class="card chart-card">
-                                <div class="card-header">
-                                    <h3>Per Capita Consumption by Region</h3>
-                                </div>
-                                <div class="card-content">
-                                    <canvas id="consumptionChart" width="400" height="200"></canvas>
-                                </div>
-                            </div>
-
-                            <!-- Market Flow Diagram -->
                             <div class="card chart-card full-width">
                                 <div class="card-header">
-                                    <h3>Market Flow Analysis</h3>
+                                    <h3>Market Insights Overview</h3>
                                 </div>
                                 <div class="card-content">
-                                    <div class="flowchart-container" id="marketFlowChart">
-                                        <div class="flow-stage">
-                                            <div class="flow-node producer">
-                                                <h4>Producers</h4>
-                                                <p>15,847 tons/month</p>
-                                                <small>Farmers & Butchers</small>
-                                            </div>
-                                        </div>
-                                        <div class="flow-arrow">→</div>
-                                        <div class="flow-stage">
-                                            <div class="flow-node wholesaler">
-                                                <h4>Wholesalers</h4>
-                                                <p>14,523 tons/month</p>
-                                                <small>Distribution Centers</small>
-                                            </div>
-                                        </div>
-                                        <div class="flow-arrow">→</div>
-                                        <div class="flow-stage">
-                                            <div class="flow-node retailer">
-                                                <h4>Retailers</h4>
-                                                <p>13,891 tons/month</p>
-                                                <small>Shops & Markets</small>
-                                            </div>
-                                        </div>
-                                        <div class="flow-arrow">→</div>
-                                        <div class="flow-stage">
-                                            <div class="flow-node consumer">
-                                                <h4>Consumers</h4>
-                                                <p>13,456 tons/month</p>
-                                                <small>End Users</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flow-metrics">
-                                        <div class="metric">
-                                            <span class="metric-label">Waste Reduction:</span>
-                                            <span class="metric-value">15.1%</span>
-                                        </div>
-                                        <div class="metric">
-                                            <span class="metric-label">Supply Efficiency:</span>
-                                            <span class="metric-value">84.9%</span>
-                                        </div>
-                                        <div class="metric">
-                                            <span class="metric-label">Market Coverage:</span>
-                                            <span class="metric-value">92.3%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Regional Performance Heatmap -->
-                            <div class="card chart-card full-width">
-                                <div class="card-header">
-                                    <h3>Regional Performance Heatmap</h3>
-                                </div>
-                                <div class="card-content">
-                                    <div class="heatmap-container">
-                                        <div class="heatmap-grid">
-                                            <div class="heatmap-cell high" data-region="North" data-value="94.2">
-                                                <h4>North</h4>
-                                                <p>94.2%</p>
-                                                <small>Performance</small>
-                                            </div>
-                                            <div class="heatmap-cell medium" data-region="South" data-value="78.5">
-                                                <h4>South</h4>
-                                                <p>78.5%</p>
-                                                <small>Performance</small>
-                                            </div>
-                                            <div class="heatmap-cell high" data-region="East" data-value="89.1">
-                                                <h4>East</h4>
-                                                <p>89.1%</p>
-                                                <small>Performance</small>
-                                            </div>
-                                            <div class="heatmap-cell low" data-region="West" data-value="65.7">
-                                                <h4>West</h4>
-                                                <p>65.7%</p>
-                                                <small>Performance</small>
-                                            </div>
-                                        </div>
-                                        <div class="heatmap-legend">
-                                            <span class="legend-item">
-                                                <span class="legend-color high"></span>
-                                                High (80-100%)
-                                            </span>
-                                            <span class="legend-item">
-                                                <span class="legend-color medium"></span>
-                                                Medium (60-79%)
-                                            </span>
-                                            <span class="legend-item">
-                                                <span class="legend-color low"></span>
-                                                Low (0-59%)
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <canvas id="insightsChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -412,26 +251,26 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="quick-actions">
-                                        <button class="quick-action-btn js-show-add-product-modal">
+                                        <button class="quick-action-btn" data-action="add-product">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <path d="M12 5v14M5 12h14"/>
                                             </svg>
                                             Add Product
                                         </button>
-                                        <button class="quick-action-btn js-show-add-production-modal">
+                                        <button class="quick-action-btn" data-action="add-production">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <path d="M3 3v18h18"/>
                                                 <path d="M18.7 8a4 4 0 0 0-7.4 0"/>
                                             </svg>
                                             Add Production Data
                                         </button>
-                                        <button class="quick-action-btn js-show-add-price-modal">
+                                        <button class="quick-action-btn" data-action="add-price">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                                             </svg>
                                             Update Prices
                                         </button>
-                                        <button class="quick-action-btn js-navigate-to-insights">
+                                        <button class="quick-action-btn" data-action="view-insights">
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                 <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/>
                                                 <path d="M9 11V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
@@ -444,143 +283,39 @@
                         </div>
                     </div>
 
+                    <!-- Added all required sections with tables -->
                     <!-- Meat Products Section -->
                     <div class="section-content" id="meat-products-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Meat Products Database</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Detailed data on meat products including type, breed, weight, feed conversion ratios, and rearing periods (Input: Butcher, Farmer)</p>
+                                <h2>Meat Product Data</h2>
+                                <p>Manage meat product information and specifications</p>
                             </div>
-                            <button class="btn-primary js-show-add-product-modal">
+                            <button class="btn-primary" data-action="add-product">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
-                                Add Product Data
+                                Add New Product
                             </button>
                         </div>
-
-                        <!-- Meat Products Table -->
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
                                     <table class="data-table" id="meatProductsTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="id">Product ID</th>
-                                                <th class="sortable" data-sort="type">Type (Beef/Chicken/Mutton)</th>
-                                                <th class="sortable" data-sort="breed">Breed</th>
-                                                <th class="sortable" data-sort="avgWeight">Avg Weight at Slaughter (kg)</th>
-                                                <th class="sortable" data-sort="fcr">Feed Conversion Ratio</th>
-                                                <th class="sortable" data-sort="rearingPeriod">Rearing Period (days)</th>
-                                                <!-- Added input source and butcher info columns -->
-                                                <th class="sortable" data-sort="inputSource">Input Source</th>
-                                                <th class="sortable" data-sort="butcherInfo">Butcher/Farmer Info</th>
-                                                <th class="sortable" data-sort="lastUpdated">Last Updated</th>
+                                                <th>Product Type</th>
+                                                <th>Breed/Variety</th>
+                                                <th>Avg Live Weight (kg)</th>
+                                                <th>Carcass Weight (kg)</th>
+                                                <th>Feed Conversion Ratio</th>
+                                                <th>Rearing Period (days)</th>
+                                                <th>Rearing System</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="meatProductsBody">
-                                            <!-- Updated sample data with input sources -->
-                                            <tr>
-                                                <td>MP001</td>
-                                                <td>Beef</td>
-                                                <td>Holstein</td>
-                                                <td>450</td>
-                                                <td>6.5 (Calculated)</td>
-                                                <td>720</td>
-                                                <td>Butcher</td>
-                                                <td>Ahmed Butcher Shop, North District</td>
-                                                <td>2024-01-15</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon btn-danger" title="Delete">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="3,6 5,6 21,6"/>
-                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>MP002</td>
-                                                <td>Chicken</td>
-                                                <td>Broiler</td>
-                                                <td>2.5</td>
-                                                <td>1.8 (Calculated)</td>
-                                                <td>42</td>
-                                                <td>Farmer</td>
-                                                <td>Green Valley Farm, South District</td>
-                                                <td>2024-01-14</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon btn-danger" title="Delete">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="3,6 5,6 21,6"/>
-                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>MP003</td>
-                                                <td>Mutton</td>
-                                                <td>Merino</td>
-                                                <td>35</td>
-                                                <td>4.2 (Calculated)</td>
-                                                <td>365</td>
-                                                <td>Butcher</td>
-                                                <td>City Meat Market, Central District</td>
-                                                <td>2024-01-13</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon btn-danger" title="Delete">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="3,6 5,6 21,6"/>
-                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="meatProductsTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -588,121 +323,38 @@
                         </div>
                     </div>
 
-                    <!-- Production Volumes Section -->
-                    <div class="section-content" id="production-volumes-section" style="display: none;">
+                    <!-- Production Records Section -->
+                    <div class="section-content" id="production-records-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Production Volume Records</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Records of meat production volumes by district/division, livestock counts, slaughter rates, and meat yield over time (Input: Butcher with slaughter house address, Farmer)</p>
+                                <h2>Production Records</h2>
+                                <p>Track production data by district and division</p>
                             </div>
-                            <button class="btn-primary js-show-add-production-modal">
+                            <button class="btn-primary" data-action="add-production">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
-                                Add Production Data
+                                Add Production Record
                             </button>
                         </div>
-
-                        <!-- Production Volumes Table -->
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
-                                    <table class="data-table" id="productionVolumesTable">
+                                    <table class="data-table" id="productionRecordsTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="district">District/Division</th>
-                                                <th class="sortable" data-sort="livestockCount">Livestock Count</th>
-                                                <th class="sortable" data-sort="slaughterRate">Slaughter Rate (%)</th>
-                                                <th class="sortable" data-sort="meatYield">Meat Yield (tons)</th>
-                                                <!-- Added slaughter house address and input source columns -->
-                                                <th class="sortable" data-sort="slaughterHouse">Slaughter House Address</th>
-                                                <th class="sortable" data-sort="inputSource">Input Source</th>
-                                                <th class="sortable" data-sort="period">Period</th>
-                                                <th class="sortable" data-sort="efficiency">Efficiency Score</th>
+                                                <th>Year</th>
+                                                <th>Region/District/Division</th>
+                                                <th>Livestock Population</th>
+                                                <th>Slaughter Rate (%)</th>
+                                                <th>Animals Slaughtered</th>
+                                                <th>Total Meat Yield (tons)</th>
+                                                <th>Yield per Animal (kg/head)</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="productionVolumesBody">
-                                            <!-- Updated sample data with slaughter house addresses and input sources -->
-                                            <tr>
-                                                <td>North District</td>
-                                                <td>15,847 (Farmer Input)</td>
-                                                <td>12.5 (Butcher Input)</td>
-                                                <td>2,847 (Butcher Input)</td>
-                                                <td>North Meat Processing, Industrial Area Block A</td>
-                                                <td>Butcher + Farmer</td>
-                                                <td>2024-01</td>
-                                                <td><span class="badge badge-success">High</span></td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>South District</td>
-                                                <td>12,456 (Farmer Input)</td>
-                                                <td>14.2 (Butcher Input)</td>
-                                                <td>2,234 (Butcher Input)</td>
-                                                <td>South Valley Slaughterhouse, Highway 45 Km 12</td>
-                                                <td>Butcher + Farmer</td>
-                                                <td>2024-01</td>
-                                                <td><span class="badge badge-warning">Medium</span></td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Central District</td>
-                                                <td>18,923 (Farmer Input)</td>
-                                                <td>11.8 (Butcher Input)</td>
-                                                <td>3,156 (Butcher Input)</td>
-                                                <td>Central Meat Hub, Commercial Zone Street 7</td>
-                                                <td>Butcher + Farmer</td>
-                                                <td>2024-01</td>
-                                                <td><span class="badge badge-success">High</span></td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                                <circle cx="12" cy="12" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="productionRecordsTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -710,118 +362,38 @@
                         </div>
                     </div>
 
-                    <!-- Price Analysis Section -->
-                    <div class="section-content" id="price-analysis-section" style="display: none;">
+                    <!-- Price Trends Section -->
+                    <div class="section-content" id="price-trends-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Price Analysis & Trends</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Historical data on wholesale and retail prices with trend analyses to identify seasonal and regional price fluctuations (Calculated)</p>
+                                <h2>Price Trends</h2>
+                                <p>Monitor price changes and market trends</p>
                             </div>
-                            <button class="btn-primary js-show-add-price-modal">
+                            <button class="btn-primary" data-action="add-price">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
                                 Add Price Data
                             </button>
                         </div>
-
-                        <!-- Price Analysis Table -->
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
-                                    <table class="data-table" id="priceAnalysisTable">
+                                    <table class="data-table" id="priceTrendsTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="product">Product Type</th>
-                                                <th class="sortable" data-sort="wholesalePrice">Wholesale Price ($/kg)</th>
-                                                <th class="sortable" data-sort="retailPrice">Retail Price ($/kg)</th>
-                                                <th class="sortable" data-sort="region">Region</th>
-                                                <!-- Added seasonal and trend analysis columns -->
-                                                <th class="sortable" data-sort="seasonalTrend">Seasonal Trend</th>
-                                                <th class="sortable" data-sort="priceFluctuation">Price Fluctuation (%)</th>
-                                                <th class="sortable" data-sort="trendAnalysis">Trend Analysis</th>
-                                                <th class="sortable" data-sort="period">Period</th>
+                                                <th>Date (Year/Month)</th>
+                                                <th>Region/Market Name</th>
+                                                <th>Product Type</th>
+                                                <th>Wholesale Price (per kg)</th>
+                                                <th>Retail Price (per kg)</th>
+                                                <th>Price Change (%)</th>
+                                                <th>Seasonal Trend</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="priceAnalysisBody">
-                                            <!-- Updated sample data with trend analysis -->
-                                            <tr>
-                                                <td>Beef</td>
-                                                <td>$8.50</td>
-                                                <td>$12.75</td>
-                                                <td>North District</td>
-                                                <td><span class="badge badge-info">Winter Peak</span></td>
-                                                <td>+15.2% (Calculated)</td>
-                                                <td>Upward trend due to holiday demand</td>
-                                                <td>2024-01</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Trend Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chicken</td>
-                                                <td>$3.20</td>
-                                                <td>$4.85</td>
-                                                <td>South District</td>
-                                                <td><span class="badge badge-success">Stable</span></td>
-                                                <td>-2.1% (Calculated)</td>
-                                                <td>Steady supply, minimal fluctuation</td>
-                                                <td>2024-01</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Trend Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mutton</td>
-                                                <td>$11.20</td>
-                                                <td>$16.50</td>
-                                                <td>Central District</td>
-                                                <td><span class="badge badge-warning">Summer Low</span></td>
-                                                <td>-8.5% (Calculated)</td>
-                                                <td>Seasonal decline in summer months</td>
-                                                <td>2024-01</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Trend Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="priceTrendsTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -829,118 +401,38 @@
                         </div>
                     </div>
 
-                    <!-- Consumption Analysis Section -->
-                    <div class="section-content" id="consumption-analysis-section" style="display: none;">
+                    <!-- Consumption Patterns Section -->
+                    <div class="section-content" id="consumption-patterns-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Consumption Analysis</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Per capita meat consumption across different regions and demographics, linked with nutritional intake statistics (Input: Vendor, Calculated)</p>
+                                <h2>Consumption Patterns</h2>
+                                <p>Analyze meat consumption by demographics and regions</p>
                             </div>
-                            <button class="btn-primary js-show-add-consumption-modal">
+                            <button class="btn-primary" data-action="add-consumption">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
                                 Add Consumption Data
                             </button>
                         </div>
-
-                        <!-- Consumption Analysis Table -->
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
-                                    <table class="data-table" id="consumptionAnalysisTable">
+                                    <table class="data-table" id="consumptionPatternsTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="region">Region</th>
-                                                <th class="sortable" data-sort="demographic">Demographic</th>
-                                                <th class="sortable" data-sort="perCapitaConsumption">Per Capita Consumption (kg/year)</th>
-                                                <th class="sortable" data-sort="proteinIntake">Protein Intake (g/day)</th>
-                                                <!-- Added nutritional impact and vendor input columns -->
-                                                <th class="sortable" data-sort="nutritionalImpact">Nutritional Impact</th>
-                                                <th class="sortable" data-sort="dietaryAssessment">Dietary Assessment</th>
-                                                <th class="sortable" data-sort="vendorSource">Vendor Source</th>
-                                                <th class="sortable" data-sort="period">Period</th>
+                                                <th>Region</th>
+                                                <th>Population</th>
+                                                <th>Meat Type</th>
+                                                <th>Per Capita Consumption (kg/person/year)</th>
+                                                <th>Share of Total Diet (%)</th>
+                                                <th>Nutritional Contribution</th>
+                                                <th>Demographic Group</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="consumptionAnalysisBody">
-                                            <!-- Updated sample data with vendor sources and nutritional assessments -->
-                                            <tr>
-                                                <td>North District</td>
-                                                <td>Urban Adults (25-45)</td>
-                                                <td>45.2 (Vendor Input)</td>
-                                                <td>52.3 (Calculated)</td>
-                                                <td><span class="badge badge-success">Adequate</span></td>
-                                                <td>Meets WHO protein requirements (Calculated)</td>
-                                                <td>Metro Meat Vendors Association</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Nutritional Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M9 11H1v6h8v-6zM23 11h-8v6h8v-6zM16 3H8v6h8V3z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>South District</td>
-                                                <td>Rural Families</td>
-                                                <td>38.7 (Vendor Input)</td>
-                                                <td>44.1 (Calculated)</td>
-                                                <td><span class="badge badge-warning">Below Average</span></td>
-                                                <td>Slightly below recommended intake (Calculated)</td>
-                                                <td>Rural Market Vendors Network</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Nutritional Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M9 11H1v6h8v-6zM23 11h-8v6h8v-6zM16 3H8v6h8V3z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Central District</td>
-                                                <td>Senior Citizens (65+)</td>
-                                                <td>32.1 (Vendor Input)</td>
-                                                <td>36.8 (Calculated)</td>
-                                                <td><span class="badge badge-danger">Insufficient</span></td>
-                                                <td>Requires dietary intervention (Calculated)</td>
-                                                <td>Senior Care Meal Services</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Nutritional Details">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M9 11H1v6h8v-6zM23 11h-8v6h8v-6zM16 3H8v6h8V3z"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="consumptionPatternsTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -948,118 +440,48 @@
                         </div>
                     </div>
 
-                    <!-- Demand Analysis Section -->
-                    <div class="section-content" id="demand-analysis-section" style="display: none;">
+                    <!-- Demand Elasticity Section -->
+                    <div class="section-content" id="demand-elasticity-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Demand Analysis</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Analysis of how changes in meat prices affect consumer demand, including cross-elasticity with alternative protein sources (Calculated)</p>
+                                <h2>Demand Elasticity</h2>
+                                <p>Analyze price elasticity and demand patterns</p>
                             </div>
-                            <button class="btn-primary js-show-add-demand-modal">
+                            <button class="btn-primary" data-action="add-demand">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
-                                Add Demand Analysis
+                                Add Demand Data
                             </button>
                         </div>
-
-                        <!-- Demand Analysis Table -->
+                        <div class="charts-grid">
+                            <div class="card chart-card full-width">
+                                <div class="card-header">
+                                    <h3>Demand Elasticity Chart</h3>
+                                </div>
+                                <div class="card-content">
+                                    <canvas id="demandElasticityDetailChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
-                                    <table class="data-table" id="demandAnalysisTable">
+                                    <table class="data-table" id="demandElasticityTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="product">Product Type</th>
-                                                <th class="sortable" data-sort="priceElasticity">Price Elasticity</th>
-                                                <th class="sortable" data-sort="demandChange">Demand Change (%)</th>
-                                                <th class="sortable" data-sort="priceChange">Price Change (%)</th>
-                                                <!-- Added cross-elasticity and alternative protein columns -->
-                                                <th class="sortable" data-sort="crossElasticity">Cross-Elasticity</th>
-                                                <th class="sortable" data-sort="alternativeProtein">Alternative Protein Impact</th>
-                                                <th class="sortable" data-sort="elasticityType">Elasticity Type</th>
-                                                <th class="sortable" data-sort="period">Period</th>
+                                                <th>Product Type</th>
+                                                <th>Time Period</th>
+                                                <th>Average Price (per kg)</th>
+                                                <th>Quantity Demanded (tons)</th>
+                                                <th>Price Elasticity of Demand</th>
+                                                <th>Cross-Elasticity with Alternatives</th>
+                                                <th>Income Elasticity</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="demandAnalysisBody">
-                                            <!-- Updated sample data with cross-elasticity analysis -->
-                                            <tr>
-                                                <td>Beef</td>
-                                                <td>-0.85 (Calculated)</td>
-                                                <td>-12.3%</td>
-                                                <td>+15.2%</td>
-                                                <td>+0.42 with Chicken (Calculated)</td>
-                                                <td>Plant-based alternatives +18% demand</td>
-                                                <td><span class="badge badge-info">Inelastic</span></td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Elasticity Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chicken</td>
-                                                <td>-1.23 (Calculated)</td>
-                                                <td>-8.7%</td>
-                                                <td>+7.1%</td>
-                                                <td>+0.28 with Fish (Calculated)</td>
-                                                <td>Egg consumption +12% as substitute</td>
-                                                <td><span class="badge badge-warning">Elastic</span></td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Elasticity Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mutton</td>
-                                                <td>-0.67 (Calculated)</td>
-                                                <td>-5.4%</td>
-                                                <td>+8.1%</td>
-                                                <td>+0.35 with Beef (Calculated)</td>
-                                                <td>Lentils/beans +22% as protein alternative</td>
-                                                <td><span class="badge badge-info">Inelastic</span></td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Elasticity Chart">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="demandElasticityTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -1068,120 +490,46 @@
                     </div>
 
                     <!-- Supply vs Demand Section -->
-                    <div class="section-content" id="supply-demand-section" style="display: none;">
+                    <div class="section-content" id="supply-demand-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Supply vs Demand Comparison</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Comparative assessment of meat demand versus supply across different regions and timeframes, identifying surpluses and deficits (Calculated)</p>
+                                <h2>Supply vs Demand</h2>
+                                <p>Compare supply and demand volumes across regions</p>
                             </div>
-                            <button class="btn-primary js-show-add-supply-demand-modal">
+                            <button class="btn-primary" data-action="add-supply-demand">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
-                                Add Supply-Demand Data
+                                Add Supply/Demand Data
                             </button>
                         </div>
-
-                        <!-- Supply vs Demand Table -->
+                        <div class="charts-grid">
+                            <div class="card chart-card full-width">
+                                <div class="card-header">
+                                    <h3>Supply vs Demand Chart</h3>
+                                </div>
+                                <div class="card-content">
+                                    <canvas id="supplyDemandDetailChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-content">
                                 <div class="table-container">
                                     <table class="data-table" id="supplyDemandTable">
                                         <thead>
                                             <tr>
-                                                <th class="sortable" data-sort="region">Region</th>
-                                                <th class="sortable" data-sort="product">Product Type</th>
-                                                <th class="sortable" data-sort="supply">Supply (tons)</th>
-                                                <th class="sortable" data-sort="demand">Demand (tons)</th>
-                                                <!-- Added surplus/deficit and policy recommendation columns -->
-                                                <th class="sortable" data-sort="balance">Supply-Demand Balance</th>
-                                                <th class="sortable" data-sort="surplusDeficit">Surplus/Deficit (tons)</th>
-                                                <th class="sortable" data-sort="policyRecommendation">Policy Recommendation</th>
-                                                <th class="sortable" data-sort="timeframe">Timeframe</th>
+                                                <th>Region</th>
+                                                <th>Time Period</th>
+                                                <th>Supply Volume (tons)</th>
+                                                <th>Demand Volume (tons)</th>
+                                                <th>Surplus/Deficit (tons)</th>
+                                                <th>Self-Sufficiency Ratio (%)</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="supplyDemandBody">
-                                            <!-- Updated sample data with policy recommendations -->
-                                            <tr>
-                                                <td>North District</td>
-                                                <td>Beef</td>
-                                                <td>2,847 (Calculated)</td>
-                                                <td>3,200 (Calculated)</td>
-                                                <td><span class="badge badge-danger">Deficit</span></td>
-                                                <td>-353 tons</td>
-                                                <td>Increase local production or import from surplus regions</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Regional Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                                                <circle cx="12" cy="10" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>South District</td>
-                                                <td>Chicken</td>
-                                                <td>2,234 (Calculated)</td>
-                                                <td>1,890 (Calculated)</td>
-                                                <td><span class="badge badge-success">Surplus</span></td>
-                                                <td>+344 tons</td>
-                                                <td>Export surplus to deficit regions or develop processing facilities</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Regional Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                                                <circle cx="12" cy="10" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Central District</td>
-                                                <td>Mutton</td>
-                                                <td>1,456 (Calculated)</td>
-                                                <td>1,423 (Calculated)</td>
-                                                <td><span class="badge badge-warning">Balanced</span></td>
-                                                <td>+33 tons</td>
-                                                <td>Maintain current production levels, monitor seasonal variations</td>
-                                                <td>2024-Q1</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Regional Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                                                <circle cx="12" cy="10" r="3"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Edit">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                                                <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="supplyDemandTableBody">
+                                            <!-- Data will be populated by JavaScript -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -1189,177 +537,48 @@
                         </div>
                     </div>
 
-                    <!-- Business Insights Section -->
-                    <div class="section-content" id="business-insights-section" style="display: none;">
+                    <!-- Insights & Reports Section -->
+                    <div class="section-content" id="insights-reports-section">
                         <div class="section-header">
                             <div class="section-title">
-                                <h2>Business Insights</h2>
-                                <!-- Updated description to match requirements -->
-                                <p>Strategic insights and recommendations for suppliers, wholesalers, and retailers based on comprehensive market analysis (Calculated from above analyses)</p>
+                                <h2>Insights & Reports</h2>
+                                <p>Market insights and business recommendations</p>
                             </div>
-                            <button class="btn-primary js-show-add-insight-modal">
+                            <button class="btn-primary" data-action="add-insight">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 5v14M5 12h14"/>
                                 </svg>
-                                Generate New Insight
+                                Add Insight
                             </button>
                         </div>
-
-                        <!-- Business Insights Table -->
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="table-container">
-                                    <table class="data-table" id="businessInsightsTable">
-                                        <thead>
-                                            <tr>
-                                                <th class="sortable" data-sort="stakeholder">Stakeholder Type</th>
-                                                <th class="sortable" data-sort="insight">Key Insight</th>
-                                                <th class="sortable" data-sort="recommendation">Strategic Recommendation</th>
-                                                <!-- Added impact assessment and data source columns -->
-                                                <th class="sortable" data-sort="impactLevel">Impact Level</th>
-                                                <th class="sortable" data-sort="dataSource">Data Source Analysis</th>
-                                                <th class="sortable" data-sort="actionPriority">Action Priority</th>
-                                                <th class="sortable" data-sort="generatedDate">Generated Date</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="businessInsightsBody">
-                                            <!-- Updated sample data with comprehensive business insights -->
-                                            <tr>
-                                                <td>Suppliers</td>
-                                                <td>North District beef demand exceeds supply by 11%</td>
-                                                <td>Increase beef cattle production or establish supply partnerships with surplus regions</td>
-                                                <td><span class="badge badge-danger">High</span></td>
-                                                <td>Production + Demand Analysis (Calculated)</td>
-                                                <td><span class="badge badge-danger">Urgent</span></td>
-                                                <td>2024-01-15</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Detailed Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                                                <polyline points="14,2 14,8 20,8"/>
-                                                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                                                <polyline points="10,9 9,9 8,9"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Export Report">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                                                <polyline points="7,10 12,15 17,10"/>
-                                                                <line x1="12" y1="15" x2="12" y2="3"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wholesalers</td>
-                                                <td>Chicken prices show -2.1% seasonal decline with stable demand</td>
-                                                <td>Optimize inventory levels and consider bulk purchasing during price dips</td>
-                                                <td><span class="badge badge-success">Medium</span></td>
-                                                <td>Price + Consumption Analysis (Calculated)</td>
-                                                <td><span class="badge badge-warning">Medium</span></td>
-                                                <td>2024-01-14</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Detailed Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                                                <polyline points="14,2 14,8 20,8"/>
-                                                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                                                <polyline points="10,9 9,9 8,9"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Export Report">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                                                <polyline points="7,10 12,15 17,10"/>
-                                                                <line x1="12" y1="15" x2="12" y2="3"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Retailers</td>
-                                                <td>Senior citizens consume 32% less protein than recommended</td>
-                                                <td>Develop targeted marketing for affordable, easy-to-prepare meat products for elderly demographics</td>
-                                                <td><span class="badge badge-warning">Medium</span></td>
-                                                <td>Consumption + Nutritional Analysis (Calculated)</td>
-                                                <td><span class="badge badge-success">Low</span></td>
-                                                <td>2024-01-13</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Detailed Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                                                <polyline points="14,2 14,8 20,8"/>
-                                                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                                                <polyline points="10,9 9,9 8,9"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Export Report">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                                                <polyline points="7,10 12,15 17,10"/>
-                                                                <line x1="12" y1="15" x2="12" y2="3"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Policy Makers</td>
-                                                <td>Cross-elasticity shows 18% increase in plant-based alternatives when beef prices rise</td>
-                                                <td>Consider subsidies for sustainable protein alternatives and meat price stabilization policies</td>
-                                                <td><span class="badge badge-danger">High</span></td>
-                                                <td>Demand + Cross-Elasticity Analysis (Calculated)</td>
-                                                <td><span class="badge badge-warning">Medium</span></td>
-                                                <td>2024-01-12</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <button class="btn-icon" title="View Detailed Analysis">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                                                <polyline points="14,2 14,8 20,8"/>
-                                                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                                                <polyline points="10,9 9,9 8,9"/>
-                                                            </svg>
-                                                        </button>
-                                                        <button class="btn-icon" title="Export Report">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                                                <polyline points="7,10 12,15 17,10"/>
-                                                                <line x1="12" y1="15" x2="12" y2="3"/>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="charts-grid">
+                            <div class="card chart-card full-width">
+                                <div class="card-header">
+                                    <h3>Market Insights Overview</h3>
+                                </div>
+                                <div class="card-content">
+                                    <canvas id="insightsDetailChart"></canvas>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Settings Section -->
-                    <div class="section-content" id="settings-section" style="display: none;">
-                        <div class="section-header">
-                            <div class="section-title">
-                                <h2>Settings</h2>
-                                <p>Configure system preferences and user settings</p>
-                            </div>
-                        </div>
-                        <div class="placeholder-content">
-                            <div class="card">
-                                <div class="card-content">
-                                    <p>Settings section - Configure data sources, user permissions, and system preferences...</p>
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-container">
+                                    <table class="data-table" id="insightsReportsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Region/Market</th>
+                                                <th>Key Trend</th>
+                                                <th>Main Challenge</th>
+                                                <th>Opportunity</th>
+                                                <th>Recommendation</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="insightsReportsTableBody">
+                                            <!-- Data will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -1369,156 +588,355 @@
         </div>
     </div>
 
-    <!-- Modals -->
-    <!-- Add Product Modal -->
-    <div class="modal-overlay" id="addProductModal">
-        <div class="modal">
+    <!-- Added modals for all data types -->
+    <!-- Modals for adding/editing data -->
+    <!-- Meat Product Modal -->
+    <div class="modal" id="meatProductModal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3>Add New Meat Product</h3>
-                <button class="modal-close js-close-modal-addProductModal">&times;</button>
+                <h3 id="meatProductModalTitle">Add Meat Product</h3>
+                <button class="modal-close" data-modal="meatProductModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <form id="addProductForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="productId">Product ID *</label>
-                            <input type="text" id="productId" name="productId" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="productType">Product Type *</label>
-                            <select id="productType" name="productType" required>
-                                <option value="">Select Type</option>
-                                <option value="beef">Beef</option>
-                                <option value="chicken">Chicken</option>
-                                <option value="mutton">Mutton</option>
-                                <option value="goat">Goat</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="breed">Breed *</label>
-                            <input type="text" id="breed" name="breed" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="avgWeight">Average Weight (kg) *</label>
-                            <input type="number" id="avgWeight" name="avgWeight" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="fcr">Feed Conversion Ratio *</label>
-                            <input type="number" id="fcr" name="fcr" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rearingPeriod">Rearing Period (days) *</label>
-                            <input type="number" id="rearingPeriod" name="rearingPeriod" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="region">Region *</label>
-                            <select id="region" name="region" required>
-                                <option value="">Select Region</option>
-                                <option value="north">North</option>
-                                <option value="south">South</option>
-                                <option value="east">East</option>
-                                <option value="west">West</option>
-                            </select>
-                        </div>
+            <form id="meatProductForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productType">Product Type</label>
+                        <select id="productType" required>
+                            <option value="">Select Type</option>
+                            <option value="Beef">Beef</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Mutton">Mutton</option>
+                            <option value="Goat">Goat</option>
+                            <option value="Pork">Pork</option>
+                        </select>
                     </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn-secondary js-close-modal-addProductModal">Cancel</button>
-                        <button type="submit" class="btn-primary">Add Product</button>
+                    <div class="form-group">
+                        <label for="breedVariety">Breed/Variety</label>
+                        <input type="text" id="breedVariety" required>
                     </div>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="avgLiveWeight">Average Live Weight (kg)</label>
+                        <input type="number" id="avgLiveWeight" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="carcassWeight">Carcass Weight (kg)</label>
+                        <input type="number" id="carcassWeight" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedConversionRatio">Feed Conversion Ratio</label>
+                        <input type="number" id="feedConversionRatio" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rearingPeriod">Rearing Period (days)</label>
+                        <input type="number" id="rearingPeriod" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rearingSystem">Rearing System</label>
+                        <select id="rearingSystem" required>
+                            <option value="">Select System</option>
+                            <option value="Pasture">Pasture</option>
+                            <option value="Feedlot">Feedlot</option>
+                            <option value="Free-range">Free-range</option>
+                            <option value="Intensive">Intensive</option>
+                            <option value="Semi-intensive">Semi-intensive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="meatProductModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Add Production Data Modal -->
-    <div class="modal-overlay" id="addProductionModal">
-        <div class="modal">
+    <!-- Production Record Modal -->
+    <div class="modal" id="productionRecordModal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3>Add Production Data</h3>
-                <button class="modal-close js-close-modal-addProductionModal">&times;</button>
+                <h3 id="productionRecordModalTitle">Add Production Record</h3>
+                <button class="modal-close" data-modal="productionRecordModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <form id="addProductionForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="district">District/Division *</label>
-                            <input type="text" id="district" name="district" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="livestockCount">Livestock Count *</label>
-                            <input type="number" id="livestockCount" name="livestockCount" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="slaughterRate">Slaughter Rate (%) *</label>
-                            <input type="number" id="slaughterRate" name="slaughterRate" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="meatYield">Meat Yield (tons) *</label>
-                            <input type="number" id="meatYield" name="meatYield" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="period">Period *</label>
-                            <input type="month" id="period" name="period" required>
-                        </div>
+            <form id="productionRecordForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="productionYear">Year</label>
+                        <input type="number" id="productionYear" min="2020" max="2030" required>
                     </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn-secondary js-close-modal-addProductionModal">Cancel</button>
-                        <button type="submit" class="btn-primary">Add Production Data</button>
+                    <div class="form-group">
+                        <label for="regionDistrict">Region/District/Division</label>
+                        <input type="text" id="regionDistrict" required>
                     </div>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <label for="livestockPopulation">Livestock Population (head count)</label>
+                        <input type="number" id="livestockPopulation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="slaughterRate">Slaughter Rate (%)</label>
+                        <input type="number" id="slaughterRate" step="0.1" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="animalsSlaughtered">Animals Slaughtered (number)</label>
+                        <input type="number" id="animalsSlaughtered" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalMeatYield">Total Meat Yield (tons)</label>
+                        <input type="number" id="totalMeatYield" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yieldPerAnimal">Yield per Animal (kg/head)</label>
+                        <input type="number" id="yieldPerAnimal" step="0.1" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="productionRecordModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Record</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Add Price Data Modal -->
-    <div class="modal-overlay" id="addPriceModal">
-        <div class="modal">
+    <!-- Price Trend Modal -->
+    <div class="modal" id="priceTrendModal">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3>Add Price Data</h3>
-                <button class="modal-close js-close-modal-addPriceModal">&times;</button>
+                <h3 id="priceTrendModalTitle">Add Price Data</h3>
+                <button class="modal-close" data-modal="priceTrendModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <form id="addPriceForm">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="priceProduct">Product *</label>
-                            <select id="priceProduct" name="priceProduct" required>
-                                <option value="">Select Product</option>
-                                <option value="beef">Beef</option>
-                                <option value="chicken">Chicken</option>
-                                <option value="mutton">Mutton</option>
-                                <option value="goat">Goat</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="wholesalePrice">Wholesale Price ($/kg) *</label>
-                            <input type="number" id="wholesalePrice" name="wholesalePrice" step="0.01" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="retailPrice">Retail Price ($/kg) *</label>
-                            <input type="number" id="retailPrice" name="retailPrice" step="0.01" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="priceRegion">Region *</label>
-                            <select id="priceRegion" name="priceRegion" required>
-                                <option value="">Select Region</option>
-                                <option value="north">North</option>
-                                <option value="south">South</option>
-                                <option value="east">East</option>
-                                <option value="west">West</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="priceDate">Date *</label>
-                            <input type="date" id="priceDate" name="priceDate" required>
-                        </div>
+            <form id="priceTrendForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="priceDate">Date (Year/Month)</label>
+                        <input type="month" id="priceDate" required>
                     </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn-secondary js-close-modal-addPriceModal">Cancel</button>
-                        <button type="submit" class="btn-primary">Add Price Data</button>
+                    <div class="form-group">
+                        <label for="marketName">Region/Market Name</label>
+                        <input type="text" id="marketName" required>
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label for="priceProductType">Product Type</label>
+                        <select id="priceProductType" required>
+                            <option value="">Select Type</option>
+                            <option value="Beef">Beef</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Mutton">Mutton</option>
+                            <option value="Goat">Goat</option>
+                            <option value="Pork">Pork</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="wholesalePrice">Wholesale Price (per kg)</label>
+                        <input type="number" id="wholesalePrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="retailPrice">Retail Price (per kg)</label>
+                        <input type="number" id="retailPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceChange">Price Change (%)</label>
+                        <input type="number" id="priceChange" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="seasonalTrend">Seasonal Trend Indicator</label>
+                        <select id="seasonalTrend" required>
+                            <option value="">Select Trend</option>
+                            <option value="↑">↑ (Increasing)</option>
+                            <option value="↓">↓ (Decreasing)</option>
+                            <option value="stable">Stable</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="priceTrendModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Price Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Consumption Pattern Modal -->
+    <div class="modal" id="consumptionPatternModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="consumptionPatternModalTitle">Add Consumption Data</h3>
+                <button class="modal-close" data-modal="consumptionPatternModal">&times;</button>
             </div>
+            <form id="consumptionPatternForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="consumptionRegion">Region</label>
+                        <input type="text" id="consumptionRegion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="population">Population</label>
+                        <input type="number" id="population" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="meatType">Meat Type</label>
+                        <select id="meatType" required>
+                            <option value="">Select Type</option>
+                            <option value="Beef">Beef</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Mutton">Mutton</option>
+                            <option value="Goat">Goat</option>
+                            <option value="Pork">Pork</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="perCapitaConsumption">Per Capita Consumption (kg/person/year)</label>
+                        <input type="number" id="perCapitaConsumption" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shareOfDiet">Share of Total Diet (%)</label>
+                        <input type="number" id="shareOfDiet" step="0.1" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nutritionalContribution">Nutritional Contribution</label>
+                        <input type="text" id="nutritionalContribution" placeholder="e.g., Protein 25g/day, Iron 3mg/day" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="demographicGroup">Demographic Group</label>
+                        <select id="demographicGroup" required>
+                            <option value="">Select Group</option>
+                            <option value="Urban/High Income">Urban/High Income</option>
+                            <option value="Urban/Middle Income">Urban/Middle Income</option>
+                            <option value="Urban/Low Income">Urban/Low Income</option>
+                            <option value="Rural/High Income">Rural/High Income</option>
+                            <option value="Rural/Middle Income">Rural/Middle Income</option>
+                            <option value="Rural/Low Income">Rural/Low Income</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="consumptionPatternModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Consumption Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Demand Elasticity Modal -->
+    <div class="modal" id="demandElasticityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="demandElasticityModalTitle">Add Demand Elasticity Data</h3>
+                <button class="modal-close" data-modal="demandElasticityModal">&times;</button>
+            </div>
+            <form id="demandElasticityForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="demandProductType">Product Type</label>
+                        <select id="demandProductType" required>
+                            <option value="">Select Type</option>
+                            <option value="Beef">Beef</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Mutton">Mutton</option>
+                            <option value="Goat">Goat</option>
+                            <option value="Pork">Pork</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timePeriod">Time Period (Year/Quarter)</label>
+                        <input type="text" id="timePeriod" placeholder="e.g., 2024-Q1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="averagePrice">Average Price (per kg)</label>
+                        <input type="number" id="averagePrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityDemanded">Quantity Demanded (tons)</label>
+                        <input type="number" id="quantityDemanded" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceElasticity">Price Elasticity of Demand</label>
+                        <input type="number" id="priceElasticity" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="crossElasticity">Cross-Elasticity with Alternatives</label>
+                        <input type="text" id="crossElasticity" placeholder="e.g., +0.3 with fish" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomeElasticity">Income Elasticity (optional)</label>
+                        <input type="number" id="incomeElasticity" step="0.01">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="demandElasticityModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Demand Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supply Demand Modal -->
+    <div class="modal" id="supplyDemandModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="supplyDemandModalTitle">Add Supply/Demand Data</h3>
+                <button class="modal-close" data-modal="supplyDemandModal">&times;</button>
+            </div>
+            <form id="supplyDemandForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="supplyDemandRegion">Region</label>
+                        <input type="text" id="supplyDemandRegion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplyDemandTimePeriod">Time Period (Year/Month)</label>
+                        <input type="month" id="supplyDemandTimePeriod" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="supplyVolume">Supply Volume (tons)</label>
+                        <input type="number" id="supplyVolume" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="demandVolume">Demand Volume (tons)</label>
+                        <input type="number" id="demandVolume" step="0.1" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="supplyDemandModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Supply/Demand Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Insights Modal -->
+    <div class="modal" id="insightModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="insightModalTitle">Add Market Insight</h3>
+                <button class="modal-close" data-modal="insightModal">&times;</button>
+            </div>
+            <form id="insightForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="insightRegion">Region/Market</label>
+                        <input type="text" id="insightRegion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="keyTrend">Key Trend</label>
+                        <input type="text" id="keyTrend" placeholder="e.g., rising demand, falling supply" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mainChallenge">Main Challenge</label>
+                        <input type="text" id="mainChallenge" placeholder="e.g., high feed cost, seasonal shortage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="opportunity">Opportunity</label>
+                        <input type="text" id="opportunity" placeholder="e.g., export potential, alternative proteins" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recommendation">Recommendation</label>
+                        <textarea id="recommendation" placeholder="Recommendations for suppliers, wholesalers, retailers, policymakers" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-modal="insightModal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Insight</button>
+                </div>
+            </form>
         </div>
     </div>
 

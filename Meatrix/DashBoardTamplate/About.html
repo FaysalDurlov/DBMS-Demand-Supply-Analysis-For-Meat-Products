@@ -8,6 +8,53 @@
 </head>
 <body class="bg-gray-50">
 
+
+
+  <style>
+    /* Back & GitHub button (same style) */
+    .back-button,
+    .github-button {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 2px solid rgb(192, 140, 7);
+      background-color: transparent;
+      border-radius: 8px;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.4s ease;
+    }
+
+    .back-button:hover,
+    .github-button:hover {
+      background-color: rgb(201, 158, 5);
+      color: #333;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="DashBoard.html" class="back-button">← Back</a>
+  
   <div class="min-h-screen py-8 px-4 max-w-4xl mx-auto">
     <!-- Header -->
     <div class="text-center mb-12">

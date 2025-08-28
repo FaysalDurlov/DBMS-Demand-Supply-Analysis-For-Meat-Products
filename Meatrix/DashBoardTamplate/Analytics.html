@@ -607,6 +607,155 @@ select:focus {
             </div>
         </div>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Loading Screen with Double Spinner</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  /* Loading Screen Styles */
+  #loading-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #ffffff, #fdfcfc 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #0c7aa8;
+    z-index: 9999;
+  }
+  /* Outer rotating circle */
+  .loader-circle-outer {
+    border: 8px solid rgba(112, 11, 185, 0.2);
+    border-top: 8px solid #700bb9;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1.2s linear infinite;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Inner rotating circle (opposite direction) */
+  .loader-circle-inner {
+    border: 6px solid rgba(187, 3, 3, 0.2);
+    border-top: 6px solid #bb0303;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spinReverse 0.8s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+  @keyframes spinReverse {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(-360deg);}
+  }
+  .loading-bar {
+    width: 300px;
+    height: 8px;
+    background: rgba(72, 138, 192, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .loading-fill {
+    height: 100%;
+    width: 0%;
+    background: #700bb9;
+    transition: width 0.1s linear;
+  }
+  .loading-text {
+    margin-top: 15px;
+    font-size: 18px;
+    text-align: center;
+    transition: opacity 0.5s ease;
+  }
+  /* ** Loading Meatrix t.bold ** */
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+  }
+  .loading-percent {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #bb0303;
+  }
+  /* Hide content initially */
+  #content {
+    display: none;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="loader-circle-outer">
+    <div class="loader-circle-inner"></div>
+  </div>
+  <h2>Loading Meatrix</h2>
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+  <div class="loading-text" id="loading-message">Preparing your dashboard...</div>
+  <div class="loading-percent" id="loading-percent">0%</div>
+</div>
+
+
+
+<script>
+  let progress = 0;
+  const loadingFill = document.querySelector('.loading-fill');
+  const loadingMessage = document.getElementById('loading-message');
+  const loadingPercent = document.getElementById('loading-percent');
+
+  let interval = setInterval(() => {
+    progress += 2; // faster loading
+    loadingFill.style.width = progress + "%";
+    loadingPercent.textContent = progress + "%";
+
+    if (progress === 50) {
+      loadingMessage.style.opacity = 0;
+      setTimeout(() => {
+        loadingMessage.textContent = "Your content is now loaded and ready to use.";
+        loadingMessage.style.opacity = 1;
+      }, 500);
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+
+      loadingPercent.textContent = "100% Completed!";
+
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      }, 1200);
+    }
+  }, 50); // Adjust speed here
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
 
     <!-- Add Product Modal -->
     <div id="addProductModal" class="modal hidden">
@@ -649,7 +798,7 @@ select:focus {
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (₹) *</label>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (৳) *</label>
                             <input type="number" name="productPrice" required placeholder="580" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
                         </div>
                         
@@ -674,6 +823,8 @@ select:focus {
                                 <option value="Rangpur">Rangpur</option>
                                 <option value="Khulna">Khulna</option>
                                 <option value="Barisal">Barisal</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Mymensingh">Mymensingh</option>
                             </select>
                         </div>
                     </div>
@@ -739,7 +890,7 @@ select:focus {
                         </div>
                     
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (₹) *</label>
+                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Price (৳) *</label>
                             <input type="number" id="editProductPrice" name="productPrice" required placeholder="580" class="form-input w-full px-5 py-4 rounded-2xl focus:outline-none transition-all duration-200 text-gray-900 dark:text-white">
                         </div>
                     
@@ -764,6 +915,8 @@ select:focus {
                                 <option value="Rangpur">Rangpur</option>
                                 <option value="Khulna">Khulna</option>
                                 <option value="Barisal">Barisal</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Mymensingh">Mymensingh</option>
                             </select>
                         </div>
                     </div>
@@ -955,7 +1108,7 @@ select:focus {
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-green-100 text-sm font-semibold mb-2">Market Value</p>
-                            <p class="text-4xl font-black mb-1">₹2.4B</p>
+                            <p class="text-4xl font-black mb-1">৳2.4B</p>
                             <p class="text-sm text-green-100 mb-3">total value</p>
                             <div class="flex items-center">
                                 <i class="fas fa-arrow-up text-yellow-300 text-sm mr-2"></i>
@@ -1131,7 +1284,7 @@ select:focus {
                                 <h4 class="font-bold text-red-800 dark:text-red-200">Dhaka</h4>
                                 <span class="text-xs bg-red-500 text-white px-3 py-1 rounded-full font-semibold">High</span>
                             </div>
-                            <p class="text-3xl font-black text-red-600 dark:text-red-300 mb-2">₹580/kg</p>
+                            <p class="text-3xl font-black text-red-600 dark:text-red-300 mb-2">৳580/kg</p>
                             <p class="text-sm text-red-500 dark:text-red-400 flex items-center">
                                 <i class="fas fa-arrow-up mr-2"></i>+2.5%
                             </p>
@@ -1142,7 +1295,7 @@ select:focus {
                                 <h4 class="font-bold text-yellow-800 dark:text-yellow-200">Chittagong</h4>
                                 <span class="text-xs bg-yellow-500 text-white px-3 py-1 rounded-full font-semibold">Med</span>
                             </div>
-                            <p class="text-3xl font-black text-yellow-600 dark:text-yellow-300 mb-2">₹520/kg</p>
+                            <p class="text-3xl font-black text-yellow-600 dark:text-yellow-300 mb-2">৳520/kg</p>
                             <p class="text-sm text-yellow-500 dark:text-yellow-400 flex items-center">
                                 <i class="fas fa-arrow-down mr-2"></i>-1.2%
                             </p>
@@ -1153,7 +1306,7 @@ select:focus {
                                 <h4 class="font-bold text-green-800 dark:text-green-200">Sylhet</h4>
                                 <span class="text-xs bg-green-500 text-white px-3 py-1 rounded-full font-semibold">Low</span>
                             </div>
-                            <p class="text-3xl font-black text-green-600 dark:text-green-300 mb-2">₹480/kg</p>
+                            <p class="text-3xl font-black text-green-600 dark:text-green-300 mb-2">৳480/kg</p>
                             <p class="text-sm text-green-500 dark:text-green-400 flex items-center">
                                 <i class="fas fa-arrow-down mr-2"></i>-3.5%
                             </p>
@@ -1164,7 +1317,7 @@ select:focus {
                                 <h4 class="font-bold text-blue-800 dark:text-blue-200">Rangpur</h4>
                                 <span class="text-xs bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">Med</span>
                             </div>
-                            <p class="text-3xl font-black text-blue-600 dark:text-blue-300 mb-2">₹550/kg</p>
+                            <p class="text-3xl font-black text-blue-600 dark:text-blue-300 mb-2">৳550/kg</p>
                             <p class="text-sm text-blue-500 dark:text-blue-400 flex items-center">
                                 <i class="fas fa-arrow-up mr-2"></i>+7.0%
                             </p>
@@ -1647,7 +1800,7 @@ select:focus {
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="text-3xl font-black text-gray-900 dark:text-white">₹${product.price}</p>
+                    <p class="text-3xl font-black text-gray-900 dark:text-white">৳${product.price}</p>
                     <p class="text-gray-500 dark:text-gray-400">per ${product.weight}</p>
                 </div>
             </div>
@@ -1894,7 +2047,7 @@ function populateTable(data = products) {
                 <span class="px-3 py-1 text-xs font-bold rounded-full bg-${getCategoryBgColor(product.category)} text-white shadow-sm">${product.category}</span>
             </td>
             <td class="col-weight text-sm font-semibold text-gray-900 dark:text-gray-300">${product.weight}</td>
-            <td class="col-price text-lg font-black text-gray-900 dark:text-white">₹${product.price}</td>
+            <td class="col-price text-lg font-black text-gray-900 dark:text-white">৳${product.price}</td>
             <td class="col-quality">
                 <span class="px-3 py-1 text-xs font-bold rounded-full ${qualityColor}">${product.quality}</span>
             </td>
@@ -2038,7 +2191,7 @@ function formatDate(dateString) {
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
                     datasets: [{
-                        label: 'Beef (₹/kg)',
+                        label: 'Beef (৳/kg)',
                         data: [580, 590, 575, 585, 580, 595, 600, 590, 585, 592],
                         borderColor: '#EF4444',
                         backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -2050,7 +2203,7 @@ function formatDate(dateString) {
                         pointRadius: 6,
                         pointHoverRadius: 8
                     }, {
-                        label: 'Chicken (₹/kg)',
+                        label: 'Chicken (৳/kg)',
                         data: [320, 315, 325, 330, 320, 318, 325, 322, 328, 324],
                         borderColor: '#F59E0B',
                         backgroundColor: 'rgba(245, 158, 11, 0.1)',
@@ -2062,7 +2215,7 @@ function formatDate(dateString) {
                         pointRadius: 6,
                         pointHoverRadius: 8
                     }, {
-                        label: 'Mutton (₹/kg)',
+                        label: 'Mutton (৳/kg)',
                         data: [750, 760, 745, 755, 750, 765, 770, 768, 772, 775],
                         borderColor: '#8B5CF6',
                         backgroundColor: 'rgba(139, 92, 246, 0.1)',
@@ -2121,7 +2274,7 @@ function formatDate(dateString) {
                                     weight: 'bold'
                                 },
                                 callback: function(value) {
-                                    return '₹' + value;
+                                    return '৳' + value;
                                 }
                             },
                             grid: {
@@ -2147,7 +2300,7 @@ function formatDate(dateString) {
             productionChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Dhaka', 'Chittagong', 'Sylhet', 'Rangpur', 'Khulna', 'Barisal', 'Mymensingh'],
+                    labels: ['Dhaka', 'Chittagong', 'Sylhet', 'Rangpur', 'Khulna', 'Barisal', 'Mymensingh', 'Rajshahi'],
                     datasets: [{
                         label: 'Production (tons)',
                         data: [180, 150, 120, 100, 90, 75, 85],

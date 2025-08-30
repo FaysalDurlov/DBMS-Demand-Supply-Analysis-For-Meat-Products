@@ -27,12 +27,13 @@ export async function loadData() {
         l.breed AS Breed, 
         lw.weight AS Weight,
         m.total_weight AS Carcass_weight, 
-        lr.givenQunatity AS FCR,
+        ROUND((lr.givenQunatity*100)/lw.weight,2) AS FCR,
         l.Rearing_Period
     FROM meat_batch m
     JOIN live_stock l USING(animal_id)
     JOIN live_stock_w lw USING(animal_id)
     JOIN live_stock_care_records lr USING(animal_id)
+
   `);
   meatProductT = meatProduct;
 

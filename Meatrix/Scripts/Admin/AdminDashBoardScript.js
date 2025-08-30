@@ -15,7 +15,6 @@ class MeatAdminDashboard {
           carcassWeight: 270,
           feedConversionRatio: 6.5,
           rearingPeriod: 720,
-          rearingSystem: "Feedlot",
         },
         {
           productType: "Chicken",
@@ -24,7 +23,6 @@ class MeatAdminDashboard {
           carcassWeight: 1.8,
           feedConversionRatio: 1.8,
           rearingPeriod: 42,
-          rearingSystem: "Intensive",
         },
         {
           productType: "Mutton",
@@ -33,7 +31,6 @@ class MeatAdminDashboard {
           carcassWeight: 32,
           feedConversionRatio: 4.2,
           rearingPeriod: 365,
-          rearingSystem: "Pasture",
         },
         {
           productType: "Goat",
@@ -42,7 +39,6 @@ class MeatAdminDashboard {
           carcassWeight: 22,
           feedConversionRatio: 3.8,
           rearingPeriod: 180,
-          rearingSystem: "Semi-intensive",
         },
         {
           productType: "Pork",
@@ -51,7 +47,6 @@ class MeatAdminDashboard {
           carcassWeight: 75,
           feedConversionRatio: 2.8,
           rearingPeriod: 180,
-          rearingSystem: "Intensive",
         },
         {
           productType: "Beef",
@@ -60,7 +55,6 @@ class MeatAdminDashboard {
           carcassWeight: 320,
           feedConversionRatio: 7.2,
           rearingPeriod: 750,
-          rearingSystem: "Pasture",
         },
         {
           productType: "Chicken",
@@ -69,7 +63,6 @@ class MeatAdminDashboard {
           carcassWeight: 1.2,
           feedConversionRatio: 2.2,
           rearingPeriod: 365,
-          rearingSystem: "Free-range",
         },
         {
           productType: "Mutton",
@@ -78,7 +71,6 @@ class MeatAdminDashboard {
           carcassWeight: 40,
           feedConversionRatio: 4.5,
           rearingPeriod: 400,
-          rearingSystem: "Feedlot",
         },
         {
           productType: "Goat",
@@ -87,7 +79,6 @@ class MeatAdminDashboard {
           carcassWeight: 28,
           feedConversionRatio: 4.0,
           rearingPeriod: 200,
-          rearingSystem: "Pasture",
         },
         {
           productType: "Pork",
@@ -96,7 +87,6 @@ class MeatAdminDashboard {
           carcassWeight: 85,
           feedConversionRatio: 3.2,
           rearingPeriod: 200,
-          rearingSystem: "Semi-intensive",
         },
       ],
       productionRecords: [
@@ -862,7 +852,6 @@ class MeatAdminDashboard {
                     <td>${item.carcassWeight}</td>
                     <td>${item.feedConversionRatio}</td>
                     <td>${item.rearingPeriod}</td>
-                    <td>${item.rearingSystem}</td>
                     <td>${actionButtons}</td>
                 `
       case "productionRecords":
@@ -1029,7 +1018,6 @@ class MeatAdminDashboard {
       carcassWeight: Number.parseFloat(data.carcassWeight),
       feedConversionRatio: Number.parseFloat(data.feedConversionRatio),
       rearingPeriod: Number.parseInt(data.rearingPeriod),
-      rearingSystem: data.rearingSystem,
     }
 
     if (this.editingIndex >= 0) {
@@ -1237,7 +1225,6 @@ class MeatAdminDashboard {
     document.getElementById("carcassWeight").value = record.carcassWeight
     document.getElementById("feedConversionRatio").value = record.feedConversionRatio
     document.getElementById("rearingPeriod").value = record.rearingPeriod
-    document.getElementById("rearingSystem").value = record.rearingSystem
     document.getElementById("meatProductModalTitle").textContent = "Edit Meat Product"
   }
 

@@ -1460,4 +1460,4 @@ class MeatAdminDashboard {
 
 document.addEventListener("DOMContentLoaded", () => {
   new MeatAdminDashboard()
-})
+});

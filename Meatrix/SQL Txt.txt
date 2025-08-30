@@ -146,6 +146,7 @@ CREATE TABLE INDUSTRY (
 CREATE TABLE MEAT_PRODUCT (
     Meatproduct_Id INT PRIMARY KEY,
     nutritionInfo VARCHAR(100),
+    packagingDate DATE,
     expireDate DATE,
     price FLOAT,
     quantity INT,
@@ -375,16 +376,16 @@ INSERT INTO INDUSTRY VALUES
 (10, 'ProteinPalace', 'Area J', 'Jessore', 'Jessore', 'Bangladesh', 'Wholesale');
 
 INSERT INTO MEAT_PRODUCT VALUES
-(1, 'High Protein', '2024-01-01', 500.0, 100, 1),
-(2, 'Low Fat', '2024-01-02', 600.0, 200, 2),
-(3, 'Organic', '2024-01-03', 700.0, 300, 3),
-(4, 'Lean Cut', '2024-01-04', 800.0, 400, 4),
-(5, 'Premium', '2024-01-05', 900.0, 500, 5),
-(6, 'Standard', '2024-01-06', 1000.0, 600, 6),
-(7, 'Economy', '2024-01-07', 1100.0, 700, 7),
-(8, 'Deluxe', '2024-01-08', 1200.0, 800, 8),
-(9, 'Budget', '2024-01-09', 1300.0, 900, 9),
-(10, 'Family Pack', '2024-01-10', 1400.0, 1000, 10);
+(1, 'High Protein','2022-01-01', '2024-01-01', 500.0, 100, 1),
+(2, 'Low Fat','2022-01-01', '2024-01-02', 600.0, 200, 2),
+(3, 'Organic','2022-01-01', '2024-01-03', 700.0, 300, 3),
+(4, 'Lean Cut','2022-01-01', '2024-01-04', 800.0, 400, 4),
+(5, 'Premium','2022-01-01', '2024-01-05', 900.0, 500, 5),
+(6, 'Standard','2022-01-01', '2024-01-06', 1000.0, 600, 6),
+(7, 'Economy','2022-01-01', '2024-01-07', 1100.0, 700, 7),
+(8, 'Deluxe','2022-01-01', '2024-01-08', 1200.0, 800, 8),
+(9, 'Budget','2022-01-01', '2024-01-09', 1300.0, 900, 9),
+(10, 'Family Pack','2022-01-01', '2024-01-10', 1400.0, 1000, 10);
 
 INSERT INTO CUSTOMER VALUES
 (1, 'John', 'Doe', '01711111111', '123 Street, Dhaka'),

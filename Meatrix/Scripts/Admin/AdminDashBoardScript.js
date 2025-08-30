@@ -14,7 +14,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 450,
           carcassWeight: 270,
           feedConversionRatio: 6.5,
-          rearingPeriod: 720,
+          rearingPeriod: 720
         },
         {
           productType: "Chicken",
@@ -22,7 +22,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 2.5,
           carcassWeight: 1.8,
           feedConversionRatio: 1.8,
-          rearingPeriod: 42,
+          rearingPeriod: 42
         },
         {
           productType: "Mutton",
@@ -30,7 +30,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 65,
           carcassWeight: 32,
           feedConversionRatio: 4.2,
-          rearingPeriod: 365,
+          rearingPeriod: 365
         },
         {
           productType: "Goat",
@@ -38,7 +38,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 45,
           carcassWeight: 22,
           feedConversionRatio: 3.8,
-          rearingPeriod: 180,
+          rearingPeriod: 180
         },
         {
           productType: "Pork",
@@ -46,7 +46,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 110,
           carcassWeight: 75,
           feedConversionRatio: 2.8,
-          rearingPeriod: 180,
+          rearingPeriod: 180
         },
         {
           productType: "Beef",
@@ -54,7 +54,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 520,
           carcassWeight: 320,
           feedConversionRatio: 7.2,
-          rearingPeriod: 750,
+          rearingPeriod: 750
         },
         {
           productType: "Chicken",
@@ -62,7 +62,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 1.8,
           carcassWeight: 1.2,
           feedConversionRatio: 2.2,
-          rearingPeriod: 365,
+          rearingPeriod: 365
         },
         {
           productType: "Mutton",
@@ -70,7 +70,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 80,
           carcassWeight: 40,
           feedConversionRatio: 4.5,
-          rearingPeriod: 400,
+          rearingPeriod: 400
         },
         {
           productType: "Goat",
@@ -78,7 +78,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 55,
           carcassWeight: 28,
           feedConversionRatio: 4.0,
-          rearingPeriod: 200,
+          rearingPeriod: 200
         },
         {
           productType: "Pork",
@@ -86,7 +86,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 125,
           carcassWeight: 85,
           feedConversionRatio: 3.2,
-          rearingPeriod: 200,
+          rearingPeriod: 200
         },
       ],
       productionRecords: [
@@ -1017,7 +1017,7 @@ class MeatAdminDashboard {
       avgLiveWeight: Number.parseFloat(data.avgLiveWeight),
       carcassWeight: Number.parseFloat(data.carcassWeight),
       feedConversionRatio: Number.parseFloat(data.feedConversionRatio),
-      rearingPeriod: Number.parseInt(data.rearingPeriod),
+      rearingPeriod: Number.parseInt(data.rearingPeriod)
     }
 
     if (this.editingIndex >= 0) {

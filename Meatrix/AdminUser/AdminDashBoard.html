@@ -600,7 +600,7 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="productType">Product Type</label>
-                        <select id="productType" required>
+                        <select id="productType" name="productType" required>
                             <option value="">Select Type</option>
                             <option value="Beef">Beef</option>
                             <option value="Chicken">Chicken</option>
@@ -611,34 +611,23 @@
                     </div>
                     <div class="form-group">
                         <label for="breedVariety">Breed/Variety</label>
-                        <input type="text" id="breedVariety" required>
+                        <input type="text" id="breedVariety" name="breedVariety" required>
                     </div>
                     <div class="form-group">
                         <label for="avgLiveWeight">Average Live Weight (kg)</label>
-                        <input type="number" id="avgLiveWeight" step="0.1" required>
+                        <input type="number" id="avgLiveWeight" name="avgLiveWeight" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="carcassWeight">Carcass Weight (kg)</label>
-                        <input type="number" id="carcassWeight" step="0.1" required>
+                        <input type="number" id="carcassWeight" name="carcassWeight" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="feedConversionRatio">Feed Conversion Ratio</label>
-                        <input type="number" id="feedConversionRatio" step="0.1" required>
+                        <input type="number" id="feedConversionRatio" name="feedConversionRatio" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="rearingPeriod">Rearing Period (days)</label>
-                        <input type="number" id="rearingPeriod" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="rearingSystem">Rearing System</label>
-                        <select id="rearingSystem" required>
-                            <option value="">Select System</option>
-                            <option value="Pasture">Pasture</option>
-                            <option value="Feedlot">Feedlot</option>
-                            <option value="Free-range">Free-range</option>
-                            <option value="Intensive">Intensive</option>
-                            <option value="Semi-intensive">Semi-intensive</option>
-                        </select>
+                        <input type="number" id="rearingPeriod" name="rearingPeriod" required>
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -660,31 +649,31 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="productionYear">Year</label>
-                        <input type="number" id="productionYear" min="2020" max="2030" required>
+                        <input type="number" id="productionYear" name="productionYear" min="2020" max="2030" required>
                     </div>
                     <div class="form-group">
                         <label for="regionDistrict">Region/District/Division</label>
-                        <input type="text" id="regionDistrict" required>
+                        <input type="text" id="regionDistrict" name="regionDistrict" required>
                     </div>
                     <div class="form-group">
                         <label for="livestockPopulation">Livestock Population (head count)</label>
-                        <input type="number" id="livestockPopulation" required>
+                        <input type="number" id="livestockPopulation" name="livestockPopulation" required>
                     </div>
                     <div class="form-group">
                         <label for="slaughterRate">Slaughter Rate (%)</label>
-                        <input type="number" id="slaughterRate" step="0.1" min="0" max="100" required>
+                        <input type="number" id="slaughterRate" name="slaughterRate" step="0.1" min="0" max="100" required>
                     </div>
                     <div class="form-group">
                         <label for="animalsSlaughtered">Animals Slaughtered (number)</label>
-                        <input type="number" id="animalsSlaughtered" required>
+                        <input type="number" id="animalsSlaughtered" name="animalsSlaughtered" required>
                     </div>
                     <div class="form-group">
                         <label for="totalMeatYield">Total Meat Yield (tons)</label>
-                        <input type="number" id="totalMeatYield" step="0.1" required>
+                        <input type="number" id="totalMeatYield" name="totalMeatYield" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="yieldPerAnimal">Yield per Animal (kg/head)</label>
-                        <input type="number" id="yieldPerAnimal" step="0.1" required>
+                        <input type="number" id="yieldPerAnimal" name="yieldPerAnimal" step="0.1" required>
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -706,15 +695,15 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="priceDate">Date (Year/Month)</label>
-                        <input type="month" id="priceDate" required>
+                        <input type="month" id="priceDate" name="priceDate" required>
                     </div>
                     <div class="form-group">
                         <label for="marketName">Region/Market Name</label>
-                        <input type="text" id="marketName" required>
+                        <input type="text" id="marketName" name="marketName" required>
                     </div>
                     <div class="form-group">
                         <label for="priceProductType">Product Type</label>
-                        <select id="priceProductType" required>
+                        <select id="priceProductType" name="priceProductType" required>
                             <option value="">Select Type</option>
                             <option value="Beef">Beef</option>
                             <option value="Chicken">Chicken</option>
@@ -725,19 +714,19 @@
                     </div>
                     <div class="form-group">
                         <label for="wholesalePrice">Wholesale Price (per kg)</label>
-                        <input type="number" id="wholesalePrice" step="0.01" required>
+                        <input type="number" id="wholesalePrice" name="wholesalePrice" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="retailPrice">Retail Price (per kg)</label>
-                        <input type="number" id="retailPrice" step="0.01" required>
+                        <input type="number" id="retailPrice" name="retailPrice" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="priceChange">Price Change (%)</label>
-                        <input type="number" id="priceChange" step="0.1">
+                        <input type="number" id="priceChange" name="priceChange" step="0.1">
                     </div>
                     <div class="form-group">
                         <label for="seasonalTrend">Seasonal Trend Indicator</label>
-                        <select id="seasonalTrend" required>
+                        <select id="seasonalTrend" name="seasonalTrend" required>
                             <option value="">Select Trend</option>
                             <option value="↑">↑ (Increasing)</option>
                             <option value="↓">↓ (Decreasing)</option>
@@ -764,15 +753,15 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="consumptionRegion">Region</label>
-                        <input type="text" id="consumptionRegion" required>
+                        <input type="text" id="consumptionRegion" name="consumptionRegion" required>
                     </div>
                     <div class="form-group">
                         <label for="population">Population</label>
-                        <input type="number" id="population" required>
+                        <input type="number" id="population" name="population" required>
                     </div>
                     <div class="form-group">
                         <label for="meatType">Meat Type</label>
-                        <select id="meatType" required>
+                        <select id="meatType" name="meatType" required>
                             <option value="">Select Type</option>
                             <option value="Beef">Beef</option>
                             <option value="Chicken">Chicken</option>
@@ -783,19 +772,19 @@
                     </div>
                     <div class="form-group">
                         <label for="perCapitaConsumption">Per Capita Consumption (kg/person/year)</label>
-                        <input type="number" id="perCapitaConsumption" step="0.1" required>
+                        <input type="number" id="perCapitaConsumption" name="perCapitaConsumption" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="shareOfDiet">Share of Total Diet (%)</label>
-                        <input type="number" id="shareOfDiet" step="0.1" min="0" max="100" required>
+                        <input type="number" id="shareOfDiet" name="shareOfDiet" step="0.1" min="0" max="100" required>
                     </div>
                     <div class="form-group">
                         <label for="nutritionalContribution">Nutritional Contribution</label>
-                        <input type="text" id="nutritionalContribution" placeholder="e.g., Protein 25g/day, Iron 3mg/day" required>
+                        <input type="text" id="nutritionalContribution" name="nutritionalContribution" placeholder="e.g., Protein 25g/day, Iron 3mg/day" required>
                     </div>
                     <div class="form-group">
                         <label for="demographicGroup">Demographic Group</label>
-                        <select id="demographicGroup" required>
+                        <select id="demographicGroup" name="demographicGroup" required>
                             <option value="">Select Group</option>
                             <option value="Urban/High Income">Urban/High Income</option>
                             <option value="Urban/Middle Income">Urban/Middle Income</option>
@@ -825,7 +814,7 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="demandProductType">Product Type</label>
-                        <select id="demandProductType" required>
+                        <select id="demandProductType" name="demandProductType" required>
                             <option value="">Select Type</option>
                             <option value="Beef">Beef</option>
                             <option value="Chicken">Chicken</option>
@@ -836,27 +825,27 @@
                     </div>
                     <div class="form-group">
                         <label for="timePeriod">Time Period (Year/Quarter)</label>
-                        <input type="text" id="timePeriod" placeholder="e.g., 2024-Q1" required>
+                        <input type="text" id="timePeriod" name="timePeriod" placeholder="e.g., 2024-Q1" required>
                     </div>
                     <div class="form-group">
                         <label for="averagePrice">Average Price (per kg)</label>
-                        <input type="number" id="averagePrice" step="0.01" required>
+                        <input type="number" id="averagePrice" name="averagePrice" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="quantityDemanded">Quantity Demanded (tons)</label>
-                        <input type="number" id="quantityDemanded" step="0.1" required>
+                        <input type="number" id="quantityDemanded" name="quantityDemanded" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="priceElasticity">Price Elasticity of Demand</label>
-                        <input type="number" id="priceElasticity" step="0.01" required>
+                        <input type="number" id="priceElasticity" name="priceElasticity" step="0.01" required>
                     </div>
                     <div class="form-group">
                         <label for="crossElasticity">Cross-Elasticity with Alternatives</label>
-                        <input type="text" id="crossElasticity" placeholder="e.g., +0.3 with fish" required>
+                        <input type="text" id="crossElasticity" name="crossElasticity" placeholder="e.g., +0.3 with fish" required>
                     </div>
                     <div class="form-group">
                         <label for="incomeElasticity">Income Elasticity (optional)</label>
-                        <input type="number" id="incomeElasticity" step="0.01">
+                        <input type="number" id="incomeElasticity" name="incomeElasticity" step="0.01">
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -878,19 +867,19 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="supplyDemandRegion">Region</label>
-                        <input type="text" id="supplyDemandRegion" required>
+                        <input type="text" id="supplyDemandRegion" name="supplyDemandRegion" required>
                     </div>
                     <div class="form-group">
                         <label for="supplyDemandTimePeriod">Time Period (Year/Month)</label>
-                        <input type="month" id="supplyDemandTimePeriod" required>
+                        <input type="month" id="supplyDemandTimePeriod" name="supplyDemandTimePeriod" required>
                     </div>
                     <div class="form-group">
                         <label for="supplyVolume">Supply Volume (tons)</label>
-                        <input type="number" id="supplyVolume" step="0.1" required>
+                        <input type="number" id="supplyVolume" name="supplyVolume" step="0.1" required>
                     </div>
                     <div class="form-group">
                         <label for="demandVolume">Demand Volume (tons)</label>
-                        <input type="number" id="demandVolume" step="0.1" required>
+                        <input type="number" id="demandVolume" name="demandVolume" step="0.1" required>
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -912,23 +901,23 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="insightRegion">Region/Market</label>
-                        <input type="text" id="insightRegion" required>
+                        <input type="text" id="insightRegion" name="insightRegion" required>
                     </div>
                     <div class="form-group">
                         <label for="keyTrend">Key Trend</label>
-                        <input type="text" id="keyTrend" placeholder="e.g., rising demand, falling supply" required>
+                        <input type="text" id="keyTrend" name="keyTrend" placeholder="e.g., rising demand, falling supply" required>
                     </div>
                     <div class="form-group">
                         <label for="mainChallenge">Main Challenge</label>
-                        <input type="text" id="mainChallenge" placeholder="e.g., high feed cost, seasonal shortage" required>
+                        <input type="text" id="mainChallenge" name="mainChallenge" placeholder="e.g., high feed cost, seasonal shortage" required>
                     </div>
                     <div class="form-group">
                         <label for="opportunity">Opportunity</label>
-                        <input type="text" id="opportunity" placeholder="e.g., export potential, alternative proteins" required>
+                        <input type="text" id="opportunity" name="opportunity" placeholder="e.g., export potential, alternative proteins" required>
                     </div>
                     <div class="form-group">
                         <label for="recommendation">Recommendation</label>
-                        <textarea id="recommendation" placeholder="Recommendations for suppliers, wholesalers, retailers, policymakers" required></textarea>
+                        <textarea id="recommendation" name="recommendation" placeholder="Recommendations for suppliers, wholesalers, retailers, policymakers" required></textarea>
                     </div>
                 </div>
                 <div class="modal-actions">

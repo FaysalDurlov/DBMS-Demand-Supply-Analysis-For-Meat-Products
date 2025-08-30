@@ -14,8 +14,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 450,
           carcassWeight: 270,
           feedConversionRatio: 6.5,
-          rearingPeriod: 720,
-          rearingSystem: "Feedlot",
+          rearingPeriod: 720
         },
         {
           productType: "Chicken",
@@ -23,8 +22,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 2.5,
           carcassWeight: 1.8,
           feedConversionRatio: 1.8,
-          rearingPeriod: 42,
-          rearingSystem: "Intensive",
+          rearingPeriod: 42
         },
         {
           productType: "Mutton",
@@ -32,8 +30,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 65,
           carcassWeight: 32,
           feedConversionRatio: 4.2,
-          rearingPeriod: 365,
-          rearingSystem: "Pasture",
+          rearingPeriod: 365
         },
         {
           productType: "Goat",
@@ -41,8 +38,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 45,
           carcassWeight: 22,
           feedConversionRatio: 3.8,
-          rearingPeriod: 180,
-          rearingSystem: "Semi-intensive",
+          rearingPeriod: 180
         },
         {
           productType: "Pork",
@@ -50,8 +46,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 110,
           carcassWeight: 75,
           feedConversionRatio: 2.8,
-          rearingPeriod: 180,
-          rearingSystem: "Intensive",
+          rearingPeriod: 180
         },
         {
           productType: "Beef",
@@ -59,8 +54,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 520,
           carcassWeight: 320,
           feedConversionRatio: 7.2,
-          rearingPeriod: 750,
-          rearingSystem: "Pasture",
+          rearingPeriod: 750
         },
         {
           productType: "Chicken",
@@ -68,8 +62,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 1.8,
           carcassWeight: 1.2,
           feedConversionRatio: 2.2,
-          rearingPeriod: 365,
-          rearingSystem: "Free-range",
+          rearingPeriod: 365
         },
         {
           productType: "Mutton",
@@ -77,8 +70,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 80,
           carcassWeight: 40,
           feedConversionRatio: 4.5,
-          rearingPeriod: 400,
-          rearingSystem: "Feedlot",
+          rearingPeriod: 400
         },
         {
           productType: "Goat",
@@ -86,8 +78,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 55,
           carcassWeight: 28,
           feedConversionRatio: 4.0,
-          rearingPeriod: 200,
-          rearingSystem: "Pasture",
+          rearingPeriod: 200
         },
         {
           productType: "Pork",
@@ -95,8 +86,7 @@ class MeatAdminDashboard {
           avgLiveWeight: 125,
           carcassWeight: 85,
           feedConversionRatio: 3.2,
-          rearingPeriod: 200,
-          rearingSystem: "Semi-intensive",
+          rearingPeriod: 200
         },
       ],
       productionRecords: [
@@ -862,7 +852,6 @@ class MeatAdminDashboard {
                     <td>${item.carcassWeight}</td>
                     <td>${item.feedConversionRatio}</td>
                     <td>${item.rearingPeriod}</td>
-                    <td>${item.rearingSystem}</td>
                     <td>${actionButtons}</td>
                 `
       case "productionRecords":
@@ -1028,8 +1017,7 @@ class MeatAdminDashboard {
       avgLiveWeight: Number.parseFloat(data.avgLiveWeight),
       carcassWeight: Number.parseFloat(data.carcassWeight),
       feedConversionRatio: Number.parseFloat(data.feedConversionRatio),
-      rearingPeriod: Number.parseInt(data.rearingPeriod),
-      rearingSystem: data.rearingSystem,
+      rearingPeriod: Number.parseInt(data.rearingPeriod)
     }
 
     if (this.editingIndex >= 0) {
@@ -1237,7 +1225,6 @@ class MeatAdminDashboard {
     document.getElementById("carcassWeight").value = record.carcassWeight
     document.getElementById("feedConversionRatio").value = record.feedConversionRatio
     document.getElementById("rearingPeriod").value = record.rearingPeriod
-    document.getElementById("rearingSystem").value = record.rearingSystem
     document.getElementById("meatProductModalTitle").textContent = "Edit Meat Product"
   }
 

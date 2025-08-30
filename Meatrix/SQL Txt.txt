@@ -87,6 +87,7 @@ CREATE TABLE WAREHOUSE (
     area VARCHAR(50),
     city VARCHAR(50),
     district VARCHAR(50),
+    country VARCHAR(50),
     storage_capacity FLOAT,
     storage_feature VARCHAR(50)
 );
@@ -328,16 +329,16 @@ INSERT INTO SLAUGHTER_HOUSE_ANIMAL VALUES
 (10, 'Rabbit');
 
 INSERT INTO WAREHOUSE VALUES
-(1, 'Zone A', 'Dhaka', 'Dhaka', 1000.0, 'Cold'),
-(2, 'Zone B', 'Chittagong', 'Chittagong', 1100.0, 'Dry'),
-(3, 'Zone C', 'Khulna', 'Khulna', 1200.0, 'Cold'),
-(4, 'Zone D', 'Sylhet', 'Sylhet', 1300.0, 'Dry'),
-(5, 'Zone E', 'Rajshahi', 'Rajshahi', 1400.0, 'Cold'),
-(6, 'Zone F', 'Barisal', 'Barisal', 1500.0, 'Dry'),
-(7, 'Zone G', 'Rangpur', 'Rangpur', 1600.0, 'Cold'),
-(8, 'Zone H', 'Mymensingh', 'Mymensingh', 1700.0, 'Dry'),
-(9, 'Zone I', 'Comilla', 'Comilla', 1800.0, 'Cold'),
-(10, 'Zone J', 'Jessore', 'Jessore', 1900.0, 'Dry');
+(1, 'Zone A', 'Dhaka', 'Dhaka','Bangladesh', 1000.0, 'Cold'),
+(2, 'Zone B', 'Chittagong', 'Chittagong','Bangladesh', 1100.0, 'Dry'),
+(3, 'Zone C', 'Khulna', 'Khulna','Bangladesh', 1200.0, 'Cold'),
+(4, 'Zone D', 'Sylhet', 'Sylhet','Bangladesh', 1300.0, 'Dry'),
+(5, 'Zone E', 'Rajshahi', 'Rajshahi','Bangladesh', 1400.0, 'Cold'),
+(6, 'Zone F', 'Barisal', 'Barisal','Bangladesh', 1500.0, 'Dry'),
+(7, 'Zone G', 'Rangpur', 'Rangpur','Bangladesh', 1600.0, 'Cold'),
+(8, 'Zone H', 'Mymensingh', 'Mymensingh','Bangladesh', 1700.0, 'Dry'),
+(9, 'Zone I', 'Comilla', 'Comilla','Bangladesh', 1800.0, 'Cold'),
+(10, 'Zone J', 'Jessore', 'Jessore','Bangladesh', 1900.0, 'Dry');
 
 INSERT INTO SHIPMENT VALUES
 (1, '2023-02-01', '2023-02-01', 500.0, 'Dhaka', 'Chittagong', 'Truck', 1),

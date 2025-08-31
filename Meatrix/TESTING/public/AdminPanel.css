@@ -883,11 +883,13 @@ body {
   font-size: 12px;
   background: white;
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .chart-controls select:focus {
   outline: none;
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 .chart-card .card-content {

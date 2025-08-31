@@ -635,58 +635,58 @@ class MeatAdminDashboard {
   }
 
   async saveMeatProduct(data) {
-    const product = {
-      productType: data.productType,
-      breedVariety: data.breedVariety,
-      avgLiveWeight: Number.parseFloat(data.avgLiveWeight),
-      carcassWeight: Number.parseFloat(data.carcassWeight),
-      feedConversionRatio: Number.parseFloat(data.feedConversionRatio),
-      rearingPeriod: Number.parseInt(data.rearingPeriod),
-    }
-
-    try {
-      if (this.editingIndex >= 0) {
-        // For updates, use the batch_id from the data
-        const batchId = this.editingIndex + 1; // Assuming batch_id matches index + 1
-        
-        const response = await fetch(`/api/meat-products-update/${batchId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(product),
-        })
-
-        if (response.ok) {
-          this.data.meatProducts[this.editingIndex] = product;
-          this.showNotification("Product updated successfully", "success");
-        } else {
-          throw new Error("Failed to update product in database");
-        }
-      } else {
-        // Add new record
-        const response = await fetch("/api/meat-products-update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(product),
-        })
-
-        if (response.ok) {
-          const result = await response.json();
-          product.id = result.id;
-          this.data.meatProducts.push(product);
-          this.showNotification("Product added successfully", "success");
-        } else {
-          throw new Error("Failed to add product to database");
-        }
-      }
-
-      this.closeModal("meatProductModal");
-      this.updateTable("meatProducts");
-      this.updateDashboard();
-    } catch (error) {
-      console.error("[v0] Error saving meat product:", error);
-      this.showNotification("Error saving product: " + error.message, "error");
-    }
+  const product = {
+    productType: data.productType,
+    breedVariety: data.breedVariety,
+    avgLiveWeight: Number.parseFloat(data.avgLiveWeight),
+    carcassWeight: Number.parseFloat(data.carcassWeight),
+    feedConversionRatio: Number.parseFloat(data.feedConversionRatio),
+    rearingPeriod: Number.parseInt(data.rearingPeriod),
   }
+
+  try {
+    if (this.editingIndex >= 0) {
+      // Get the actual batch_id from the data
+      const batchId = this.data.meatProducts[this.editingIndex].id || (this.editingIndex + 1);
+      
+      const response = await fetch(`/api/meat-products-update/${batchId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      })
+
+      if (response.ok) {
+        this.data.meatProducts[this.editingIndex] = product;
+        this.showNotification("Product updated successfully", "success");
+      } else {
+        throw new Error("Failed to update product in database");
+      }
+    } else {
+      // Add new record
+      const response = await fetch("/api/meat-products-update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      })
+
+      if (response.ok) {
+        const result = await response.json();
+        product.id = result.id;
+        this.data.meatProducts.push(product);
+        this.showNotification("Product added successfully", "success");
+      } else {
+        throw new Error("Failed to add product to database");
+      }
+    }
+
+    this.closeModal("meatProductModal");
+    this.updateTable("meatProducts");
+    this.updateDashboard();
+  } catch (error) {
+    console.error("[v0] Error saving meat product:", error);
+    this.showNotification("Error saving product: " + error.message, "error");
+  }
+}
 
   async saveProductionRecord(data) {
     const record = {
@@ -975,60 +975,67 @@ class MeatAdminDashboard {
   }
 
   async deleteRecord(dataType, index) {
-    if (!confirm("Are you sure you want to delete this record?")) {
-      return
-    }
-
-    try {
-      if (dataType === "consumptionPatterns") {
-        const record = this.data.consumptionPatterns[index]
-        const response = await fetch(`/api/consumption-patterns/${record.region}/${record.meatType}`, {
-          method: "DELETE",
-        })
-
-        if (response.ok) {
-          this.data.consumptionPatterns.splice(index, 1)
-          this.showNotification("Record deleted successfully", "success")
-        } else {
-          throw new Error("Failed to delete record")
-        }
-      } else if (dataType === "meatProducts") {
-        // Delete from meat batches table
-        const response = await fetch(`/api/meat-batches/${index + 1}`, {
-          method: "DELETE",
-        })
-
-        if (response.ok) {
-          this.data.meatProducts.splice(index, 1)
-          this.showNotification("Record deleted successfully", "success")
-        } else {
-          throw new Error("Failed to delete record")
-        }
-      } else if (dataType === "priceTrends") {
-        // Delete from sales records table
-        const response = await fetch(`/api/sales-records/${index + 1}`, {
-          method: "DELETE",
-        })
-
-        if (response.ok) {
-          this.data.priceTrends.splice(index, 1)
-          this.showNotification("Record deleted successfully", "success")
-        } else {
-          throw new Error("Failed to delete record")
-        }
-      } else {
-        // For other data types, just remove from local data
-        this.data[dataType].splice(index, 1)
-        this.showNotification("Record deleted from local view (database update not implemented)", "warning")
-      }
-
-      this.updateTable(dataType)
-      this.updateDashboard()
-    } catch (error) {
-      console.error("[v0] Error deleting record:", error)
-      this.showNotification("Error deleting record: " + error.message, "error")
-    }
+  if (!confirm("Are you sure you want to delete this record?")) {
+    return
   }
+
+  try {
+    if (dataType === "consumptionPatterns") {
+      const record = this.data.consumptionPatterns[index]
+      const response = await fetch(`/api/consumption-patterns/${record.region}/${record.meatType}`, {
+        method: "DELETE",
+      })
+
+      if (response.ok) {
+        this.data.consumptionPatterns.splice(index, 1)
+        this.showNotification("Record deleted successfully", "success")
+      } else {
+        throw new Error("Failed to delete record")
+      }
+    } else if (dataType === "meatProducts") {
+      // Get the actual ID from the data, not just index + 1
+      const record = this.data.meatProducts[index]
+      const recordId = record.id || (index + 1)
+      
+      const response = await fetch(`/api/meat-batches/${recordId}`, {
+        method: "DELETE",
+      })
+
+      if (response.ok) {
+        this.data.meatProducts.splice(index, 1)
+        this.showNotification("Record deleted successfully", "success")
+      } else {
+        throw new Error("Failed to delete record")
+      }
+    } else if (dataType === "priceTrends") {
+      // Get the actual ID from the data
+      const record = this.data.priceTrends[index]
+      const recordId = record.id || (index + 1)
+      
+      const response = await fetch(`/api/sales-records/${recordId}`, {
+        method: "DELETE",
+      })
+
+      if (response.ok) {
+        this.data.priceTrends.splice(index, 1)
+        this.showNotification("Record deleted successfully", "success")
+      } else {
+        throw new Error("Failed to delete record")
+      }
+    } else {
+      // For other data types, we need to implement proper deletion
+      // For now, just remove from local data
+      this.data[dataType].splice(index, 1)
+      this.showNotification("Record deleted from local view (database deletion not implemented for this type)", "warning")
+    }
+
+    this.updateTable(dataType)
+    this.updateDashboard()
+  } catch (error) {
+    console.error("[v0] Error deleting record:", error)
+    this.showNotification("Error deleting record: " + error.message, "error")
+  }
+}
 
   editRecord(dataType, index) {
     this.editingIndex = index
@@ -1094,12 +1101,202 @@ class MeatAdminDashboard {
     // Update statistics
     this.updateStatistics()
 
+    this.initDashboardCharts()
+
     // Update charts
     this.updateChart("priceTrendChart")
     this.updateChart("productionTrendChart")
     this.updateChart("demandElasticityChart")
     this.updateChart("supplyDemandChart")
   }
+
+  // Add this method to initialize all dashboard charts
+initDashboardCharts() {
+  this.initDemandElasticityChart();
+  this.initSupplyDemandChart();
+  this.initInsightsChart();
+  this.updateDashboard();
+}
+
+// Add these chart initialization methods
+initDemandElasticityChart() {
+  const ctx = document.getElementById('demandElasticityChart');
+  if (!ctx) return;
+  
+  // Destroy existing chart if it exists
+  if (this.charts.demandElasticityChart) {
+    this.charts.demandElasticityChart.destroy();
+  }
+  
+  // Create sample data for dashboard
+  this.charts.demandElasticityChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2024-Q1', '2024-Q2', '2024-Q3', '2024-Q4'],
+      datasets: [
+        {
+          label: 'Beef',
+          data: [-0.85, -0.92, -1.05, -1.12],
+          borderColor: '#4a90e2',
+          backgroundColor: 'rgba(74, 144, 226, 0.1)',
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Chicken',
+          data: [-0.65, -0.72, -0.68, -0.75],
+          borderColor: '#ff6b6b',
+          backgroundColor: 'rgba(255, 107, 107, 0.1)',
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Mutton',
+          data: [-1.25, -1.32, -1.28, -1.35],
+          borderColor: '#50c878',
+          backgroundColor: 'rgba(80, 200, 120, 0.1)',
+          tension: 0.4,
+          fill: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Demand Elasticity Trends',
+          font: {
+            size: 14,
+            weight: 'bold'
+          }
+        },
+        legend: {
+          position: 'top',
+        }
+      },
+      scales: {
+        y: {
+          title: {
+            display: true,
+            text: 'Elasticity'
+          },
+          suggestedMin: -1.5,
+          suggestedMax: -0.5
+        }
+      }
+    }
+  });
+}
+
+initSupplyDemandChart() {
+  const ctx = document.getElementById('supplyDemandChart');
+  if (!ctx) return;
+  
+  // Destroy existing chart if it exists
+  if (this.charts.supplyDemandChart) {
+    this.charts.supplyDemandChart.destroy();
+  }
+  
+  // Create sample data for dashboard
+  this.charts.supplyDemandChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [
+        {
+          label: 'Supply',
+          data: [12000, 19000, 15000, 21000, 18000, 24000],
+          backgroundColor: '#4a90e2',
+          borderColor: '#4a90e2',
+          borderWidth: 1
+        },
+        {
+          label: 'Demand',
+          data: [15000, 17000, 16000, 19000, 21000, 22000],
+          backgroundColor: '#ff6b6b',
+          borderColor: '#ff6b6b',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Supply vs Demand',
+          font: {
+            size: 14,
+            weight: 'bold'
+          }
+        },
+        legend: {
+          position: 'top',
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Volume (tons)'
+          },
+          ticks: {
+            callback: function(value) {
+              return (value / 1000) + 'K';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+initInsightsChart() {
+  const ctx = document.getElementById('insightsChart');
+  if (!ctx) return;
+  
+  // Destroy existing chart if it exists
+  if (this.charts.insightsChart) {
+    this.charts.insightsChart.destroy();
+  }
+  
+  // Create sample data for dashboard
+  this.charts.insightsChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Beef', 'Chicken', 'Mutton', 'Goat', 'Pork'],
+      datasets: [{
+        data: [35, 25, 20, 12, 8],
+        backgroundColor: [
+          '#4a90e2',
+          '#ff6b6b',
+          '#50c878',
+          '#ffa500',
+          '#9370db'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Market Insights Overview',
+          font: {
+            size: 14,
+            weight: 'bold'
+          }
+        },
+        legend: {
+          position: 'right',
+        }
+      }
+    }
+  });
+}
 
   updateStatistics() {
   const stats = {
@@ -1336,62 +1533,113 @@ renderDemandElasticityDetailChart(ctx) {
   const data = this.data.demandElasticity;
   if (data.length === 0) return;
 
-  // Group data by product type
+  // Group data by product type and time period
   const productGroups = {};
+  const timePeriods = new Set();
+  
   data.forEach(item => {
     if (!productGroups[item.productType]) {
-      productGroups[item.productType] = [];
+      productGroups[item.productType] = {};
     }
-    productGroups[item.productType].push(item);
+    productGroups[item.productType][item.timePeriod] = item.priceElasticity;
+    timePeriods.add(item.timePeriod);
   });
 
+  // Convert time periods to sorted array
+  const sortedTimePeriods = Array.from(timePeriods).sort();
+  
   const colors = ['#4a90e2', '#ff6b6b', '#50c878', '#ffa500', '#9370db'];
-  
   const datasets = [];
-  let colorIndex = 0;
   
-  Object.keys(productGroups).forEach(productType => {
-    const productData = productGroups[productType];
-    const color = colors[colorIndex % colors.length];
-    colorIndex++;
+  Object.keys(productGroups).forEach((productType, index) => {
+    const color = colors[index % colors.length];
     
+    // Create data points for each time period
+    const chartData = sortedTimePeriods.map(period => {
+      return productGroups[productType][period] || null;
+    });
+
     datasets.push({
       label: productType,
-      data: productData.map(item => ({
-        x: item.timePeriod,
-        y: item.priceElasticity
-      })),
+      data: chartData,
       borderColor: color,
-      backgroundColor: color + '80',
-      tension: 0.4
+      backgroundColor: color + '40',
+      tension: 0.4,
+      fill: false,
+      pointBackgroundColor: color,
+      pointBorderColor: '#fff',
+      pointRadius: 6,
+      pointHoverRadius: 8
     });
   });
+
+  // Destroy existing chart if it exists
+  if (this.charts.demandElasticityDetailChart) {
+    this.charts.demandElasticityDetailChart.destroy();
+  }
 
   this.charts.demandElasticityDetailChart = new Chart(ctx, {
     type: 'line',
     data: {
+      labels: sortedTimePeriods,
       datasets: datasets
     },
     options: {
       responsive: true,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
       plugins: {
         title: {
           display: true,
-          text: 'Demand Elasticity by Product Type'
+          text: 'Demand Elasticity by Product Type',
+          font: {
+            size: 16
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}`;
+            }
+          }
+        },
+        legend: {
+          position: 'top',
+          labels: {
+            boxWidth: 15,
+            padding: 15
+          }
         }
       },
       scales: {
         x: {
-          type: 'category',
           title: {
             display: true,
-            text: 'Time Period'
+            text: 'Time Period',
+            font: {
+              weight: 'bold'
+            }
+          },
+          grid: {
+            display: false
           }
         },
         y: {
           title: {
             display: true,
-            text: 'Price Elasticity'
+            text: 'Price Elasticity',
+            font: {
+              weight: 'bold'
+            }
+          },
+          suggestedMin: -2,
+          suggestedMax: 0.5,
+          ticks: {
+            callback: function(value) {
+              return value.toFixed(2);
+            }
           }
         }
       }
@@ -1403,81 +1651,325 @@ renderSupplyDemandDetailChart(ctx) {
   const data = this.data.supplyDemand;
   if (data.length === 0) return;
 
-  // Group data by region
+  // Group data by region and time period
   const regionGroups = {};
+  const timePeriods = new Set();
+  
   data.forEach(item => {
     if (!regionGroups[item.region]) {
-      regionGroups[item.region] = [];
+      regionGroups[item.region] = {
+        supply: {},
+        demand: {},
+        surplus: {}
+      };
     }
-    regionGroups[item.region].push(item);
+    regionGroups[item.region].supply[item.timePeriod] = item.supplyVolume;
+    regionGroups[item.region].demand[item.timePeriod] = item.demandVolume;
+    regionGroups[item.region].surplus[item.timePeriod] = item.surplusDeficit;
+    timePeriods.add(item.timePeriod);
   });
 
-  const colors = ['#4a90e2', '#ff6b6b', '#50c878', '#ffa500', '#9370db'];
+  // Convert time periods to sorted array
+  const sortedTimePeriods = Array.from(timePeriods).sort();
   
-  const supplyDatasets = [];
-  const demandDatasets = [];
-  let colorIndex = 0;
-  
-  Object.keys(regionGroups).forEach(region => {
-    const regionData = regionGroups[region];
-    const color = colors[colorIndex % colors.length];
-    colorIndex++;
-    
-    supplyDatasets.push({
-      label: `${region} - Supply`,
-      data: regionData.map(item => ({
-        x: item.timePeriod,
-        y: item.supplyVolume
-      })),
-      borderColor: color,
-      backgroundColor: 'transparent',
-      tension: 0.4
-    });
-    
-    demandDatasets.push({
-      label: `${region} - Demand`,
-      data: regionData.map(item => ({
-        x: item.timePeriod,
-        y: item.demandVolume
-      })),
-      borderColor: color,
-      backgroundColor: 'transparent',
-      borderDash: [5, 5],
-      tension: 0.4
-    });
+  // For bar chart, we'll show one region at a time with a selector
+  const regions = Object.keys(regionGroups);
+  if (regions.length === 0) return;
+
+  // Create or update region selector
+  this.createRegionSelector(regions, 'supplyDemandRegionSelector', (selectedRegion) => {
+    this.updateSupplyDemandChartForRegion(ctx, selectedRegion, regionGroups, sortedTimePeriods);
   });
+
+  // Show chart for first region by default
+  this.updateSupplyDemandChartForRegion(ctx, regions[0], regionGroups, sortedTimePeriods);
+}
+
+createRegionSelector(regions, containerId, onChangeCallback) {
+  let container = document.getElementById(containerId);
+  
+  if (!container) {
+    container = document.createElement('div');
+    container.id = containerId;
+    container.className = 'chart-controls';
+    
+    const chartCard = document.querySelector('#supplyDemandDetailChart').closest('.card');
+    const cardHeader = chartCard.querySelector('.card-header');
+    cardHeader.appendChild(container);
+  }
+  
+  container.innerHTML = `
+    <select id="regionSelect">
+      ${regions.map(region => `<option value="${region}">${region}</option>`).join('')}
+    </select>
+  `;
+  
+  document.getElementById('regionSelect').addEventListener('change', (e) => {
+    onChangeCallback(e.target.value);
+  });
+}
+
+updateSupplyDemandChartForRegion(ctx, region, regionGroups, sortedTimePeriods) {
+  const supplyData = sortedTimePeriods.map(period => {
+    return regionGroups[region].supply[period] || 0;
+  });
+
+  const demandData = sortedTimePeriods.map(period => {
+    return regionGroups[region].demand[period] || 0;
+  });
+
+  const surplusData = sortedTimePeriods.map(period => {
+    return regionGroups[region].surplus[period] || 0;
+  });
+
+  // Destroy existing chart if it exists
+  if (this.charts.supplyDemandDetailChart) {
+    this.charts.supplyDemandDetailChart.destroy();
+  }
 
   this.charts.supplyDemandDetailChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-      datasets: [...supplyDatasets, ...demandDatasets]
+      labels: sortedTimePeriods,
+      datasets: [
+        {
+          label: 'Supply',
+          data: supplyData,
+          backgroundColor: '#4a90e2',
+          borderColor: '#4a90e2',
+          borderWidth: 1
+        },
+        {
+          label: 'Demand',
+          data: demandData,
+          backgroundColor: '#ff6b6b',
+          borderColor: '#ff6b6b',
+          borderWidth: 1
+        },
+        {
+          label: 'Surplus/Deficit',
+          data: surplusData,
+          backgroundColor: '#50c878',
+          borderColor: '#50c878',
+          borderWidth: 1,
+          type: 'line',
+          fill: false,
+          pointStyle: 'circle',
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }
+      ]
     },
     options: {
       responsive: true,
       plugins: {
         title: {
           display: true,
-          text: 'Supply vs Demand by Region'
+          text: `Supply vs Demand - ${region}`,
+          font: {
+            size: 16
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.dataset.label || '';
+              const value = context.parsed.y !== null ? context.parsed.y.toLocaleString() : 'N/A';
+              return `${label}: ${value} tons`;
+            }
+          }
+        },
+        legend: {
+          position: 'top'
         }
       },
       scales: {
         x: {
-          type: 'category',
           title: {
             display: true,
-            text: 'Time Period'
+            text: 'Time Period',
+            font: {
+              weight: 'bold'
+            }
           }
         },
         y: {
           title: {
             display: true,
-            text: 'Volume (tons)'
+            text: 'Volume (tons)',
+            font: {
+              weight: 'bold'
+            }
+          },
+          ticks: {
+            callback: function(value) {
+              if (value >= 1000) {
+                return (value / 1000).toFixed(1) + 'K';
+              }
+              return value;
+            }
           }
         }
       }
     }
   });
 }
+// renderSupplyDemandDetailChart(ctx) {
+//   const data = this.data.supplyDemand;
+//   if (data.length === 0) return;
+
+//   // Group data by region and time period
+//   const regionGroups = {};
+//   const timePeriods = new Set();
+  
+//   data.forEach(item => {
+//     if (!regionGroups[item.region]) {
+//       regionGroups[item.region] = {
+//         supply: {},
+//         demand: {}
+//       };
+//     }
+//     regionGroups[item.region].supply[item.timePeriod] = item.supplyVolume;
+//     regionGroups[item.region].demand[item.timePeriod] = item.demandVolume;
+//     timePeriods.add(item.timePeriod);
+//   });
+
+//   // Convert time periods to sorted array
+//   const sortedTimePeriods = Array.from(timePeriods).sort();
+  
+//   const supplyColors = ['#4a90e2', '#3b82f6', '#2563eb', '#1d4ed8', '#1e40af'];
+//   const demandColors = ['#ff6b6b', '#ef4444', '#dc2626', '#b91c1c', '#991b1b'];
+//   const datasets = [];
+  
+//   let colorIndex = 0;
+//   Object.keys(regionGroups).forEach(region => {
+//     const supplyColor = supplyColors[colorIndex % supplyColors.length];
+//     const demandColor = demandColors[colorIndex % demandColors.length];
+//     colorIndex++;
+    
+//     // Create data points for each time period - Supply
+//     const supplyData = sortedTimePeriods.map(period => {
+//       return regionGroups[region].supply[period] || null;
+//     });
+
+//     // Create data points for each time period - Demand
+//     const demandData = sortedTimePeriods.map(period => {
+//       return regionGroups[region].demand[period] || null;
+//     });
+
+//     datasets.push({
+//       label: `${region} - Supply`,
+//       data: supplyData,
+//       borderColor: supplyColor,
+//       backgroundColor: supplyColor + '20',
+//       tension: 0.4,
+//       fill: false,
+//       pointBackgroundColor: supplyColor,
+//       pointBorderColor: '#fff',
+//       pointRadius: 6,
+//       pointHoverRadius: 8
+//     });
+    
+//     datasets.push({
+//       label: `${region} - Demand`,
+//       data: demandData,
+//       borderColor: demandColor,
+//       backgroundColor: demandColor + '20',
+//       tension: 0.4,
+//       fill: false,
+//       borderDash: [5, 5],
+//       pointBackgroundColor: demandColor,
+//       pointBorderColor: '#fff',
+//       pointRadius: 6,
+//       pointHoverRadius: 8
+//     });
+//   });
+
+//   // Destroy existing chart if it exists
+//   if (this.charts.supplyDemandDetailChart) {
+//     this.charts.supplyDemandDetailChart.destroy();
+//   }
+
+//   this.charts.supplyDemandDetailChart = new Chart(ctx, {
+//     type: 'line',
+//     data: {
+//       labels: sortedTimePeriods,
+//       datasets: datasets
+//     },
+//     options: {
+//       responsive: true,
+//       interaction: {
+//         mode: 'index',
+//         intersect: false,
+//       },
+//       plugins: {
+//         title: {
+//           display: true,
+//           text: 'Supply vs Demand by Region',
+//           font: {
+//             size: 16
+//           }
+//         },
+//         tooltip: {
+//           callbacks: {
+//             label: function(context) {
+//               const label = context.dataset.label || '';
+//               const value = context.parsed.y !== null ? context.parsed.y.toLocaleString() : 'N/A';
+//               return `${label}: ${value} tons`;
+//             }
+//           }
+//         },
+//         legend: {
+//           position: 'top',
+//           labels: {
+//             boxWidth: 15,
+//             padding: 15,
+//             filter: function(item, chart) {
+//               // For better readability, only show region names once in legend
+//               const text = item.text;
+//               if (text.includes('Supply') && text.includes('Demand')) {
+//                 // This should not happen with our current labeling
+//                 return true;
+//               }
+//               return true;
+//             }
+//           }
+//         }
+//       },
+//       scales: {
+//         x: {
+//           title: {
+//             display: true,
+//             text: 'Time Period',
+//             font: {
+//               weight: 'bold'
+//             }
+//           },
+//           grid: {
+//             display: false
+//           }
+//         },
+//         y: {
+//           title: {
+//             display: true,
+//             text: 'Volume (tons)',
+//             font: {
+//               weight: 'bold'
+//             }
+//           },
+//           ticks: {
+//             callback: function(value) {
+//               if (value >= 1000) {
+//                 return (value / 1000).toFixed(1) + 'K';
+//               }
+//               return value;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   });
+// }
 
 renderInsightsDetailChart(ctx) {
   const data = this.data.insightsReports;
